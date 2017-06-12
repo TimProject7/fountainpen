@@ -1,4 +1,4 @@
-package com.parker.controller;
+package com.parker.user.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

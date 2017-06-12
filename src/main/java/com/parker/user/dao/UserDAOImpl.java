@@ -1,0 +1,52 @@
+package com.parker.user.dao;
+
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
+
+import com.parker.user.service.UserServiceImpl;
+import com.parker.user.vo.UserVO;
+
+//저장소 
+@Repository
+public class UserDAOImpl implements UserDAO {
+	@Autowired
+	
+	SqlSession session;
+	private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
+	// 회원가입
+	@Override
+	public int userinsert(UserVO UVO) {
+		return session.insert("userinsert", UVO);
+	}
+
+	
+
+	@Override
+	public UserVO selectLogin(UserVO uVO) {
+		return session.selectOne("selectLogin", uVO);
+	}
+
+
+
+	@Override
+	public String useridcheck(UserVO UVO) {
+		// TODO Auto-generated method stub
+		logger.debug("디버그 UVO.toString() : " +UVO.toString());
+		return session.selectOne("useridcheck",UVO) + "";
+	}
+
+
+
+	@Override
+	public UserVO useridcheck1(UserVO UVO) {
+		// TODO Auto-generated method stub
+		System.out.println("DAO UVO : " +UVO);
+		System.out.println("DAO UVO : " +UVO.getUser_id());
+		return session.selectOne("useridcheck1",UVO);
+	}
+
+}
