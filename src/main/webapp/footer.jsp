@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <!--jQuery 플러그인 추가-->
 <script src="js/common.js"></script>
 <style type="text/css"></style>
@@ -26,35 +26,35 @@
 
 					<tr>
 						<td></td>
-						<td>> Brand Story</td>
-						<td>> DOUFOLD</td>
-						<td>> PREMIER</td>
-						<td>> Notice</td>
-						<td>> Off-line Shop</td>
+						<td> Brand Story</td>
+						<td> DOUFOLD</td>
+						<td> PREMIER</td>
+						<td> Notice</td>
+						<td> Off-line Shop</td>
 					</tr>
 
 					<tr>
 						<td></td>
-						<td>> History</td>
-						<td>> SONNET</td>
-						<td>> INGENUITY</td>
-						<td>> FAQ</td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td></td>
-						<td>> URBAN</td>
-						<td>> IM</td>
-						<td>> A/S system</td>
+						<td> History</td>
+						<td> SONNET</td>
+						<td> INGENUITY</td>
+						<td> FAQ</td>
 					</tr>
 
 					<tr>
 						<td></td>
 						<td></td>
-						<td>> VECTOR</td>
-						<td>> JOTTER</td>
-						<td>> User board</td>
+						<td> URBAN</td>
+						<td> IM</td>
+						<td> A/S system</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td></td>
+						<td> VECTOR</td>
+						<td> JOTTER</td>
+						<td> User board</td>
 					</tr>
 
 					<tr>

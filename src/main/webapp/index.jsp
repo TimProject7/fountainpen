@@ -10,9 +10,8 @@
 <body>
 
 
-	<a href="user/userlogin.do">로그인</a>
-	<a href="user/userinsertForm.do">회원가입</a>
-	<a href="cartList/cartList.do">장바구니</a>
+
+	
 
 </body>
 </html>	<%@ include file="/footer.jsp" %>

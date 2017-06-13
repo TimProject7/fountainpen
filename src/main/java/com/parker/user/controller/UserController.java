@@ -111,9 +111,17 @@ public class UserController {
 		
 		String userid = request.getParameter("user_id");
 		String pass = request.getParameter("user_password");
-		String shapass = passwordEncooder.encode(pass);
+		/*String shapass = passwordEncooder.encode(pass);*/
 		
-		UserVO loginUser = userService.sessionLogin(UVO);
+		System.out.println("DB 비밀번호 UVO.getUser_password() : "+UVO.getUser_password());
+		
+		System.out.println("입력한 비밀번호 pass : "+pass);
+		
+		System.out.println("UVO tostring :" + UVO.toString());
+		UserVO userLogin = userService.sessionLogin(UVO);
+		
+		System.out.println(" userLogin : "+userLogin);
+		
 		
 		/*System.out.println(" 컨트롤러 UVO.toString() : " +UVO.toString());
 		System.out.println(" 컨트롤러 UVO.toString() : " +userid);
@@ -121,11 +129,11 @@ public class UserController {
 		System.out.println(" 컨트롤러 UVO.toString() : " +shapass);
 		*/
 		//비밀번호도 비교해야됨
-		if (UVO.getUser_id().equals(userid)) {
-			
+		if (UVO.getUser_id().equals(userid) && UVO.getUser_password().equals(pass)) {
 			session.setAttribute("UVO", UVO);
+			System.out.println("성공");
 		}else if(!UVO.getUser_id().equals(userid)) {
-			
+			System.out.println("실패");
 		}
 
 		return mav;
@@ -137,7 +145,7 @@ public class UserController {
 	public String userlogout(HttpSession session) {
 		logger.info("userlogin 호출 성공");
 		session.invalidate();
-		return "redirect:userlogin.do";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/page1", method = RequestMethod.GET)

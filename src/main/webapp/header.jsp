@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>만년필의 명가 파카(PARKER)</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <!--jQuery 플러그인 추가-->
 <script src="js/common.js"></script>
 <style type="text/css"></style>
@@ -17,9 +18,16 @@
 			<ul class="hd_nav1">
 				<li class="hd_nav1"><a href="#">SITE-MAP</a></li>
 				<li class="hd_nav1"><a href="#">SUPPORT</a></li>
-				<li class="hd_nav1"><a href="#">JOIN</a></li>
-				<li class="hd_nav1"><a href="#">LOGIN</a></li>
-				<li class="hd_nav1"><a href="#">HOME</a></li>
+				<c:choose >
+					<c:when test="${not empty sessionScope.UVO}">
+					<li class="hd_nav1"><a href="logout.do">LOGOUT</a></li>
+					</c:when>
+					<c:when test="${empty sessionScope.UVO}">
+						<li class="hd_nav1"><a href="user/userinsertForm.do">JOIN</a></li>
+						<li class="hd_nav1"><a href="user/userlogin.do">LOGIN</a></li>
+					</c:when>
+				</c:choose>
+				<li class="hd_nav1"><a href="/">HOME</a></li>
 			</ul>
 
 			<br>

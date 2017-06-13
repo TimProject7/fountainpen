@@ -2,13 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="/header.jsp"%>
+<%@ page session="false" %>
+<%@ include file="/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="/resources/css/user.css">
+<link rel="stylesheet" href="/css/user.css">
 <script type="text/javascript" src="../js/common.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -28,6 +29,7 @@
 			if ($('#user_password').val() != $('#user_passwordchk').val()) {
 				$('font[name=check]').text('');
 				$('font[name=check]').html("암호틀림");
+
 			} else {
 				$('font[name=check]').text('');
 				$('font[name=check]').html("암호맞음");
@@ -36,172 +38,129 @@
 	});
 
 	//저장버튼 클릭시 userinsert 페이지로 이동
-	$(document)
-			.ready(
-					function() {
-						//아이디 중복 체크 ajax 비동기
-						$("#user_idcheckBtn")
-								.click(
-										function() {
-											if (!chkSubmit($("#user_id"))) {
-												return;
-											} else {
-												$
-														.ajax({
-															url : "/user/useridcheck.do", //전송url
-															type : "POST", //전송방식
-															data : $("#user_id")
-																	.serialize(),
-															error : function(
-																	result) {
-																alert('시스템오류')
-															},
-															success : function(
-																	result) {
-																if (result == 0) {
-																	alert('사용가능한 아이디입니다')
-																	$("#msg")
-																			.text(
-																					"사용가능한 아이디입니다")
-																			.css(
-																					"color",
-																					"blue");
-																	$(
-																			"#user_password")
-																			.select();
-																} else if (result == 1) {
-																	$("#msg")
-																			.text(
-																					"중복된 아이디입니다")
-																			.css(
-																					"color",
-																					"red");
-																	$(
-																			"#user_id")
-																			.select();
-																	alert('이미사용한 아이디입니다');
-																}
-															}
-														});
-											}
-										});
-
-						//메일소스
-
-						$("#mailSubmit")
-								.click(
-										function() {
-											if (!chkSubmit($("#user_email"))) {
-												return;
-											} else {
-												$
-														.ajax({
-															url : "/mail/mailForm.do", //전송url
-															type : "POST", //전송방식
-															data : $(
-																	"#user_email")
-																	.serialize(),
-															error : function(
-																	content) {
-																alert('시스템오류')
-															},
-															success : function(
-																	content) {
-																var content = content;
-																//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
-																$(
-																		'input[name=mailkey1]')
-																		.attr(
-																				'value',
-																				content);
-															}
-														});
-											}
-										});
-
-						$("#mailBtn").click(function() {
-
-							var result = 0;
-							if ($("#mailkey").val() == null) {
-								alert("인증번호를 입력하세요")
-								return false;
-							}
-
-							if ($("#mailkey").val() != $("#mailkey1").val()) {
-								alert("인증 실패");
-								result = 0;
-								return false;
+	$(document).ready(
+			function() {
+				//아이디 중복 체크 ajax 비동기
+				$("#user_idcheckBtn").click(
+						function() {
+							if (!chkSubmit($("#user_id"))) {
+								return;
 							} else {
-								alert("인증 성공");
-								result = 1;
+								$.ajax({
+									url : "/user/useridcheck.do", //전송url
+									type : "POST", //전송방식
+									data : $("#user_id").serialize(),
+									error : function(result) {
+										alert('시스템오류')
+									},
+									success : function(result) {
+										if (result == 0) {
+											alert('사용가능한 아이디입니다')
+											$("#msg").text("사용가능한 아이디입니다").css(
+													"color", "blue");
+											$("#user_password").select();
+										} else if (result == 1) {
+											$("#msg").text("중복된 아이디입니다").css(
+													"color", "red");
+											$("#user_id").select();
+											alert('이미사용한 아이디입니다');
+										}
+									}
+								});
 							}
-
 						});
-						/* 저장 버튼 클릭시 처리 이벤트 */
-						$("#singupBtn")
-								.click(
-										function() {
 
-											if (!chkSubmit($('#user_name'),
-													"이름을")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_id'), "아이디를")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_password'),
-													"비밀번호를")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_email'), "메일을")) {
-												return;
-											} else if (!chkSubmit(
-													$('#zip_code'), "주소를")) {
-												return;
-											} else if (!chkSubmit(
-													$('#detail_address'),
-													"상세주소를 ")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_birthday'),
-													"생년월일을")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_cell'), "전화번호를")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_phone'), "핸드폰번호를")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_gender'), "제목을")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_privacyconsignment'),
-													"작성할 내용을")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_termsofuse'),
-													"제목을")) {
-												return;
-											} else if (!chkSubmit(
-													$('#user_receiveadvertising'),
-													"작성할 내용을")) {
+				//메일소스
 
-												//입력값 체크
+				$("#mailSubmit").click(
+						function() {
+							if (!chkSubmit($("#user_email"))) {
+								return;
+							} else {
+								$.ajax({
+									url : "/mail/mailForm.do", //전송url
+									type : "POST", //전송방식
+									data : $("#user_email").serialize(),
+									error : function(content) {
+										alert('시스템오류')
+									},
+									success : function(content) {
+										var content = content;
+										//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
+										$('input[name=mailkey1]').attr('value',
+												content);
+									}
+								});
+							}
+						});
 
-												$("#singupform")
-														.attr(
-																{
-																	"method" : "POST",
-																	"action" : "/user/userinsert.do"
-																});
+				$("#mailBtn").click(function() {
 
-												$("#singupform").submit();
-											}
+					var result = 0;
+					if ($("#mailkey").val() == null) {
+						alert("인증번호를 입력하세요")
+						return false;
+					}
 
-										});
+					if ($("#mailkey").val() != $("#mailkey1").val()) {
+						alert("인증 실패");
+						result = 0;
+						return false;
+					} else {
+						alert("인증 성공");
+						result = 1;
+					}
 
-					});
+				});
+				/* 저장 버튼 클릭시 처리 이벤트 */
+				$("#singupBtn").click(function() {
+					var chk_radio = document.getElementsBynName
+
+					if (!chkSubmit($('#user_name'), "이름을")) {
+						return;
+					} else if (!chkSubmit($('#user_id'), "아이디를")) {
+						return;
+					} else if (!chkSubmit($('#user_password'), "비밀번호를")) {
+						return;
+					} else if (!chkSubmit($('#user_email'), "메일을")) {
+						return;
+					} else if (!chkSubmit($('#zip_code'), "주소를")) {
+						return;
+					} else if (!chkSubmit($('#detail_address'), "상세주소를 ")) {
+						return;
+					} else if (!chkSubmit($('#user_birthday'), "생년월일을")) {
+						return;
+					} else if (!chkSubmit($('#user_cell'), "전화번호를")) {
+						return;
+					} else if (!chkSubmit($('#user_phone'), "핸드폰번호를")) {
+						return;
+					}else if (!$(':input:radio[name=user_gender]:checked').val()) {
+						alert("성별을 선택해주세요");
+						return;
+					}else if (!$(':input:checkbox[name=user_privacyconsignment]:checked').val()) {
+						alert("약관1 선택해라");
+						return;
+					}else if (!$(':input:checkbox[name=user_termsofuse]:checked').val()) {
+						alert("약관2 선택해라");
+						return;
+					}else if (!$(':input:checkbox[name=user_receiveadvertising]:checked').val()) {
+						alert("약관3 선택해라");
+						return;
+					} else {
+
+						//입력값 체크
+
+						$("#singupform").attr({
+							"method" : "POST",
+							"action" : "/user/userinsert.do"
+						});
+
+						$("#singupform").submit();
+
+					}
+				});
+
+			});
 
 	$(function() {
 
@@ -378,13 +337,12 @@
 					<td><span>우편번호</span></td>
 					<td><input type="text" id="zip_code" name="zip_code">
 				</tr>
-				<tr><td>
-					<button type="button" id="zipcodesearch">주소검색</button>
-					<br>
-					<span>주소</span>
+				<tr>
+					<td>
+						<button type="button" id="zipcodesearch">주소검색</button> <br> <span>주소</span>
 					</td>
-				
-				
+
+
 					<td><input type="text" id="user_address" name="user_address">
 						<br> <span>상세주소</span></td>
 					<td><input type="text" id="detail_address"
@@ -404,31 +362,29 @@
 				</tr>
 				<tr>
 					<td>성별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><label id="user_gender" name="user_gender">남</label> <input
-						type="radio" id="user_gender" name="user_gender" value="남">
-						<label id="user_gender" name="user_gender">여</label> <input
-						type="radio" id="user_gender" name="user_gender" value="여"></td>
+					<td><label>남 <input type="radio" id="user_gender"
+							name="user_gender" value="man" required="required"></label> <label>여
+							<input type="radio" id="user_gender" name="user_gender"
+							value="girl" required="required">
+					</label></td>
 				</tr>
 				<tr>
 					<td>약관동의</td>
 					<td><input type="checkbox" id="user_privacyconsignment"
-						name="user_privacyconsignment" value="동의"> <br> <textarea
-							rows="5" cols="40" id="user_privacyconsignment"
-							name="user_privacyconsignment"></textarea></td>
+						name="user_privacyconsignment" value="1"> <br> <textarea
+							rows="5" cols="40"></textarea></td>
 				</tr>
 				<tr>
 					<td>이용약관</td>
 					<td><input type="checkbox" id="user_termsofuse"
-						name="user_termsofuse" value="동의"> <br> <textarea
-							rows="5" cols="40" id="user_termsofuse" name="user_termsofuse"></textarea>
-					</td>
+						name="user_termsofuse" value="1"> <br> <textarea
+							rows="5" cols="40"></textarea></td>
 				</tr>
 				<tr>
 					<td>광고동의</td>
 					<td><input type="checkbox" id="user_receiveadvertising"
-						name="user_receiveadvertising" value="동의"> <br> <textarea
-							rows="5" cols="40" id="user_receiveadvertising"
-							name="user_receiveadvertising"></textarea></td>
+						name="user_receiveadvertising" value="1"> <br> <textarea
+							rows="5" cols="40"></textarea></td>
 				</tr>
 			</table>
 		</form>
@@ -440,3 +396,4 @@
 
 </body>
 </html>
+<%@ include file="/footer.jsp" %>
