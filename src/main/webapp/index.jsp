@@ -10,8 +10,7 @@
 <body>
 
 
-	<a href="user/userlogin.do">로그인</a>
-	<a href="user/userinsertForm.do">회원가입</a>
+
 	
 
 </body>

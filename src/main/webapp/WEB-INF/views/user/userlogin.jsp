@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="false" %>
+<%@ include file="/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +42,6 @@
 
 
 		<c:otherwise>
-
 			<form id="login" name="login" method="POST" action="login.do">
 				<table>
 					<tr>
@@ -51,13 +52,13 @@
 							name="user_password"></td>
 					</tr>
 				</table>
-				<input type="submit" id="loginBtn" value="로그인">
+				<input type="submit" id="loginBtn" value="로그인" >
 			</form>
 		</c:otherwise>
 	</c:choose>
 
 
 
-
+<%@ include file="/footer.jsp" %>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO selectLogin(UserVO uVO) {
-		uVO.setUser_password("$2a$10$.IqBc7XS/TNwUp0uwFXQc.3rWpw/qVe3/Z/oV6uU8b0A5f.PyS6h2");
+		/*uVO.setUser_password("$2a$10$.IqBc7XS/TNwUp0uwFXQc.3rWpw/qVe3/Z/oV6uU8b0A5f.PyS6h2");*/
 		return session.selectOne("selectLogin", uVO);
 	}
 
@@ -58,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO sessionLogin(UserVO UVO) {
-		UVO.setUser_password("$2a$10$.IqBc7XS/TNwUp0uwFXQc.3rWpw/qVe3/Z/oV6uU8b0A5f.PyS6h2");
+		//UVO.setUser_password("$2a$10$.IqBc7XS/TNwUp0uwFXQc.3rWpw/qVe3/Z/oV6uU8b0A5f.PyS6h2");
 		System.out.println("DAO 테스트 UVO.toString() : " +UVO.toString());
 		return session.selectOne("selectLoginUser", UVO) ;
 	}
