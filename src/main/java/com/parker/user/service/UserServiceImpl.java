@@ -55,4 +55,12 @@ public class UserServiceImpl implements UserService {
 		return userDAO.useridcheck1(UVO);
 	}
 
+
+
+	@Override
+	public UserVO sessionLogin(UserVO UVO) {
+		
+		return userDAO.sessionLogin(UVO);
+	}
+
 }

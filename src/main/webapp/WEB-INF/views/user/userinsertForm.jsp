@@ -260,16 +260,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td>이메일<input type="text" id="user_email" name="user_email"
-					size="120" style="width: 30%" placeholder="상대의 이메일"
-					class="form-control" value="${user_email}"> <input
-					type="button" value="메일 인증" class="btn btn-warning" id="mailSubmit"><br>
+				<td>이메일<input type="text" id="user_email" name="user_email" size="120" style="width: 30%" placeholder="상대의 이메일" class="form-control" value="${user_email}"> 
+					<input type="button" value="메일 인증" class="btn btn-warning" id="mailSubmit"><br>
 			</tr>
 			<tr>
-				<td><input type="text" name="mailkey" id="mailkey"
-					placeholder="인증키를 입력하세요"> <input type="button"
-					name="mailBtn" id="mailBtn" value="확인"><br> <input
-					type="text" name="mailkey1" id="mailkey1" value=""></td>
+				<td><input type="text" name="mailkey" id="mailkey" placeholder="인증키를 입력하세요"> 
+					<input type="button" name="mailBtn" id="mailBtn" value="확인"><br> 
+					<input type="text" name="mailkey1" id="mailkey1" value=""></td>
 			</tr>
 			<tr>
 				<td><span>우편번호</span> <input type="text" id="zip_code"

@@ -9,37 +9,55 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		/* 저장 버튼 클릭시 처리 이벤트 */
-		$("#loginBtn").click(function() {
-			//입력값 체크
+	/* $(document).ready(function() {
 
-			$("#userlogin").attr({
-				"method" : "POST",
-				"action" : "/user/userlogin.do"
-			});
-			$("#userlogin").submit();
+	$("#loginBtn").click(function() {
+		//입력값 체크
+
+		$("#userlogin").attr({
+			"method" : "POST",
+			"action" : "/user/login.do"
 		});
+		$("#login").submit();
 	});
+	});  */
 </script>
 </head>
 <body>
 
-	
-		<form id="userlogin">
-			<table>
-				<tr>
-					<td>아이디<input type="text" id="user_id" name="user_id"></td>
-				</tr>
-				<tr>
-					<td>비밀번호<input type="text" id="user_password"
-						name="user_password"></td>
-				</tr>
-			</table>
-		</form>
-		<input type="button" id="loginBtn" value="로그인">
-	
+	<c:choose>
+		<c:when test="${not empty sessionScope.UVO}">
+			<h2>로그인성공</h2>
+	이름: ${UVO.user_id}<br>
+		이름: ${UVO.user_name}<br>
+			<br>
+			<a href="logout.do">로그아웃</a>
+			<br>
+			<br>
+			<a href="page1.do">페이지1</a>
+		</c:when>
+		
 
-	
+
+		<c:otherwise>
+
+			<form id="login" name="login" method="POST" action="login.do">
+				<table>
+					<tr>
+						<td>아이디<input type="text" id="user_id" name="user_id"></td>
+					</tr>
+					<tr>
+						<td>비밀번호<input type="text" id="user_password"
+							name="user_password"></td>
+					</tr>
+				</table>
+				<input type="submit" id="loginBtn" value="로그인">
+			</form>
+		</c:otherwise>
+	</c:choose>
+
+
+
+
 </body>
 </html>
