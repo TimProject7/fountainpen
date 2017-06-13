@@ -51,9 +51,9 @@
 		<!-- select count(*) from users_tb where user_id = #{user_id} -->
 
 		select count(*)
-		from users_tb 
-		where user_id = #{user_id} 
-		<if test ='user_id !=null and user_id != ""'>
+		from users_tb
+		where user_id = #{user_id}
+		<if test='user_id !=null and user_id != ""'>
 		</if>
 	</select>
 
@@ -64,7 +64,7 @@
 		select count(*)
 		from users_tb
 		where user_id = #{user_id}
-		<if test ='user_id !=null and user_id != ""'>
+		<if test='user_id !=null and user_id != ""'>
 		</if>
 	</select>
 
@@ -79,5 +79,17 @@
 		USERS_TB
 		where
 		user_id = #{user_id} and user_password = #{user_password}
+	</select>
+
+	<select id="selectLoginUser" parameterType="com.parker.user.vo.UserVO"
+		resultType="com.parker.user.vo.UserVO">
+		SELECT
+		user_id, user_name, user_number,user_password
+		FROM
+		USERS_TB
+		where
+		user_id = #{user_id}
+		and user_password = #{user_password}
+
 	</select>
 </mapper>
