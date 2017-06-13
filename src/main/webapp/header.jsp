@@ -7,9 +7,9 @@
 <title>만년필의 명가 파카(PARKER)</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <!--jQuery 플러그인 추가-->
-<script src="js/script.js"></script>
+<script src="js/common.js"></script>
 <style type="text/css"></style>
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/content.css" />
 </head>
 <body>
 	<div class="mapper">
