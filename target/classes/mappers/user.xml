@@ -57,19 +57,6 @@
 		</if>
 	</select>
 
-	<select id="useridcheck1" parameterType="com.parker.user.vo.UserVO"
-		resultType="com.parker.user.vo.UserVO">
-		<!-- select count(*) from users_tb where user_id = #{user_id} -->
-
-		select count(*)
-		from users_tb
-		where user_id = #{user_id}
-		<if test='user_id !=null and user_id != ""'>
-		</if>
-	</select>
-
-
-
 	<!--로그인 -->
 	<select id="selectLogin" parameterType="com.parker.user.vo.UserVO"
 		resultType="com.parker.user.vo.UserVO">
@@ -81,15 +68,70 @@
 		user_id = #{user_id} and user_password = #{user_password}
 	</select>
 
+	<!-- 로그인 -->
 	<select id="selectLoginUser" parameterType="com.parker.user.vo.UserVO"
 		resultType="com.parker.user.vo.UserVO">
-		SELECT
+		SELECT *
+		FROM
+		USERS_TB
+		where
+		user_id = #{user_id}
+		
+		<!-- SELECT
 		user_id, user_name, user_number,user_password
 		FROM
 		USERS_TB
 		where
 		user_id = #{user_id}
 		and user_password = #{user_password}
+ -->
+ 
+	</select>
+
+	<!--아이디찾기 -->
+	<select id="idFind" parameterType="com.parker.user.vo.UserVO"
+		resultType="com.parker.user.vo.UserVO">
+		SELECT
+		user_id
+		FROM
+		USERS_TB
+		where
+		user_name = #{user_name}
+		and
+		user_email = #{user_email}
+	</select>
+
+	<!-- 비밀번호찾기 -->
+	<select id="passEmailFind" parameterType="com.parker.user.vo.UserVO"
+		resultType="com.parker.user.vo.UserVO">
+		SELECT user_name, user_id, user_email, user_password
+		FROM
+		USERS_TB
+		where
+		user_name = #{user_name}
+		and user_id = #{user_id}
+		and
+		user_email = #{user_email}
 
 	</select>
+
+	<!-- 비밀번호찾기변경 -->
+	<update id="passFindChange" parameterType="com.parker.user.vo.UserVO" >
+		update
+			users_tb
+		set
+			user_password = #{user_password}
+		where 
+			user_id = #{user_id}
+	</update>
+	
+	<!--회원정보변경전 비밀번호확인  -->
+	<select id="passCheck" parameterType="com.parker.user.vo.UserVO"
+		resultType="com.parker.user.vo.UserVO">
+		SELECT *
+		FROM
+		USERS_TB
+		where
+		user_id = #{user_id}
+</select>
 </mapper>
