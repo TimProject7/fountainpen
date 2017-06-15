@@ -379,7 +379,7 @@
 				<tr>
 					<th id="column">이메일</th>
 			<td id="column2"><input type="email" id="user_email" name="user_email"
-						size="120" style="width: 30%" placeholder="상대의 이메일"
+						size="120" style="width: 30%" placeholder="받는사람메일"
 						class="form-control" value="${user_email}"> <input
 						type="button" value="메일 인증" class="btn btn-warning"
 						id="mailSubmit"><br>
