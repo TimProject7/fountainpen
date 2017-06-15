@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/login/user.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -23,26 +24,14 @@
 		$("#login").submit();
 	});
 	});  */
-	
 </script>
 </head>
 <body>
 
-	<c:choose>
-		<c:when test="${not empty sessionScope.UVO}">
-			<h2>로그인성공</h2>
-	이름: ${UVO.user_id}<br>
-		이름: ${UVO.user_name}<br>
-			<br>
-			<a href="logout.do">로그아웃</a>
-			<br>
-			<br>
-			<a href="page1.do">페이지1</a>
-		</c:when>
+	
+
+	
 		
-
-
-		<c:otherwise>
 			<form id="login" name="login" method="POST" action="login.do">
 				<table>
 					<tr>
@@ -54,9 +43,22 @@
 					</tr>
 				</table>
 				<input type="submit" id="loginBtn" value="로그인" >
+				<label>아이디 저장 <input type="checkbox"></label>
 			</form>
-		</c:otherwise>
-	</c:choose>
+			
+			<form action="userinsertForm.do">
+			<label>회원가입을 하시려면 버튼을클릭해주세요<input type="submit" value="회원가입"></label>
+			</form>
+			
+			<form  action="idFind.do">
+			<label>아아디를 찾으려면 버튼을클릭해주세요<input type="submit" value="아이디찾기" ></label>
+			</form>
+			
+			<form action="passFind.do">
+			<label>비밀번호를 찾으려면 버튼을 클릭해주세요<input type="submit" value="비밀번호찾기"></label>
+			</form>
+			
+	
 
 
 

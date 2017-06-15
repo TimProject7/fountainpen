@@ -8,9 +8,9 @@
 <title>만년필의 명가 파카(PARKER)</title>
 
 <!--jQuery 플러그인 추가-->
-<script src="js/common.js"></script>
+<script src="js/script.js"></script>
 <style type="text/css"></style>
-<link rel="stylesheet" type="text/css" href="../css/content.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
 	<div class="mapper">
@@ -20,11 +20,13 @@
 				<li class="hd_nav1"><a href="#">SUPPORT</a></li>
 				<c:choose >
 					<c:when test="${not empty sessionScope.UVO}">
-					<li class="hd_nav1"><a href="logout.do">LOGOUT</a></li>
+					<li class="hd_nav1">${sessionScope.UVO.user_id}</li>
+					<li class="hd_nav1"><a href="user/logout.do">로그아웃</a></li>
+					<li class="hd_nav1"><a href="user/userUpdatePassword.do">회원정보변경</a></li>
 					</c:when>
-					<c:when test="${empty sessionScope.UVO}">
-						<li class="hd_nav1"><a href="user/userinsertForm.do">JOIN</a></li>
-						<li class="hd_nav1"><a href="user/userlogin.do">LOGIN</a></li>
+					<c:when test="${empty sessionScope.UVO }">
+						<li class="hd_nav1"><a href="user/userinsertForm.do">회원가입</a></li>
+						<li class="hd_nav1"><a href="user/userlogin.do">로그인</a></li>
 					</c:when>
 				</c:choose>
 				<li class="hd_nav1"><a href="/">HOME</a></li>
@@ -52,20 +54,7 @@
 		</header>
 
 		<br>
-		<div class="content">
-
-			
-
-			<br>
-
-			<p class="center">
-				<img id="footer_img" src="images/story.jpg"> <img
-					id="footer_img" class="img_padding" src="images/pen.jpg"> <img
-					id="footer_img" src="images/store.jpg">
-			</p>
-
-
-		</div>
+		
 		
 		
 		

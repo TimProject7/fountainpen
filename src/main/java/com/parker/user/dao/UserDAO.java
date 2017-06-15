@@ -8,6 +8,10 @@ public interface UserDAO {
 	
 	public UserVO sessionLogin(UserVO UVO);
 	public String useridcheck(UserVO UVO);
-	public UserVO useridcheck1(UserVO UVO);
-
+	
+	public UserVO idfind(UserVO UVO);
+	public UserVO passEmailFind(UserVO UVO);
+	public int passFindChange(UserVO UVO);
+	
+	public UserVO passCheck(UserVO UVO);
 }

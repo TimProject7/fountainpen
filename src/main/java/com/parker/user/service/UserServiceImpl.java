@@ -45,22 +45,43 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-
-
 	@Override
-	public UserVO useridchk1(UserVO UVO) {
-		// TODO Auto-generated method stub
-		System.out.println("service UVO : " +UVO);
-		System.out.println("service UVO : " +UVO.getUser_id());
-		return userDAO.useridcheck1(UVO);
+	public UserVO sessionLogin(UserVO UVO) {
+		
+		return userDAO.sessionLogin(UVO);
 	}
 
 
 
 	@Override
-	public UserVO sessionLogin(UserVO UVO) {
+	public UserVO idFind(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return userDAO.idfind(UVO);
+	}
+
+
+
+	@Override
+	public UserVO passEmailFind(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return userDAO.passEmailFind(UVO);
+	}
+
+
+
+	@Override
+	public int passFindChange(UserVO UVO) {
+		// TODO Auto-generated method stub
+		System.out.println(" 서비스 UVO.getUser_password() : " +UVO.getUser_password());
+		return userDAO.passFindChange(UVO);
+	}
+
+
+
+	@Override
+	public UserVO passCheck(UserVO UVO) {
 		
-		return userDAO.sessionLogin(UVO);
+		return userDAO.passCheck(UVO);
 	}
 
 }

@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 
 <!--jQuery 플러그인 추가-->
-<script src="js/common.js"></script>
+<script src="js/script.js"></script>
 <style type="text/css"></style>
-<link rel="stylesheet" type="text/css" href="../css/content.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
 <footer>
