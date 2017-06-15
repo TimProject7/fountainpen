@@ -22,8 +22,8 @@ import com.parker.user.vo.UserVO;
 public class UserController {
 	Logger logger = Logger.getLogger(UserController.class);
 
-	@Autowired
-	BCryptPasswordEncoder passwordEncooder;
+	/*@Autowired
+	BCryptPasswordEncoder passwordEncooder;*/
 
 	@Autowired
 	UserService userService;
@@ -43,9 +43,9 @@ public class UserController {
 		int result = 0;
 		String url = "";
 
-		String pass = request.getParameter("user_password");
+		/*String pass = request.getParameter("user_password");
 		String shapass = passwordEncooder.encode(pass);
-		UVO.setUser_password(shapass);
+		UVO.setUser_password(shapass);*/
 		result = userService.userinsert(UVO);
 
 		return "/user/userinsert";
@@ -81,9 +81,12 @@ public class UserController {
 		logger.info("loginProcess 호출 성공");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:userlogin.do");
-
+		
+		//암호화 다시작업해야함!
+		
 		String userid = request.getParameter("user_id");
 		String pass = request.getParameter("user_password");
+		
 		/* String shapass = passwordEncooder.encode(pass); */
 
 		System.out.println("DB 비밀번호 UVO.getUser_password() : " + UVO.getUser_password());
@@ -91,9 +94,9 @@ public class UserController {
 		System.out.println("입력한 비밀번호 pass : " + pass);
 
 		System.out.println("UVO tostring :" + UVO.toString());
-		UserVO userLogin = userService.sessionLogin(UVO);
+		UVO = userService.sessionLogin(UVO);
 
-		System.out.println(" userLogin : " + userLogin);
+		System.out.println(" userLogin : " + UVO);
 
 		/*
 		 * System.out.println(" 컨트롤러 UVO.toString() : " +UVO.toString());
@@ -103,7 +106,7 @@ public class UserController {
 		 * System.out.println(" 컨트롤러 UVO.toString() : " +shapass);
 		 */
 		// 비밀번호도 비교해야됨
-		if (UVO.getUser_id().equals(userid) && UVO.getUser_password().equals(pass)) {
+		if (UVO.getUser_id().equals(userid)) {
 			session.setAttribute("UVO", UVO);
 			System.out.println("성공");
 		} else if (!UVO.getUser_id().equals(userid)) {

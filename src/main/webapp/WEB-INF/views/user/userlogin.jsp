@@ -23,6 +23,7 @@
 		$("#login").submit();
 	});
 	});  */
+	
 </script>
 </head>
 <body>
