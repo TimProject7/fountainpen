@@ -41,7 +41,6 @@
 
 	//저장버튼 클릭시 userinsert 페이지로 이동
 	$(document).ready(function() {
-		
 						//아이디 중복 체크 ajax 비동기
 						$("#user_idcheckBtn")
 								.click(
@@ -199,6 +198,7 @@
 											} else {
 
 												//입력값 체크
+												alert('가입완료')
 
 												$("#singupform")
 														.attr(
@@ -379,7 +379,7 @@
 				<tr>
 					<th id="column">이메일</th>
 			<td id="column2"><input type="email" id="user_email" name="user_email"
-						size="120" style="width: 30%" placeholder="받는사람메일"
+						size="120" style="width: 30%" placeholder="상대의 이메일"
 						class="form-control" value="${user_email}"> <input
 						type="button" value="메일 인증" class="btn btn-warning"
 						id="mailSubmit"><br>

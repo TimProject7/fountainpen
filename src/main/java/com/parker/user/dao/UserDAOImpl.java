@@ -98,4 +98,10 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne("passCheck", UVO);
 	}
 
+	@Override
+	public int userUpdate(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return session.update("userUpdate",UVO);
+	}
+
 }

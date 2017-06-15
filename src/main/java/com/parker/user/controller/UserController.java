@@ -26,7 +26,6 @@ import com.parker.user.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/user")
-@SessionAttributes(value = "UVO")
 public class UserController {
 	Logger logger = Logger.getLogger(UserController.class);
 
@@ -57,28 +56,47 @@ public class UserController {
 		 */
 		result = userService.userinsert(UVO);
 
-		return "/user/userinsert";
+		return "redirect:/";
 	}
+	// 회원정보 수정 완료
+		@RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
+		public String userUpdate(@ModelAttribute UserVO UVO, HttpServletRequest request) {
+			logger.info("userinsert 호출 성공");
+			int result = 0;
+			String url = "";
+
+		
+			result = userService.userUpdate(UVO);
+			if(result ==0){
+				System.out.println("실패");
+			}else{
+				System.out.println("성공");
+			}
+
+			return "redirect:/";
+		}
 
 	// 회원정보변경 비밀번호 확인폼
 	@RequestMapping(value = "/userUpdatePassword", method = { RequestMethod.POST, RequestMethod.GET })
 	public String userUpdatePassword(HttpSession session, @ModelAttribute UserVO UVO, Model model,
 			HttpServletRequest request) {
 		logger.info("userUpdatePassword 호출 성공");
-		
 
-		return "/user/userUpdatePassword";
+		return "/myPage/userUpdatePassword";
 	}
 
 	// 회원정보변경 폼
 	@RequestMapping(value = "/userUpdateForm", method = { RequestMethod.POST, RequestMethod.GET })
-	public String userUpdateForm(HttpSession session, @ModelAttribute UserVO UVO, Model model,HttpServletRequest request) {
+	public String userUpdateForm(HttpSession session, @ModelAttribute UserVO UVO, Model model,
+			HttpServletRequest request) {
 		logger.info("userUpdatePassword 호출 성공");
-
-		session.setAttribute("UVO", UVO);
+		String usernumber = request.getParameter("user_number");
 		String userid = request.getParameter("user_id");
 		String pass = request.getParameter("user_password");
-		UVO.setUser_id(userid);
+		
+		int usernumber1 = Integer.parseInt(usernumber);
+		
+		UVO.setUser_number(usernumber1);
 		UVO = userService.passCheck(UVO);
 
 		boolean result = BCrypt.checkpw(pass, UVO.getUser_password());
@@ -87,10 +105,11 @@ public class UserController {
 		if (result == false) {
 			System.out.println("실패");
 		} else if (result == true) {
+			session.setAttribute("UVO", UVO);
 			System.out.println("성공");
 		}
 
-		return "/user/userUpdateForm";
+		return "/myPage/userUpdateForm";
 	}
 
 	// 중복체크
@@ -136,9 +155,7 @@ public class UserController {
 
 			if (result == true) {
 				session.setAttribute("UVO", UVO);
-				session.setAttribute("sessionLogin", UVO.getUser_id());
-				session.setAttribute("sessionLogin", UVO.getUser_password());
-				session.setAttribute("sessionLogin", UVO.getUser_number());
+				
 				System.out.println("성공");
 			} else if (result == false) {
 				System.out.println("실패");
@@ -155,7 +172,8 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String userlogout(HttpSession session) {
 		logger.info("logout 호출 성공");
-		session.setAttribute("UVO", null);
+		//session.setAttribute("UVO", null);
+		session.invalidate();
 
 		return "redirect:/";
 	}

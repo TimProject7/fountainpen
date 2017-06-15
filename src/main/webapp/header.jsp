@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
+
 	<div class="mapper">
 		<header>
 			<ul class="hd_nav1">
@@ -20,13 +21,14 @@
 				<li class="hd_nav1"><a href="#">SUPPORT</a></li>
 				<c:choose >
 					<c:when test="${not empty sessionScope.UVO}">
-					<li class="hd_nav1">${sessionScope.UVO.user_id}</li>
-					<li class="hd_nav1"><a href="user/logout.do">로그아웃</a></li>
-					<li class="hd_nav1"><a href="user/userUpdatePassword.do">회원정보변경</a></li>
+					<li class="hd_nav1">${sessionScope.UVO.user_id}님</li>
+					<li class="hd_nav1"><a href="/user/logout.do">로그아웃</a></li>
+					<li class="hd_nav1"><a href="/user/userUpdatePassword.do">개인정보변경</a></li>
 					</c:when>
-					<c:when test="${empty sessionScope.UVO }">
-						<li class="hd_nav1"><a href="user/userinsertForm.do">회원가입</a></li>
-						<li class="hd_nav1"><a href="user/userlogin.do">로그인</a></li>
+					<c:when test="${empty session }">
+							<li class="hd_nav1">${sessionScope.UVO.user_id}asdasd</li>
+						<li class="hd_nav1"><a href="/user/userinsertForm.do">회원가입</a></li>
+						<li class="hd_nav1"><a href="/user/userlogin.do">로그인</a></li>
 					</c:when>
 				</c:choose>
 				<li class="hd_nav1"><a href="/">HOME</a></li>

@@ -19,4 +19,5 @@ public interface UserService {
 	public int passFindChange(UserVO UVO);
 	public UserVO passCheck(UserVO UVO);
 	
+	public int userUpdate(UserVO UVO);
 }

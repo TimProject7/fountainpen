@@ -84,4 +84,12 @@ public class UserServiceImpl implements UserService {
 		return userDAO.passCheck(UVO);
 	}
 
+
+
+	@Override
+	public int userUpdate(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return userDAO.userUpdate(UVO);
+	}
+
 }
