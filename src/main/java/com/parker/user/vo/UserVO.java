@@ -21,6 +21,7 @@ public class UserVO {
 	private String user_receiveadvertising; // 이용약관3
 	private Date user_regdate; // 가입날짜
 
+	
 	public int getUser_number() {
 		return user_number;
 	}
