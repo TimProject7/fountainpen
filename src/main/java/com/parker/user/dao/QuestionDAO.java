@@ -1,0 +1,24 @@
+package com.parker.user.dao;
+
+import java.util.List;
+
+import com.parker.user.vo.QuestionVO;
+
+public interface QuestionDAO {
+	// 1:1문의게시판 리스트
+	public List<QuestionVO> questionList(QuestionVO QVO);
+	public QuestionVO questionUser(QuestionVO QVO);
+	
+	//글쓰기
+	public int questionInsert(QuestionVO QVO);
+	
+	//상세보기
+	public QuestionVO questionDetail(int question_number);
+	
+	//수정하기
+	
+	public int questionUpdate(QuestionVO QVO);
+	
+	//레코드건수
+	public int questionListCnt(QuestionVO QVO);
+}

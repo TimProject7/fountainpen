@@ -1,6 +1,6 @@
 package com.parker.user.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 //회원 VO
 public class UserVO {
@@ -19,6 +19,7 @@ public class UserVO {
 	private String user_privacyconsignment; // 이용약관1
 	private String user_termsofuse; // 이용약관2
 	private String user_receiveadvertising; // 이용약관3
+	private String user_status; // 회원상태
 	private Date user_regdate; // 가입날짜
 
 	public int getUser_number() {
@@ -141,6 +142,14 @@ public class UserVO {
 		this.user_receiveadvertising = user_receiveadvertising;
 	}
 
+	public String getUser_status() {
+		return user_status;
+	}
+
+	public void setUser_status(String user_status) {
+		this.user_status = user_status;
+	}
+
 	public Date getUser_regdate() {
 		return user_regdate;
 	}
@@ -156,8 +165,8 @@ public class UserVO {
 				+ ", user_address=" + user_address + ", detail_address=" + detail_address + ", user_birthday="
 				+ user_birthday + ", user_cell=" + user_cell + ", user_phone=" + user_phone + ", user_gender="
 				+ user_gender + ", user_privacyconsignment=" + user_privacyconsignment + ", user_termsofuse="
-				+ user_termsofuse + ", user_receiveadvertising=" + user_receiveadvertising + ", user_regdate="
-				+ user_regdate + "]";
+				+ user_termsofuse + ", user_receiveadvertising=" + user_receiveadvertising + ", user_status="
+				+ user_status + ", user_regdate=" + user_regdate + "]";
 	}
 
 }

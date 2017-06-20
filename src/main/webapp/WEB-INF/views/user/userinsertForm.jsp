@@ -18,9 +18,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+	
 	//비밀번호가맞는지 확인
-	
-	
 	$(function() {
 		/* keyup 텍스트에 커서가 올라가면 반응하는 명령어 */
 		$('#user_password').keyup(function() {
@@ -40,7 +39,9 @@
 	});
 
 	//저장버튼 클릭시 userinsert 페이지로 이동
-	$(document).ready(function() {
+	$(document)
+			.ready(
+					function() {
 						//아이디 중복 체크 ajax 비동기
 						$("#user_idcheckBtn")
 								.click(
@@ -190,11 +191,6 @@
 													.val()) {
 												alert("약관2 선택해라");
 												return;
-											} else if (!$(
-													':input:checkbox[name=user_receiveadvertising]:checked')
-													.val()) {
-												alert("약관3 선택해라");
-												return;
 											} else {
 
 												//입력값 체크
@@ -312,7 +308,6 @@
 		$("#zip_code").val(zipcode);
 		$("#user_address").val(address);
 	}
-	
 </script>
 </head>
 <body>
@@ -346,16 +341,17 @@
 				</div>
 			</form>
 		</div>
-		<form id="singupform" name="singupform" >
+		<form id="singupform" name="singupform">
 
 			<table id=content_table border="1">
 
-				
+
 				<tr>
 					<th id="column">아이디</th>
-					<td id="column2"><input type="text" id="user_id" name="user_id" autofocus="autofocus"> <input
-						type="button" id="user_idcheckBtn" name="user_idcheckBtn"
-						value="중복확인"><br> <span id="msg"></span></td>
+					<td id="column2"><input type="text" id="user_id"
+						name="user_id" autofocus="autofocus"> <input type="button"
+						id="user_idcheckBtn" name="user_idcheckBtn" value="중복확인"><br>
+						<span id="msg"></span></td>
 				</tr>
 				<tr>
 					<th id="column">비밀번호</th>
@@ -364,32 +360,34 @@
 				</tr>
 				<tr>
 					<th id="column">비밀번호확인</th>
-			<td id="column2"><input type="password" id="user_passwordchk"
+					<td id="column2"><input type="password" id="user_passwordchk"
 						name="user_passwordchk"> <font name="check" size="2"
 						color="red"></font></td>
 				</tr>
 				<tr>
 					<th style="width: 20%;" id="column">이름</th>
-					<td id="column2"><input type="text" id="user_name" name="user_name"></td>
+					<td id="column2"><input type="text" id="user_name"
+						name="user_name"></td>
 				</tr>
 				<tr>
 					<th id="column">생년월일</th>
-			<td id="column2"><input type="text" id="user_birthday" name="user_birthday"></td>
+					<td id="column2"><input type="text" id="user_birthday"
+						name="user_birthday"></td>
 				</tr>
 				<tr>
 					<th id="column">이메일</th>
-			<td id="column2"><input type="email" id="user_email" name="user_email"
-						size="120" style="width: 30%" placeholder="상대의 이메일"
-						class="form-control" value="${user_email}"> <input
-						type="button" value="메일 인증" class="btn btn-warning"
+					<td id="column2"><input type="email" id="user_email"
+						name="user_email" size="120" style="width: 30%"
+						placeholder="상대의 이메일" class="form-control" value="${user_email}">
+						<input type="button" value="메일 인증" class="btn btn-warning"
 						id="mailSubmit"><br>
 				</tr>
 				<tr>
 					<th id="column">인증번호</th>
-			<td id="column2"><input type="text" name="mailkey" id="mailkey"
-						placeholder="인증키를 입력하세요"> <input type="button"
-						name="mailBtn" id="mailBtn" value="확인"><br> <input
-						type="text" name="mailkey1" id="mailkey1" value=""></td>
+					<td id="column2"><input type="text" name="mailkey"
+						id="mailkey" placeholder="인증키를 입력하세요"> <input
+						type="button" name="mailBtn" id="mailBtn" value="확인"><br>
+						<input type="text" name="mailkey1" id="mailkey1" value=""></td>
 				</tr>
 				<tr>
 					<th id="column">우편번호</th>
@@ -405,21 +403,25 @@
 
 					</td>
 				</tr>
-				
+
 				<tr>
 					<th id="column">전화번호</th>
-					<td id="column2"><input type="text" id="user_cell" name="user_cell"></td>
+					<td id="column2"><input type="text" id="user_cell"
+						name="user_cell"></td>
 				</tr>
 				<tr>
 					<th id="column">핸드폰번호</th>
-				<td id="column2"><input type="text" id="user_phone" name="user_phone"></td>
+					<td id="column2"><input type="text" id="user_phone"
+						name="user_phone"></td>
 				</tr>
 				<tr>
 					<th id="column">성별</th>
-				<td id="column2"><label id="user_gender" name="user_gender">남 <input type="radio" id="user_gender"
-							name="user_gender" value="man" required="required"></label> <label id="user_gender" name="user_gender">여
+					<td id="column2"><label id="user_gender" name="user_gender">남
 							<input type="radio" id="user_gender" name="user_gender"
-							value="girl" required="required">
+							value="man" required="required">
+					</label> <label id="user_gender" name="user_gender">여 <input
+							type="radio" id="user_gender" name="user_gender" value="girl"
+							required="required">
 					</label></td>
 				</tr>
 				<tr>
@@ -427,7 +429,7 @@
 					<td id="column2"><input type="checkbox"
 						id="user_privacyconsignment" name="user_privacyconsignment"
 						value="동의">
-						<p id="right_font">PARKER 이용약관에 동의합니다.</p> <br> <textarea
+						<p id="right_font">PARKER 이용약관에 동의합니다. (필수)</p> <br> <textarea
 							rows="5" cols="40" id="user_privacyconsignment_content">
 							제 1 조 (목적)
 이 약관은 파카 주식회사 ("회사" 또는 "파카")가 제공하는 파카 및 파카 관련 제반 서비스의 이용과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
@@ -557,7 +559,7 @@
 					<th id="column">PARKER 개인정보</th>
 					<td id="column2"><input type="checkbox" id="user_termsofuse"
 						name="user_termsofuse" value="동의">
-						<p id="right_font">PARKER 개인정보 정보수집에 동의합니다.</p> <br> <textarea
+						<p id="right_font">PARKER 개인정보 정보수집에 동의합니다. (필수)</p> <br> <textarea
 							rows="5" cols="40" id="user_termsofuse_content">
 							
 							정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
@@ -601,9 +603,10 @@ NAVER 내의 개별 서비스 이용, 이벤트 응모 및 경품 신청 과정�
 				<tr>
 					<th id="column">광고 수신 동의</th>
 					<td id="column2"><input type="checkbox"
-						id="user_receiveadvertising" name="user_receiveadvertising" value="동의">
+						id="user_receiveadvertising" name="user_receiveadvertising"
+						value="Y">
 
-						<p id="right_font">PARKER 광고 수신에 동의합니다.</p></td>
+						<p id="right_font">PARKER 광고 수신에 동의합니다. (선택)</p></td>
 				</tr>
 			</table>
 		</form>

@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ page session="true"%>
 <%@ include file="/header.jsp"%>
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="/css/user.css">
+<link rel="stylesheet" href="/css/myPage.css">
 <script type="text/javascript" src="../js/common.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -21,6 +23,7 @@
 	//비밀번호가맞는지 확인
 
 	$(function() {
+
 		/* keyup 텍스트에 커서가 올라가면 반응하는 명령어 */
 		$('#user_password').keyup(function() {
 			$('font[name=check]').text('');
@@ -37,80 +40,37 @@
 			}
 		}); //#user_passwordchk.keyup
 	});
-	
 
-	
+	$(document)
+			.ready(
+					function() {
+						/* var mailTp = $('input:radio[name="user_gender"]:checked').val();
 
-	$(document).ready(function() {
-		
-			/* var mailTp = $('input:radio[name="user_gender"]:checked').val();
+						if (mailTp == 'man') {
+							$(':input:radio[name=user_gender]:input[value=' + man + ']').attr(
+									"checked", true)
+						} else if (mailTp == 'girl') {
+							$(':input:radio[name=user_gender]:input[value=' + girl + ']').attr(
+									"checked", true)
+						} */
 
-			if (mailTp == 'man') {
-				$(':input:radio[name=user_gender]:input[value=' + man + ']').attr(
-						"checked", true)
-			} else if (mailTp == 'girl') {
-				$(':input:radio[name=user_gender]:input[value=' + girl + ']').attr(
-						"checked", true)
-			} */
-		
-			if($("#user_man").val()){
-			      var check1 = $("#user_man").val();
-			      
-			       $('input:radio[id=user_man]:input[value=' + check1 + ']').attr("checked", true); 
-			     
-					}else if($("#user_girl").val()){
-			    	  var check2 = $("#user_girl").val();
-			      
-			       $('input:radio[id=user_girl]:input[value=' + check2 + ']').attr("checked", true); 
-			     
-					}
+						if ($("#user_man").val()) {
+							var check1 = $("#user_man").val();
 
-						//아이디 중복 체크 ajax 비동기
-						$("#user_idcheckBtn")
-								.click(
-										function() {
-											if (!chkSubmit($("#user_id"))) {
-												return;
-											} else {
-												$
-														.ajax({
-															url : "/user/useridcheck.do", //전송url
-															type : "POST", //전송방식
-															data : $("#user_id")
-																	.serialize(),
-															error : function(
-																	result) {
-																alert('시스템오류')
-															},
-															success : function(
-																	result) {
-																if (result == 0) {
-																	alert('사용가능한 아이디입니다')
-																	$("#msg")
-																			.text(
-																					"사용가능한 아이디입니다")
-																			.css(
-																					"color",
-																					"blue");
-																	$(
-																			"#user_password")
-																			.select();
-																} else if (result == 1) {
-																	$("#msg")
-																			.text(
-																					"중복된 아이디입니다")
-																			.css(
-																					"color",
-																					"red");
-																	$(
-																			"#user_id")
-																			.select();
-																	alert('이미사용한 아이디입니다');
-																}
-															}
-														});
-											}
-										});
+							$(
+									'input:radio[id=user_man]:input[value='
+											+ check1 + ']').attr("checked",
+									true);
+
+						} else if ($("#user_girl").val()) {
+							var check2 = $("#user_girl").val();
+
+							$(
+									'input:radio[id=user_girl]:input[value='
+											+ check2 + ']').attr("checked",
+									true);
+
+						}
 
 						//메일소스
 
@@ -175,10 +135,7 @@
 											} else if (!chkSubmit(
 													$('#user_id'), "아이디를")) {
 												return;
-											/* } else if (!chkSubmit(
-													$('#user_password'),
-													"비밀번호를")) {
-												return; */
+
 											} else if (!chkSubmit(
 													$('#user_email'), "메일을")) {
 												return;
@@ -199,29 +156,52 @@
 											} else if (!chkSubmit(
 													$('#user_phone'), "핸드폰번호를")) {
 												return;
-											} else if (!$(':input:radio[name=user_gender]:checked')
+											} else if (!$(
+													':input:radio[name=user_gender]:checked')
 													.val()) {
 												alert("성별을 선택해주세요");
 												return;
+											} else if (!chkSubmit(
+													$('#user_password'),
+													"비밀번호를")) {
+												return;
 
 											} else {
-											alert('정보변경완료')
+												alert('정보변경완료')
 												//입력값 체크
 
 												$("#updateForm")
 														.attr(
 																{
 																	"method" : "POST",
-																	"action" : "/user/userUpdate.do"
+																	"action" : "/myPage/userUpdate.do"
 																});
 
 												$("#updateForm").submit();
 
 											}
 										});
+						//회원탈퇴
+						$("#deleteBtn").click(function() {
 
+							//입력값 체크
+							if (!chkSubmit($('#user_password'), "비밀번호를")) {
+								return;
+							} else {
+								alert('탈퇴되었습니다.')
+
+								$("#updateForm").attr({
+									"method" : "POST",
+									"action" : "/myPage/userDelete.do"
+								});
+
+								$("#updateForm").submit();
+
+							}
+						});
 					});
 
+	//주소검색 버튼
 	$(function() {
 
 		$('#searchBtn')
@@ -325,13 +305,13 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty sessionScope.UVO}">
-		 <ul id="userUpdateForm_nav_ul">
-		 	<li><a href="#">회원정보변경</a></li>
-		 	<li><a href="#">구매내역</a></li>
-		 	<li><a href="#">1:1문의</a></li>
-		 	<li><a href="#">장바구니</a></li>
-		 	<li><a href="#">배송정보</a></li>
-		 </ul>
+			<ul id="myPageForm_nav_ul">
+				<li><a href="#">회원정보변경</a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/question/question.do">1:1문의</a></li>
+				<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
+				<li><a href="/myPage/shippingInfo/shippingInfo.do">배송정보</a></li>
+			</ul>
 			<h2>회원정보 변경</h2>
 			<div id="content" align="center">
 				<!--다이얼로그창 폼  -->
@@ -368,100 +348,101 @@
 
 					<table id=content_table border="1">
 						<tr>
-							<td><input type="text" id="user_number" name="user_number" value="${sessionScope.UVO.user_number }">
+							<td><input type="text" id="user_number" name="user_number"
+								value="${sessionScope.UVO.user_number }">
 						</tr>
 
 						<tr>
 							<th id="column">아이디</th>
-							<td id="column2">
-								<input type="text" id="user_id" name="user_id" value="${sessionScope.UVO.user_id}"> 
-								<input type="button" id="user_idcheckBtn" name="user_idcheckBtn" value="중복확인"><br>
-								<span id="msg"></span></td>
+							<td id="column2"><input type="text" id="user_id"
+								name="user_id" value="${sessionScope.UVO.user_id}"></td>
 						</tr>
 						<tr>
 							<th id="column">비밀번호</th>
-							<td id="column2">
-								<input type="password" id="user_password" name="user_password" >
-								<span id="password_msg"></span>
-							</td>
+							<td id="column2"><input type="password" id="user_password"
+								name="user_password"> <span id="password_msg"></span></td>
 						</tr>
 						<tr>
 							<th id="column">비밀번호확인</th>
-							<td id="column2">
-								<input type="password" id="user_passwordchk" name="user_passwordchk" > 
-								<font name="check" size="2" color="red"></font>
-							</td>
+							<td id="column2"><input type="password"
+								id="user_passwordchk" name="user_passwordchk"> <font
+								name="check" size="2" color="red"></font></td>
 						</tr>
 						<tr>
 							<th style="width: 20%;" id="column">이름</th>
-							<td id="column2">
-								<input type="text" id="user_name"name="user_name" value="${sessionScope.UVO.user_name}">
+							<td id="column2"><input type="text" id="user_name"
+								name="user_name" value="${sessionScope.UVO.user_name}">
 							</td>
 						</tr>
 						<tr>
 							<th id="column">생년월일</th>
-							<td id="column2">
-								<input type="text" id="user_birthday"	name="user_birthday" value="${sessionScope.UVO.user_birthday}">
-							</td>
+
+							<td id="column2"><%-- <fmt:parseDate value="${sessionScope.UVO.user_birthday}" pattern="yyyyMMdd" /> --%> <input type="text" id="user_birthday"
+								name="user_birthday" value="${sessionScope.UVO.user_birthday}">
+								<%-- <fmt:parseDate
+									value="${sessionScope.UVO.user_birthday}" var="Pdate"
+									pattern="yyyy-MM-dd" /> <fmt:formatDate value="${Pdate}"
+									pattern="yyyyMMdd" /> --%></td>
 						</tr>
 						<tr>
 							<th id="column">이메일</th>
-							<td id="column2">
-								<input type="email" id="user_email" name="user_email" size="120" style="width: 30%" placeholder="상대의 이메일" class="form-control" value="${sessionScope.UVO.user_email}">
-								<input type="button" value="메일 인증" class="btn btn-warning" id="mailSubmit">
-							</td>
+							<td id="column2"><input type="email" id="user_email"
+								name="user_email" size="120" style="width: 30%"
+								placeholder="상대의 이메일" class="form-control"
+								value="${sessionScope.UVO.user_email}"> <input
+								type="button" value="메일 인증" class="btn btn-warning"
+								id="mailSubmit"></td>
 						</tr>
 						<tr>
 							<th id="column">인증번호</th>
-							<td id="column2">
-								<input type="text" name="mailkey" id="mailkey" placeholder="인증키를 입력하세요"> 
-								<input type="button" name="mailBtn" id="mailBtn" value="확인"><br>
+							<td id="column2"><input type="text" name="mailkey"
+								id="mailkey" placeholder="인증키를 입력하세요"> <input
+								type="button" name="mailBtn" id="mailBtn" value="확인"><br>
 								<input type="text" name="mailkey1" id="mailkey1" value="">
 							</td>
 						</tr>
 						<tr>
 							<th id="column">우편번호</th>
-							<td id="column2">
-								<input type="text" id="zip_code" name="zip_code" value="${sessionScope.UVO.zip_code}">
-								<button type="button" id="zipcodesearch">주소검색</button>
-							</td>
+							<td id="column2"><input type="text" id="zip_code"
+								name="zip_code" value="${sessionScope.UVO.zip_code}">
+								<button type="button" id="zipcodesearch">주소검색</button></td>
 						</tr>
 						<tr>
 							<th id="column">주소</th>
-							<td id="column2">
-								<input type="text" id="user_address" name="user_address" value="${sessionScope.UVO.user_address}"> 
-								<!--상세주소  -->
-								<input type="text" id="detail_address" name="detail_address" placeholder="상세주소" value="${sessionScope.UVO.detail_address}">
-							</td>
+							<td id="column2"><input type="text" id="user_address"
+								name="user_address" value="${sessionScope.UVO.user_address}">
+								<!--상세주소  --> <input type="text" id="detail_address"
+								name="detail_address" placeholder="상세주소"
+								value="${sessionScope.UVO.detail_address}"></td>
 						</tr>
 
 						<tr>
 							<th id="column">전화번호</th>
-							<td id="column2">
-								<input type="text" id="user_cell"	name="user_cell" value="${sessionScope.UVO.user_cell}">
+							<td id="column2"><input type="text" id="user_cell"
+								name="user_cell" value="${sessionScope.UVO.user_cell}">
 							</td>
 						</tr>
 						<tr>
 							<th id="column">핸드폰번호</th>
-							<td id="column2">
-								<input type="text" id="user_phone" name="user_phone" value="${sessionScope.UVO.user_phone}">
+							<td id="column2"><input type="text" id="user_phone"
+								name="user_phone" value="${sessionScope.UVO.user_phone}">
 							</td>
 						</tr>
 						<tr>
 							<th id="column">성별</th>
-							<td id="column2">
-								<label id="user_gender" name="user_gender">남
-									<input type="radio" id="user_man" name="user_gender" value="${sessionScope.UVO.user_gender}" > 
-								</label> 
-								<label id="user_gender" name="user_gender">여 
-									<input type="radio" id="user_girl" name="user_gender" value="${sessionScope.UVO.user_gender}" required="required">
-								</label>
-							</td>
+							<td id="column2"><label id="user_gender" name="user_gender">남
+									<input type="radio" id="user_man" name="user_gender"
+									value="${sessionScope.UVO.user_gender}">
+							</label> <label id="user_gender" name="user_gender">여 <input
+									type="radio" id="user_girl" name="user_gender"
+									value="${sessionScope.UVO.user_gender}" required="required">
+							</label></td>
 						</tr>
 
 					</table>
 				</form>
-				<input type="button" value="변경완료" id="updateBtn">
+				<input type="button" value="회원정보변경" id="updateBtn"> <input
+					type="button" value="회원탈퇴" id="deleteBtn">
 
 			</div>
 		</c:when>

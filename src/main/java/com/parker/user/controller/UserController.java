@@ -1,26 +1,21 @@
 package com.parker.user.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parker.user.bcrypt.BCrypt;
-import com.parker.user.bcrypt.SHA256;
 import com.parker.user.service.UserService;
 import com.parker.user.vo.UserVO;
 
@@ -58,59 +53,8 @@ public class UserController {
 
 		return "redirect:/";
 	}
-	// 회원정보 수정 완료
-		@RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
-		public String userUpdate(@ModelAttribute UserVO UVO, HttpServletRequest request) {
-			logger.info("userinsert 호출 성공");
-			int result = 0;
-			String url = "";
 
-		
-			result = userService.userUpdate(UVO);
-			if(result ==0){
-				System.out.println("실패");
-			}else{
-				System.out.println("성공");
-			}
-
-			return "redirect:/";
-		}
-
-	// 회원정보변경 비밀번호 확인폼
-	@RequestMapping(value = "/userUpdatePassword", method = { RequestMethod.POST, RequestMethod.GET })
-	public String userUpdatePassword(HttpSession session, @ModelAttribute UserVO UVO, Model model,
-			HttpServletRequest request) {
-		logger.info("userUpdatePassword 호출 성공");
-
-		return "/myPage/userUpdatePassword";
-	}
-
-	// 회원정보변경 폼
-	@RequestMapping(value = "/userUpdateForm", method = { RequestMethod.POST, RequestMethod.GET })
-	public String userUpdateForm(HttpSession session, @ModelAttribute UserVO UVO, Model model,
-			HttpServletRequest request) {
-		logger.info("userUpdatePassword 호출 성공");
-		String usernumber = request.getParameter("user_number");
-		String userid = request.getParameter("user_id");
-		String pass = request.getParameter("user_password");
-		
-		int usernumber1 = Integer.parseInt(usernumber);
-		
-		UVO.setUser_number(usernumber1);
-		UVO = userService.passCheck(UVO);
-
-		boolean result = BCrypt.checkpw(pass, UVO.getUser_password());
-
-		System.out.println("result :" + result);
-		if (result == false) {
-			System.out.println("실패");
-		} else if (result == true) {
-			session.setAttribute("UVO", UVO);
-			System.out.println("성공");
-		}
-
-		return "/myPage/userUpdateForm";
-	}
+	
 
 	// 중복체크
 	@RequestMapping(value = "/useridcheck", method = RequestMethod.POST)
@@ -136,35 +80,51 @@ public class UserController {
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginProcess(@ModelAttribute UserVO UVO, HttpSession session, HttpServletRequest request) {
+	public ModelAndView loginProcess(@ModelAttribute UserVO UVO, HttpSession session, HttpServletRequest request,
+			RedirectAttributes redirectAttributes) {
 		logger.info("login 호출 성공");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/");
 
-		String userid = request.getParameter("user_id");
+		boolean result = false;
+		 String userid = request.getParameter("user_id"); 
 		String pass = request.getParameter("user_password");
 
-		try {
-			UVO.setUser_id(userid);
-			UVO = userService.sessionLogin(UVO);
+		 UVO.setUser_id(userid); 
+		// 가져온정보를
 
-			boolean result = BCrypt.checkpw(pass, UVO.getUser_password());
+		String uvo = userService.sessionLogin1(UVO);
+		
+		// String daopass = UVO.getUser_password();
 
-			System.out.println("result:" + result);
-			// 비밀번호도 비교해야됨
+		// 아이디가 맞지않으면 해당 비밀번호를 못불러옴
+		// 다시 로그인페이지로
+		if (uvo != null && uvo != "") {
+			result = BCrypt.checkpw(pass, uvo);
 
-			if (result == true) {
-				session.setAttribute("UVO", UVO);
-				
-				System.out.println("성공");
-			} else if (result == false) {
-				System.out.println("실패");
-			}
+			
+			// 해당 비밀번호를 불러와서 암호화값이랑 비교
+		} else {
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("아이디틀림");
+			mav.addObject("msg", 1);
+			mav.setViewName("redirect:/user/userlogin.do");
 		}
+
+		// 비밀번호가 맞으면 result == true
+		if (result == true) {
+			// 아이디 비밀번호가맞음
+			System.out.println("성공");
+			 UVO = userService.sessionLogin(UVO);
+			// 세션이 존재하면 UVO로 사용하겟다 -
+			session.setAttribute("UVO", UVO);
+			mav.addObject("result", result);
+			mav.setViewName("redirect:/");
+			// 비밀번호가 틀리면 다시 로그인페이지로
+		} else {
+			mav.addObject("msg1", 1);
+			mav.setViewName("redirect:/user/userlogin.do");
+		}
+
 		return mav;
 	}
 
@@ -172,7 +132,7 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String userlogout(HttpSession session) {
 		logger.info("logout 호출 성공");
-		//session.setAttribute("UVO", null);
+		// session.setAttribute("UVO", null);
 		session.invalidate();
 
 		return "redirect:/";

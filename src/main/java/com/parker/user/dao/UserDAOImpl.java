@@ -37,32 +37,26 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return session.insert("userinsert", UVO);
 	}
-
-	@Override
-	public UserVO selectLogin(UserVO uVO) {
-		/*
-		 * uVO.setUser_password(
-		 * "$2a$10$.IqBc7XS/TNwUp0uwFXQc.3rWpw/qVe3/Z/oV6uU8b0A5f.PyS6h2");
-		 */
-		return session.selectOne("selectLogin", uVO);
-	}
-
+	
+	//아이디 중복검사
 	@Override
 	public String useridcheck(UserVO UVO) {
 		// TODO Auto-generated method stub
 		logger.debug("디버그 UVO.toString() : " + UVO.toString());
 		return session.selectOne("useridcheck", UVO) + "";
 	}
-
+	
+	//로그인 세션
 	@Override
 	public UserVO sessionLogin(UserVO UVO) {
 		// UVO.setUser_password("$2a$10$.IqBc7XS/TNwUp0uwFXQc.3rWpw/qVe3/Z/oV6uU8b0A5f.PyS6h2");
 		System.out.println("DAO 테스트 UVO.toString() : " + UVO.toString());
 
-		return session.selectOne("selectLoginUser", UVO);
+		return session.selectOne("selectLogin", UVO);
 
 	}
 
+	//아이디 찾기
 	@Override
 	public UserVO idfind(UserVO UVO) {
 		// TODO Auto-generated method stub
@@ -94,14 +88,30 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO passCheck(UserVO UVO) {
-		
+		System.out.println("UVO.getUser_birthday() : " +UVO.getUser_birthday());
+		System.out.println("UVO.getUser_id() : " + UVO.getUser_id());
 		return session.selectOne("passCheck", UVO);
 	}
 
 	@Override
 	public int userUpdate(UserVO UVO) {
 		// TODO Auto-generated method stub
+		System.out.println("UVO.getUser_birthday() : " +UVO.getUser_birthday());
+		System.out.println("UVO.getUser_id() : " + UVO.getUser_id());
+		System.out.println("UVO.getUser_birthday() : " +UVO.getUser_birthday());
 		return session.update("userUpdate",UVO);
+	}
+
+	@Override
+	public int userUpdateDelete(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return session.update("userUpdateDelete",UVO);
+	}
+
+	@Override
+	public String sessionLogin1(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return session.selectOne("sessionLogin1",UVO);
 	}
 
 }

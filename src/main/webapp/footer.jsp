@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <!--jQuery 플러그인 추가-->
-<script src="js/script.js"></script>
+
 <style type="text/css"></style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
@@ -74,7 +74,7 @@
 			<div class="footer_content2">
 				<table style="width: 80%;">
 					<tr>
-						<th><img src="images/flogo.png"></th>
+						<th><!-- <img src="images/flogo.png"> --></th>
 						<td>서울특별시 강남구 도산대로 507 대신빌딩 5층 (주)항소 TEL : 02-554-0911 FAX :
 							02 554-4828 E-mail : admin@hangso.co.kr<br> Copyright(C)
 							2015 parker.co.kr, All Rights Reserved.<br>

@@ -37,16 +37,12 @@
 																if (content != null) {
 																	//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
 																	$(
-																			'input[name=mailkey1]')
-																			.attr(
+																			'input[name=mailkey1]').attr(
 																					'value',
 																					content);
 
 																	var mailkeychk = '<input type="button" value="인증확인" id="mailkeychk" name="mailkeychk" />';
-																	$(
-																			'#mailkeytd')
-																			.append(
-																					mailkeychk);
+																	$('#mailkeytd').append(mailkeychk);
 
 																	/* var mailkeychk= '<input type="button" id="mailkeychk" value="확인"/>';
 																	$("body").html(mailkeychk); */

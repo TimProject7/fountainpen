@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.QuestionDAO">
+
+
+
+
+	<!--1:1문의 게시판 리스트목록 -->
+	<select id="questionList" parameterType="com.parker.user.vo.QuestionVO"
+		resultType="com.parker.user.vo.QuestionVO">
+		select *
+		from(select lst.*, rownum as rnum
+		from(
+		select
+		question_number,
+		question_title,
+		question_writedate,question_content,
+		u.user_name
+		from
+		question_tb,
+		users_tb u
+		where question_tb.user_number= u.user_number
+		order by
+		question_number asc
+		)lst
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					rnum between #{start_row} and #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<!-- 전체 레코드 건수 -->
+	<select id="questionListCnt" parameterType="com.parker.user.vo.QuestionVO"
+		resultType="int">
+
+		select nvl(count(1),0) from
+		(select lst.*, rownum as rnum
+		from(
+		select
+		question_number, question_title,
+		question_writedate,question_content,
+		u.user_name
+		from
+		question_tb,
+		users_tb u
+		where question_tb.user_number= u.user_number
+		order by
+		question_number desc
+		)lst
+		)
+
+	</select>
+
+
+	<select id="questionUser" parameterType="com.parker.user.vo.QuestionVO"
+		resultType="com.parker.user.vo.QuestionVO">
+		select *
+		from question_tb ,users_tb
+
+	</select>
+
+	<!-- 1:1문의 게시글 등록 -->
+	<insert id="questionInsert" parameterType="com.parker.user.vo.QuestionVO">
+		<selectKey keyProperty="question_number" resultType="int"
+			order="BEFORE">
+			select seq_question_tb.nextval from dual
+		</selectKey>
+
+		insert into question_tb(
+		question_number,
+		question_title,
+		question_content,
+		question_writedate,
+		<if test="question_image != null and question_image !=''">
+			question_image,
+		</if>
+		user_number
+		)
+		values(
+		#{question_number},
+		#{question_title},
+		#{question_content},
+		sysdate,
+		<if test="question_image != null and question_image !=''">
+			#{question_image},
+		</if>
+		#{user_number}
+		)
+	</insert>
+
+	<!-- 게시글 상세보기 -->
+	<select id="questionDetail" parameterType="com.parker.user.vo.QuestionVO"
+		resultType="com.parker.user.vo.QuestionVO">
+		select
+		question_number,question_title,question_content,question_writedate,question_image,question_viewCount,
+		question_tb.user_number, u.user_number, u.user_name,u.user_id, u.user_regdate, question_image
+		from
+		question_tb ,users_tb u
+		where
+		question_tb.user_number= u.user_number and
+		question_number = #{question_number}
+
+	</select>
+
+	<!--1:1 문의 게시판 수정 -->
+	<update id="DetailUpdate" parameterType="com.parker.user.vo.QuestionVO">
+		update
+		question_tb
+		set
+		
+		question_title = #{question_title},
+		question_content = #{question_content},
+		question_writedate = sysdate,
+		
+			question_image = #{question_image}
+		where
+		user_number = #{user_number} 
+
+	</update>
+	
+	<!-- 1:1문의  게시글 조회수 증가처리 -->
+	<update id="questionViewcnt">
+		UPDATE 
+			question_viewCount 
+		SET 
+			question_viewCount = question_viewCount+ 1
+		WHERE
+			question_number = #{question_number}
+	</update>
+</mapper>

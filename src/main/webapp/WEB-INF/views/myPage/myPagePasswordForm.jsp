@@ -12,12 +12,12 @@
 	<c:choose>
 		<c:when test="${not empty sessionScope.UVO}">
 			<h2>개인정보변경 비밀번호를 입력하세요</h2>
-			<form action="/myPage/userUpdateForm.do" method="POST">
+			<form action="/myPage/myPageForm.do" method="POST">
 				<table>
 				<!-- 비밀번호확인 아이디 -->
 					<tr>
-						<td><input type="text" id="user_id" name="user_id"
-							value="${sessionScope.UVO.user_id}">
+						<td><input type="text" id="user_number" name="user_number"
+							value="${sessionScope.UVO.user_number}">
 					</tr>
 					<tr>
 						<td><label>비밀번호 입력<input type="password"

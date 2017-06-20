@@ -8,7 +8,6 @@
 <title>만년필의 명가 파카(PARKER)</title>
 
 <!--jQuery 플러그인 추가-->
-<script src="js/script.js"></script>
 <style type="text/css"></style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
@@ -23,7 +22,7 @@
 					<c:when test="${not empty sessionScope.UVO}">
 					<li class="hd_nav1">${sessionScope.UVO.user_id}님</li>
 					<li class="hd_nav1"><a href="/user/logout.do">로그아웃</a></li>
-					<li class="hd_nav1"><a href="/user/userUpdatePassword.do">개인정보변경</a></li>
+					<li class="hd_nav1"><a href="/myPage/myPagePasswordForm.do">마이페이지</a></li>
 					</c:when>
 					<c:when test="${empty session }">
 							<li class="hd_nav1">${sessionScope.UVO.user_id}asdasd</li>
@@ -37,7 +36,7 @@
 			<br>
 
 			<p class="center">
-				<img class="logo" src="images/logo.png">
+				<!-- <img class="logo" src="../images/logo.png"> -->
 			</p>
 
 			<br>

@@ -3,11 +3,14 @@ package com.parker.user.dao;
 import com.parker.user.vo.UserVO;
 
 public interface UserDAO {
+	//회원가입
 	public int userinsert(UserVO UVO);
-	public UserVO selectLogin(UserVO uvo);
 	
 	//로그인
 	public UserVO sessionLogin(UserVO UVO);
+	
+	//로그인
+	public String sessionLogin1(UserVO UVO);
 	
 	//아이디 중복확인
 	public String useridcheck(UserVO UVO);
@@ -26,4 +29,7 @@ public interface UserDAO {
 	
 	//회원정보 변경
 	public int userUpdate(UserVO UVO);
+	
+	//회원 탈퇴
+	public int userUpdateDelete(UserVO UVO);
 }
