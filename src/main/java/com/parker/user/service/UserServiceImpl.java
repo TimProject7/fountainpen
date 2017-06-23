@@ -84,4 +84,11 @@ public class UserServiceImpl implements UserService {
 		return userDAO.sessionLogin1(UVO);
 	}
 
+	@Override
+	public int emailChk(UserVO UVO) {
+		
+		// TODO Auto-generated method stub
+		return userDAO.emailChk(UVO);
+	}
+
 }

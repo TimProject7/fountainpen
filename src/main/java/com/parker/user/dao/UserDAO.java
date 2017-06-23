@@ -21,6 +21,9 @@ public interface UserDAO {
 	//비밀번호 변경 이메일인증
 	public UserVO passEmailFind(UserVO UVO);
 	
+	//회원가입 이메일중복 체크
+	public int emailChk(UserVO UVO);
+	
 	//비밀번호 변경
 	public int passFindChange(UserVO UVO);
 	

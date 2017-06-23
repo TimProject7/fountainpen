@@ -15,6 +15,9 @@ public interface UserService {
 	public UserVO idFind(UserVO UVO);
 
 	public UserVO passEmailFind(UserVO UVO);
+	
+	//회원가입 이메일중복 체크
+		public int emailChk(UserVO UVO);
 
 	public int passFindChange(UserVO UVO);
 

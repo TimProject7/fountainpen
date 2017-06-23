@@ -2,6 +2,8 @@ package com.parker.user.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.parker.user.vo.QuestionVO;
 
 public interface QuestionService {
@@ -19,4 +21,7 @@ public interface QuestionService {
 	
 	//레코드건수
 	public int questionListCnt(QuestionVO QVO);
+	
+	//게시판 조회수 증가
+	public void questionViewCount(int question_number, HttpSession session);
 }

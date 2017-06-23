@@ -49,5 +49,12 @@ public class QuestionDAOImpl implements QuestionDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne("questionListCnt", QVO);
 	}
+	
+	//게시판 조회수증가
+	@Override
+	public void questionViewCount(int question_number) {
+		
+		session.update("questionViewCount",question_number);
+	}
 
 }

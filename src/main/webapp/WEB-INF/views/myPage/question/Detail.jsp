@@ -25,6 +25,16 @@
 			});
 			$("#updateForm").submit();
 		});
+		
+		$("#questionListBtn").click(function() {
+			//입력값 체크
+
+			$("#updateForm").attr({
+				"method" : "post",
+				"action" : "/myPage/question/question.do"
+			});
+			$("#updateForm").submit();
+		});
 
 	});
 	
@@ -58,12 +68,13 @@
 					</tr>
 					<tr>
 						<td>이미지</td>
-						<td colspan="3"><input type="text" id="question_image" name="question_image" value="${questionDetail.question_image}"/></td>
+						<td colspan="3"><img src="/resources/images/${questionDetail.question_image}" width="150" ></td>
 					</tr>
 				</table>
 			</c:when>
 		</c:choose>
 	</form>
 	<input type="button" id="questionUpdateBtn" name="questionUpdateBtn" value="수정"/>
+	<input type="button" id="questionListBtn" name="questionListBtn" value="목록으로"/>
 </body>
 </html>

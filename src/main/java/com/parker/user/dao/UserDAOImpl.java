@@ -1,18 +1,13 @@
 package com.parker.user.dao;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.parker.user.bcrypt.BCrypt;
-import com.parker.user.bcrypt.SHA256;
-import com.parker.user.service.UserServiceImpl;
 import com.parker.user.vo.UserVO;
 
 //저장소 
@@ -112,6 +107,12 @@ public class UserDAOImpl implements UserDAO {
 	public String sessionLogin1(UserVO UVO) {
 		// TODO Auto-generated method stub
 		return session.selectOne("sessionLogin1",UVO);
+	}
+
+	@Override
+	public int emailChk(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return session.selectOne("emailChk",UVO);
 	}
 
 }

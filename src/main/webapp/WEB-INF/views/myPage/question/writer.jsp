@@ -16,7 +16,7 @@
 		//글쓰기버튼
 		$("#questionListBtn").on("click", function() {
 			//입력값 체크
-			var ext = $('#question_file').val().split('.').pop().toLowerCase();
+			var ext = $('#Question_image').val().split('.').pop().toLowerCase();
 			if(jQuery.inArray(ext,['gif','png','jpg','jpeg'])==-1){
 				alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.')
 			}
@@ -37,7 +37,7 @@
 
 
 			<form id="question_insertForm" name="question_insertForm"
-				action="/myPage/question/questionInsert.do" method="post">
+				action="/myPage/question/questionInsert.do" method="post" enctype="multipart/form-data">
 				회원번호<input type="text" id="user_number" name="user_number"
 					value="${sessionScope.UVO.user_number}">
 				<table border="1">
@@ -60,8 +60,8 @@
 					</tr>
 					<tr>
 						<td>첨부파일</td>
-						<td><input type="text" id="question_file"
-							name="question_file" /><br /></td>
+						<td><input type="file" id="Question_url"
+							name="Question_url" /><br/></td>
 					</tr>
 				</table>
 				<input type="submit" id="questionInsertBtn" name="questionInsertBtn"

@@ -21,7 +21,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	//비밀번호가맞는지 확인
-
 	$(function() {
 
 		/* keyup 텍스트에 커서가 올라가면 반응하는 명령어 */
@@ -170,13 +169,11 @@
 												alert('정보변경완료')
 												//입력값 체크
 
-												$("#updateForm")
-														.attr(
-																{
+												$("#updateForm").attr({
 																	"method" : "POST",
-																	"action" : "/myPage/userUpdate.do"
+																	"action":"/myPage/userUpdate.do"
 																});
-
+												
 												$("#updateForm").submit();
 
 											}
@@ -305,14 +302,16 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty sessionScope.UVO}">
-			<ul id="myPageForm_nav_ul">
-				<li><a href="#">회원정보변경</a></li>
-				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
-				<li><a href="/myPage/question/question.do">1:1문의</a></li>
-				<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
-				<li><a href="/myPage/shippingInfo/shippingInfo.do">배송정보</a></li>
-			</ul>
-			<h2>회원정보 변경</h2>
+			<div id="myPageForm" align="center">
+				<ul id="myPageForm_nav_ul">
+					<li><a href="#">회원정보변경</a></li>
+					<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+					<li><a href="/myPage/question/question.do">1:1문의</a></li>
+					<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
+					<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+				</ul>
+				<h2>회원정보 변경</h2>
+			</div>
 			<div id="content" align="center">
 				<!--다이얼로그창 폼  -->
 				<div id="dialog_form">
@@ -348,7 +347,7 @@
 
 					<table id=content_table border="1">
 						<tr>
-							<td><input type="text" id="user_number" name="user_number"
+							<td><input type="hidden" id="user_number" name="user_number"
 								value="${sessionScope.UVO.user_number }">
 						</tr>
 
@@ -377,12 +376,14 @@
 						<tr>
 							<th id="column">생년월일</th>
 
-							<td id="column2"><%-- <fmt:parseDate value="${sessionScope.UVO.user_birthday}" pattern="yyyyMMdd" /> --%> <input type="text" id="user_birthday"
-								name="user_birthday" value="${sessionScope.UVO.user_birthday}">
-								<%-- <fmt:parseDate
+							<td id="column2">
+								<%-- <fmt:parseDate value="${sessionScope.UVO.user_birthday}" pattern="yyyyMMdd" /> --%>
+								<input type="text" id="user_birthday" name="user_birthday"
+								value="${sessionScope.UVO.user_birthday}"> <%-- <fmt:parseDate
 									value="${sessionScope.UVO.user_birthday}" var="Pdate"
 									pattern="yyyy-MM-dd" /> <fmt:formatDate value="${Pdate}"
-									pattern="yyyyMMdd" /> --%></td>
+									pattern="yyyyMMdd" /> --%>
+							</td>
 						</tr>
 						<tr>
 							<th id="column">이메일</th>

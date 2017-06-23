@@ -16,7 +16,7 @@
 		select
 		question_number,
 		question_title,
-		question_writedate,question_content,
+		question_writedate,question_content,question_viewCount,
 		u.user_name
 		from
 		question_tb,
@@ -125,9 +125,9 @@
 	</update>
 	
 	<!-- 1:1문의  게시글 조회수 증가처리 -->
-	<update id="questionViewcnt">
+	<update id="questionViewCount">
 		UPDATE 
-			question_viewCount 
+			question_tb
 		SET 
 			question_viewCount = question_viewCount+ 1
 		WHERE

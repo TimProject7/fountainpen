@@ -1,6 +1,5 @@
 package com.parker.user.controller;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -43,7 +42,6 @@ public class UserController {
 	public String userinsert(@ModelAttribute UserVO UVO, HttpServletRequest request) {
 		logger.info("userinsert 호출 성공");
 		int result = 0;
-		String url = "";
 
 		/*
 		 * String pass = request.getParameter("user_password"); String shapass =
@@ -54,14 +52,13 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	
-
 	// 중복체크
 	@RequestMapping(value = "/useridcheck", method = RequestMethod.POST)
 	public String useridcheck(Model model, @ModelAttribute UserVO UVO) {
 		logger.info("useridcheck");
 
 		String result = userService.useridchk(UVO);
+		System.out.println("result:"+result);
 		System.out.println(UVO.toString());
 
 		logger.info("result = : " + result);
@@ -86,14 +83,14 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 
 		boolean result = false;
-		 String userid = request.getParameter("user_id"); 
+		String userid = request.getParameter("user_id");
 		String pass = request.getParameter("user_password");
 
-		 UVO.setUser_id(userid); 
+		UVO.setUser_id(userid);
 		// 가져온정보를
 
 		String uvo = userService.sessionLogin1(UVO);
-		
+
 		// String daopass = UVO.getUser_password();
 
 		// 아이디가 맞지않으면 해당 비밀번호를 못불러옴
@@ -101,28 +98,28 @@ public class UserController {
 		if (uvo != null && uvo != "") {
 			result = BCrypt.checkpw(pass, uvo);
 
-			
 			// 해당 비밀번호를 불러와서 암호화값이랑 비교
 		} else {
 
 			System.out.println("아이디틀림");
-			mav.addObject("msg", 1);
-			mav.setViewName("redirect:/user/userlogin.do");
+			mav.addObject("msg", "id");
+			mav.setViewName("/user/userlogin");
 		}
-
-		// 비밀번호가 맞으면 result == true
+		
 		if (result == true) {
+			// 비밀번호가 맞으면 result == true
 			// 아이디 비밀번호가맞음
 			System.out.println("성공");
-			 UVO = userService.sessionLogin(UVO);
+			UVO = userService.sessionLogin(UVO);
 			// 세션이 존재하면 UVO로 사용하겟다 -
 			session.setAttribute("UVO", UVO);
 			mav.addObject("result", result);
 			mav.setViewName("redirect:/");
 			// 비밀번호가 틀리면 다시 로그인페이지로
-		} else {
-			mav.addObject("msg1", 1);
-			mav.setViewName("redirect:/user/userlogin.do");
+			
+		} else if (result == false) {
+			mav.addObject("msg1", "pass");
+			mav.setViewName("/user/userlogin");
 		}
 
 		return mav;

@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 1:1문의 게시판</title>
+<link rel="stylesheet" href="/css/question.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript"
@@ -18,17 +19,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		/* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
+		/* /* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
 		if ("<c:out value='${data.pageSize}'/>" != "") {
 			$("#pageSize").val("<c:out value='${data.pageSize}'/>");
-		}
+		} 
 
 		/* 한페이지에 보여줄 레코드 수를 변경될 때마다 처리 이벤트 */
 		$("#pageSize").change(function() {
 			goPage(1);
 		});
-
-		
 
 		//글쓰기폼으로이동
 		$("#insertForm").click(function() {
@@ -58,21 +57,31 @@
 </script>
 </head>
 <body>
-
+	<div id="myPageForm" align="center">
+		<ul id="myPageForm_nav_ul">
+			<li><a href="/myPage/myPageForm.do">회원정보변경</a></li>
+			<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+			<li><a href="/myPage/question/question.do">1:1문의</a></li>
+			<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
+			<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+		</ul>
+	</div>
 
 	<c:choose>
 		<c:when test="${not empty sessionScope.UVO}">
-			<input type="text" id="user_number" name="user_number"
+			<input type="hidden" id="user_number" name="user_number"
 				value="${sessionScope.UVO.user_number}" />
-			<input type="text" id="user_name" name="user_name"
+			<input type="hidden" id="user_name" name="user_name"
 				value="${sessionScope.UVO.user_name}" />
+
 		</c:when>
 	</c:choose>
+
 	<form id="f_search" name="f_search">
 		<input type="hidden" id="page" name="page" value="${data.page}" />
 	</form>
 	<form id="question_writer" name="question_writer">
-		<div>
+		<div align="center">
 			<select name="search">
 				<option value="menu1" selected>작성자</option>
 				<option value="menu2">작성자+글제목</option>
@@ -83,7 +92,7 @@
 				<tr>
 					<td>글번호</td>
 					<td>제목</td>
-					<td>작성자</td>
+					<td>작성자1</td>
 					<td>글내용</td>
 					<td>작성일</td>
 					<td>조회수</td>
@@ -91,6 +100,7 @@
 				<c:choose>
 					<c:when test="${not empty questionList}">
 						<!-- varStatus 순서대로 나오게 루프 돌리는애 -->
+						<!-- 컨트롤러에서 가져옴 -->
 						<c:forEach var="question" items="${questionList}">
 
 							<tr>
@@ -116,8 +126,8 @@
 
 		</div>
 	</form>
-	<!-- 페이지 -->
-	<div id="questionPage">
+	<!-- 페이지출력 -->
+	<div id="questionPage" align="center">
 		<tag:paging page="${param.page}" total="${total}"
 			list_size="${data.pageSize}" />
 	</div>
