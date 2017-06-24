@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+.alldiv{
+	
+	width: 70%;
+}
+
+a{
+	padding-left: 1%;
+	padding-right: 1%;
+	text-decoration: none;
+	color: black;
+}
+
+a:HOVER{
+	color: #CC3D3D;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+
+#myPageForm_nav_ul li{
+	display: inline;
+}
+
+#search_nav li{
+	display:inline-block;
+}
+
+.deliveryTable{
+	
+	width: 96%;
+	border-style: none;
+}
+
+th{
+	background-color: #CC3D3D;
+	color: white;
+}
+
+td{
+	text-align: right;
+}
+
+h2{
+	text-align: left;
+	padding-left: 2%;
+}
+
+

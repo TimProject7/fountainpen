@@ -51,10 +51,10 @@ public class QuestionDAOImpl implements QuestionDAO{
 	}
 	
 	//게시판 조회수증가
-	@Override
+	/*@Override
 	public void questionViewCount(int question_number) {
 		
 		session.update("questionViewCount",question_number);
-	}
+	}*/
 
 }

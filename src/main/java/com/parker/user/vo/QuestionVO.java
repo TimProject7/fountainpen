@@ -15,7 +15,7 @@ public class QuestionVO extends PagingVO {
 	private String user_name; // 작성자
 	private String question_image; // --이미지
 	private MultipartFile question_url;
-	private int question_viewCount; // --조회수
+	private int question_seq; // --조회수
 	private int user_number; // --회원번호
 
 	public String getQuestion_image() {
@@ -74,14 +74,6 @@ public class QuestionVO extends PagingVO {
 		this.user_number = user_number;
 	}
 
-	public int getQuestion_viewCount() {
-		return question_viewCount;
-	}
-
-	public void setQuestion_viewCount(int question_viewCount) {
-		this.question_viewCount = question_viewCount;
-	}
-
 	public String getUser_name() {
 		return user_name;
 	}
@@ -90,12 +82,20 @@ public class QuestionVO extends PagingVO {
 		this.user_name = user_name;
 	}
 
+	public int getQuestion_seq() {
+		return question_seq;
+	}
+
+	public void setQuestion_seq(int question_seq) {
+		this.question_seq = question_seq;
+	}
+
 	@Override
 	public String toString() {
 		return "QuestionVO [question_number=" + question_number + ", question_title=" + question_title
 				+ ", question_content=" + question_content + ", question_writedate=" + question_writedate
 				+ ", user_name=" + user_name + ", question_image=" + question_image + ", question_viewCount="
-				+ question_viewCount + ", user_number=" + user_number + "]";
+				+ question_seq + ", user_number=" + user_number + "]";
 	}
 
 }

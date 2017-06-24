@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0 auto;
+	padding: 0;
+}
+
+#login{
+	padding-right: 0;
+	margin-right: 0;
+}
+
+#loginBtn{
+	
+	height: 90px;
+	width: 75px;
+	
+}
+
+#div1{
+	width: 30%;
+	height: 120px;
+	margin-top: 1%;
+	padding-top: 2%;
+	border-style: solid;
+}
+
+.btn3{
+	padding-top: 1%;	
+}
+
+#btns{
+	height: 25px;
+	margin-bottom:1.7%;
+	color: white;
+	background-color: #c0bc63;
+}
+
+#loginBtn{
+	color: white;
+	background-color: #c0bc63;
+}
+
+
+td{
+	text-align: center;
+}
+
+#loginTb{
+	float: left;
+	width: 85%;
+	padding-right: 0;
+	margin-right: 0;
+	
+}
+
+.right{
+	padding-right: 0;
+	margin-right: 0;
+}
+
+h2{
+	text-align: center;
+}
+

@@ -16,7 +16,7 @@
 		select
 		question_number,
 		question_title,
-		question_writedate,question_content,question_viewCount,
+		question_writedate,question_content,question_seq, 
 		u.user_name
 		from
 		question_tb,
@@ -98,7 +98,7 @@
 	<select id="questionDetail" parameterType="com.parker.user.vo.QuestionVO"
 		resultType="com.parker.user.vo.QuestionVO">
 		select
-		question_number,question_title,question_content,question_writedate,question_image,question_viewCount,
+		question_number,question_title,question_content,question_writedate,question_image,
 		question_tb.user_number, u.user_number, u.user_name,u.user_id, u.user_regdate, question_image
 		from
 		question_tb ,users_tb u
@@ -125,12 +125,12 @@
 	</update>
 	
 	<!-- 1:1문의  게시글 조회수 증가처리 -->
-	<update id="questionViewCount">
+	<!-- <update id="questionViewCount">
 		UPDATE 
 			question_tb
 		SET 
 			question_viewCount = question_viewCount+ 1
 		WHERE
 			question_number = #{question_number}
-	</update>
+	</update> -->
 </mapper>

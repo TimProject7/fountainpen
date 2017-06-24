@@ -18,7 +18,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-	
 	//비밀번호가맞는지 확인
 	$(function() {
 		/* keyup 텍스트에 커서가 올라가면 반응하는 명령어 */
@@ -110,18 +109,20 @@
 															},
 															success : function(
 																	content) {
-																var content = content;
+
 																//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
 																$(
 																		'input[name=mailkey1]')
 																		.attr(
 																				'value',
 																				content);
+
 															}
 														});
 											}
 										});
 
+						//인증번호확인
 						$("#mailBtn").click(function() {
 
 							var result = 0;
@@ -191,21 +192,19 @@
 													.val()) {
 												alert("약관2 선택해라");
 												return;
-											} else {
-
-												//입력값 체크
-												alert('가입완료')
-
-												$("#singupform")
-														.attr(
-																{
-																	"method" : "POST",
-																	"action" : "/user/userinsert.do"
-																});
-
-												$("#singupform").submit();
-
 											}
+
+											//입력값 체크
+
+											$("#singupform")
+													.attr(
+															{
+																"method" : "POST",
+																"action" : "/user/userinsert.do"
+															});
+
+											$("#singupform").submit();
+
 										});
 
 					});
@@ -308,6 +307,27 @@
 		$("#zip_code").val(zipcode);
 		$("#user_address").val(address);
 	}
+
+	function validate() {
+
+		var id = document.getElementById('user_id');
+	
+
+		//아이디검사
+		if (!chk(/^[a-z][a-z\d]{3,11}$/, id, "첫글자는 영문 소문자, 4~12자 입력할것!")) {
+			return false;
+		}
+	
+	}
+	function chk(re, e, msg) {
+		if (re.test(e.value)) {
+			return true;
+		}
+		alert(msg);
+		e.value = "";
+		e.focus();
+		return false;
+	}
 </script>
 </head>
 <body>
@@ -341,7 +361,7 @@
 				</div>
 			</form>
 		</div>
-		<form id="singupform" name="singupform">
+		<form id="singupform" name="singupform" onsubmit="return validate()">
 
 			<table id=content_table border="1">
 
@@ -378,7 +398,7 @@
 					<th id="column">이메일</th>
 					<td id="column2"><input type="email" id="user_email"
 						name="user_email" size="120" style="width: 30%"
-						placeholder="상대의 이메일" class="form-control" value="${user_email}">
+						placeholder="이메일을입력하세요" class="form-control" value="${user_email}">
 						<input type="button" value="메일 인증" class="btn btn-warning"
 						id="mailSubmit"><br>
 				</tr>

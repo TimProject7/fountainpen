@@ -23,5 +23,5 @@ public interface QuestionService {
 	public int questionListCnt(QuestionVO QVO);
 	
 	//게시판 조회수 증가
-	public void questionViewCount(int question_number, HttpSession session);
+	//public void questionViewCount(int question_number, HttpSession session);
 }

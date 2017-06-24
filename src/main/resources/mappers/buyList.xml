@@ -9,17 +9,25 @@
 		select *
 			from(
         		select 
-            		lst.product_image, lst.product_name, lst.product_price, lst.buy_number,
+            		lst.product_image, lst.buy_product, lst.buy_price, lst.buy_number,
                		 lst.BUY_QUANTITY, lst.buy_day, lst.user_number, rownum as rnum
         			from(
           				select
-             					p.product_image, p.product_name, p.product_price, b.buy_number,
+             					p.product_image, b.buy_product, b.buy_price, b.buy_number,
           				      b.BUY_QUANTITY, b.buy_day, u.user_number
         			    from
              				   products_tb p, buy_tb b, users_tb u
-          			    where
-               					 u.user_number= b.user_number and p.product_number = b.product_number
-               			 order by b.buy_number
+             			 where 
+               				 u.user_number= b.user_number and p.product_number = b.product_number
+               			 
+               			 
+					<if test="search=='buy_product'">
+						and (buy_product Like '%'||#{keyword}||'%')
+					</if>
+					<if test="search=='buy_day'">
+						and (buy_day like '%'||#{keyword}||'%')
+					</if>
+          			   order by b.buy_number
       					)lst
 				)
 	</select>
@@ -31,21 +39,22 @@
       			nvl(count(1),0) 
   		  from
         			(select 
-            				lst.product_image, lst.product_name, lst.product_price, lst.buy_number,
+            				lst.product_image, lst.buy_product, lst.buy_price, lst.buy_number,
                				 lst.BUY_QUANTITY, lst.buy_day, lst.user_number, rownum as rnum
         				from(
           						select
-             							p.product_image, p.product_name, p.product_price, b.buy_number,
+             							p.product_image, b.buy_product, b.buy_price, b.buy_number,
           				     		 b.BUY_QUANTITY, b.buy_day, u.user_number
         			    		from
              				  		 products_tb p, buy_tb b, users_tb u
           			    		where
                							 u.user_number= b.user_number and p.product_number = b.product_number
+               							
                						 order by b.buy_number
       						)lst
       				)
 	</select>
 	
 	
-
+ 
 </mapper>

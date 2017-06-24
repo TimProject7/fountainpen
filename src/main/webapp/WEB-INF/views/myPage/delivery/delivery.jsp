@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>배송정보</title>
+
 <link rel="stylesheet" href="/css/delivery.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <script type="text/javascript" src="../../js/common.js"></script>
@@ -43,61 +44,65 @@
 </head>
 <body>
 
-	<div id="myPageForm" align="center">
-		<ul id="myPageForm_nav_ul">
-			<li><a href="/myPage/myPageForm.do">회원정보변경</a></li>
-			<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
-			<li><a href="/myPage/question/question.do">1:1문의</a></li>
-			<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
-			<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
-		</ul>
-		<h2>배송정보</h2>
-	</div>
-	<form id="f_search" name="f_search">
-		<input type="hidden" id="page" name="page" value="${data.page}" />
-	</form>
-	<div align="center">
-		<ul id="search_nav">
-			<li></li>
-			<li>달력</li>
-			<li></li>
-			<li>달력</li>
-			<li>조회버튼</li>
-			<li>최근2주</li>
-			<li>1개월</li>
-			<li>3개월</li>
-			<li>6개월</li>
-			<li>1년</li>
-		</ul>
-	</div>
-	<div align="center">
-		<table border="1">
-			<tr>
-				<td>주문일자</td>
-				<td>주문번호</td>
-				<td>상품명</td>
-				<td>주문금액</td>
-				<td>진행상황</td>
-			</tr>
-			<c:forEach var="delivery" items="${deliveryList}">
+	<div class="alldiv">
+
+		<div id="myPageForm" align="center">
+			<ul id="myPageForm_nav_ul">
+				<li><a href="/myPage/myPageForm.do">회원정보변경</a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/question/question.do">1:1문의</a></li>
+				<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
+				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+			</ul>
+			<br>
+			<h2>배송정보</h2>
+			<br>
+		</div>
+		<form id="f_search" name="f_search">
+			<input type="hidden" id="page" name="page" value="${data.page}" />
+		</form>
+		<div align="center">
+			<ul id="search_nav">
+				<li></li>
+				<li>달력</li>
+				<li></li>
+				<li>달력</li>
+				<li>조회버튼</li>
+				<li>최근2주</li>
+				<li>1개월</li>
+				<li>3개월</li>
+				<li>6개월</li>
+				<li>1년</li>
+			</ul>
+		</div>
+		<div align="center">
+			<table border="1" class="deliveryTable">
 				<tr>
-					<td>${delivery.buy_number}</td>
-					<td>${delivery.buy_day}</td>
-					<td>${delivery.buy_product}</td>
-					<td>${delivery.buy_price}</td>
-					<td>${delivery.buy_status}</td>
+					<th>주문일자</th>
+					<th>주문번호</th>
+					<th>상품명</th>
+					<th>주문금액</th>
+					<th>진행상황</th>
 				</tr>
-			</c:forEach>
-		</table>
-	</div>
-	<!-- 페이지출력 -->
-	<div id="questionPage" align="center">
-		<!-- total 전체레코드
+				<c:forEach var="delivery" items="${deliveryList}">
+					<tr>
+						<td>${delivery.buy_number}</td>
+						<td>${delivery.buy_day}</td>
+						<td>${delivery.buy_product}</td>
+						<td>${delivery.buy_price}</td>
+						<td>${delivery.buy_status}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<!-- 페이지출력 -->
+		<div id="questionPage" align="center">
+			<!-- total 전체레코드
 		data.pageSize 페이지갯수
 	 -->
-		<tag:paging page="${param.page}" total="${total}"
-			list_size="${data.pageSize}" />
+			<tag:paging page="${param.page}" total="${total}"
+				list_size="${data.pageSize}" />
+		</div>
 	</div>
-
 </body>
 </html>

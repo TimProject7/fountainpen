@@ -98,11 +98,37 @@
 #mailkey1 {
 	display: none;
 }
+
+*{
+	margin: 0 auto;
+	padding: 0;
+}
+
+h2{
+	text-align: center;
+}
+
+table{
+	border: 3px;
+	border-style: solid;
+	padding: 1%;
+}
+
+#minired{
+	font-size: 0.7em;
+	color: red;
+	text-align: center;
+}
+
+#passFind_Btn{
+	
+}
 </style>
 </head>
 <body>
 	<form id="passfindForm" name="passfindForm">
 		<div id="passfind_email">
+			<br><h2>비밀번호 찾기</h2><br>
 			<table id="passfind_ul_label">
 				<tr>
 					<td>이름</td>
@@ -126,13 +152,19 @@
 					<td></td>
 					<td><input type="text" id="mailkey1" name="mailkey1"></td>
 				</tr>
+				
+				<tr>
+					<td id="minired" colspan="3"><b>가입시 작성하신 이름, 이메일, 아이디를 입력하시면<br>비밀번호를 찾으실수 있습니다.</b></td>
+				</tr>
+				
+				<tr>
+					<td colspan="3"><center><button type="submit" id="passFind_Btn">비밀번호 찾기</button></center></td>
+				</tr>
+				
 			</table>
 		</div>
 	</form>
-	<p>
-		<label>가입시 작성하신 이름, 이메일, 아이디를 입력하시면 비밀번호를 찾으실수 있습니다.</label>
-	</p>
-	<button type="submit" id="passFind_Btn">비밀번호 찾기</button>
+	
 
 	<!-- 	<form id="passfind2">
 		<div id="passfind_email">

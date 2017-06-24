@@ -100,20 +100,4 @@ input{
 #user_termsofuse{
 	float: right;
 }
-#myPageForm_nav_ul li{
-	display: inline;
-}
-
-a{
-	padding-left: 1%;
-	padding-right: 1%;
-	text-decoration: none;
-	color: black;
-}
-
-a:HOVER{
-	color: #808080;
-	text-decoration: underline;
-	font-weight: bold;
-}
 

@@ -65,9 +65,12 @@ public class myPageController {
 	public String userUpdateForm1(HttpSession session, @ModelAttribute UserVO UVO, Model model,
 			HttpServletRequest request) {
 		logger.info("myPageForm 호출 성공");
+
+		// 뷰에있는 값을 가져온다
 		String usernumber = request.getParameter("user_number");
 		String pass = request.getParameter("user_password");
 
+		// 인트형으로 형변환
 		int usernumber1 = Integer.parseInt(usernumber);
 
 		UVO.setUser_number(usernumber1);
@@ -107,7 +110,7 @@ public class myPageController {
 		System.out.println("result :" + result);
 		if (result == false) {
 			System.out.println("실패");
-			
+
 		} else if (result == true) {
 			session.setAttribute("UVO", UVO);
 			System.out.println("성공");
@@ -118,10 +121,11 @@ public class myPageController {
 
 	// 마이페이지 회원정보 수정 완료
 	@RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
-	public String userUpdateclear(@ModelAttribute UserVO UVO, HttpServletRequest request, HttpSession session,Model model) {
+	public String userUpdateclear(@ModelAttribute UserVO UVO, HttpServletRequest request, HttpSession session,
+			Model model) {
 		logger.info("userUpdate 호출 성공");
 		int result = 0;
-		String failure="";
+		String failure = "";
 
 		String usernumber = request.getParameter("user_number");
 		String pass = request.getParameter("user_password");
@@ -130,8 +134,8 @@ public class myPageController {
 
 		UVO.setUser_number(usernumber1);
 		UVO = userService.passCheck(UVO);
-		
-		//암호화 확인
+
+		// 암호화 확인
 		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
 
 		if (bool == false) {
@@ -269,7 +273,7 @@ public class myPageController {
 		logger.info("Detail 호출 성공");
 
 		// 조회수 증가
-		questionService.questionViewCount(question_number, session);
+		// questionService.questionViewCount(question_number, session);
 
 		// 상세페이지 이동
 		mav.addObject("questionDetail", questionService.questionDetail(question_number));
@@ -278,6 +282,7 @@ public class myPageController {
 		return mav;
 	}
 
+	// 상세페이지 수정
 	@RequestMapping(value = "/question/DetailUpdate", method = { RequestMethod.POST, RequestMethod.GET })
 	public String myPageDetailUpdate(HttpServletRequest Request, @ModelAttribute QuestionVO QVO, Model model) {
 
@@ -314,7 +319,13 @@ public class myPageController {
 		/*
 		 * int buy_number=2; BVO.setBuy_number(buy_number);
 		 */
+
 		Paging.set(BVO);
+
+		// 검색에 대한 데이터 확인
+		logger.info("search = " + BVO.getSearch());
+		logger.info("keyword = " + BVO.getKeyword());
+
 		// 레코드 건수
 		int total = buylistService.buyListCnt(BVO);
 		// 전체 리스트
@@ -338,7 +349,6 @@ public class myPageController {
 		int total = deliveryService.DeliveryListCnt(DVO);
 		// 전체 레코드 리스트
 		List<DeliveryVO> deliveryList = deliveryService.DeliveryList(DVO);
-
 
 		model.addAttribute("deliveryList", deliveryList);
 		model.addAttribute("total", total);

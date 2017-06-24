@@ -169,4 +169,5 @@ public class UserVO {
 				+ user_status + ", user_regdate=" + user_regdate + "]";
 	}
 
+
 }

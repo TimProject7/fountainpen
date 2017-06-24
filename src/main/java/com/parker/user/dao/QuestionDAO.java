@@ -23,5 +23,5 @@ public interface QuestionDAO {
 	public int questionListCnt(QuestionVO QVO);
 	
 	//게시판 조회수 증가
-	public void questionViewCount(int question_number) ;
+	//public void questionViewCount(int question_number) ;
 }

@@ -2,12 +2,13 @@
 	pageEncoding="UTF-8"%>
 
 
-<h2>새로운 비밀번호를 입력하세요 씨발놈아</h2>
+
+<h2>새로운 비밀번호를 입력하세요</h2>
 <form action="/user/passFindChange.do" method="POST">
 	<table>
 		<tr>
 			<td><input type="text" id="user_id" name="user_id"
-				value="${userid}">
+				value="${userid}" readonly="readonly">
 		</tr>
 		<tr>
 			<td><label>새 비밀번호 입력<input type="password"

@@ -58,7 +58,7 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	// 게시글 조회수 증가
-	@Override
+	/*@Override
 	public void questionViewCount(int question_number, HttpSession session) {
 		// TODO Auto-generated method stub
 
@@ -81,6 +81,6 @@ public class QuestionServiceImpl implements QuestionService {
 
 		}
 
-	}
+	}*/
 
 }
