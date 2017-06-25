@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.QuestionReplyDAO">
+
+	<select id="questionReply" parameterType="com.paker.user.vo.QeustionReplyVO"
+		resultType="com.paker.user.vo.QeustionReplyVO">
+		select * from
+		questionReply_tb
+		where qeustion_number =
+		${qeustion_number}
+	</select>
+
+
+
+</mapper>

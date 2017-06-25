@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		//글쓰기폼으로이동
 		$("#questionUpdateBtn").click(function() {
@@ -25,7 +25,7 @@
 			});
 			$("#updateForm").submit();
 		});
-		
+
 		$("#questionListBtn").click(function() {
 			//입력값 체크
 
@@ -37,8 +37,6 @@
 		});
 
 	});
-	
-	
 </script>
 </head>
 <body>
@@ -55,26 +53,47 @@
 						<td><input type="text" id="user_name" name="user_name"
 							value="${sessionScope.UVO.user_name}" /></td>
 						<td>작성일</td>
-						<td>	<input type="text" id="user_regdate" name="user_regdate"
-					value="${sessionScope.UVO.user_regdate}" /></td>
+						<td><input type="text" id="user_regdate" name="user_regdate"
+							value="${sessionScope.UVO.user_regdate}" /></td>
 					</tr>
 					<tr>
-						<td>제목 </td>
-						<td colspan="3"><input type="text" id="question_title" name="question_title" value="${questionDetail.question_title}"/></td>
+						<td>제목</td>
+						<td colspan="3"><input type="text" id="question_title"
+							name="question_title" value="${questionDetail.question_title}" /></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="3"><input type="text" id="question_content" name="question_content" value="${questionDetail.question_content}"/></td>
+						<td colspan="3"><input type="text" id="question_content"
+							name="question_content"
+							value="${questionDetail.question_content}" /></td>
 					</tr>
 					<tr>
 						<td>이미지</td>
-						<td colspan="3"><img src="/resources/images/${questionDetail.question_image}" width="150" ></td>
+						<td colspan="3"><img
+							src="/resources/images/${questionDetail.question_image}"
+							width="150"></td>
 					</tr>
 				</table>
+				<c:if test="${questionDetail.question_seq == 2}">
+					<table>
+						<tr>
+							<td>이미지</td>
+							<td>내용</td>
+							<td>답변일자</td>
+						</tr>
+						<tr>
+							<td>${questionReply.questionreply_image }</td>
+							<td>${questionReply.questionreply_content }</td>
+							<td>${questionReply.questionreply_regdate }</td>
+						</tr>
+					</table>
+				</c:if>
 			</c:when>
 		</c:choose>
 	</form>
-	<input type="button" id="questionUpdateBtn" name="questionUpdateBtn" value="수정"/>
-	<input type="button" id="questionListBtn" name="questionListBtn" value="목록으로"/>
+	<input type="button" id="questionUpdateBtn" name="questionUpdateBtn"
+		value="수정" />
+	<input type="button" id="questionListBtn" name="questionListBtn"
+		value="목록으로" />
 </body>
 </html>

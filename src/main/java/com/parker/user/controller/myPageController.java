@@ -22,12 +22,13 @@ import com.parker.user.boardcommon.Paging;
 import com.parker.user.boardcommon.Util;
 import com.parker.user.service.BuyListService;
 import com.parker.user.service.DeliveryService;
+import com.parker.user.service.QuestionReplyService;
 import com.parker.user.service.QuestionService;
 import com.parker.user.service.UserService;
 import com.parker.user.vo.BuyListVO;
+import com.parker.user.vo.DeliveryVO;
 import com.parker.user.vo.QuestionVO;
 import com.parker.user.vo.UserVO;
-import com.parker.user.vo.DeliveryVO;
 
 //마이페이지 컨트롤러
 @Controller
@@ -42,6 +43,10 @@ public class myPageController {
 	// 1:1문의 게시판 서비스
 	@Autowired
 	QuestionService questionService;
+
+	// 1:1문의 답변 게시판 서비스
+	@Autowired
+	QuestionReplyService questionReplyService;
 
 	// 구매내역 서비스
 	@Autowired
@@ -276,9 +281,9 @@ public class myPageController {
 		// questionService.questionViewCount(question_number, session);
 
 		// 상세페이지 이동
+		mav.addObject("questionReply", questionReplyService.questionReply(question_number));
 		mav.addObject("questionDetail", questionService.questionDetail(question_number));
 		mav.setViewName("myPage/question/Detail");
-
 		return mav;
 	}
 
