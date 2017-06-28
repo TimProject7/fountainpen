@@ -4,7 +4,7 @@
 
 <mapper namespace="com.parker.user.dao.BuyListDAO">
 	<!-- 구매내역 -->
-	<select id="buyList" parameterType="com.parker.user.vo.BuyListVO"
+	<select id="buyListlist" parameterType="com.parker.user.vo.BuyListVO"
 		resultType="com.parker.user.vo.BuyListVO">
 		select *
 			from(

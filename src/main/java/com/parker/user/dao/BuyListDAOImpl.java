@@ -15,7 +15,7 @@ public class BuyListDAOImpl implements BuyListDAO {
 
 	@Override
 	public List<BuyListVO> buyList(BuyListVO BVO) {
-		return session.selectList("buyList", BVO);
+		return session.selectList("buyListlist", BVO);
 	}
 
 	@Override
