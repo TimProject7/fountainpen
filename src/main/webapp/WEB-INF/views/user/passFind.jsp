@@ -22,10 +22,9 @@
 											} else {
 												$
 														.ajax({
-															url : "/mail/mailForm.do", //전송url
+															url : "/mail/passchkmail.do", //전송url
 															type : "POST", //전송방식
-															data : $(
-																	'#passfind1')
+															data : $('#passfindForm')
 																	.serialize(),
 															error : function(
 																	content) {
@@ -46,6 +45,8 @@
 
 																	/* var mailkeychk= '<input type="button" id="mailkeychk" value="확인"/>';
 																	$("body").html(mailkeychk); */
+																}else{
+																	alert('일치하는 정보가 없습니다.')
 																}
 															}
 														});

@@ -83,8 +83,6 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO passCheck(UserVO UVO) {
-		System.out.println("UVO.getUser_birthday() : " +UVO.getUser_birthday());
-		System.out.println("UVO.getUser_id() : " + UVO.getUser_id());
 		return session.selectOne("passCheck", UVO);
 	}
 
