@@ -4,14 +4,12 @@
 
 <mapper namespace="com.parker.user.dao.QuestionReplyDAO">
 
-	<select id="questionReply" parameterType="com.paker.user.vo.QeustionReplyVO"
-		resultType="com.paker.user.vo.QeustionReplyVO">
-		select * from
-		questionReply_tb
-		where qeustion_number =
-		${qeustion_number}
-	</select>
-
-
+   <select id="questionReply" parameterType="com.parker.user.vo.QuestionReplyVO"
+      resultType="com.parker.user.vo.QuestionReplyVO">
+      select * from
+      questionReply_tb
+      where question_number =
+      #{question_number}
+   </select>
 
 </mapper>

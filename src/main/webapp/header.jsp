@@ -18,6 +18,7 @@
 			<ul class="hd_nav1">
 				<li class="hd_nav1"><a href="#">SITE-MAP</a></li>
 				<li class="hd_nav1"><a href="#">SUPPORT</a></li>
+				<li class="hd_nav1"><a href="/serviceCenter/userBoard/userBoard.do">고객센터</a></li>
 				<c:choose >
 					<c:when test="${not empty sessionScope.UVO}">
 					<li class="hd_nav1">${sessionScope.UVO.user_id}님</li>

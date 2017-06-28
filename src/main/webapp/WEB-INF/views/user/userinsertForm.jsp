@@ -28,23 +28,22 @@
 		$('#user_passwordchk').keyup(function() {
 			if ($('#user_password').val() != $('#user_passwordchk').val()) {
 				$('font[name=check]').text('');
+				$('input[name=idchkvalue]').html("N");
 				$('font[name=check]').html("암호틀림");
 
 			} else {
 				$('font[name=check]').text('');
+				$('input[name=idchkvalue]').html("Y");
 				$('font[name=check]').html("암호맞음");
 			}
 		}); //#user_passwordchk.keyup
 	});
 
 	//저장버튼 클릭시 userinsert 페이지로 이동
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 						//아이디 중복 체크 ajax 비동기
-						$("#user_idcheckBtn")
-								.click(
-										function() {
+						$("#user_idcheckBtn").click(function() {
+							
 											if (!chkSubmit($("#user_id"))) {
 												return;
 											} else {
@@ -142,56 +141,48 @@
 
 						});
 						/* 저장 버튼 클릭시 처리 이벤트 */
-						$("#singupBtn")
-								.click(
-										function() {
+						$("#singupBtn").click(function() {
 											var chk_radio = document.getElementsBynName
 
-											if (!chkSubmit($('#user_name'),
-													"이름을")) {
+											if (!chkSubmit($('#user_name'),"이름을")) {
 												return;
-											} else if (!chkSubmit(
-													$('#user_id'), "아이디를")) {
+												
+											} else if (!chkSubmit($('#user_id'), "아이디를")) {
 												return;
-											} else if (!chkSubmit(
-													$('#user_password'),
-													"비밀번호를")) {
+												
+											} else if (!chkSubmit($('#user_password'),"비밀번호를")) {
 												return;
-											} else if (!chkSubmit(
-													$('#user_email'), "메일을")) {
+												
+											} else if (!chkSubmit($('#user_email'), "메일을")) {
 												return;
-											} else if (!chkSubmit(
-													$('#zip_code'), "주소를")) {
+												
+											} else if (!chkSubmit($('#zip_code'), "주소를")) {
 												return;
-											} else if (!chkSubmit(
-													$('#detail_address'),
-													"상세주소를 ")) {
+												
+											} else if (!chkSubmit($('#detail_address'),"상세주소를 ")) {
 												return;
-											} else if (!chkSubmit(
-													$('#user_birthday'),
-													"생년월일을")) {
+												
+											} else if (!chkSubmit($('#user_birthday'),"생년월일을")) {
 												return;
-											} else if (!chkSubmit(
-													$('#user_cell'), "전화번호를")) {
+												
+											} else if (!chkSubmit($('#user_cell'), "전화번호를")) {
 												return;
-											} else if (!chkSubmit(
-													$('#user_phone'), "핸드폰번호를")) {
+												
+											} else if (!chkSubmit($('#user_phone'), "핸드폰번호를")) {
 												return;
-											} else if (!$(
-													':input:radio[name=user_gender]:checked')
-													.val()) {
+												
+											} else if (!$(':input:radio[name=user_gender]:checked').val()) {
 												alert("성별을 선택해주세요");
 												return;
-											} else if (!$(
-													':input:checkbox[name=user_privacyconsignment]:checked')
-													.val()) {
+												
+											} else if (!$(':input:checkbox[name=user_privacyconsignment]:checked').val()) {
 												alert("약관1 선택해라");
 												return;
-											} else if (!$(
-													':input:checkbox[name=user_termsofuse]:checked')
-													.val()) {
+												
+											} else if (!$(':input:checkbox[name=user_termsofuse]:checked').val()) {
 												alert("약관2 선택해라");
 												return;
+												
 											}
 
 											//입력값 체크
@@ -370,7 +361,9 @@
 					<th id="column">아이디</th>
 					<td id="column2"><input type="text" id="user_id"
 						name="user_id" autofocus="autofocus"> <input type="button"
-						id="user_idcheckBtn" name="user_idcheckBtn" value="중복확인"><br>
+						id="user_idcheckBtn" name="user_idcheckBtn" value="중복확인">
+						<input type="hidden" name="idchkvalue" id="idchkvalue" value="" />
+						<br>
 						<span id="msg"></span></td>
 				</tr>
 				<tr>

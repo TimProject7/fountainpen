@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.UserBoardReplyDAO">
+	<select id="userBoardReplyList" parameterType="com.parker.user.vo.UserBoardReplyVO" resultType="com.parker.user.vo.UserBoardReplyVO">
+		select
+			userboardreply_tb.userboardreply_number,userboardreply_tb.userboardreply_content,userboardreply_tb.userboardreply_writedate,
+			userboard_tb.userboard_number,
+			users_tb.user_number,users_tb.user_name
+		from 
+			userboardreply_tb , userboard_tb, users_tb
+		where 
+			userboardreply_tb.user_number = users_tb.user_number
+			and userboardreply_tb.userboard_number = userboard_tb.userboard_number
+	</select>
+	
+	<insert id="userBoardReplyInsert" parameterType="com.parker.user.vo.UserBoardReplyVO">
+		<selectKey keyProperty="userboardreply_number" resultType="int" order="BEFORE">
+			select seq_userboardreply_tb.nextval from dual
+		</selectKey>
+		insert into userboardreply_tb(
+		userboardreply_number,
+		userboardreply_content,
+		userboard_number,
+		user_number
+		)
+		values(
+		#{userboardreply_number},
+		#{userboardreply_content},
+		#{userboard_number},
+		#{user_number}
+		)
+	</insert>
+	
+	<update id="userBoardReplyUpdate" parameterType="com.parker.user.vo.UserBoardReplyVO">
+	<!--댓글수정  -->
+	update 
+		userboardreply_tb
+	set
+		userboardreply_content = #{userboardreply_content},
+		userboardreply_writedate = sysdate
+		where userboardreply_number = #{userboardreply_number}
+	
+	</update>
+	
+	<delete id="userBoardReplyDelete" parameterType="com.parker.user.vo.UserBoardReplyVO">
+	delete 
+		from 
+			userboardreply_tb
+		where
+			userboardreply_number =#{userboardreply_number}
+	</delete>
+	
+	
+
+</mapper>

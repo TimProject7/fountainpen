@@ -2,6 +2,7 @@ package com.parker.user.boardcommon;
 
 import com.parker.user.vo.BuyListVO;
 import com.parker.user.vo.QuestionVO;
+import com.parker.user.vo.UserBoardVO;
 import com.parker.user.vo.DeliveryVO;
 
 public class Paging {
@@ -68,5 +69,27 @@ public class Paging {
 
 		DVO.setStart_row(start_row + "");
 		DVO.setEnd_row(end_row + "");
+	}
+	
+	public static void set(UserBoardVO UBVO) {
+		//한페이지
+		int page = Util.nvl(UBVO.getPage(), 1);
+		//총페이지수
+		int pageSize = Util.nvl(UBVO.getPageSize(), 10);
+		
+		//널값일때 조건
+		if (UBVO.getPage() == null) {
+			UBVO.setPage(page + "");
+		}
+		if (UBVO.getPageSize() == null) {
+			UBVO.setPageSize(pageSize + "");
+		}
+		
+		
+		int start_row = (page - 1) * pageSize + 1;
+		int end_row = (page - 1) * pageSize + pageSize;
+
+		UBVO.setStart_row(start_row + "");
+		UBVO.setEnd_row(end_row + "");
 	}
 }

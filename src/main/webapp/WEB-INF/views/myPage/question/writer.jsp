@@ -13,13 +13,9 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		//글쓰기버튼
+		//목록버튼
 		$("#questionListBtn").on("click", function() {
-			//입력값 체크
-			var ext = $('#Question_image').val().split('.').pop().toLowerCase();
-			if(jQuery.inArray(ext,['gif','png','jpg','jpeg'])==-1){
-				alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.')
-			}
+		
 			$("#question_insertForm").attr({
 				"method" : "POST",
 				"action" : "/myPage/question/question.do"

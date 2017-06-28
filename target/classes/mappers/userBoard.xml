@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.UserBoardDAO">
+	<insert id="userBoardInsert" parameterType="com.parker.user.vo.UserBoardVO">
+		<selectKey keyProperty="userboard_number" resultType="int"
+			order="BEFORE">
+			select seq_userboard_tb.nextval from dual
+		</selectKey>
+		insert into userboard_tb(
+		userboard_number,
+		userboard_name,
+		userboard_title,
+		userboard_content,
+		userboard_writedate,
+		userboard_image,
+		user_number
+		<!-- userboard_viewcnt -->
+		)
+		values(
+		#{userboard_number},
+		#{userboard_name},
+		#{userboard_title},
+		#{userboard_content},
+		sysdate,
+		#{userboard_image},
+		#{user_number}
+		<!-- #{userboard_viewcnt} -->
+		)
+	</insert>
+
+	<!-- 전체리스트 -->
+	<select id="userBoardList" parameterType="com.parker.user.vo.UserBoardVO"
+		resultType="com.parker.user.vo.UserBoardVO">
+		select *
+		from(
+		select lst.*, rownum as rnum
+		from(
+		select
+		userboard_number,userboard_name,userboard_title,userboard_content,userboard_writedate,userboard_image,userboard_viewcnt,user_number
+		from userboard_tb
+		order by
+		userboard_number asc
+		)lst
+		)
+
+
+	</select>
+
+	<!-- 전체 리스트 건수 -->
+	<select id="userBoardListCnt" parameterType="com.parker.user.vo.UserBoardVO"
+		resultType="int">
+		select nvl(count(1),0) from
+		(select lst.*, rownum as rnum
+		from(
+		select
+		userboard_number,userboard_name,userboard_title,userboard_content,userboard_writedate,userboard_image,userboard_viewcnt,user_number
+		from userboard_tb
+		order by
+		userboard_number asc
+		)lst
+		)
+
+
+	</select>
+
+	<select id="userBoardDetail" parameterType="com.parker.user.vo.UserBoardVO"
+		resultType="com.parker.user.vo.UserBoardVO">
+
+		select
+			userboard_number,userboard_name,userboard_title,userboard_content,
+			userboard_writedate,userboard_image,userboard_viewcnt,user_number
+		from userboard_tb
+		where userboard_number=#{userboard_number}
+
+
+	</select>
+	
+	
+	<update id="userBoardDetailUpdate" parameterType="com.parker.user.vo.UserBoardVO">
+		update
+			userboard_tb
+		set
+			userboard_name = #{userboard_name},
+			userboard_title = #{userboard_title},
+			userboard_content = #{userboard_content},
+			userboard_image = #{userboard_image}
+		where
+			userboard_number = #{userboard_number}
+		
+		
+	</update>
+
+	<!-- 1:1문의 게시글 조회수 증가처리 -->
+	<update id="userBoardViewCnt">
+		UPDATE
+		userBoard_tb
+		SET
+		userboard_viewCnt =
+		userboard_viewCnt+ 1
+		WHERE
+		userboard_number = #{userboard_number}
+	</update>
+
+</mapper>

@@ -21,7 +21,11 @@
 					</tr>
 					<tr>
 						<td><label>비밀번호 입력<input type="password"
-								id="user_password" name="user_password"></label></td>
+								id="user_password" name="user_password"></label><br>
+								<c:if test="${result == false}">
+								<span>비밀번호가틀렸습니다.</span>
+								</c:if>
+								</td>
 					</tr>
 				</table>
 				<div id="passChangeBtn" align="center">

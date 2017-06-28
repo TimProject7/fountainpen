@@ -86,12 +86,14 @@ public class myPageController {
 		System.out.println("result :" + result);
 		if (result == false) {
 			System.out.println("실패");
+			model.addAttribute("result", result);
+			return "/myPage/myPagePasswordForm";
 		} else if (result == true) {
 			session.setAttribute("UVO", UVO);
 			System.out.println("성공");
 		}
-
 		return "/myPage/myPageForm";
+
 	}
 
 	// 마이페이지 회원정보변경 폼

@@ -15,7 +15,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		//글쓰기폼으로이동
+		//수정완료버튼
 		$("#questionUpdateBtn").click(function() {
 			//입력값 체크
 
@@ -25,7 +25,8 @@
 			});
 			$("#updateForm").submit();
 		});
-
+		
+		//목록보기버튼
 		$("#questionListBtn").click(function() {
 			//입력값 체크
 
