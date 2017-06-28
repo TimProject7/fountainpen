@@ -150,47 +150,63 @@ function listAll(userboard_number){
 
 /* 새로운 글을 화면에 추가하기 위한 함수 */
 function addNewItem(userboardreply_number, user_id, userboardreply_content, userboardreply_writedate,userid) {
-	//새로운 글이 추가될 li태그 객체
-	var new_li = $("<li>");
-	new_li.attr("data-num",userboardreply_number);
-	new_li.addClass("comment_item");
+	//작성자=td, 아이디=td-text, 저장버튼=td-button
+	var first_tr =$("<tr>");
+	first_tr.attr("data-num",userboardreply_number);
+	first_tr.addClass("comment_item_first");
 	
-	//작성자 정보가 지정될 <p>태그
-	var writer_p = $("<p>");
-	writer_p.addClass("writer");
-	
-	//작성자 정보의 이름
-	var name_span = $("<span>");
-	name_span.addClass("name");
-	name_span.html(user_id+"님");
-	
-	//작성일시
-	var date_span =$("<span>");
-	date_span.html("/" + userboardreply_writedate +"");
+	//작성자  td태그
+	var writer_td =$("<td>");
+	writer_td.addClass("writer_td");
 	if(userid != user_id){
 		
 	}else{
-	//수정하기 버튼
-	var up_input = $("<input>");
-	up_input.attr({"type":"button","value":"수정하기"});
-	up_input.addClass("update_form");
+	//작성자id = input
+	var writer_id_input = $("<input>");
+	writer_id_input.attr({"type":"text","size":"10","value":user_id+"님"});
 	
-	//삭제하기 버튼
-	var del_input= $("<input>");
-	del_input.attr({"type":"button","value":"삭제하기"});
-	del_input.addClass("delete_btn");
+	//작성날짜 = input
+	var writer_date_inpit = $("<input>");
+	writer_date_inpit.attr({"type":"text","size":"10","value":"/" + userboardreply_writedate +""});
+	
+	//수정버튼 = button
+	var input_update_button =$("<input>")
+	input_update_button.attr({"type":"button","value":"수정"});
+	input_update_button.addClass("update_form");
+	
+	//삭제버튼 = button
+	var input_delete_button =$("<input>")
+	input_delete_button.attr({"type":"button","value":"삭제"});
+	input_delete_button.addClass("delete_btn");
 	}
-	//내용
-	var content_p = $("<p>");
-	content_p.addClass("con");
-	content_p.html(userboardreply_content);
+	//두번째 tr 댓글 내용  tr - td - textarea		
+	var two_tr =$("<tr>");
+	two_tr.addClass("comment_item_two");
+	
+	//댓글 td
+	var two_td =$("<td>");
+	two_td.addClass("two_td");
+	
+	
+	//댓글 textarea
+	var two_textarea =$("<textarea>");
+	two_textarea.attr({"rows":"7","cols":"40"});
+	two_textarea.addClass("two_textarea");
+	two_textarea.html(userboardreply_content);
+	
+	//hr
+	
+	var hr =$("<hr>");
+	
 	
 	//조립하기
-	writer_p.append(name_span).append(date_span).append(up_input).append(del_input);
-	new_li.append(writer_p).append(content_p);
+	first_tr.append().append(writer_td);////첫번째 tr -td
+	writer_td.append(writer_id_input).append(writer_date_inpit).append(input_update_button).append(input_delete_button);		//텍스트
 	
+	two_tr.append().append(two_td);//두번째 tr - td
+	two_td.append(two_textarea);//td안에 에어리어
 	
-	$("#comment_list").append(new_li);
+	$("#new_table").append(first_tr).append(two_tr).append(hr);
 }
 function dataReset() {
 	$("#user_id").val("");
@@ -217,9 +233,13 @@ function dataReset() {
 			</form>
 		</div>
 		
-		<ul id="comment_list">
-			<!-- 여기에 동적 생성 요소가 들어가게 됩니다. -->
-		</ul>
+		<!-- 생성폼 -->
+	<hr>
+	<table id="new_table">
+	<!-- 동적 댓글생성 -->
+	
+	
+	</table>
 	</div>
 
 </body>
