@@ -3,6 +3,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.parker.user.dao.UserDAO">
+	
+	<!-- 회원상태조회 -->
+	<select id="statusCheck" parameterType="com.parker.user.vo.UserVO" resultType="com.parker.user.vo.UserVO">
+	select 
+		user_status
+	from
+		users_tb
+	where
+		user_id = #{user_id}
+	</select>
+	
 	<!--회원가입 -->
 	<insert id="userinsert" parameterType="com.parker.user.vo.UserVO">
 		<selectKey keyProperty="user_number" resultType="int" order="BEFORE">
@@ -97,8 +108,8 @@
 	<select id="sessionLogin1" parameterType="com.parker.user.vo.UserVO"
 		resultType="String">
 		SELECT 
-		user_password
-		
+		user_password,
+		user_status
 		FROM
 		USERS_TB
 		where

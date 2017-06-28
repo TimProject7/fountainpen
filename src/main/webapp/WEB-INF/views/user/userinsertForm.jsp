@@ -18,34 +18,122 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+
+/* function validation(){	//alert("validation");
+
+	var regId = /^[a-z0-9]{3,10}$/;	// 아이디 유효성 검사식
+
+	var regPw = /^[a-z0-9]{6,10}$/;	// 비밀번호 유효성 검사식
+
+	var regNm = /^[가-힣]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;	// 이름 유효성 검사식
+
+	var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;  // 이메일 유효성 검사식
+
+	var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;	// 핸드폰번호 유효성 검사식
+	
+	 if( name == 'MEMBER_ID' ){
+
+	        if( !val ){
+	        	$("#msg_memberId").text('아이디를 입력해 주세요.');
+	        	$("#mailchk").val('N');
+	        	$("#MEMBER_ID").focus();
+	            return false;
+	        } else {
+	        	if( !regId.test(val) ) {
+		        	$("#msg_memberId").text('3~10자의 영문 소문자,숫자만 사용 가능합니다.');
+		        	$("#mailchk").val('N');
+		        	$("#MEMBER_ID").focus();
+		        	return false;
+	        	}else{
+	        		fnDuplicationIdCheck();
+
+	        	}	
+	        }
+     }	
+} */
+
 	//비밀번호가맞는지 확인
 	$(function() {
+		var regId = /^[A-Za-z0-9+]{4,16}$/;	// 아이디 유효성 검사식 4자리이상 16자리이하, 영문과 숫자만 가능
+		var regpwd = /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비밀번호유효성검사 4자리이상 16자리이하 ,숫자혹은 특수문자를 반드시 포함
+		var regemail=/^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{3}$/; 	//이메일 유효성검사
+		var regphone =/(\d{3}).*(\d{4}).*(\d{4})/; //핸드폰번호 유효성 검사
+		var regname = /([^가-힣\x20a-zA-Z])/i;    //한글과 영어만
+		
+		$('#user_id').keyup(function(){
+			if(regId.test($('#user_id').val())){
+				$("#msgid").text("중복체크를 하세요").css("color","red");
+				$("#chk").val('N');
+				return;
+			}else{
+				$("#msgid").text("아이디는4자리이상 16자리이하 영문과 숫자만 가능").css("color","red");
+				$("#chk").val('N');
+			}
+		})
+		
 		/* keyup 텍스트에 커서가 올라가면 반응하는 명령어 */
 		$('#user_password').keyup(function() {
-			$('font[name=check]').text('');
+			//var regpwd = /^(?=.*[a-zA-Z])((?=.*\d)|(?=*\W)).{4,16}$/;
+			
+				if(!regpwd.test($('#user_password').val())){
+					$("#msgpwd").text("비밀번호는 4자리이상 16자리이하, 숫자혹은 특수문자를 반드시포함").css("color","red");
+					$("#chk").val('N');
+				}else{
+					$("#msgpwd").text("사용가능한 비밀번호입니다.").css("color","blue");
+					$("#chk").val('N');
+				}
 		}); //user_password.keyup
 
 		$('#user_passwordchk').keyup(function() {
-			if ($('#user_password').val() != $('#user_passwordchk').val()) {
-				$('font[name=check]').text('');
-				$('input[name=idchkvalue]').html("N");
-				$('font[name=check]').html("암호틀림");
-
-			} else {
-				$('font[name=check]').text('');
-				$('input[name=idchkvalue]').html("Y");
-				$('font[name=check]').html("암호맞음");
+			if ($('#user_password').val() == $('#user_passwordchk').val()) {
+				$("#msgpwdchk").text("비밀번호 일치").css("color","blue");
+				$("#chk").val('Y');
 			}
 		}); //#user_passwordchk.keyup
+		
+		$('#user_name').keyup(function(){
+			if(!regname.test($('#user_name').val())){
+				$("#msgname").text("이름은 한글,영어").css("color","red");
+				$("#chk").val('N');
+			}else{
+				$("#msgname").text(" ").css("color","blue");
+				$("#chk").val('Y');
+			}
+			
+		});
+		
+		$('#user_email').keyup(function(){
+			if(!regemail.test($('#user_email').val())){
+				$("#msgemail").text("이메일형식에 맞게 입력해주세요").css("color","red");
+				$("#chk").val('N');
+			}else{
+				$("#msgemail").text("이메일인증 버튼클릭").css("color","blue");
+			}
+			
+		});
+		$('#user_phone').keyup(function(){
+			if(!regphone.test($('#user_phone').val())){
+				$("#msgphone").text("핸드폰번호 형식에 맞게 입력해주세요").css("color","red");
+				$("#chk").val('N');
+			}else{
+				$("#msgphone").text("").css("color","red");
+				$("#chk").val('Y');
+			}
+		});
 	});
 
 	//저장버튼 클릭시 userinsert 페이지로 이동
 	$(document).ready(function() {
+		
+
+
+
+		
 						//아이디 중복 체크 ajax 비동기
 						$("#user_idcheckBtn").click(function() {
 							
 											if (!chkSubmit($("#user_id"))) {
-												return;
+												return false;
 											} else {
 												$
 														.ajax({
@@ -57,30 +145,18 @@
 																	result) {
 																alert('시스템오류')
 															},
-															success : function(
-																	result) {
+															success : function(result) {
 																if (result == 0) {
 																	alert('사용가능한 아이디입니다')
-																	$("#msg")
-																			.text(
-																					"사용가능한 아이디입니다")
-																			.css(
-																					"color",
-																					"blue");
-																	$(
-																			"#user_password")
-																			.select();
+																	$("#msgid").text("사용가능한 아이디입니다").css("color","blue");
+																	$("#user_password").select();
+																	$("#chk").val('Y');
+																	
 																} else if (result == 1) {
-																	$("#msg")
-																			.text(
-																					"중복된 아이디입니다")
-																			.css(
-																					"color",
-																					"red");
-																	$(
-																			"#user_id")
-																			.select();
+																	$("#msgid").text("중복된 아이디입니다").css("color","red");
+																	$("#user_id").select();
 																	alert('이미사용한 아이디입니다');
+																	$("#chk").val('N');
 																}
 															}
 														});
@@ -89,14 +165,11 @@
 
 						//메일소스
 
-						$("#mailSubmit")
-								.click(
-										function() {
+						$("#mailSubmit").click(function() {
 											if (!chkSubmit($("#user_email"))) {
 												return;
 											} else {
-												$
-														.ajax({
+													$.ajax({
 															url : "/mail/mailForm.do", //전송url
 															type : "POST", //전송방식
 															data : $(
@@ -108,14 +181,18 @@
 															},
 															success : function(
 																	content) {
-
+																if(content ==1){
 																//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
-																$(
-																		'input[name=mailkey1]')
-																		.attr(
-																				'value',
-																				content);
-
+																$("#msgemail").text("사용중인 이메일입니다.").css("color","red");
+																$("#chk").val('N');
+																}else{
+																	$('input[name=mailkey1]').attr('value',content);
+																	/* var mailkeychk = '<input type="button" name="mailBtn" id="mailBtn" value="확인"/>';
+																	$('#mailkey').append(mailkeychk); */
+																	$("#msgemail").text("인증번호를 입력하세요").css("color","blue");
+																	alert('인증메일 발송');
+																	$("#chk").val('N');
+																}
 															}
 														});
 											}
@@ -133,90 +210,144 @@
 							if ($("#mailkey").val() != $("#mailkey1").val()) {
 								alert("인증 실패");
 								result = 0;
+								$("#mailkey").val("");
+								$("#chk").val('N');
 								return false;
 							} else {
 								alert("인증 성공");
-								result = 1;
+								result=1;
+								$("#chk").val("Y");
+								
 							}
 
 						});
-						/* 저장 버튼 클릭시 처리 이벤트 */
+						//회원가입버튼 클릭
 						$("#singupBtn").click(function() {
 											var chk_radio = document.getElementsBynName
-
-											if (!chkSubmit($('#user_name'),"이름을")) {
-												return;
-												
-											} else if (!chkSubmit($('#user_id'), "아이디를")) {
-												return;
-												
-											} else if (!chkSubmit($('#user_password'),"비밀번호를")) {
-												return;
-												
-											} else if (!chkSubmit($('#user_email'), "메일을")) {
-												return;
-												
-											} else if (!chkSubmit($('#zip_code'), "주소를")) {
-												return;
-												
-											} else if (!chkSubmit($('#detail_address'),"상세주소를 ")) {
-												return;
-												
-											} else if (!chkSubmit($('#user_birthday'),"생년월일을")) {
-												return;
-												
-											} else if (!chkSubmit($('#user_cell'), "전화번호를")) {
-												return;
-												
-											} else if (!chkSubmit($('#user_phone'), "핸드폰번호를")) {
-												return;
-												
-											} else if (!$(':input:radio[name=user_gender]:checked').val()) {
+											//각 텍스트의 값을 변수에 답는다
+											var userid = $('#user_id').val();
+											var userpw = $('#user_password').val();
+											var userpwd = $('#user_passwordchk').val();
+											var username =$('#user_name').val();
+											var userbirthday =$('#user_birthday').val();
+											var useremail = $('#user_email').val();
+											var userzipcode =$('#zip_code').val();
+											var useraddr =$('#user_address').val();
+											var userdetailaddr =$('#detail_address').val();
+											var usercell =$('#user_cell').val();
+											var userphone =$('#user_phone').val();
+											
+										
+											//메일체크 확인값
+											var chk = $("#chk").val();
+											
+											//
+											if(!userid){
+												alert('아이디를 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											if(!userpw){
+												alert('비밀번호를 입력해주세요')
+												$("#chk").val('N');
+												return false;
+											}
+											if(!userpwd){
+												alert('비밀번호확인을 입력해주세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//
+											if(!username){
+												alert('이름을 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											if(!userbirthday){
+												alert('생년월일을 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//
+											if(!useremail){
+												alert('이메일을 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//메일인증키확인
+											if(chk!='Y'){
+												alert('메일인증번호를 확인하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//
+											if(!userzipcode){
+												alert('주소를 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//
+											if(!useraddr){
+												alert('주소를 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//
+											if(!userdetailaddr){
+												alert('상세주소를 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											//
+											if(!userphone){
+												alert('핸드폰번호를 입력하세요')
+												$("#chk").val('N');
+												return false;
+											}
+											
+											 if (!$(':input:radio[name=user_gender]:checked').val()) {
 												alert("성별을 선택해주세요");
+												$("#chk").val('N');
 												return;
 												
 											} else if (!$(':input:checkbox[name=user_privacyconsignment]:checked').val()) {
 												alert("약관1 선택해라");
+												$("#chk").val('N');
 												return;
 												
 											} else if (!$(':input:checkbox[name=user_termsofuse]:checked').val()) {
 												alert("약관2 선택해라");
+												$("#chk").val('N');
 												return;
 												
 											}
-
 											//입력값 체크
-
-											$("#singupform")
-													.attr(
-															{
+											if($("#chk").val('Y')){
+											$("#singupform").attr({
 																"method" : "POST",
 																"action" : "/user/userinsert.do"
 															});
 
 											$("#singupform").submit();
 
-										});
-
-					});
+									}else{
+										alert('입력되지않은정보 혹은 잘못입력하신정보가있습니다')
+									}
+								});
+						});
 
 	$(function() {
 
-		$('#searchBtn')
-				.click(
-						function(e) {
+		$('#searchBtn').click(function(e) {
 							e.preventDefault();
 
-							$
-									.ajax({
-										url : '/zipcode/list.do', //url요청
-										data : $('#d_form').serialize(), //form에  데이터요청
-										type : 'POST', //POST방식
-										dataType : 'json', //json 
-										success : function(result) {
-
-											$("#zipcodeList").empty();
-
+							$.ajax({
+									url : '/zipcode/list.do', //url요청
+									data : $('#d_form').serialize(), //form에  데이터요청
+									type : 'POST', //POST방식
+									dataType : 'json', //json 
+									success : function(result) {
+										$("#zipcodeList").empty();
 											var html = '';
 
 											if (result.errorCode != null
@@ -259,35 +390,51 @@
 									});
 						});
 
-		//다이얼로그 팝업창을 연다 !
-		$("#dialog_form").dialog({
-			autoOpen : false,
-			height : 400,
-			width : 700,
-			modal : true,
-			buttons : {
-
-				Cancel : function() {
-					dialog.dialog("close");
+			//다이얼로그 팝업창을 연다 !
+			$("#dialog_form").dialog({
+				autoOpen : false,
+				height : 400,
+				width : 700,
+				modal : true,
+				buttons : {
+					
+					Cancel : function() {
+						dialog.dialog("close");
+						}
+			
+				},
+				
+				close : function() {
+					/*************				
+					close 될떄
+					trigger("reset") 입력창의 내용 리셋  
+					remove = tbladdr 테이블의 tr을 삭제함으로써 주소리스트를 없앤다 
+					 */
+					$("#d_form").trigger("reset");
+					$("#tbladdr tr:not(:first)").remove();
 				}
-			},
-			close : function() {
-				/*************				
-				close 될떄
-				trigger("reset") 입력창의 내용 리셋  
-				remove = tbladdr 테이블의 tr을 삭제함으로써 주소리스트를 없앤다 
-				 */
-				$("#d_form").trigger("reset");
-				$("#tbladdr tr:not(:first)").remove();
-			}
+			
 		});
+			
 
 		//다이얼 로그 팝업창 오픈-!
 		$("#zipcodesearch").click(function() {
 			$("#dialog_form").dialog("open");
+			eKey(e)
 		});
+		
+		
+		
 	});
 
+		function eKey(e){
+		   if(e.keyCode == 13 && e.srcElement.type != 'textarea'){
+		      if(!changePw()){
+		         return false;
+		      }
+		   }
+		}
+		
 	//put 함수 주소와 코드번호의 값을 전달한다.
 	//dialog('close')로 다이얼로그창 종료
 	function put(address, zipcode) {
@@ -299,29 +446,11 @@
 		$("#user_address").val(address);
 	}
 
-	function validate() {
-
-		var id = document.getElementById('user_id');
-	
-
-		//아이디검사
-		if (!chk(/^[a-z][a-z\d]{3,11}$/, id, "첫글자는 영문 소문자, 4~12자 입력할것!")) {
-			return false;
-		}
-	
-	}
-	function chk(re, e, msg) {
-		if (re.test(e.value)) {
-			return true;
-		}
-		alert(msg);
-		e.value = "";
-		e.focus();
-		return false;
-	}
 </script>
 </head>
 <body>
+<input type="text" id="chk" name="chk" value="N"/>
+<input type="text" name="mailkey1" id="mailkey1" value=""></td>
 	<div id="content" align="center">
 		<!--다이얼로그창 폼  -->
 		<div id="dialog_form">
@@ -352,7 +481,7 @@
 				</div>
 			</form>
 		</div>
-		<form id="singupform" name="singupform" onsubmit="return validate()">
+		<form id="singupform" name="singupform">
 
 			<table id=content_table border="1">
 
@@ -362,56 +491,54 @@
 					<td id="column2"><input type="text" id="user_id"
 						name="user_id" autofocus="autofocus"> <input type="button"
 						id="user_idcheckBtn" name="user_idcheckBtn" value="중복확인">
-						<input type="hidden" name="idchkvalue" id="idchkvalue" value="" />
-						<br>
-						<span id="msg"></span></td>
+						
+						<span id="msgid"></span>
+					</td>
 				</tr>
 				<tr>
 					<th id="column">비밀번호</th>
 					<td id="column2"><input type="password" id="user_password"
-						name="user_password"><span id="password_msg"></span></td>
+						name="user_password"><span id="msgpwd"></span></td>
 				</tr>
 				<tr>
 					<th id="column">비밀번호확인</th>
 					<td id="column2"><input type="password" id="user_passwordchk"
-						name="user_passwordchk"> <font name="check" size="2"
-						color="red"></font></td>
+						name="user_passwordchk"><span id="msgpwdchk"></span></td>
 				</tr>
 				<tr>
 					<th style="width: 20%;" id="column">이름</th>
 					<td id="column2"><input type="text" id="user_name"
-						name="user_name"></td>
+						name="user_name"><span id="msgname"></span></td>
 				</tr>
 				<tr>
 					<th id="column">생년월일</th>
 					<td id="column2"><input type="text" id="user_birthday"
-						name="user_birthday"></td>
+						name="user_birthday" placeholder="예:19900524"></td>
 				</tr>
-				<tr>
+				<tr id="mail">
 					<th id="column">이메일</th>
-					<td id="column2"><input type="email" id="user_email"
-						name="user_email" size="120" style="width: 30%"
-						placeholder="이메일을입력하세요" class="form-control" value="${user_email}">
-						<input type="button" value="메일 인증" class="btn btn-warning"
-						id="mailSubmit"><br>
+					<td id="column2">
+					<input type="email" id="user_email" name="user_email" size="120" style="width: 30%" placeholder="이메일을입력하세요" class="form-control" value="${user_email}">
+					<input type="button" value="메일 인증" class="btn btn-warning" id="mailSubmit">
+					<br><span id="msgemail"></span>
 				</tr>
-				<tr>
+				<tr id="mailcheck">
 					<th id="column">인증번호</th>
-					<td id="column2"><input type="text" name="mailkey"
-						id="mailkey" placeholder="인증키를 입력하세요"> <input
-						type="button" name="mailBtn" id="mailBtn" value="확인"><br>
-						<input type="text" name="mailkey1" id="mailkey1" value=""></td>
+					<td id="column2">
+					<input type="text" name="mailkey" id="mailkey" placeholder="인증키를 입력하세요"> 
+					<input type="button" name="mailBtn" id="mailBtn" value="확인">
+					
 				</tr>
 				<tr>
 					<th id="column">우편번호</th>
 					<td id="column2"><input type="text" id="zip_code"
-						name="zip_code">
+						name="zip_code" readonly="readonly">
 						<button type="button" id="zipcodesearch">주소검색</button></td>
 				</tr>
 				<tr>
 					<th id="column">주소</th>
 					<td id="column2"><input type="text" id="user_address"
-						name="user_address"> <input type="text"
+						name="user_address" readonly="readonly"> <input type="text"
 						id="detail_address" name="detail_address" placeholder="상세주소">
 
 					</td>
@@ -425,7 +552,7 @@
 				<tr>
 					<th id="column">핸드폰번호</th>
 					<td id="column2"><input type="text" id="user_phone"
-						name="user_phone"></td>
+						name="user_phone" placeholder="예:01031238928"><span id="msgphone"></span></td>
 				</tr>
 				<tr>
 					<th id="column">성별</th>

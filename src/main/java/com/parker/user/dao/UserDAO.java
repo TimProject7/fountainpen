@@ -35,4 +35,7 @@ public interface UserDAO {
 	
 	//회원 탈퇴
 	public int userUpdateDelete(UserVO UVO);
+	
+	//회원상태 검색
+	public UserVO statusCheck(UserVO UVO);
 }

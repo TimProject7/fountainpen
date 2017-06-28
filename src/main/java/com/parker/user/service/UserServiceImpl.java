@@ -91,4 +91,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.emailChk(UVO);
 	}
 
+	@Override
+	public UserVO statusCheck(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return userDAO.statusCheck(UVO);
+	}
+
 }

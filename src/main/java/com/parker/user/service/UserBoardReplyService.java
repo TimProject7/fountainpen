@@ -14,6 +14,6 @@ public interface UserBoardReplyService {
 	// 댓글 수정
 	public int userBoardReplyUpdate(UserBoardReplyVO UBRVO);
 
-	//댓글 삭제
-		public int userBoardReplyDelete(int userboardreply_number);
+	// 댓글 삭제
+	public int userBoardReplyDelete(int userboardreply_number);
 }

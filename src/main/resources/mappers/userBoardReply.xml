@@ -7,7 +7,7 @@
 		select
 			userboardreply_tb.userboardreply_number,userboardreply_tb.userboardreply_content,userboardreply_tb.userboardreply_writedate,
 			userboard_tb.userboard_number,
-			users_tb.user_number,users_tb.user_name
+			users_tb.user_number, users_tb.user_name, users_tb.user_id
 		from 
 			userboardreply_tb , userboard_tb, users_tb
 		where 

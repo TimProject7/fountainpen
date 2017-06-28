@@ -16,12 +16,13 @@
 		select
 		question_number,
 		question_title,
-		question_writedate,question_content,question_seq, 
+		question_writedate,question_content,
 		u.user_name
 		from
 		question_tb,
 		users_tb u
 		where question_tb.user_number= u.user_number
+		and u.user_number = #{user_number}
 		order by
 		question_number asc
 		)lst

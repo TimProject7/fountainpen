@@ -354,9 +354,9 @@
 						<tr>
 							<th id="column">아이디</th>
 							<td id="column2"><input type="text" id="user_id"
-								name="user_id" value="${sessionScope.UVO.user_id}"></td>
+								name="user_id" value="${sessionScope.UVO.user_id}" readonly="readonly"></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<th id="column">비밀번호</th>
 							<td id="column2"><input type="password" id="user_password"
 								name="user_password"> <span id="password_msg"></span></td>
@@ -366,11 +366,11 @@
 							<td id="column2"><input type="password"
 								id="user_passwordchk" name="user_passwordchk"> <font
 								name="check" size="2" color="red"></font></td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th style="width: 20%;" id="column">이름</th>
 							<td id="column2"><input type="text" id="user_name"
-								name="user_name" value="${sessionScope.UVO.user_name}">
+								name="user_name" value="${sessionScope.UVO.user_name}" readonly="readonly">
 							</td>
 						</tr>
 						<tr>
@@ -379,7 +379,7 @@
 							<td id="column2">
 								<%-- <fmt:parseDate value="${sessionScope.UVO.user_birthday}" pattern="yyyyMMdd" /> --%>
 								<input type="text" id="user_birthday" name="user_birthday"
-								value="${sessionScope.UVO.user_birthday}"> <%-- <fmt:parseDate
+								value="${sessionScope.UVO.user_birthday}" readonly="readonly"> <%-- <fmt:parseDate
 									value="${sessionScope.UVO.user_birthday}" var="Pdate"
 									pattern="yyyy-MM-dd" /> <fmt:formatDate value="${Pdate}"
 									pattern="yyyyMMdd" /> --%>
@@ -405,13 +405,13 @@
 						<tr>
 							<th id="column">우편번호</th>
 							<td id="column2"><input type="text" id="zip_code"
-								name="zip_code" value="${sessionScope.UVO.zip_code}">
+								name="zip_code" value="${sessionScope.UVO.zip_code}" readonly="readonly">
 								<button type="button" id="zipcodesearch">주소검색</button></td>
 						</tr>
 						<tr>
 							<th id="column">주소</th>
 							<td id="column2"><input type="text" id="user_address"
-								name="user_address" value="${sessionScope.UVO.user_address}">
+								name="user_address" value="${sessionScope.UVO.user_address}" readonly="readonly">
 								<!--상세주소  --> <input type="text" id="detail_address"
 								name="detail_address" placeholder="상세주소"
 								value="${sessionScope.UVO.detail_address}"></td>
@@ -429,16 +429,16 @@
 								name="user_phone" value="${sessionScope.UVO.user_phone}">
 							</td>
 						</tr>
-						<tr>
+						<%-- <tr>
 							<th id="column">성별</th>
 							<td id="column2"><label id="user_gender" name="user_gender">남
 									<input type="radio" id="user_man" name="user_gender"
-									value="${sessionScope.UVO.user_gender}">
+									value="${sessionScope.UVO.user_gender}" readonly="readonly">
 							</label> <label id="user_gender" name="user_gender">여 <input
 									type="radio" id="user_girl" name="user_gender"
-									value="${sessionScope.UVO.user_gender}" required="required">
+									value="${sessionScope.UVO.user_gender}" readonly="readonly">
 							</label></td>
-						</tr>
+						</tr> --%>
 
 					</table>
 				</form>

@@ -119,14 +119,16 @@ public class ServiceCenterController {
 		
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		String username =uvo.getUser_name();
+		String userid = uvo.getUser_id();
 		
 		System.out.println("username : " +username);
-		
+		System.out.println("userid:" + userid);
 		
 		// 상세페이지 이동
 		mav.addObject("userBoardDetail", userBoardService.userBoardDetail(userboard_number));
 		//mav.addObject("username",username);
 		model.addAttribute("username", username);
+		model.addAttribute("userid", userid);
 		mav.setViewName("serviceCenter/userBoard/userBoardDetail");
 		return mav;
 	}

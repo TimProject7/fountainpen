@@ -43,22 +43,20 @@ public class UserController {
 		logger.info("userinsert 호출 성공");
 		int result = 0;
 
-		/*
-		 * String pass = request.getParameter("user_password"); String shapass =
-		 * passwordEncooder.encode(pass); UVO.setUser_password(shapass);
-		 */
 		result = userService.userinsert(UVO);
-
+		
 		return "redirect:/";
+
 	}
 
 	// 중복체크
 	@RequestMapping(value = "/useridcheck", method = RequestMethod.POST)
 	public String useridcheck(Model model, @ModelAttribute UserVO UVO) {
 		logger.info("useridcheck");
+		
 
 		String result = userService.useridchk(UVO);
-		System.out.println("result:"+result);
+		System.out.println("result:" + result);
 		System.out.println(UVO.toString());
 
 		logger.info("result = : " + result);
@@ -90,6 +88,7 @@ public class UserController {
 		// 가져온정보를
 
 		String uvo = userService.sessionLogin1(UVO);
+		
 
 		// String daopass = UVO.getUser_password();
 
@@ -102,23 +101,24 @@ public class UserController {
 		} else {
 
 			System.out.println("아이디틀림");
-			mav.addObject("msg", "id");
+			mav.addObject("msg", "pass");
 			mav.setViewName("/user/userlogin");
 		}
-		
-		if (result == true) {
+
+		UVO = userService.sessionLogin(UVO);
+		if (result == true &&UVO.getUser_status().equals("Y")) {
 			// 비밀번호가 맞으면 result == true
 			// 아이디 비밀번호가맞음
 			System.out.println("성공");
-			UVO = userService.sessionLogin(UVO);
+			System.out.println("UVO.getUser_status() : " + UVO.getUser_status());
 			// 세션이 존재하면 UVO로 사용하겟다 -
 			session.setAttribute("UVO", UVO);
 			mav.addObject("result", result);
 			mav.setViewName("redirect:/");
-			// 비밀번호가 틀리면 다시 로그인페이지로
 			
-		} else if (result == false) {
-			mav.addObject("msg1", "pass");
+			// 비밀번호가 틀리면 다시 로그인페이지로
+		} else{
+			mav.addObject("msg", "pass");
 			mav.setViewName("/user/userlogin");
 		}
 

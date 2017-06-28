@@ -9,6 +9,7 @@ public class UserBoardReplyVO {
 	private int userboard_number; // 회원게시판 번호
 	private int user_number; // 회원번호
 	private String user_name; // 회원이름
+	private String user_id; // 회원아이디
 
 	public String getUser_name() {
 		return user_name;
@@ -59,12 +60,20 @@ public class UserBoardReplyVO {
 
 	}
 
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBoardReplyVO [userboardreply_number=" + userboardreply_number + ", userboardreply_content="
 				+ userboardreply_content + ", userboardreply_writedate=" + userboardreply_writedate
 				+ ", userboard_number=" + userboard_number + ", user_number=" + user_number + ", user_name=" + user_name
-				+ "]";
+				+ ", user_id=" + user_id + "]";
 	}
 
 }

@@ -26,7 +26,7 @@
 					<li class="hd_nav1"><a href="/myPage/myPagePasswordForm.do">마이페이지</a></li>
 					</c:when>
 					<c:when test="${empty session }">
-							<li class="hd_nav1">${sessionScope.UVO.user_id}asdasd</li>
+							<li class="hd_nav1">${sessionScope.UVO.user_id}</li>
 						<li class="hd_nav1"><a href="/user/userinsertForm.do">회원가입</a></li>
 						<li class="hd_nav1"><a href="/user/userlogin.do">로그인</a></li>
 					</c:when>

@@ -1,6 +1,7 @@
 package com.parker.user.controller;
 
 import java.io.File;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parker.user.bcrypt.BCrypt;
 import com.parker.user.boardcommon.Paging;
@@ -183,15 +185,15 @@ public class myPageController {
 		if (bool == false) {
 			System.out.println("실패");
 		} else if (bool == true) {
-			session.setAttribute("UVO", UVO);
-			System.out.println("성공");
+			session.invalidate();
+			System.out.println("성공1");
 
 			result = userService.userUpdateDelete(UVO);
 			System.out.println("result :" + result);
 		} else if (result == 0) {
 			System.out.println("실패");
 		} else if (result == 1) {
-			System.out.println("성공");
+			System.out.println("성공2");
 
 			session.invalidate();
 		}
@@ -206,6 +208,10 @@ public class myPageController {
 
 		Paging.set(QVO);
 		System.out.println("QVO.getPage() : " + QVO.getPage());
+		
+		UVO = (UserVO) session.getAttribute("UVO");
+		int usernumber = UVO.getUser_number();
+		QVO.setUser_number(usernumber);
 
 		// 전체레코드건수
 		int total = questionService.questionListCnt(QVO);
@@ -263,14 +269,13 @@ public class myPageController {
 			System.out.println("result :" + result);
 			if (result == 1) {
 				System.out.println("성공");
-
 				session.setAttribute("UVO", UVO);
 			} else {
 				System.out.println("실패");
 			}
 		}
 
-		return "redirect:/myPage/question/question.do";
+		return "/myPage/question/question";
 	}
 
 	// 상세페이지

@@ -115,4 +115,10 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne("emailChk",UVO);
 	}
 
+	@Override
+	public UserVO statusCheck(UserVO UVO) {
+		// TODO Auto-generated method stub
+		return session.selectOne("statusCheck",UVO);
+	}
+
 }

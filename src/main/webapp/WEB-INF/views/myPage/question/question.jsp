@@ -95,7 +95,6 @@
 					<td>작성자1</td>
 					<td>글내용</td>
 					<td>작성일</td>
-					<td>답변여부</td>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty questionList}">
@@ -111,15 +110,6 @@
 								<td>${question.user_name}</td>
 								<td>${question.question_content}</td>
 								<td>${question.question_writedate}</td>
-								<c:choose>
-									<c:when test="${question.question_seq== 1}">
-										<td>노답</td>
-									</c:when>
-									<c:otherwise>
-										<td>답</td> 
-									</c:otherwise>
-								</c:choose>
-								
 							</tr>
 
 						</c:forEach>

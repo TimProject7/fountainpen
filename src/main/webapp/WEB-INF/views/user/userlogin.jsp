@@ -51,13 +51,11 @@
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="text" id="user_password" name="user_password"></td>
+					<td><input type="password" id="user_password" name="user_password"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><c:if test="${msg=='id'}">
-							<span>아이디 틀렸습니다</span>
-						</c:if> <c:if test="${msg1=='pass'}">
-							<span>비밀번호가 틀렸습니다</span>
+					<td colspan="2"><c:if test="${msg=='pass'}">
+							<span>아이디 혹은 비밀번호가 일치하지않습니다</span>
 						</c:if></td>
 				</tr>
 				<tr>

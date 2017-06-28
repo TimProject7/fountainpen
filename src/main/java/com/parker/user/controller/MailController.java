@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.parker.user.service.UserService;
 /*import com.parker.user.service.UserService;*/
 import com.parker.user.vo.UserVO;
 
@@ -24,8 +25,8 @@ public class MailController {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	/*@Autowired
-	private UserService userService;*/
+	@Autowired
+	private UserService userService;
 
 	// mailSending 코드
 	@RequestMapping(value = "/mailForm", method = RequestMethod.POST)
@@ -45,30 +46,38 @@ public class MailController {
 		String title = "parker이메일 인증키입니다"; // 제목
 		String content = joincode; // 인증키
 
-		try {
+		int emailChk = userService.emailChk(UVO);
+		
+		System.out.println("emailChk : " +emailChk);
+		if (emailChk == 0) {
+			try {
 
-			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
-			messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
-			messageHelper.setTo(user_email); // 받는사람 이메일
-			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-			messageHelper.setText(content); // 메일 내용
+				messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
+				messageHelper.setTo(user_email); // 받는사람 이메일
+				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+				messageHelper.setText(content); // 메일 내용
 
-			// 내용
-			model.addAttribute("content", content);
+				// 내용
+				model.addAttribute("content", content);
 
-			System.out.println(" user_email : " + user_email);
-			// 받는사람메일
-			model.addAttribute("user_email", user_email);
-			System.out.println(" content : " + content);
+				System.out.println(" user_email : " + user_email);
+				// 받는사람메일
+				model.addAttribute("user_email", user_email);
+				System.out.println(" content : " + content);
 
-			mailSender.send(message);
+				mailSender.send(message);
 
-		} catch (Exception e) {
-			System.out.println(e);
+			} catch (Exception e) {
+				System.out.println(e);
 
+			}
+			return "mail/mailsending";
+		} else {
+			model.addAttribute("content", emailChk);
+			return "mail/mailsending";
 		}
-		return "mail/mailsending";
 	}
 }

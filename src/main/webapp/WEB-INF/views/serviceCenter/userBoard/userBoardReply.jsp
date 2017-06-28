@@ -11,10 +11,6 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function() {
-	
-		
-		
-		
 		/* 기본 댓글 목록 불러오기 */
 		var userboard_number = "<c:out value='${userBoardDetail.userboard_number}'/>";
 		listAll(userboard_number)
@@ -23,7 +19,7 @@
 	/* 댓글 내용 저장 이벤트 */
 	$("#userBoardReplyInsert").click(function () {
 		//작성자 이름에 대한 입력여부 검사
-		if(!chkSubmit($("#user_name"),"이름을")){
+		if(!chkSubmit($("#user_id"),"아이디를")){
 			return;
 		}else if(!chkSubmit($("#userboardreply_content"),"내용을")){
 			return;
@@ -41,7 +37,7 @@
 				data:JSON.stringify({
 			
 					userboard_number:userboard_number,
-					user_name:$("#user_name").val(),
+					user_id:$("#user_id").val(),
 					userboardreply_content:$("#userboardreply_content").val()
 				}),
 				error:function(){	//실행시 오류가 발생하였을경우
@@ -132,7 +128,7 @@
 	
 	//리스트 요청 함수
 function listAll(userboard_number){
-	var username = $('#user_name').val();
+	var userid = $('#user_id').val();
 	$("#comment_list").html("");
 	var url = "/serviceCenter/userBoard/userBoardReply/all/"+userboard_number+".do";
 	
@@ -141,10 +137,10 @@ function listAll(userboard_number){
 		
 		$(data).each(function(){
 			var userboardreply_number = this.userboardreply_number;
-			var user_name = this.user_name;
+			var user_id = this.user_id;
 			var userboardreply_content = this.userboardreply_content;
 			var userboardreply_writedate = this.userboardreply_writedate;
-			addNewItem(userboardreply_number, user_name, userboardreply_content, userboardreply_writedate,username);
+			addNewItem(userboardreply_number, user_id, userboardreply_content, userboardreply_writedate,userid);
 		});
 		
 	}).fail(function(){
@@ -153,8 +149,7 @@ function listAll(userboard_number){
 }
 
 /* 새로운 글을 화면에 추가하기 위한 함수 */
-function addNewItem(userboardreply_number, user_name, userboardreply_content, userboardreply_writedate,username) {
-	
+function addNewItem(userboardreply_number, user_id, userboardreply_content, userboardreply_writedate,userid) {
 	//새로운 글이 추가될 li태그 객체
 	var new_li = $("<li>");
 	new_li.attr("data-num",userboardreply_number);
@@ -167,12 +162,12 @@ function addNewItem(userboardreply_number, user_name, userboardreply_content, us
 	//작성자 정보의 이름
 	var name_span = $("<span>");
 	name_span.addClass("name");
-	name_span.html(user_name+"님");
+	name_span.html(user_id+"님");
 	
 	//작성일시
 	var date_span =$("<span>");
 	date_span.html("/" + userboardreply_writedate +"");
-	if(username != user_name){
+	if(userid != user_id){
 		
 	}else{
 	//수정하기 버튼
@@ -193,10 +188,12 @@ function addNewItem(userboardreply_number, user_name, userboardreply_content, us
 	//조립하기
 	writer_p.append(name_span).append(date_span).append(up_input).append(del_input);
 	new_li.append(writer_p).append(content_p);
+	
+	
 	$("#comment_list").append(new_li);
 }
 function dataReset() {
-	$("#user_name").val("");
+	$("#user_id").val("");
 	//$("#r_pwd").val("");
 	$("#userboardreply_content").val("");
 }
@@ -209,8 +206,8 @@ function dataReset() {
 		<div id="comment_writer">
 			<form id="comment_form">
 				<div>
-					<label for="user_name">작성자</label> 
-					<input type="text" name="user_name" id="user_name" value="${sessionScope.UVO.user_name}"/> 
+					<label for="user_id">작성자</label> 
+					<input type="text" name="user_id" id="user_id" value="${sessionScope.UVO.user_id}" readonly="readonly"/> 
 					<input type="button" id="userBoardReplyInsert" name="userBoardReplyInsert" value="저장하기" />
 				</div>
 				<div>
