@@ -18,6 +18,7 @@
 			<ul class="hd_nav1">
 				<li class="hd_nav1"><a href="#">SITE-MAP</a></li>
 				<li class="hd_nav1"><a href="#">SUPPORT</a></li>
+				<li class="hd_nav1"><a href="/cart/cartList.do">장바구니</a></li>
 				<li class="hd_nav1"><a href="/serviceCenter/userBoard/userBoard.do">고객센터</a></li>
 				<c:choose >
 					<c:when test="${not empty sessionScope.UVO}">
@@ -45,7 +46,7 @@
 			<center>
 				<ul class="hd_nav2">
 					<li class="hd_nav2"><a href="#"><b>STORY</b></a></li>
-					<li class="hd_nav2"><a href="#"><b>COLLECTION</b></a></li>
+					<li class="hd_nav2"><a href="/product/productList.do"><b>PRODUCT</b></a></li>
 					<li class="hd_nav2"><a href="#"><b>SUPPORT</b></a></li>
 					<li class="hd_nav2"><a href="#"><b>STORE</b></a></li>
 				</ul>

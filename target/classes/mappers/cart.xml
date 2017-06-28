@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.CartMapper">
+
+
+
+	<!-- 1. 장바구니 추가 -->
+	<insert id="cartInsert" parameterType="com.parker.user.vo.CartVO">
+
+		INSERT INTO cartlist_tb
+		(
+		cartlist_number, cartlist_name,
+		cartlist_quantity, cartlist_company,
+		cartlist_origin,
+		cartlist_image,
+		cartlist_price, cartlist_adddate,
+		user_number,
+		product_number
+		)
+		values(
+		seq_cartlist_tb.nextval,
+		#{cartlistName}, #{cartlistQuantity},
+		#{cartlistCompany},
+		#{cartlistOrigin}, #{cartlistImage},
+		#{cartlistPrice},
+		sysdate,
+		#{userId}, #{productId}
+		)
+
+	</insert>
+	<!-- 2. 장바구니 목록 -->
+	<select id="cartList" parameterType="com.parker.user.vo.CartVO"
+		resultType="com.parker.user.vo.CartVO">
+		SELECT
+		cartlist_number AS cartlistId,
+		cartlist_name AS
+		cartlistName,
+		cartlist_quantity AS cartlistQuantity,
+		cartlist_company AS
+		cartlistCompany,
+		cartlist_origin AS cartlistOrigin,
+		cartlist_image AS
+		cartlistImage,
+		cartlist_price AS cartlistPrice,
+		cartlist_adddate AS
+		cartlistAdddate,
+		user_number AS userId,
+		product_number AS productId,
+		(cartlist_price*cartlist_quantity) money
+		<!-- sum(cartlist_price*cartlist_quantity) over(partition by user_number) 
+			as total -->
+		FROM cartlist_tb
+		WHERE
+		user_number = #{userId}
+
+		ORDER
+		BY
+		cartlist_number
+
+	</select>
+	<!-- 3. 장바구니 전체 금액 -->
+	<select id="sumMoney" resultType="int">
+		SELECT NVL(SUM(product_price
+		*
+		cartlist_quantity), 0) total
+		FROM cartlist_tb c, products_tb p
+		WHERE
+		c.product_number = p.product_number AND c.user_number = #{userId}
+	</select>
+	<!-- 4. 장바구니 삭제 -->
+	<delete id="cartDelete">
+		delete from
+		cartlist_tb
+		where cartlist_number =
+		#{cartlistId}
+	</delete>
+	<!-- 5. 장바구니 수정 -->
+	<!-- <update id="cartUpdate"> UPDATE cartlist_tb SET cartlist_quantity = 
+		#{cartlistQuantity} WHERE user_number= #{userId} AND product_number = #{productId} 
+		</update> -->
+
+
+	<!-- 6. 장바구니에 동일한 상품 레코드 확인 -->
+	<!-- <select id="countCart" resultType="int"> SELECT COUNT(*) FROM cartlist_tb 
+		WHERE user_number= #{userId} AND product_number = #{productId} </select> --><!-- 7. 장바구니에 동일한 상품이 존재하면 수정 -->
+	<!-- <update id="updateCart"> UPDATE cartlist_tb SET cartlist_quantity = 
+		cartlist_quantity + #{cartlistQuantity} WHERE user_number= #{userId} AND 
+		product_number = #{productId} </update> -->
+</mapper>

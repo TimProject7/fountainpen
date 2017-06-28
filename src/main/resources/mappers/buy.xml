@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.BuyMapper">
+
+	<!-- 주문/결제 페이지 추가 -->
+	<insert id="buyInsert" parameterType="com.parker.user.vo.BuyVO">
+
+		INSERT INTO buy_tb
+		(
+		buy_number, buy_day, buy_address, buy_product, buy_quantity,
+		buy_price,
+		user_number, product_number, group_number,
+		buy_image
+		)
+		values
+		(
+		seq_buy_tb.nextval, sysdate, #{buy_address}, #{buy_product},
+		#{buy_quantity},
+		#{buy_price},
+		#{user_number},
+		#{product_number}, 1,
+		#{buy_image}
+		)
+
+	</insert>
+	<!-- 2. 장바구니 목록 -->
+	<select id="buyList" parameterType="com.parker.user.vo.BuyVO"
+		resultType="com.parker.user.vo.BuyVO">
+		SELECT
+		b.Buy_number,
+		b.Buy_day,
+		b.Buy_address,
+		b.Buy_product,
+		b.Buy_quantity,
+		b.Buy_price,
+		b.Buy_image,
+		b.user_number,
+		u.user_name,
+		u.user_cell,
+		u.user_phone,
+		u.user_email,
+		b.product_number,
+		b.group_number,
+		(b.Buy_quantity * b.Buy_price) money
+		<!-- sum(b.Buy_quantity * b.Buy_price) over(partition by b.user_number) 
+			as total -->
+		FROM buy_tb b, users_tb u
+		WHERE
+		b.user_number = #{user_number}
+		AND
+		b.buy_day = sysdate
+		AND
+		b.user_number = u.user_number
+
+
+	</select>
+
+	<!-- sum(b.Buy_quantity * b.Buy_price) over(partition by b.user_number) 
+		as total -->
+
+	<!-- 3. 장바구니 전체 금액 -->
+	<select id="sumMoney" resultType="int">
+		SELECT NVL(SUM(buy_price
+		*
+		buy_quantity), 0) total
+		FROM cartlist_tb c, buy_tb b
+		WHERE
+		c.product_number = b.product_number AND c.user_number = #{user_number}
+	</select>
+
+</mapper>
