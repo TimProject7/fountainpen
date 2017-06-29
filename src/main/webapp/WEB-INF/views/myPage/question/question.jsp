@@ -22,7 +22,7 @@
 		/* /* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
 		if ("<c:out value='${data.pageSize}'/>" != "") {
 			$("#pageSize").val("<c:out value='${data.pageSize}'/>");
-		} 
+		}
 
 		/* 한페이지에 보여줄 레코드 수를 변경될 때마다 처리 이벤트 */
 		$("#pageSize").change(function() {
@@ -92,10 +92,10 @@
 				<tr>
 					<td>글번호</td>
 					<td>제목</td>
-					<td>작성자1</td>
-					<td>글내용</td>
 					<td>작성일</td>
+					<td>답변상태</td>
 				</tr>
+
 				<c:choose>
 					<c:when test="${not empty questionList}">
 						<!-- varStatus 순서대로 나오게 루프 돌리는애 -->
@@ -107,9 +107,8 @@
 								<td><a
 									href="/myPage/question/Detail.do?question_number=${question.question_number}">
 										${question.question_title}</a></td>
-								<td>${question.user_name}</td>
-								<td>${question.question_content}</td>
 								<td>${question.question_writedate}</td>
+								<td>${question.question_status}</td>
 							</tr>
 
 						</c:forEach>

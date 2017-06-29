@@ -25,7 +25,7 @@
 			});
 			$("#updateForm").submit();
 		});
-		
+
 		//목록보기버튼
 		$("#questionListBtn").click(function() {
 			//입력값 체크
@@ -44,7 +44,7 @@
 	<form id="updateForm" name="updateForm">
 		<c:choose>
 			<c:when test="${not empty sessionScope.UVO}">
-				<input type="text" id="user_number" name="user_number"
+				<input type="hidden" id="user_number" name="user_number"
 					value="${sessionScope.UVO.user_number}" />
 
 
@@ -64,18 +64,22 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="3"><input type="text" id="question_content"
-							name="question_content"
-							value="${questionDetail.question_content}" /></td>
+						<td colspan="3"><textarea id="question_content"
+								name="question_content" style="width: 500px; height: 250px;">${questionDetail.question_content}							
+						</textarea></td>
 					</tr>
 					<tr>
 						<td>이미지</td>
 						<td colspan="3"><img
+							style="min-width: 200px; min-height: 200px;"
 							src="/resources/images/${questionDetail.question_image}"
 							width="150"></td>
 					</tr>
+					<tr>
+						<td colspan="4">${questionDetail.question_status }</td>
+					</tr>
 				</table>
-				<c:if test="${questionDetail.question_seq == 2}">
+				<c:if test="${questionDetail.question_status == '답변완료'}">
 					<table>
 						<tr>
 							<td>이미지</td>
@@ -91,10 +95,12 @@
 				</c:if>
 			</c:when>
 		</c:choose>
+
 	</form>
 	<input type="button" id="questionUpdateBtn" name="questionUpdateBtn"
 		value="수정" />
 	<input type="button" id="questionListBtn" name="questionListBtn"
 		value="목록으로" />
+
 </body>
 </html>

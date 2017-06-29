@@ -10,23 +10,25 @@
 	<!--1:1문의 게시판 리스트목록 -->
 	<select id="questionList" parameterType="com.parker.user.vo.QuestionVO"
 		resultType="com.parker.user.vo.QuestionVO">
-		select *
-		from(select lst.*, rownum as rnum
-		from(
+		<!-- select * from(select lst.*, rownum as rnum from( select question_number, 
+			question_title, question_writedate,question_content, u.user_name from question_tb, 
+			users_tb u where question_tb.user_number= u.user_number and u.user_number 
+			= #{user_number} order by question_number asc )lst ) -->
+		select * from(select list.*, rownum as rnum from(select
+		question_title, question_number,question_writedate, user_number, '답변대기'
+		as question_status from question_tb
+		where question_number != (select
+		distinct question_number from
+		questionreply_tb) and user_number
+		=#{user_number}
+		union
 		select
-		question_number,
-		question_title,
-		question_writedate,question_content,
-		u.user_name
-		from
-		question_tb,
-		users_tb u
-		where question_tb.user_number= u.user_number
-		and u.user_number = #{user_number}
-		order by
-		question_number asc
-		)lst
-		)
+		question_title,question_number,question_writedate,user_number, '답변완료' as
+		question_status from question_tb
+		where question_number = (select
+		distinct question_number from
+		questionreply_tb)and user_number
+		=#{user_number})list)
 		<where>
 			<if test="start_row != null and start_row != ''">
 				<if test="end_row != null and end_row != ''">
@@ -100,12 +102,14 @@
 		resultType="com.parker.user.vo.QuestionVO">
 		select
 		question_number,question_title,question_content,question_writedate,question_image,
-		question_tb.user_number, u.user_number, u.user_name,u.user_id, u.user_regdate, question_image
+		question_tb.user_number, u.user_number, u.user_name,u.user_id,
+		u.user_regdate, question_image
 		from
 		question_tb ,users_tb u
 		where
 		question_tb.user_number= u.user_number and
-		question_number = #{question_number}
+		question_number =
+		#{question_number}
 
 	</select>
 
@@ -114,24 +118,19 @@
 		update
 		question_tb
 		set
-		
+
 		question_title = #{question_title},
-		question_content = #{question_content},
+		question_content =
+		#{question_content},
 		question_writedate = sysdate,
-		
-			question_image = #{question_image}
+
+		question_image = #{question_image}
 		where
-		user_number = #{user_number} 
+		user_number = #{user_number}
 
 	</update>
-	
-	<!-- 1:1문의  게시글 조회수 증가처리 -->
-	<!-- <update id="questionViewCount">
-		UPDATE 
-			question_tb
-		SET 
-			question_viewCount = question_viewCount+ 1
-		WHERE
-			question_number = #{question_number}
-	</update> -->
+
+	<!-- 1:1문의 게시글 조회수 증가처리 -->
+	<!-- <update id="questionViewCount"> UPDATE question_tb SET question_viewCount 
+		= question_viewCount+ 1 WHERE question_number = #{question_number} </update> -->
 </mapper>
