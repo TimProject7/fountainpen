@@ -11,7 +11,7 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty sessionScope.UVO}">
-			<h2 align="center">개인정보변경 비밀번호를 입력하세요</h2>
+			<h2 align="center">마이페이지 접속을 위해 비밀번호를 입력하세요</h2><br>
 			<form action="/myPage/myPageForm.do" method="POST">
 				<table>
 					<!-- 비밀번호확인 아이디 -->
@@ -21,7 +21,7 @@
 					</tr>
 					<tr>
 						<td><label>비밀번호 입력<input type="password"
-								id="user_password" name="user_password"></label><br>
+								id="user_password" name="user_password"></label><br><br>
 								<c:if test="${result == false}">
 								<span>비밀번호가틀렸습니다.</span>
 								</c:if>

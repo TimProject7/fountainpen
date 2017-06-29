@@ -155,15 +155,6 @@
 											} else if (!chkSubmit(
 													$('#user_phone'), "핸드폰번호를")) {
 												return;
-											} else if (!$(
-													':input:radio[name=user_gender]:checked')
-													.val()) {
-												alert("성별을 선택해주세요");
-												return;
-											} else if (!chkSubmit(
-													$('#user_password'),
-													"비밀번호를")) {
-												return;
 
 											} else {
 												alert('정보변경완료')
@@ -307,10 +298,12 @@
 					<li><a href="#">회원정보변경</a></li>
 					<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
 					<li><a href="/myPage/question/question.do">1:1문의</a></li>
-					<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
+					<li><a href="/cart/cartList.do">장바구니</a></li>
 					<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
 				</ul>
+				<br>
 				<h2>회원정보 변경</h2>
+				<br>
 			</div>
 			<div id="content" align="center">
 				<!--다이얼로그창 폼  -->

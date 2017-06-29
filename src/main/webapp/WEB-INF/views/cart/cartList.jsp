@@ -11,83 +11,49 @@
 <head>
 <meta charset="UTF-8">
 <title>상품장바구니 목록</title>
+<link rel="stylesheet" href="/css/cartList.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#conShopping").click(function(){ //[쇼핑계속] 버튼클릭
-		window.location.href="/product/productList.do";	
-	});
-	$("#shopMain").click(function(){ //[메인으로] 버튼클릭
-		window.location.href="/";
-	});
-	
-	//체크박스 전체선택 
-	$("#checkAll").click(function(){
-		//클릭되었으면
-		if($("#checkAll").prop("checked")){
-			//input 태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-			$("input[name=chk]").prop("checked",true);
-			//클릭이 안되있으면
-		}else{
-			//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-			$("input[name=chk]").prop("checked",false);
-		}
-	});
-	
-	// 체크되어 있는 값 추출
-	$("#getCheckedAll").click(function(){
-		$("input[name=chk]:checked").each(function(){
-			var test = $(this).val();
-			console.log(test);
-		});
-	});
-	
-	
-});	
-	
-	
-	
+
 </script>
-<style type="text/css">
-.all {
-	width: 100%;
-	margin: 0 auto;
-	padding: 0;
-}
-
-.header {
-	border: 1px;
-	width: 80%;
-	height: 100px;
-	background: yellow;
-}
-
-.body {
-	background: blue;
-	width: 80%;
-}
-
-table {
-	width: 80%;
-}
-</style>
 </head>
 <body>
 	<div class="all">
-		<div class="header">
-			<h1 align="left">1.장바구니확인</h1>
-			<h3 align="right">1.장바구니 > 2.주문/결제 > 3.주문완료</h3>
+	
+	<div id="cartListForm" align="center">
+			<ul id="myPageForm_nav_ul">
+				<li><a href="/myPage/myPageForm.do">회원정보변경</a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/question/question.do">1:1문의</a></li>
+				<li><a href="/cart/cartList.do">장바구니</a></li>
+				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+			</ul>
+			<br>
 		</div>
+	
+		<div class="cartListheader">
+			<h1>장바구니</h1>
+			<br>
+			<table class="stepTable">
+				<tr>
+					<td class="choose"><p class="gold">STEP1</p><h2 class="white">장바구니</h2></td>
+					<td><p class="gold">STEP2</p>주문/결제</td>
+					<td><p class="gold">STEP3</p>주문완료</td>
+				</tr>
+			</table>
+			<br>
+		</div>
+		
 		<div class="body">
-			<form name="listForm" id="listForm" method="post"
-				action="/buy/buyInsert.do">
+		<br><br>
+			<form name="listForm" id="listForm" method="post" action="/buy/buyInsert.do">
 
-				<table>
+				<table class="cartListtable">
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="checkAll"/></th>
-							<th>이미지</th>
+							<th><input type="checkbox"></th>
+							<th width="10%">이미지</th>
 							<th>상품명</th>
 							<th>원산지</th>
 							<th>제조사</th>
@@ -95,21 +61,22 @@ table {
 							<th>수량</th>
 							<th>합계</th>
 							<th>배송비</th>
-							<th>취소</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 
 					<c:choose>
 						<c:when test="${not empty cartList }">
 
-							<c:forEach var="cart" items="${cartList}" varStatus="status">
+							<c:forEach var="cart" items="${cartList}">
 
 								<tbody>
 									<tr>
-										<td align="center"><input type="checkbox" name="chk" /></td>
-										<td>${cart.cartlistImage }<input type="hidden"
-											name="productId" value="${cart.productId }"> <input
-											type="hidden" name="userId" value="${cart.userId }"></td>
+										<td align="center"><input type="checkbox"></td>
+										
+										<td><img src="/resources/images/${cart.cartlistImage}" width="100%" height="70px"> <input type="hidden" name="productId" value="${cart.productId }">
+										<input type="hidden" name="userId" value="${cart.userId }"></td>
+										
 										<td>${cart.cartlistName }</td>
 										<td>${cart.cartlistOrigin }</td>
 										<td>${cart.cartlistCompany }</td>
@@ -137,10 +104,11 @@ table {
 											value="${total }" /></td>
 								</tr>
 								<tr>
-
-									<td colspan="10" align="right"><input type="submit"
-										value="구매하기"></td>
-										
+									<td colspan="10" align="right"><input type="submit" value="구매하기"></td>
+								</tr>
+								<tr>
+									<td colspan="10" align="right"><a
+										href="/product/productList.do">상품목록가기</a></td>
 								</tr>
 							</tfoot>
 						</c:when>
@@ -156,11 +124,6 @@ table {
 			</form>
 		</div>
 	</div>
-	<div align="center">
-		<button id="conShopping">쇼핑계속</button>
-		<button id="shopMain">메인으로</button>
-	</div>
-	
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>

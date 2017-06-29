@@ -1,0 +1,67 @@
+a{
+	padding-left: 1%;
+	padding-right: 1%;
+	text-decoration: none;
+	color: black;
+}
+
+.all {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.cartListheader {
+	width: 80%;
+}
+
+.body {
+	width: 80%;
+}
+
+.cartListtable {
+	width: 80%;
+	text-align: center;
+}
+
+.cartListtable td{
+
+}
+
+.cartListtable th{
+	color: white;
+	background-color: #939393;
+	height: 30px;
+}
+
+li{
+	
+	display: inline;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.stepTable{
+	width: 100%;
+	text-align: center;
+	background-color: #d0d0d0;
+	border: solid;
+}
+
+.stepTable td{
+	padding-left: 2%;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
+.choose{
+	background-color: #616161;
+}
+
+.gold{
+	color: #a6a653;
+}
+
+.white{
+	color: white;
+}

@@ -1,0 +1,36 @@
+*{
+	margin: 0 auto;
+	padding: 0;
+}
+
+h2{
+	text-align: center;
+}
+
+.productDetail_all{
+	width: 60%;
+}
+
+.productDetail_table{
+	width: 70%;
+	border: solid;
+	text-align: center;
+}
+
+.line_img{
+	width: 100%;
+}
+
+th{
+	width: 20%;
+}
+
+#submit{
+
+	float: left;
+	padding-left: 8%;	
+}
+
+.list{
+	float: right;
+}

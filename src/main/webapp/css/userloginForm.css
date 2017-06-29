@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-*{
-	margin: 0 auto;
-	padding: 0;
-}
 
 #login{
 	padding-right: 0;
@@ -39,11 +35,6 @@
 #loginBtn{
 	color: white;
 	background-color: #c0bc63;
-}
-
-
-td{
-	text-align: center;
 }
 
 #loginTb{

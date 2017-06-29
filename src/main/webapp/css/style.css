@@ -9,6 +9,12 @@ a{
 	
 }
 
+a:HOVER{
+	color: #808080;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
 .mapper {
 	
 }
@@ -26,11 +32,13 @@ header {
 	font-size: medium;
 }
 
+
 .hd_nav1 {
 	float: right;
 	display: inline;
 	list-style: none;
-	padding-left: 15px;
+	padding-right: 10px;
+	
 }
 
 .hd_nav2 {

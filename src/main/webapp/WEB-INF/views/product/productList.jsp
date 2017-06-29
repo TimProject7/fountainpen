@@ -39,6 +39,7 @@ $(document).ready(function() {
 	}
 	
 </script>
+<link rel="stylesheet" href="/css/productList.css">
 </head>
 <body>
 	<%-- 	<h2>상품목록</h2>
@@ -70,14 +71,15 @@ $(document).ready(function() {
 		</c:forEach>
 	</table> --%>
 	<h2>상품 목록</h2>
-	<table border="1">
+	<br>
+	<table id="product_table">
 		<tr>
-			<th>상품번호</th>
-			<th>이미지</th>
-			<th>상품명</th>
-			<th>가격</th>
-			<th>제조사</th>
-			<th>원산지</th>
+			<th id="product_th">상품번호</th>
+			<th id="product_th">이미지</th>
+			<th id="product_th">상품명</th>
+			<th id="product_th">가격</th>
+			<th id="product_th">제조사</th>
+			<th id="product_th">원산지</th>
 		</tr>
 		<c:choose>
 			<c:when test="${not empty productList }">
@@ -88,26 +90,26 @@ $(document).ready(function() {
 					
 						<%-- <td>${count - (status.count-1)}</td> --%>
 						<!-- 상품번호 -->
-						<td>${product.productId }</td>
+						<td id="product_td">${product.productId }</td>
 						<!-- 이미지 -->
 						<%-- <td><a href="javascript:goProductDetail(${product.productId })"> <img
 								src="${product.productImage }" width="150px" height="150px">
 						</a></td> --%>
-						<td align="left">
-							<a href="javascript:goProductDetail(${product.productId },${data.page },${data.pageSize })"><img
-								src="${product.productImage }" width="150px" height="150px"></a>
+						<td id="product_td" align="left">
+							<a href="javascript:goProductDetail(${product.productId },${data.page },${data.pageSize })">
+							<img src="/resources/images/${product.productImage }" width="150px" height="150px"></a>
 						</td>
 					
 						
 						<!-- 상품명 -->
-						<td>${product.productName }</td>
+						<td id="product_td">${product.productName }</td>
 						<!-- 상품가격 -->
-						<td><fmt:formatNumber value="${product.productPrice }"
+						<td id="product_td"><fmt:formatNumber value="${product.productPrice }"
 								pattern="###,###,###" /></td>
 						<!-- 제조사 -->
-						<td>${product.productCompany }</td>
+						<td id="product_td">${product.productCompany }</td>
 						<!-- 원산지 -->
-						<td>${product.productOrigin }</td>
+						<td id="product_td">${product.productOrigin }</td>
 					</tr>
 				</c:forEach>
 

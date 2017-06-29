@@ -62,7 +62,7 @@
 			<li><a href="/myPage/myPageForm.do">회원정보변경</a></li>
 			<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
 			<li><a href="/myPage/question/question.do">1:1문의</a></li>
-			<li><a href="/myPage/cartList/cartList.do">장바구니</a></li>
+			<li><a href="/cart/cartList.do">장바구니</a></li>
 			<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
 		</ul>
 	</div>

@@ -1,0 +1,16 @@
+h2{
+	text-align: center;
+}
+
+#product_table{
+	width: 60%;
+	text-align: center;
+}
+#product_td{
+	background-color: #bfbfff;
+}
+
+#product_th{
+	background-color: #877ef1;
+	color: white;
+}

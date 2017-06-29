@@ -41,7 +41,7 @@
 
 						<td>작성자</td>
 						<td><input type="text" id="user_name" name="user_name"
-							value="${sessionScope.UVO.user_name}" /><br /></td>
+							value="${sessionScope.UVO.user_name}" readonly="readonly" /><br /></td>
 
 					</tr>
 					<tr>

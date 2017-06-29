@@ -13,77 +13,85 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#insertCart").click(function(){//[장부구니에 담기]버튼클릭
-			var buye = $("#buyer").val();
-			var b
-		})
-	})
+	
 </script>
+<link rel="stylesheet" href="/css/productDetail.css">
 </head>
 <body>
 	<h2>상품 상세정보</h2>
-	<form name="f_data" id="f_data" method="POST">
-		<input type="hidden" name="productId" id="productId"
-			value="${detail.productId}" />
-	</form>
-	<div id="productDetail">
-		<table border="1">
-			<colgroup>
-				<col width="25%" />
-				<col width="25%" />
-				<col width="25%" />
-				<col width="25%" />
-			</colgroup>
-			<tbody>
+	<div class="productDetail_all">
+	<h1>[PARKER] ${detail.productName }</h1>
+	<a class="list" href="/product/productList.do">상품 목록</a>
+	<img class="line_img" src="/images/라인.PNG">
 
-				<tr>
-					<td>이미지</td>
-					<td>${detail.productImage }</td>
-				</tr>
-				<tr>
-					<td>상품명</td>
-					<td>${detail.productName }</td>
-				</tr>
-				<tr>
-					<td>가격</td>
-					<td>${detail.productPrice }</td>
-				</tr>
-				<tr>
-					<td>제조사</td>
-					<td>${detail.productCompany }</td>
-				</tr>
-				<tr>
-					<td>원산지</td>
-					<td>${detail.productOrigin }</td>
-				</tr>
-				<tr align="center">
-					<td colspan="2">
-						<form id="form1" name="form1" method="post"
-							action="/cart/cartInsert.do">
+		<form name="f_data" id="f_data" method="POST">
+			<input type="hidden" name="productId" id="productId"
+				value="${detail.productId}" />
+		</form>
+			
+					
+			<table class="productDetail_table">
+				<tbody>
 
+					<tr>
+						<td rowspan="6" width="50%"><img
+							src="/resources/images/${detail.productImage}" width="100%"
+							height="400px"></td>
+					</tr>
+					<tr>
+						<th>상품명</th>
+						<td>${detail.productName }</td>
+					</tr>
+					<tr>
+						<th>가격</th>
+						<td><fmt:formatNumber pattern="###,###,###"
+								value="${detail.productPrice}" /></td>
+					</tr>
+					<tr>
+						<th>제조사</th>
+						<td>${detail.productCompany }</td>
+					</tr>
+					<tr>
+						<th>원산지</th>
+						<td>${detail.productOrigin }</td>
+					</tr>
+					
+					<tr align="center">
+					
+						<td colspan="3">
+							<form id="form1" name="form1" method="post"
+								action="/cart/cartInsert.do">
 
-							<input type="hidden" name="productId"
-								value="${detail.productId }"> <input type="hidden"
-								name="userId" id="userId"
-								value="${sessionScope.UVO.user_number }"> <select
-								name="cartlistQuantity">
-								<c:forEach begin="1" end="10" var="i">
-									<option value="${i}">${i }</option>
-								</c:forEach>
-							</select>&nbsp;개 <input type="submit" value="장바구니에 담기">
-						</form> 
-						<a href="/buy/buyList.do">구매하기</a>
-						<a href="/product/productList.do">상품 목록</a>
-					</td>
-				</tr>
-			</tbody>
+									<input type="hidden" name="productId"
+									value="${detail.productId }"> <input type="hidden"
+									name="userId" id="userId"
+									value="${sessionScope.UVO.user_number }"> <select
+									name="cartlistQuantity">
+									<c:forEach begin="1" end="10" var="i">
+										<option value="${i}">${i }</option>
+									</c:forEach>
+								</select>&nbsp; 개
+								<br><br>
 
-		</table>
-		<div align="center">
-			<p>상품상세설명</p>
-			<p>${detail.productContent }</p>
-		</div>
+								<input type="image" src="/images/btn02.gif" id="submit">
+							</form>
+							<a href="/buy/buyList.do"><img src="/images/btn01.gif"></a><br>
+						</td>
+						
+						
+						
+					</tr>
+				</tbody>
+
+			</table>
+			<div align="center">
+				<br>
+				<h2>상품상세설명</h2>
+				<br>
+				<hr>
+				<p>${detail.productContent }</p>
+			</div>
+
 
 	</div>
 
