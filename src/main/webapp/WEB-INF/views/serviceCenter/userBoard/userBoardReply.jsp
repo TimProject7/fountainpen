@@ -204,9 +204,9 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	writer_td.append(writer_id_input).append(writer_date_inpit).append(input_update_button).append(input_delete_button);		//텍스트
 	
 	two_tr.append().append(two_td);//두번째 tr - td
-	two_td.append(two_textarea);//td안에 에어리어
+	two_td.append(two_textarea).append(hr);//td안에 에어리어
 	
-	$("#new_table").append(first_tr).append(two_tr).append(hr);
+	$("#new_table").append(first_tr).append(two_tr)
 }
 function dataReset() {
 	$("#user_id").val("");
