@@ -147,23 +147,22 @@ public class UserController {
 	@RequestMapping(value = "/idFindchk", method = RequestMethod.POST)
 	public String idFindchk(Model model, @ModelAttribute UserVO UVO, HttpServletRequest request) {
 		logger.info("idFindchk 호출 성공");
-
+		
+		//뷰에서 가져온값
 		String username = request.getParameter("user_name");
 		String useremail = request.getParameter("user_email");
-		System.out.println("username : " + username);
-		System.out.println("useremail : " + useremail);
+		
+		//VO에 넣어줄값
 		UVO.setUser_name(username);
 		UVO.setUser_email(useremail);
-
+		
+		//맵퍼에 보내준다
 		UVO = userService.idFind(UVO);
 
-		System.out.println("UVO.toString() : " + UVO.toString());
-
-		System.out.println("UVO.getUser_id() : " + UVO.getUser_id());
-		System.out.println("UVO.getUser_password() : " + UVO.getUser_email());
-
+		//아이디가 있으면 가져온다-
 		String userid = UVO.getUser_id();
-
+		
+		//있으면 찾아주고 없으면 널
 		if (userid != null) {
 			model.addAttribute("userid", userid);
 		}

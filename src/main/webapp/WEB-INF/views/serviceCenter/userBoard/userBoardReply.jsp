@@ -56,12 +56,33 @@
 		
 		/* 수정 버튼 클릭시 수정폼 출력 */
 		$(document).on("click",".update_form",function(){
-			$(".reset_btn").click();
-			var conText = $(this).parents("li").children().eq(1).html();
+			$(".reset_btn").click();   
+			
+			/* console.log($(this).parents("tr"));
+			console.log($("#two_textarea").parents("tr").children().eq(0).html());
+			console.log($(this).parents().next().children().children().html());
+			
+			console.log($(this).parents("#new_table").children().children().eq(2));
+			console.log($(this).parents("#new_table").children().eq(2).children().eq(0).html());
+			console.log($(this).parents("#new_table").children().next());
+			console.log($(this).parents("#new_table").children().next().next());
+			console.log($(this).parents("comment_item_first").next().children().eq(0).val());
+			console.log($(this).parents("tr").next().children().eq(0).html());
+			console.log($(this).parents("comment_item_first").prev());
+			
+			console.log($("#new_table").children("tr > td"));
+			console.log($("#new_table").children("tr").next().children());
+			console.log($("#new_table").parents("tr").children().eq(0));
+			console.log($("#new_table > tbody > tr:eq(3) textarea").html()); */
+			
+			//updateForm의 부모인 -> tr의 형제요소 -> tr의자식 -> td의 자식 ->textarea 안의 html내용
+			var conText =$(this).parents().next().children().children().val();
 			console.log("conText : " + conText);
-			$(this).parents("li").find("input[type='button']").hide();
-			$(this).parents("li").children().eq(0).html();
-			var conArea = $(this).parents("li").children().eq(1);
+			$(this).parents("tr").find("input[type='button']").hide();
+			$(this).parents("tr").children().eq(0).html();
+			var conArea = $(this).parents().next().children().children().val();
+			console.log("conArea:"+conArea);
+			//var conArea = $(this).parents("tr").eq(1).children().eq(0);
 			
 			conArea.html("");
 			var data ="<textarea name='content' id='content'>"+conText+"</textarea>";
@@ -72,7 +93,7 @@
 		
 		/* 글 수정을 위한 Ajax 연동 처리 */
 		$(document).on("click",".update_btn",function(){
-			var userboardreply_number = $(this).parents("li").attr("data-num");
+			var userboardreply_number = $(this).parents("tr").attr("data-num");
 			var userboardreply_content = $("#content").val();
 			if(!chkSubmit($("#content"),"댓글 내용을")){
 				return;
@@ -102,7 +123,7 @@
 			});
 		/* 글 삭제를 위한 Ajax 연동 처리 */
 		$(document).on("click",".delete_btn",function(){
-		var userboardreply_number = $(this).parents("li").attr("data-num");
+		var userboardreply_number = $(this).parents("tr").attr("data-num");
 		console.log("userboardreply_number: " + userboardreply_number);
 		if(confirm("선택하신 댓글을 삭제하시겠습니까?")){
 			$.ajax({
@@ -131,9 +152,10 @@ function listAll(userboard_number){
 	var userid = $('#user_id').val();
 	$("#comment_list").html("");
 	var url = "/serviceCenter/userBoard/userBoardReply/all/"+userboard_number+".do";
-	
+	$("#new_table tbody tr").remove();
 	$.getJSON(url,function(data){
 		console.log(data.length);
+
 		
 		$(data).each(function(){
 			var userboardreply_number = this.userboardreply_number;
@@ -205,11 +227,9 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	
 	two_tr.append().append(two_td);//두번째 tr - td
 	two_td.append(two_textarea).append(hr);//td안에 에어리어
-	
 	$("#new_table").append(first_tr).append(two_tr)
 }
 function dataReset() {
-	$("#user_id").val("");
 	//$("#r_pwd").val("");
 	$("#userboardreply_content").val("");
 }

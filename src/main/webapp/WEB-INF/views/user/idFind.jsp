@@ -32,7 +32,7 @@
 					},
 					success : function(userid) {
 						
-						alert(userid);
+						alert('아이디:',userid);
 						
 					}
 				});
