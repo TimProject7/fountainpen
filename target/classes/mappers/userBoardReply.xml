@@ -40,7 +40,8 @@
 	set
 		userboardreply_content = #{userboardreply_content},
 		userboardreply_writedate = sysdate
-		where userboardreply_number = #{userboardreply_number}
+	where 
+		userboardreply_number = #{userboardreply_number}
 	
 	</update>
 	

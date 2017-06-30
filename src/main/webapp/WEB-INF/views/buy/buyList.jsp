@@ -13,11 +13,12 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#cartList").click(function() { //[상품수정] 버튼클릭
-			window.location.href = "/cart/cartList.do";
-		});
+$(document).ready(function(){
+	$("#cartList").click(function(){ //[상품수정] 버튼클릭
+		window.location.href="/cart/cartList.do";	
 	});
+});
+	
 </script>
 <style type="text/css">
 div {
@@ -66,10 +67,9 @@ table {
 				</c:when>
 			</c:choose>
 		</table>
+		
 	</div>
-	<div>
-		<button id="cartList">상품수정</button>
-	</div>
+	<button id="cartList">상품수정</button>
 	<div>
 		<section>
 			<table>

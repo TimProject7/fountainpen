@@ -53,25 +53,19 @@
 		<table border="1">
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" id="userboard_name"
-					name="userboard_name" value="${userBoardDetail.userboard_name}" />
+				<td>${userBoardDetail.userboard_name}
 				</td>
 				<td>작성일</td>
-				<td><input type="text" id="userboard_writedate"
-					name="userboard_writedate"
-					value="${userBoardDetail.userboard_writedate}" /></td>
+				<td>${userBoardDetail.userboard_writedate}</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td colspan="3"><input type="text" id="userboard_title"
-					name="userboard_title" value="${userBoardDetail.userboard_title}" />
+				<td colspan="3">${userBoardDetail.userboard_title}
 				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><input type="text" id="userboard_content"
-					name="userboard_content"
-					value="${userBoardDetail.userboard_content}" /></td>
+				<td>${userBoardDetail.userboard_content}</td>
 			</tr>
 			<tr>
 				<td>이미지</td>

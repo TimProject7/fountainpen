@@ -58,32 +58,15 @@
 		$(document).on("click",".update_form",function(){
 			$(".reset_btn").click();   
 			
-			/* console.log($(this).parents("tr"));
-			console.log($("#two_textarea").parents("tr").children().eq(0).html());
-			console.log($(this).parents().next().children().children().html());
-			
-			console.log($(this).parents("#new_table").children().children().eq(2));
-			console.log($(this).parents("#new_table").children().eq(2).children().eq(0).html());
-			console.log($(this).parents("#new_table").children().next());
-			console.log($(this).parents("#new_table").children().next().next());
-			console.log($(this).parents("comment_item_first").next().children().eq(0).val());
-			console.log($(this).parents("tr").next().children().eq(0).html());
-			console.log($(this).parents("comment_item_first").prev());
-			
-			console.log($("#new_table").children("tr > td"));
-			console.log($("#new_table").children("tr").next().children());
-			console.log($("#new_table").parents("tr").children().eq(0));
-			console.log($("#new_table > tbody > tr:eq(3) textarea").html()); */
-			
 			//updateForm의 부모인 -> tr의 형제요소 -> tr의자식 -> td의 자식 ->textarea 안의 html내용
-			var conText =$(this).parents().next().children().children().val();
+			var conText =$(this).parents().next("tr").children().children().val();
 			console.log("conText : " + conText);
 			$(this).parents("tr").find("input[type='button']").hide();
-			$(this).parents("tr").children().eq(0).html();
-			var conArea = $(this).parents().next().children().children().val();
-			console.log("conArea:"+conArea);
+			//$(this).parents("tr").children().eq(0).html();
+			var conArea = $(this).parents("tr").next().children();
 			//var conArea = $(this).parents("tr").eq(1).children().eq(0);
 			
+			//conArea.remove();
 			conArea.html("");
 			var data ="<textarea name='content' id='content'>"+conText+"</textarea>";
 			data+="<input type='button' class='update_btn' value='수정완료'>";
@@ -93,8 +76,18 @@
 		
 		/* 글 수정을 위한 Ajax 연동 처리 */
 		$(document).on("click",".update_btn",function(){
-			var userboardreply_number = $(this).parents("tr").attr("data-num");
+			
+			/*********************
+			@수정시 데이터넘버 가져오는 식
+			
+			$(this) = 업데이트버튼 -> .parent() = 수정폼 td= id:two_td -> .parent() =commend_item_two = 수정폼tr -> 
+			prev() = 이전형제요소 수정폼tr 위에 tr 의 .attr("data-num") 데이터넘버를 가져온다   
+			
+			******************/
+			var userboardreply_number = $(this).parent().parent().prev().attr("data-num");
+			
 			var userboardreply_content = $("#content").val();
+			console.log("userboardreply_number : "+userboardreply_number)
 			if(!chkSubmit($("#content"),"댓글 내용을")){
 				return;
 			}else{
@@ -150,9 +143,11 @@
 	//리스트 요청 함수
 function listAll(userboard_number){
 	var userid = $('#user_id').val();
-	$("#comment_list").html("");
 	var url = "/serviceCenter/userBoard/userBoardReply/all/"+userboard_number+".do";
+	//댓글입력후 기존데이터 삭제
 	$("#new_table tbody tr").remove();
+	
+	//새로운 데이터를 추가한다.
 	$.getJSON(url,function(data){
 		console.log(data.length);
 
@@ -221,7 +216,7 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	var hr =$("<hr>");
 	
 	
-	//조립하기
+	//수정폼 조립
 	first_tr.append().append(writer_td);////첫번째 tr -td
 	writer_td.append(writer_id_input).append(writer_date_inpit).append(input_update_button).append(input_delete_button);		//텍스트
 	
@@ -229,8 +224,9 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	two_td.append(two_textarea).append(hr);//td안에 에어리어
 	$("#new_table").append(first_tr).append(two_tr)
 }
+
+//댓글등록후 댓글 내용 textarea 초기화
 function dataReset() {
-	//$("#r_pwd").val("");
 	$("#userboardreply_content").val("");
 }
 

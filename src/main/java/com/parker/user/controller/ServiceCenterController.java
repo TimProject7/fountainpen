@@ -138,10 +138,13 @@ public class ServiceCenterController {
 	public String userBoardDetailUpdate(@ModelAttribute UserBoardVO UBVO, HttpSession session,
 			@ModelAttribute UserVO UVO, Model model) {
 		logger.info("userBoardDetailUpdate 호출 성공");
-		// 세션가져와서 넣어준당
-
+		
+		
 		// 정보수정
 		int result = userBoardService.userBoardDetailUpdate(UBVO);
+		
+		
+		// 세션가져와서 넣어준당
 		List<UserBoardVO> userBoardList = userBoardService.userBoardList(UBVO);
 		
 		

@@ -77,9 +77,17 @@
 		#{cartlistId}
 	</delete>
 	<!-- 5. 장바구니 수정 -->
-	<!-- <update id="cartUpdate"> UPDATE cartlist_tb SET cartlist_quantity = 
-		#{cartlistQuantity} WHERE user_number= #{userId} AND product_number = #{productId} 
-		</update> -->
+	<update id="cartUpdate" parameterType="com.parker.user.vo.CartVO">
+		UPDATE cartlist_tb 
+		SET
+		cartlist_quantity =	#{cartlistQuantity} 
+		WHERE
+		user_number= #{userId} 
+		AND
+		cartlist_number = #{cartlistId}
+		<!-- AND
+		product_number = #{productId} -->
+	</update>
 
 
 	<!-- 6. 장바구니에 동일한 상품 레코드 확인 -->

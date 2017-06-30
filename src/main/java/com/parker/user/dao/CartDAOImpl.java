@@ -41,8 +41,14 @@ public class CartDAOImpl implements CartDAO {
 		session.selectOne(NAMESPACE + ".sumMoney", userId);
 		return session.selectOne(NAMESPACE + ".sumMoney", userId);
 	}
-	
+
 	// 5. 장바구니 수정
+	@Override
+	public int cartUpdate(CartVO cvo) {
+		return session.update(NAMESPACE + ".cartUpdate",cvo);
+	}
+	
+	
 
 	/*
 	 * // 4. 장바구니 수정

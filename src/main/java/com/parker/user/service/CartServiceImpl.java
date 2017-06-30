@@ -41,11 +41,22 @@ public class CartServiceImpl implements CartService {
 		return result;
 	}
 	
-	// 장바구니 금액 합계
+	// 4.장바구니 금액 합계
 	@Override
 	public int sumMoney(int userId){
 		return cartDao.sumMoney(userId);
 	}
+
+	// 5.장바구니수정
+	@Override
+	public int cartUpdate(CartVO cvo) {
+		int result = 0;
+		result = cartDao.cartUpdate(cvo);
+		return result;
+	}
+	
+	
+	
 	
 	// 장바구니 수정
 	/*

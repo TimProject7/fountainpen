@@ -17,8 +17,11 @@ public interface CartDAO {
 
 	// 장바구니 금액 합계
 	public int sumMoney(int userId);
-	
+
 	// 장바구니 수정
+	public int cartUpdate(CartVO cvo);
+	
+	
 	/*
 	 * // 장바구니 수정 public int update(CartVO vo);
 	 */

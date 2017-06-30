@@ -232,13 +232,7 @@
 													html += list[i].zipcode;
 													html += "    </td>";
 													html += "    <td>";
-													html += '<a href="#" onclick="javascript:put(\''
-															+ list[i].address
-															+ '\',\''
-															+ zipcode
-															+ '\')">'
-															+ address
-															+ '</a>';
+													html += '<a href="#" onclick="javascript:put(\''+list[i].address + '\',\''+ zipcode + '\')">' + address+ '</a>';
 													html += "    </td>";
 													html += "</tr>";
 												}

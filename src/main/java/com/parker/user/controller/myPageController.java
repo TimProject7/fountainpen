@@ -208,7 +208,7 @@ public class myPageController {
 
 		Paging.set(QVO);
 		System.out.println("QVO.getPage() : " + QVO.getPage());
-		
+
 		UVO = (UserVO) session.getAttribute("UVO");
 		int usernumber = UVO.getUser_number();
 		QVO.setUser_number(usernumber);
@@ -251,7 +251,7 @@ public class myPageController {
 			@RequestParam("Question_url") MultipartFile file) {
 		logger.info("questionInsert 호출 성공");
 		String filename = "";
-
+		System.out.println("QVO.getQuestion_url() : " + QVO.getQuestion_url());
 		if (!QVO.getQuestion_url().isEmpty()) {
 			filename = file.getOriginalFilename();
 
@@ -265,17 +265,21 @@ public class myPageController {
 				e.printStackTrace();
 			}
 			QVO.setQuestion_image(filename);
-			int result = questionService.questionInsert(QVO);
-			System.out.println("result :" + result);
-			if (result == 1) {
-				System.out.println("성공");
-				session.setAttribute("UVO", UVO);
-			} else {
-				System.out.println("실패");
-			}
 		}
+		
+		int result = questionService.questionInsert(QVO);
+		
+		System.out.println("result :" + result);
+		
+		if (result == 1) {
+			System.out.println("성공");
 
-		return "/myPage/question/question";
+		} else {
+
+			System.out.println("실패");
+
+		}
+		return "redirect:/myPage/question/question.do";
 	}
 
 	// 상세페이지

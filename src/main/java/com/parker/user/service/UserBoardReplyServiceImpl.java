@@ -28,7 +28,9 @@ public class UserBoardReplyServiceImpl implements UserBoardReplyService{
 	@Override
 	public int userBoardReplyUpdate(UserBoardReplyVO UBRVO) {
 		// TODO Auto-generated method stub
-		return UBRDAO.userBoardReplyUpdate(UBRVO);
+		int result = 0;
+		result = UBRDAO.userBoardReplyUpdate(UBRVO);
+		return result;
 	}
 	@Override
 	public int userBoardReplyDelete(int userboardreply_number) {
