@@ -13,8 +13,15 @@
 		where 
 			userboardreply_tb.user_number = users_tb.user_number
 			and userboardreply_tb.userboard_number = userboard_tb.userboard_number
+			and userboard_tb.userboard_number = #{userboard_number}
+			
+		order by
+			userboardreply_tb.userboardreply_number desc
+			
+			
 	</select>
 	
+	<!-- 댓글작성 -->
 	<insert id="userBoardReplyInsert" parameterType="com.parker.user.vo.UserBoardReplyVO">
 		<selectKey keyProperty="userboardreply_number" resultType="int" order="BEFORE">
 			select seq_userboardreply_tb.nextval from dual

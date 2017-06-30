@@ -18,9 +18,9 @@ public class BuyListServiceImpl implements BuyListService {
 	
 	//구매리스트
 	@Override
-	public List<BuyListVO> buyList(BuyListVO BVO) {
+	public List<BuyListVO> buyListlist(BuyListVO BVO) {
 		List<BuyListVO> buyList= null;
-		buyList = BDAO.buyList(BVO);
+		buyList = BDAO.buyListlist(BVO);
 		return buyList;
 	}
 

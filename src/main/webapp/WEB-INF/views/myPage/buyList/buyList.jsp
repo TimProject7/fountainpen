@@ -18,7 +18,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var buytotal = 0;
+		
 
 		/* 검색후 검색 대상과 검색단어 출력 */
 		if ("<c:out value='${data.keyword}'/>" != "") {
@@ -46,7 +46,7 @@
 		});
 
 		//검색버튼
-		$("#searchData").click(function() {
+		/* $("#searchData").click(function() {
 			//검색조건이 전체가 아닐시 키워드로 검색
 			if ($("#search").val() == "all") {
 				$("#keyword").val("");
@@ -56,14 +56,14 @@
 				}
 			}
 			goPage(1);
-		});
+		}); */
 
 	});
 	//검색한페이지에 보여줄 레코드 수 처리 및 페이징을 위한 실질적인 처리 함수
 	function goPage(page) {
 		if ($("#search").val() == "all") {
 			$("#keyword").val("");
-		}
+		} 
 		$("#page").val(page);
 		$("#f_search").attr({
 			"method" : "get",
@@ -100,7 +100,7 @@
 	<!-- 페이지 넘버 -->
 	<form id="f_search" name="f_search">
 		<input type="hidden" id="page" name="page" value="${data.page}" />
-
+	</form>
 
 		<!--검색-->
 		<table summary="검색">
@@ -113,7 +113,7 @@
 					<input type="button" value="검색" id="searchData"></td>
 			</tr>
 		</table>
-	</form>
+	
 
 	<!-- 구매내역 리스트 -->
 	<div>
@@ -157,7 +157,7 @@
 		<b><label class="total">총합계 : ${buytotal}원 </label></b>
 	</div>
 	<!-- 페이지출력 -->
-	<div id="questionPage" align="center">
+	<div id="buyListPage" align="center">
 		<tag:paging page="${param.page}" total="${total}"
 			list_size="${data.pageSize}" />
 	</div>

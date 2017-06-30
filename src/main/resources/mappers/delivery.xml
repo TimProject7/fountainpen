@@ -11,10 +11,14 @@
 		from(
 				select lst.*, rownum as rnum
 				from(
-					select  b.buy_day, b.buy_number, b.buy_product, b.buy_price, b.buy_status
+					select 
+						 b.buy_day, b.buy_number, b.buy_product, b.buy_price, b.buy_status
 					from
-					buy_tb b, users_tb u
-					where b.user_number = u.user_number
+						buy_tb b, users_tb u
+					where 
+							b.user_number = u.user_number
+					 and
+               			 	u.user_number = #{user_number}
 					order by
 					b.buy_day asc
 					)lst

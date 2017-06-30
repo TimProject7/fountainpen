@@ -175,9 +175,7 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	//작성자  td태그
 	var writer_td =$("<td>");
 	writer_td.addClass("writer_td");
-	if(userid != user_id){
-		
-	}else{
+	
 	//작성자id = input
 	var writer_id_input = $("<input>");
 	writer_id_input.attr({"type":"text","size":"10","value":user_id+"님"});
@@ -185,7 +183,9 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	//작성날짜 = input
 	var writer_date_inpit = $("<input>");
 	writer_date_inpit.attr({"type":"text","size":"10","value":"/" + userboardreply_writedate +""});
-	
+	if(userid != user_id){
+		
+	}else{
 	//수정버튼 = button
 	var input_update_button =$("<input>")
 	input_update_button.attr({"type":"button","value":"수정"});

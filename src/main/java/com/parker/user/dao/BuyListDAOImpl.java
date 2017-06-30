@@ -14,7 +14,7 @@ public class BuyListDAOImpl implements BuyListDAO {
 	SqlSession session;
 
 	@Override
-	public List<BuyListVO> buyList(BuyListVO BVO) {
+	public List<BuyListVO> buyListlist(BuyListVO BVO) {
 		return session.selectList("buyListlist", BVO);
 	}
 

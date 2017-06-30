@@ -19,6 +19,8 @@
              				   products_tb p, buy_tb b, users_tb u
              			 where 
                				 u.user_number= b.user_number and p.product_number = b.product_number
+               			 and
+               			 	u.user_number = #{user_number}
                			 
                			 
 					<if test="search=='buy_product'">

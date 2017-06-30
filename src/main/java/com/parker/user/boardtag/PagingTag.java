@@ -89,7 +89,7 @@ public class PagingTag extends TagSupport {
 		int lastPage = 1;
 		System.out.println("total : " + total);
 		System.out.println("list_size : " + list_size);
-		/*list_size=10;*/
+		
 		lastPage = total / list_size;
 		System.out.println("lastPage : " +lastPage);
 

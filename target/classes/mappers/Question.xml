@@ -4,7 +4,15 @@
 
 <mapper namespace="com.parker.user.dao.QuestionDAO">
 
-
+<!-- <select id="questionList" parameterType="com.parker.user.vo.QuestionVO"
+		resultType="com.parker.user.vo.QuestionVO">
+	select * from(select lst.*, rownum as rnum from( select
+	question_number,
+	question_title, question_writedate,question_content, u.user_name from question_tb,
+	users_tb u where question_tb.user_number= u.user_number and
+	u.user_number
+	= #{user_number} order by question_number asc )lst )
+			</select> -->
 
 
 	<!--1:1문의 게시판 리스트목록 -->
