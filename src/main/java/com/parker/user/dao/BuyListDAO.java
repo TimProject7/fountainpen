@@ -4,12 +4,13 @@ import java.util.List;
 
 
 import com.parker.user.vo.BuyListVO;
+import com.parker.user.vo.BuyVO;
 
 public interface BuyListDAO {
 	
 	//구매리스트
-	public List<BuyListVO> buyListlist(BuyListVO BVO);
+	public List<BuyVO> buyListlist(BuyVO bvo);
 	
 	//구매리스트 카운트
-	public int buyListCnt(BuyListVO BVO);
+	public int buyListCnt(BuyVO bvo);
 }

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.parker.user.boardcommon.Paging;
+import com.parker.user.boardcommon.Util;
 import com.parker.user.service.UserBoardReplyService;
 import com.parker.user.service.UserBoardService;
 import com.parker.user.vo.UserBoardReplyVO;
@@ -54,10 +55,16 @@ public class ServiceCenterController {
 		// 리스트 건수
 		int total = userBoardService.userBoardListCnt(UBVO);
 
+		// 글번호 재설정
+		int count = total - (Util.nvl(UBVO.getPage()) - 1) * Util.nvl(UBVO.getPageSize());
+		logger.info("count = " + count);
+
 		// 전체데이터가져오는 리스트!
 		List<UserBoardVO> userBoardList = userBoardService.userBoardList(UBVO);
-
+		
+		model.addAttribute("count",count);
 		model.addAttribute("userBoardList", userBoardList);
+		model.addAttribute("data", UBVO);
 		model.addAttribute("total", total);
 
 		return "serviceCenter/userBoard/userBoard";
@@ -111,22 +118,22 @@ public class ServiceCenterController {
 	// 회원게시판 상세페이지
 	@RequestMapping(value = "/userBoard/userBoardDetail", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView userBoardDetail(@ModelAttribute UserBoardVO UBVO, @RequestParam int userboard_number,
-			HttpSession session, ModelAndView mav,Model model) {
+			HttpSession session, ModelAndView mav, Model model) {
 		logger.info("userBoardDetail 호출 성공");
 
 		// 조회수
 		userBoardService.userBoardViewCnt(userboard_number, session);
-		
+
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
-		String username =uvo.getUser_name();
+		String username = uvo.getUser_name();
 		String userid = uvo.getUser_id();
-		
-		System.out.println("username : " +username);
+
+		System.out.println("username : " + username);
 		System.out.println("userid:" + userid);
-		
+
 		// 상세페이지 이동
 		mav.addObject("userBoardDetail", userBoardService.userBoardDetail(userboard_number));
-		//mav.addObject("username",username);
+		// mav.addObject("username",username);
 		model.addAttribute("username", username);
 		model.addAttribute("userid", userid);
 		mav.setViewName("serviceCenter/userBoard/userBoardDetail");
@@ -138,16 +145,12 @@ public class ServiceCenterController {
 	public String userBoardDetailUpdate(@ModelAttribute UserBoardVO UBVO, HttpSession session,
 			@ModelAttribute UserVO UVO, Model model) {
 		logger.info("userBoardDetailUpdate 호출 성공");
-		
-		
+
 		// 정보수정
 		int result = userBoardService.userBoardDetailUpdate(UBVO);
-		
-		
+
 		// 세션가져와서 넣어준당
 		List<UserBoardVO> userBoardList = userBoardService.userBoardList(UBVO);
-		
-		
 
 		if (result == 1) {
 			System.out.println("성공");

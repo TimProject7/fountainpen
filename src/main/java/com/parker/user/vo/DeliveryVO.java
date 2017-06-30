@@ -4,12 +4,21 @@ import java.sql.Date;
 
 import com.parker.user.boardcommon.PagingVO;
 
-public class DeliveryVO extends PagingVO{
+public class DeliveryVO extends PagingVO {
 	private Date buy_day; // 구매날짜
 	private int buy_number; // 구매번호
 	private String buy_product; // 구매상품명
 	private int buy_price; // 구매금액
 	private String buy_status; // 배송상태
+	private int user_number; // 회원번호
+
+	public int getUser_number() {
+		return user_number;
+	}
+
+	public void setUser_number(int user_number) {
+		this.user_number = user_number;
+	}
 
 	public Date getBuy_day() {
 		return buy_day;
@@ -53,8 +62,8 @@ public class DeliveryVO extends PagingVO{
 
 	@Override
 	public String toString() {
-		return "deliveryVO [buy_day=" + buy_day + ", buy_number=" + buy_number + ", buy_product=" + buy_product
-				+ ", buy_price=" + buy_price + ", buy_status=" + buy_status + "]";
+		return "DeliveryVO [buy_day=" + buy_day + ", buy_number=" + buy_number + ", buy_product=" + buy_product
+				+ ", buy_price=" + buy_price + ", buy_status=" + buy_status + ", user_number=" + user_number + "]";
 	}
 
 }

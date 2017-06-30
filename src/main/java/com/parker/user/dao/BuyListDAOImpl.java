@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.parker.user.vo.BuyListVO;
+import com.parker.user.vo.BuyVO;
 
 @Repository
 public class BuyListDAOImpl implements BuyListDAO {
@@ -14,14 +15,20 @@ public class BuyListDAOImpl implements BuyListDAO {
 	SqlSession session;
 
 	@Override
-	public List<BuyListVO> buyListlist(BuyListVO BVO) {
-		return session.selectList("buyListlist", BVO);
+	public List<BuyVO> buyListlist(BuyVO bvo) {
+		
+		System.out.println("DAO bvo.toString()1 : " + bvo.toString());
+		
+		return session.selectList("buyListlist", bvo);
 	}
 
 	@Override
-	public int buyListCnt(BuyListVO BVO) {
+	public int buyListCnt(BuyVO bvo) {
 		// TODO Auto-generated method stub
-		return  session.selectOne("buyListCnt",BVO);
+		
+		System.out.println("DAO bvo.toString()2 : " + bvo.toString());
+		
+		return  session.selectOne("buyListCnt",bvo);
 	}
 
 }

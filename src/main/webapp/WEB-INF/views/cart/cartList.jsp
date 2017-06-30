@@ -14,96 +14,82 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#conShopping").click(function() { //[쇼핑계속] 버튼클릭
-			window.location.href = "/product/productList.do";
-		});
-		$("#shopMain").click(function() { //[메인으로] 버튼클릭
-			window.location.href = "/";
-		});
-		$("#buyBtn").click(function() {//[구매하기] 버튼클릭
+	$(document)
+			.ready(
+					function() {
+						$("#conShopping").click(function() { //[쇼핑계속] 버튼클릭
+							window.location.href = "/product/productList.do";
+						});
+						$("#shopMain").click(function() { //[메인으로] 버튼클릭
+							window.location.href = "/";
+						});
+						$("#buyBtn").click(function() {//[구매하기] 버튼클릭
 
-			$("#listForm").attr({
-				"method" : "POST",
-				"action" : "/buy/buyInsert.do"
-			});
-			$("#listForm").submit();
-		});
-		$("#updateBtn").click(function() { //[수량수정] 버튼클릭
-			alert("상품수량을 변경하시겠습니까");
-			$("#listForm").attr("method", "POST");
-			$("#listForm").attr("action", "/cart/cartUpdate.do");
-			$("#listForm").submit();
-			alert("상품수량이 변경되었습니다.");
-		});
-		//체크박스 전체선택 
-		$("#checkAll").click(function() {
-			//클릭되었으면
-			if ($("#checkAll").is(":checked")) {
-				//input 태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-				$("input[name=chk]").prop("checked", true);
-				//클릭이 안되있으면
-			} else {
-				//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-				$("input[name=chk]").prop("checked", false);
-			}
+							$("#listForm").attr({
+								"method" : "POST",
+								"action" : "/buy/buyInsert.do"
+							});
+							$("#listForm").submit();
+						});
+						/* //선택수정
+						$("#updateBtn").click(function(){
+							if($(":checkbox[name='chk']:checked").length==0){
+								alert("수정할 항목을 하나이상 체크해주세요.");
+								return;
+							}else{
+								alert("상품수량을 변경하시겠습니까");
+								$("#listForm").attr("method", "POST");
+								$("#listForm").attr("action", "/cart/cartUpdate.do");
+								$("#listForm").submit();
+								alert("상품수량이 변경되었습니다.");
+							}
+						}); */
+						$("#updateBtn").click(
+								function() { //[수량수정] 버튼클릭
+									alert("상품수량을 변경하시겠습니까");
+									$("#listForm").attr("method", "POST");
+									$("#listForm").attr("action",
+											"/cart/cartUpdate.do");
+									$("#listForm").submit();
+									alert("상품수량이 변경되었습니다.");
+								});
+						//체크박스 전체선택 
+						$("#checkAll").click(function() {
+							//클릭되었으면
+							if ($("#checkAll").is(":checked")) {
+								//input 태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+								$("input[name=chk]").prop("checked", true);
+								//클릭이 안되있으면
+							} else {
+								//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+								$("input[name=chk]").prop("checked", false);
+							}
+						});
 
-		});
-		
-		//선택삭제
-		function deleteBtn(){
-			var chk = "";
-			$("input[name='chk']:checked").each(function(){
-				chk = chk + $(this).val()+",";
-			});
-			chk = chk.substring(0,chk.lastIndexOf(","));
-			
-			if(chk == ''){
-				alert("삭제할 대상을 선택하세요.");
-				return false;
-			}
-			console.log("### chk => {}" + chk);
-			
-			if(confirm("상품을 삭제 하시겠습니까")){
-				
-				$("#listForm").attr("method", "GET");
-				$("#listForm").attr("action", "/cart/cartDelete.do?cartlistId=${cart.cartlistId}");
-				$("#listForm").submit();
-				
-			}
-		}
+						//선택삭제 할때 아무것도 선택이안됬을시
+						$("#deleteBtn")
+								.click(
+										function(e) {
+											e.preventDefault();
+											var chk = new Array();
+											if ($(":checkbox[name='chk']:checked").length == 0) {
+												alert("삭제할 항목을 하나이상 체크해주세요.");
+												return;
+											} else {
+												if ($(":checkbox[name=chk]:checked").val()) {
+													/* $(":checkbox[name='chk']:checked").each(function() {
+														alert($(this).val());
+														chk.push($(this).val());
+													}); */
+													$("#listForm").attr("method", "POST");
+													/* $("#listForm").attr("action", "/cart/cartDelete.do?cartlistId=${cart.cartlistId}"); */
+													$("#listForm").attr("action", "/cart/cartDelete.do");
+													$("#listForm").submit();
+												}
+											}
+										});
 
-	});
-
-	/*//선택삭제
-	$("#deleteAction").click(function(){
-		var chk = "";
-		$("input[name='chk']:checked").each(function(){
-			chk = chk + $(this).val()+",";
-		});
-		chk = chk.substring(0,chk.lastIndexOf(","));
-		
-		if(chk == ''){
-			alert("삭제할 대상을 선택하세요.");
-			return false;
-		}
-		console.log("### chk => {}" + chk);
-		
-		if(confirm("정보를 삭제 하시겠습니까?")){
-			window.location.href ="/cart/cartDelete.do?cartlistId=${cart.cartlistId}";
-			//삭제 처리 후 다시 불러올 리스트 url
-			/* var url = document.location.href;
-			var page = $("#page").val();
-			var saleType = $("#saleType").val();
-			var schtype = $("#schtype").val();
-			var schval = $("#schval").val(); */
-	/* location.href="/cart/cartDelete.do?cartlistId=${cart.cartlistId}="; *//* +chk+"&goUrl="+url+"&page="+page+"&saleType="+saleType+"schtype="+schtype+"schval="+schval; 
-										}
-										
-									})
-									
-									
-								}); */
+					});
 </script>
 <style type="text/css">
 .all {
@@ -181,14 +167,6 @@ table {
 											type="number" min="1" style="width: 40px"
 											id="cartlistQuantity" name="cartlistQuantity"
 											value="${cart.cartlistQuantity }">개</td>
-
-										<%-- <input type="hidden" name="cartlistId"
-											value="${cart.cartlistId }"> <input type="hidden"
-											name="productId" value="${cart.productId }"> <input
-											type="hidden" name="userId" id="userId"
-											value="${sessionScope.UVO.user_number }"><input
-											type="number" min="1" style="width: 40px" id="cartlistQuantity"
-											name="cartlistQuantity" value="${cart.cartlistQuantity }">개</td> --%>
 										<td><fmt:formatNumber pattern="###,###,###"
 												value="${cart.money }" /></td>
 										<td>무료</td>
@@ -203,10 +181,10 @@ table {
 							</c:forEach>
 							<tfoot>
 								<tr>
-									<td><input type="button" id="deleteAction"
-										name="deleteAction" value="선택삭제" /></td>
-									<td><input type="button" id=updateBtn name="updateBtn"
-										value="수량수정" />
+									<td><input type="button" id="deleteBtn" name="deleteBtn"
+										value="선택삭제" /></td>
+									<td><input type="button" id="updateBtn" name="updateBtn"
+										value="수량수정" /></td>
 								</tr>
 								<tr>
 									<td colspan="8" align="right">총 합계금액 :</td>

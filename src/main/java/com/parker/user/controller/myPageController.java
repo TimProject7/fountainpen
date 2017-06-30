@@ -1,5 +1,7 @@
 package com.parker.user.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.io.File;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
@@ -28,6 +30,7 @@ import com.parker.user.service.QuestionReplyService;
 import com.parker.user.service.QuestionService;
 import com.parker.user.service.UserService;
 import com.parker.user.vo.BuyListVO;
+import com.parker.user.vo.BuyVO;
 import com.parker.user.vo.DeliveryVO;
 import com.parker.user.vo.QuestionVO;
 import com.parker.user.vo.UserVO;
@@ -207,7 +210,7 @@ public class myPageController {
 		logger.info("question 호출 성공");
 
 		Paging.set(QVO);
-		System.out.println("QVO.getPage() : " + QVO.getPage());
+		System.out.println("컨트롤러 QVO : " + QVO);
 
 		UVO = (UserVO) session.getAttribute("UVO");
 		int usernumber = UVO.getUser_number();
@@ -224,7 +227,7 @@ public class myPageController {
 
 		// 전체리스트
 		List<QuestionVO> questionList = questionService.questionList(QVO);
-		
+
 		System.out.println(" questionList size : " + questionList.size());
 
 		model.addAttribute("count", count);
@@ -331,39 +334,33 @@ public class myPageController {
 	// 마이페이지 구매내역
 	@RequestMapping(value = "/buyList/buyList", method = { RequestMethod.POST, RequestMethod.GET })
 	public String buyListlist(HttpSession session, @ModelAttribute UserVO UVO, Model model, HttpServletRequest request,
-			@ModelAttribute BuyListVO BVO) {
+			@ModelAttribute BuyVO bvo) {
 		logger.info("buyListlist 호출 성공");
-		session.getAttribute("UVO");
-		int usernumber =UVO.getUser_number();
-		BVO.setUser_number(usernumber);
-		
-		/*
-		 * int buy_number=2; BVO.setBuy_number(buy_number);
-		 */
+		Paging.set(bvo);
+		System.out.println("컨트롤러  = BLVO : " + bvo);
 
-		Paging.set(BVO);
-		System.out.println("컨트롤러  = BVO : " + BVO);
+		UVO = (UserVO) session.getAttribute("UVO");
+		int usernumber = UVO.getUser_number();
+		bvo.setUser_number(usernumber);
 		// 검색에 대한 데이터 확인
-		logger.info("search = " + BVO.getSearch());
-		logger.info("keyword = " + BVO.getKeyword());
+		int total = buylistService.buyListCnt(bvo);
+
+		logger.info("search = " + bvo.getSearch());
+		logger.info("keyword = " + bvo.getKeyword());
 
 		// 레코드 건수
-		int total = buylistService.buyListCnt(BVO);
 
 		System.out.println("컨트롤러 페이징 = total : " + total);
 
 		// 글번호 재설정
-		int count = total - (Util.nvl(BVO.getPage()) - 1) * Util.nvl(BVO.getPageSize());
+		int count = total - (Util.nvl(bvo.getPage()) - 1) * Util.nvl(bvo.getPageSize());
 		logger.info("count = " + count);
-
 		// 전체 리스트
-		List<BuyListVO> buyList = buylistService.buyListlist(BVO);
+		List<BuyVO> buyListlist = buylistService.buyListlist(bvo);
 
-		System.out.println("컨트롤러 buyList : " + buyList.size());
-		
-		model.addAttribute("count",count);
-		model.addAttribute("buyList", buyList);
-		model.addAttribute("data", BVO);
+		model.addAttribute("count", count);
+		model.addAttribute("buyListlist", buyListlist);
+		model.addAttribute("data", bvo);
 		model.addAttribute("total", total);
 
 		return "/myPage/buyList/buyList";
@@ -372,17 +369,29 @@ public class myPageController {
 	// 마이페이지 배송정보
 	@RequestMapping(value = "/delivery/delivery", method = { RequestMethod.POST, RequestMethod.GET })
 	public String shippingInfo(HttpSession session, @ModelAttribute UserVO UVO, Model model, HttpServletRequest request,
-			@ModelAttribute DeliveryVO DVO) {
+			@ModelAttribute BuyVO BVO) {
 		logger.info("delivery 호출 성공");
 
 		// 페이징
-		Paging.set(DVO);
+		Paging.set(BVO);
 
-		int total = deliveryService.DeliveryListCnt(DVO);
+		// 세션의 모델을 불러온다-
+		UVO = (UserVO) session.getAttribute("UVO");
+		int usernumber = UVO.getUser_number();
+		BVO.setUser_number(usernumber);
+
+		int total = deliveryService.DeliveryListCnt(BVO);
+
+		// 글번호 재설정
+		int count = total - (Util.nvl(BVO.getPage()) - 1) * Util.nvl(BVO.getPageSize());
+		logger.info("count = " + count);
+
 		// 전체 레코드 리스트
-		List<DeliveryVO> deliveryList = deliveryService.DeliveryList(DVO);
-
+		List<BuyVO> deliveryList = deliveryService.DeliveryList(BVO);
+		
+		model.addAttribute("count",count);
 		model.addAttribute("deliveryList", deliveryList);
+		model.addAttribute("data",BVO);
 		model.addAttribute("total", total);
 
 		return "/myPage/delivery/delivery";

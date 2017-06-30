@@ -48,7 +48,7 @@
 		$("#page").val(page);
 		$("#f_search").attr({
 			"method" : "get",
-			"action" : "/myPage/question/question.do"
+			"action" : "/serviceCenter/userBoard/userBoard.do"
 		});
 		$("#f_search").submit();
 

@@ -17,6 +17,10 @@ $(document).ready(function(){
 	$("#cartList").click(function(){ //[상품수정] 버튼클릭
 		window.location.href="/cart/cartList.do";	
 	});
+	$("#completeBtn").click(function(){ //[결제하기] 버튼클릭
+		window.location.href="/buy/completeList.do";
+		
+	});
 });
 	
 </script>
@@ -130,7 +134,7 @@ table {
 				<td><fmt:formatNumber pattern="###,###,###" value="${total }" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="button" value="결제하기" /></td>
+				<td colspan="2"><input type="button" value="결제하기" id="completeBtn"/></td>
 			</tr>
 		</table>
 	</div>

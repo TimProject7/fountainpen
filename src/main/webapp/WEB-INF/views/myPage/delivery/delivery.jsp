@@ -97,10 +97,8 @@
 			</table>
 		</div>
 		<!-- 페이지출력 -->
+		<!-- total 전체레코드 data.pageSize 페이지갯수-->
 		<div id="questionPage" align="center">
-			<!-- total 전체레코드
-		data.pageSize 페이지갯수
-	 -->
 			<tag:paging page="${param.page}" total="${total}"
 				list_size="${data.pageSize}" />
 		</div>

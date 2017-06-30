@@ -18,10 +18,19 @@
 	<!--1:1문의 게시판 리스트목록 -->
 	<select id="questionList" parameterType="com.parker.user.vo.QuestionVO"
 		resultType="com.parker.user.vo.QuestionVO">
-		<!-- select * from(select lst.*, rownum as rnum from( select question_number, 
-			question_title, question_writedate,question_content, u.user_name from question_tb, 
-			users_tb u where question_tb.user_number= u.user_number and u.user_number 
-			= #{user_number} order by question_number asc )lst ) -->
+		<!-- 
+		select * from(
+			select lst.*, rownum as rnum 
+				from( 
+					select 
+						question_number, question_title, question_writedate,question_content, u.user_name 
+					from 
+						question_tb, users_tb u 
+					where 
+						question_tb.user_number= u.user_number and u.user_number = #{user_number} 
+					order by 
+						question_number 
+						asc )lst ) -->
 		select * from(select list.*, rownum as rnum from(select
 		question_title, question_number,question_writedate, user_number, '답변대기'
 		as question_status from question_tb

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.parker.user.dao.DeliveryDAO;
+import com.parker.user.vo.BuyVO;
 import com.parker.user.vo.DeliveryVO;
 
 @Service
@@ -18,16 +19,16 @@ public class DeliveryServiceImpl implements DeliveryService{
 	
 	//배송정보 리스트
 	@Override
-	public List<DeliveryVO> DeliveryList(DeliveryVO DVO) {
-		List<DeliveryVO> deliveryList;
-		deliveryList = deliveryDAO.DeliveryList(DVO);
+	public List<BuyVO> DeliveryList(BuyVO BVO) {
+		List<BuyVO> deliveryList;
+		deliveryList = deliveryDAO.DeliveryList(BVO);
 		// TODO Auto-generated method stub
 		return deliveryList;
 	}
 
 	@Override
-	public int DeliveryListCnt(DeliveryVO DVO) {
+	public int DeliveryListCnt(BuyVO BVO) {
 		// TODO Auto-generated method stub
-		return deliveryDAO.DeliveryListCnt(DVO);
+		return deliveryDAO.DeliveryListCnt(BVO);
 	}
 }

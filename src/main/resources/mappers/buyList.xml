@@ -4,34 +4,35 @@
 
 <mapper namespace="com.parker.user.dao.BuyListDAO">
 	<!-- 구매내역 -->
-	<select id="buyListlist" parameterType="com.parker.user.vo.BuyListVO"
-		resultType="com.parker.user.vo.BuyListVO">
+	<select id="buyListlist" parameterType="com.parker.user.vo.BuyVO"
+		resultType="com.parker.user.vo.BuyVO">
 		select *
 			from(
         		select 
-            		lst.product_image, lst.buy_product, lst.buy_price, lst.buy_number,
-               		 lst.BUY_QUANTITY, lst.buy_day, lst.user_number, rownum as rnum
+            		lst.buy_image, lst.buy_product, lst.buy_price, lst.buy_number,
+               		 lst.BUY_QUANTITY, lst.buy_day, lst.user_number,lst.user_id, rownum as rnum
         			from(
           				select
-             					p.product_image, b.buy_product, b.buy_price, b.buy_number,
-          				      b.BUY_QUANTITY, b.buy_day, u.user_number
+             					b.buy_image, b.buy_product, b.buy_price, b.buy_number,
+          				      b.BUY_QUANTITY, b.buy_day, u.user_number, u.user_id
         			    from
-             				   products_tb p, buy_tb b, users_tb u
+             				   buy_tb b, users_tb u, products_tb p
              			 where 
                				 u.user_number= b.user_number and p.product_number = b.product_number
-               			 and
-               			 	u.user_number = #{user_number}
-               			 
-               			 
+               			and
+               				b.user_number = #{user_number}
+                 
 					<if test="search=='buy_product'">
 						and (buy_product Like '%'||#{keyword}||'%')
 					</if>
 					<if test="search=='buy_day'">
 						and (buy_day like '%'||#{keyword}||'%')
 					</if>
-          			   order by b.buy_number
+          			   order by 
+                      		b.buy_number
       					)lst
 				)
+				WHERE RNUM BETWEEN #{start_row} and #{end_row}
 	</select>
 	
 	<!-- 전체 리스트 건수 -->
@@ -41,18 +42,19 @@
       			nvl(count(1),0) 
   		  from
         			(select 
-            				lst.product_image, lst.buy_product, lst.buy_price, lst.buy_number,
-               				 lst.BUY_QUANTITY, lst.buy_day, lst.user_number, rownum as rnum
+            					lst.buy_image, lst.buy_product, lst.buy_price, lst.buy_number,
+               		 lst.BUY_QUANTITY, lst.buy_day, lst.user_number,lst.user_id, rownum as rnum
         				from(
-          						select
-             							p.product_image, b.buy_product, b.buy_price, b.buy_number,
-          				     		 b.BUY_QUANTITY, b.buy_day, u.user_number
-        			    		from
-             				  		 products_tb p, buy_tb b, users_tb u
-          			    		where
-               							 u.user_number= b.user_number and p.product_number = b.product_number
-               							
-               						 order by b.buy_number
+          					select
+             					b.buy_image, b.buy_product, b.buy_price, b.buy_number,
+          				      b.BUY_QUANTITY, b.buy_day, u.user_number, u.user_id
+        			    from
+             				   buy_tb b, users_tb u, products_tb p
+             			 where 
+               				 u.user_number= b.user_number and p.product_number = b.product_number
+               			 and
+               			 	u.user_number = #{user_number}
+          			   order by b.buy_number
       						)lst
       				)
 	</select>

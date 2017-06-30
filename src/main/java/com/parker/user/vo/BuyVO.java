@@ -2,17 +2,20 @@ package com.parker.user.vo;
 
 import java.util.Date;
 
-public class BuyVO {
+import com.parker.user.boardcommon.PagingVO;
 
+public class BuyVO extends PagingVO{
+	//프라이머리 키
 	private int buy_number; // 구매번호
+	private int user_number; // 회원번호
+	private int product_number; // 상품번호
+
 	private Date buy_day; // 구매날짜
 	private String buy_address; // 구매주소
 	private String buy_product; // 구매상품명
 	private int buy_quantity; // 구매수량
 	private int buy_price; // 구매가격
 	private String buy_status; // 구매후 배송상태
-	private int user_number; // 회원번호
-	private int product_number; // 상품번호
 	private int group_number; // 구매그룹번호
 	private String buy_image; // 구매상품이미지
 	private String user_name; // 회원이름

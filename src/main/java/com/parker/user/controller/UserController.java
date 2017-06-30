@@ -113,6 +113,7 @@ public class UserController {
 			System.out.println("UVO.getUser_status() : " + UVO.getUser_status());
 			// 세션이 존재하면 UVO로 사용하겟다 -
 			session.setAttribute("UVO", UVO);
+			
 			mav.addObject("result", result);
 			mav.setViewName("redirect:/");
 			

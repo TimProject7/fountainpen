@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.parker.user.vo.DeliveryVO;
+import com.parker.user.vo.BuyVO;
 
 @Repository
 public class DeliveryDAOImpl implements DeliveryDAO{
@@ -15,14 +15,14 @@ public class DeliveryDAOImpl implements DeliveryDAO{
 	SqlSession session;
 
 	@Override
-	public List<DeliveryVO> DeliveryList(DeliveryVO DVO) {
+	public List<BuyVO> DeliveryList(BuyVO BVO) {
 		// TODO Auto-generated method stub
-		return session.selectList("deliveryList", DVO);
+		return session.selectList("deliveryList", BVO);
 	}
 
 	@Override
-	public int DeliveryListCnt(DeliveryVO DVO) {
+	public int DeliveryListCnt(BuyVO BVO) {
 		// TODO Auto-generated method stub
-		return session.selectOne("deliveryListCnt", DVO);
+		return session.selectOne("deliveryListCnt", BVO);
 	}
 }
