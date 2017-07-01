@@ -211,7 +211,8 @@
 		update
 		users_tb
 		set
-		user_status = 'D'
+		user_status = 'D',
+		user_deleteCondition = #{user_deleteCondition}
 		where
 		user_number = #{user_number}
 

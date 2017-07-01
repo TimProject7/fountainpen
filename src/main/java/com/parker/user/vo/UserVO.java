@@ -21,6 +21,15 @@ public class UserVO {
 	private String user_receiveadvertising; // 이용약관3
 	private String user_status; // 회원상태
 	private Date user_regdate; // 가입날짜
+	private String user_deleteCondition;// 탈퇴사유
+
+	public String getUser_deleteCondition() {
+		return user_deleteCondition;
+	}
+
+	public void setUser_deleteCondition(String user_deleteCondition) {
+		this.user_deleteCondition = user_deleteCondition;
+	}
 
 	public int getUser_number() {
 		return user_number;
@@ -166,8 +175,8 @@ public class UserVO {
 				+ user_birthday + ", user_cell=" + user_cell + ", user_phone=" + user_phone + ", user_gender="
 				+ user_gender + ", user_privacyconsignment=" + user_privacyconsignment + ", user_termsofuse="
 				+ user_termsofuse + ", user_receiveadvertising=" + user_receiveadvertising + ", user_status="
-				+ user_status + ", user_regdate=" + user_regdate + "]";
+				+ user_status + ", user_regdate=" + user_regdate + ", user_deleteCondition=" + user_deleteCondition
+				+ "]";
 	}
-
 
 }

@@ -20,7 +20,8 @@
 					<c:when test="${not empty sessionScope.UVO}">
 					<li class="hd_nav1"><a href="#">SITEMAP</a></li>
 					<li class="hd_nav1"><a href="/serviceCenter/userBoard/userBoard.do">SUPPORT</a></li>
-					<li class="hd_nav1"><a href="/myPage/myPagePasswordForm.do">MYPAGE</a></li>
+					<!-- 마이페이지 클릭시 첫화면 장바구니 -->
+					<li class="hd_nav1"><a href="/myPage/buyList/buyList.do">MYPAGE</a></li>
 					<li class="hd_nav1"><a href="/">HOME</a></li>
 					<li class="hd_nav1"><a href="/user/logout.do">LOGOUT</a></li>
 					<li class="hd_nav1"><b>${sessionScope.UVO.user_id}님 안녕하세요!</b></li>

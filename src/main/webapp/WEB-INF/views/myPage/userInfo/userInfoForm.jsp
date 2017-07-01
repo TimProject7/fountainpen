@@ -11,8 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="/css/myPage.css">
-<script type="text/javascript" src="../js/common.js"></script>
+<link rel="stylesheet" href="../../css/myPage.css">
+<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<script type="text/javascript" src="../../js/common.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -162,31 +163,24 @@
 
 												$("#updateForm").attr({
 																	"method" : "POST",
-																	"action":"/myPage/userUpdate.do"
+																	"action":"/myPage/userInfo/userUpdate.do"
 																});
 												
 												$("#updateForm").submit();
 
 											}
 										});
-						//회원탈퇴
-						$("#deleteBtn").click(function() {
+						 //회원탈퇴
+						
+		$("#deleteBtn").click(function() {//[회원탈퇴] 버튼클릭
 
-							//입력값 체크
-							if (!chkSubmit($('#user_password'), "비밀번호를")) {
-								return;
-							} else {
-								alert('탈퇴되었습니다.')
-
-								$("#updateForm").attr({
-									"method" : "POST",
-									"action" : "/myPage/userDelete.do"
-								});
-
-								$("#updateForm").submit();
-
-							}
-						});
+			$("#updateForm").attr({
+				"method" : "POST",
+				"action" : "/myPage/userInfo/userInfoDeleteForm.do"
+			});
+			$("#updateForm").submit();
+		});
+					
 					});
 
 	//주소검색 버튼

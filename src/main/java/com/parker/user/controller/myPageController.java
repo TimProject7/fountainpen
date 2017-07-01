@@ -1,9 +1,6 @@
 package com.parker.user.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import java.io.File;
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parker.user.bcrypt.BCrypt;
 import com.parker.user.boardcommon.Paging;
@@ -29,9 +25,7 @@ import com.parker.user.service.DeliveryService;
 import com.parker.user.service.QuestionReplyService;
 import com.parker.user.service.QuestionService;
 import com.parker.user.service.UserService;
-import com.parker.user.vo.BuyListVO;
 import com.parker.user.vo.BuyVO;
-import com.parker.user.vo.DeliveryVO;
 import com.parker.user.vo.QuestionVO;
 import com.parker.user.vo.UserVO;
 
@@ -62,16 +56,16 @@ public class myPageController {
 	DeliveryService deliveryService;
 
 	// 마이페이지 진입 전 비밀번호 입력폼
-	@RequestMapping(value = "/myPagePasswordForm", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/userInfo/userInfoPassword", method = { RequestMethod.POST, RequestMethod.GET })
 	public String myPageUpdatePassword(HttpSession session, @ModelAttribute UserVO UVO, Model model,
 			HttpServletRequest request) {
-		logger.info("myPagePasswordForm 호출 성공");
+		logger.info("userInfoPassword 호출 성공");
 
-		return "/myPage/myPagePasswordForm";
+		return "/myPage/userInfo/userInfoPassword";
 	}
 
 	// 마이페이지 진입전 패스워드 처리
-	@RequestMapping(value = "/myPageForm", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/userInfo/userInfoForm", method = { RequestMethod.POST, RequestMethod.GET })
 	public String userUpdateForm1(HttpSession session, @ModelAttribute UserVO UVO, Model model,
 			HttpServletRequest request) {
 		logger.info("myPageForm 호출 성공");
@@ -97,42 +91,12 @@ public class myPageController {
 			session.setAttribute("UVO", UVO);
 			System.out.println("성공");
 		}
-		return "/myPage/myPageForm";
+		return "/myPage/userInfo/userInfoForm";
 
-	}
-
-	// 마이페이지 회원정보변경 폼
-	@RequestMapping(value = "/userUpdateForm", method = { RequestMethod.POST, RequestMethod.GET })
-	public String userUpdateForm(HttpSession session, @ModelAttribute UserVO UVO, Model model,
-			HttpServletRequest request) {
-		logger.info("userUpdateForm 호출 성공");
-
-		// 회원번호
-		String usernumber = request.getParameter("user_number");
-		// 비밀번호
-		String pass = request.getParameter("user_password");
-
-		int usernumber1 = Integer.parseInt(usernumber);
-
-		UVO.setUser_number(usernumber1);
-		UVO = userService.passCheck(UVO);
-
-		boolean result = BCrypt.checkpw(pass, UVO.getUser_password());
-
-		System.out.println("result :" + result);
-		if (result == false) {
-			System.out.println("실패");
-
-		} else if (result == true) {
-			session.setAttribute("UVO", UVO);
-			System.out.println("성공");
-		}
-
-		return "/myPage/userUpdateForm";
 	}
 
 	// 마이페이지 회원정보 수정 완료
-	@RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/userInfo/userUpdate", method = RequestMethod.POST)
 	public String userUpdateclear(@ModelAttribute UserVO UVO, HttpServletRequest request, HttpSession session,
 			Model model) {
 		logger.info("userUpdate 호출 성공");
@@ -168,39 +132,43 @@ public class myPageController {
 	}
 
 	// 마이페이지 회원탈퇴 폼 비밀번호 확인
-	@RequestMapping(value = "/userDelete", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/userInfo/userInfoDeleteForm", method = { RequestMethod.POST, RequestMethod.GET })
 	public String myPageUserUpdateDelete(HttpSession session, @ModelAttribute UserVO UVO, Model model,
 			HttpServletRequest request) {
-		logger.info("userDelete 호출 성공");
+		logger.info("userInfoDeleteForm 호출 성공");
 
+		return "/myPage/userInfo/userInfoDeleteForm";
+	}
+
+	// 마이페이지 회원탈퇴 폼 비밀번호 확인
+	@RequestMapping(value = "/userInfo/userDeleteAction", method = { RequestMethod.POST, RequestMethod.GET })
+	public String myPageuserDeleteAction(HttpSession session, @ModelAttribute UserVO UVO, Model model,
+			HttpServletRequest request) {
+		logger.info("userDeleteAction 호출 성공");
 		int result = 0;
 
-		String usernumber = request.getParameter("user_number");
+		UserVO uvo = (UserVO) session.getAttribute("UVO");
+
+		int usernumber = uvo.getUser_number();
+		UVO.setUser_number(usernumber);
+	
 		String pass = request.getParameter("user_password");
 
-		int usernumber1 = Integer.parseInt(usernumber);
-
-		UVO.setUser_number(usernumber1);
+	
 		UVO = userService.passCheck(UVO);
 
 		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
+		System.out.println("뭐지?");
+		logger.info("비밀번호비교 = " + bool);
+		String user_deleteCondition = request.getParameter("user_deleteCondition");
+		UVO.setUser_deleteCondition(user_deleteCondition);
+		// 회원상태 "D" 로 변경하는 서비스
+		result = userService.userUpdateDelete(UVO);
 
-		if (bool == false) {
-			System.out.println("실패");
-		} else if (bool == true) {
-			session.invalidate();
-			System.out.println("성공1");
+		session.invalidate();
 
-			result = userService.userUpdateDelete(UVO);
-			System.out.println("result :" + result);
-		} else if (result == 0) {
-			System.out.println("실패");
-		} else if (result == 1) {
-			System.out.println("성공2");
-
-			session.invalidate();
-		}
 		return "redirect:/";
+
 	}
 
 	// 마이페이지 1:1문의 게시판 리스트 폼
@@ -388,10 +356,10 @@ public class myPageController {
 
 		// 전체 레코드 리스트
 		List<BuyVO> deliveryList = deliveryService.DeliveryList(BVO);
-		
-		model.addAttribute("count",count);
+
+		model.addAttribute("count", count);
 		model.addAttribute("deliveryList", deliveryList);
-		model.addAttribute("data",BVO);
+		model.addAttribute("data", BVO);
 		model.addAttribute("total", total);
 
 		return "/myPage/delivery/delivery";
