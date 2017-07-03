@@ -47,7 +47,7 @@ public class ComController {
 			
 			model.addAttribute("completeList", completeList);
 
-			return "redirect:/buy/complete.do";
+			return "redirect:buy/complete.do";
 		}
 
 	
