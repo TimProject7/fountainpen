@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-* {
-	margin: 0 auto;
-	padding: 0;
-}
 
 a{
 	padding-left: 1%;
@@ -30,6 +26,7 @@ h2{
 .buylistTable{
 	width: 96%;
 	border-style: none;
+	text-align: center;
 }
 
 label{
@@ -37,13 +34,10 @@ label{
 	padding-right: 12%;
 }
 
-th{
-	background-color: #8080c0;
+#buyth{
+	background-color: #363636;
 	color: white;
-}
-
-td{
-	text-align: right;
+	height: 30px;
 }
 
 #mailkey1{

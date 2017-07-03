@@ -37,15 +37,12 @@ a:HOVER{
 	
 	width: 96%;
 	border-style: none;
+		text-align: center;
 }
 
-th{
+#delth{
 	background-color: #CC3D3D;
 	color: white;
-}
-
-td{
-	text-align: right;
 }
 
 h2{

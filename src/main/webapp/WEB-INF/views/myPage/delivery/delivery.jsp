@@ -77,13 +77,13 @@
 			</ul>
 		</div>
 		<div align="center">
-			<table border="1" class="deliveryTable">
+			<table class="deliveryTable">
 				<tr>
-					<th>주문일자</th>
-					<th>주문번호</th>
-					<th>상품명</th>
-					<th>주문금액</th>
-					<th>진행상황</th>
+					<th id="delth">주문일자</th>
+					<th id="delth">주문번호</th>
+					<th id="delth">상품명</th>
+					<th id="delth">주문금액</th>
+					<th id="delth">진행상황</th>
 				</tr>
 				<c:forEach var="delivery" items="${deliveryList}">
 					<tr>
@@ -93,6 +93,9 @@
 						<td>${delivery.buy_price}</td>
 						<td>${delivery.buy_status}</td>
 					</tr>
+					<tr>
+							<td colspan="6"><img src="/images/line.png" style="width: 100%;" > </td>
+							</tr>
 				</c:forEach>
 			</table>
 		</div>
@@ -102,6 +105,8 @@
 			<tag:paging page="${param.page}" total="${total}"
 				list_size="${data.pageSize}" />
 		</div>
+		
 	</div>
+	<%@ include file="/footer.jsp"%>
 </body>
 </html>

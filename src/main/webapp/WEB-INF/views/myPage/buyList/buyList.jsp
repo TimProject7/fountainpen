@@ -102,38 +102,20 @@
 				type="hidden" id="pageSize" name="pageSize" value="${data.pageSize}" />
 		</form>
 
-		<!--검색-->
-		<table summary="검색">
-			<tr>
-				<td>
-					<label>검색조건</label>
-					
-					<select name="search" id="search">
-					
-						<option value="all">전체</option>
-						<option value="buy_product">상품명</option>
-						<option value="buy_day">구매날짜</option>
-				
-					</select>
-					
-					<input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
-					<input type="button" value="검색" id="searchData">
-				</td>
-			</tr>
-		</table>
+
 
 
 		<!-- 구매내역 리스트 -->
 		<div>
-			<table border="1" class="buylistTable">
+			<table class="buylistTable">
 				<tr></tr>
 				<tr>
-					<th>구매번호</th>
-					<th>상품이미지</th>
-					<th>상품명</th>
-					<th>상품가격</th>
-					<th>수량</th>
-					<th>구매날짜</th>
+					<th id="buyth">구매번호</th>
+					<th id="buyth">상품이미지</th>
+					<th id="buyth">상품명</th>
+					<th id="buyth">상품가격</th>
+					<th id="buyth">수량</th>
+					<th id="buyth">구매날짜</th>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty buyListlist}">
@@ -148,6 +130,9 @@
 								<td>${buyListlist.buy_quantity}</td>
 								<td>${buyListlist.buy_day}</td>
 
+							</tr>
+							<tr>
+							<td colspan="6"><img src="/images/line.png" style="width: 100%;" > </td>
 							</tr>
 							<%-- <input type="hidden" value="${buytotal+=buytotal }"> --%>
 						</c:forEach>
@@ -165,8 +150,34 @@
 			<tag:paging page="${param.page}" total="${total}"
 				list_size="${data.pageSize}" />
 		</div>
+		
+		<br>
+
+		<!--검색-->
+		<table summary="검색">
+			<tr>
+				<td width="260px">
+					<select name="search" id="search">
+					
+						<option value="all">전체</option>
+						<option value="buy_product">상품명</option>
+						<option value="buy_day">구매날짜</option>
+				
+					</select>
+					
+					<input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
+					
+				</td>
+				<td>
+					<input type="button" value="검색" id="searchData">
+				</td>
+			</tr>
+		</table>
+
 
 	</div>
+	
+		<%@ include file="/footer.jsp"%>
 
 </body>
 </html>
