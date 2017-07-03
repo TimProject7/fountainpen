@@ -38,7 +38,7 @@ public class BuyController {
 	private CartService cartService;
 
 	// 주문/결제 추가
-
+	
 	@RequestMapping(value = "/buyInsert", method = { RequestMethod.POST, RequestMethod.GET })
 	public String buyInsert(@ModelAttribute CartVO cvo, @ModelAttribute UserVO UVO, HttpServletRequest request,
 			Model model, HttpSession session) {
@@ -77,13 +77,13 @@ public class BuyController {
 		return "redirect:/buy/buyList.do";
 	}
 	
+	//상세페이지에서 바로구매  && 장바구니도같이 입력됨
 	@RequestMapping(value = "/buycartInsert", method = { RequestMethod.POST, RequestMethod.GET })
 	public String buycartInsert(@ModelAttribute CartVO cvo, @ModelAttribute UserVO UVO, HttpServletRequest request,
 			Model model, HttpSession session, @ModelAttribute ProductVO pvo) {
 
-		
-		/*장바구니추가부분*/
-		
+		/* 장바구니추가부분 */
+
 		logger.info("cartInsert 호출성공");
 
 		int result = 0;
@@ -110,14 +110,12 @@ public class BuyController {
 		result = cartService.cartInsert(cvo);
 
 		if (result == 1) {
-			String url = "redirect:/cart/cartList.do" +result;
+			String url = "redirect:/cart/cartList.do" + result;
 		} else {
 			System.out.println("장바구니 추가 실패");
 		}
 
-	/*여기까지 장바구니*/	
-		
-		
+		/* 여기까지 장바구니 */
 
 		List<CartVO> cartList = cartService.cartList(cvo);
 
@@ -151,6 +149,7 @@ public class BuyController {
 		return "redirect:/buy/buyList.do";
 	}
 
+	
 	// 주문/결제 목록 & 입력
 	@RequestMapping(value = "/buyList", method = RequestMethod.GET)
 	public String buyList(@ModelAttribute BuyVO bvo, Model model, @ModelAttribute UserVO UVO, HttpSession session) {
@@ -158,25 +157,38 @@ public class BuyController {
 		logger.info("buyList 호출 성공");
 
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
-		
-		bvo.setUser_number(uvo.getUser_number()); 
+
+		bvo.setUser_number(uvo.getUser_number());
 		bvo.setUser_name(uvo.getUser_name());
 		bvo.setUser_cell(uvo.getUser_cell());
 		bvo.setUser_phone(uvo.getUser_phone());
 		bvo.setUser_email(uvo.getUser_email());
-		bvo.setUser_address(uvo.getZip_code() + " " + uvo.getUser_address() + " " + uvo.getDetail_address()); 
+		bvo.setUser_address(uvo.getZip_code() + " " + uvo.getUser_address() + " " + uvo.getDetail_address());
 
 		List<BuyVO> buyList = buyService.buyList(bvo);
 		int sumMoney = cartService.sumMoney(bvo.getUser_number());
-		
-		
-		
-		
+
 		model.addAttribute("total", sumMoney);
-		
 		model.addAttribute("buyList", buyList);
 
 		return "/buy/buyList";
 	}
+	// 주문/결제 목록 & 입력
+		@RequestMapping(value = "/complete", method =  { RequestMethod.POST, RequestMethod.GET })
+		public String completeList(@ModelAttribute BuyVO bvo, Model model, @ModelAttribute UserVO UVO,
+				HttpSession session) {
+
+			logger.info("completeList 호출 성공");
+
+			UserVO uvo = (UserVO) session.getAttribute("UVO");
+
+			bvo.setUser_number(uvo.getUser_number());
+
+			List<BuyVO> completeList = buyService.buyList(bvo);
+			model.addAttribute("completeList", completeList);
+
+			return "/buy/complete";
+		}
+
 
 }

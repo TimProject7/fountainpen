@@ -10,17 +10,19 @@
 			from(
         		select 
             		lst.buy_image, lst.buy_product, lst.buy_price, lst.buy_number,
-               		 lst.BUY_QUANTITY, lst.buy_day, lst.user_number,lst.user_id, rownum as rnum
+               		 lst.BUY_QUANTITY,  lst.buy_day, lst.user_number,lst.user_id, rownum as rnum
         			from(
           				select
              					b.buy_image, b.buy_product, b.buy_price, b.buy_number,
-          				      b.BUY_QUANTITY, b.buy_day, u.user_number, u.user_id
+          				      b.BUY_QUANTITY,b.buy_day, u.user_number, u.user_id
         			    from
              				   buy_tb b, users_tb u, products_tb p
              			 where 
                				 u.user_number= b.user_number and p.product_number = b.product_number
                			and
                				b.user_number = #{user_number}
+               		
+               		
                  
 					<if test="search=='buy_product'">
 						and (buy_product Like '%'||#{keyword}||'%')
@@ -36,7 +38,7 @@
 	</select>
 	
 	<!-- 전체 리스트 건수 -->
-	<select id="buyListCnt" parameterType="com.parker.user.vo.BuyListVO"
+	<select id="buyListCnt" parameterType="com.parker.user.vo.BuyVO"
 		resultType="int">
 		 select 
       			nvl(count(1),0) 

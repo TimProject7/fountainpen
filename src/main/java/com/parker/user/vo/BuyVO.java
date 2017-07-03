@@ -4,8 +4,8 @@ import java.util.Date;
 
 import com.parker.user.boardcommon.PagingVO;
 
-public class BuyVO extends PagingVO{
-	//프라이머리 키
+public class BuyVO extends PagingVO {
+	// 프라이머리 키
 	private int buy_number; // 구매번호
 	private int user_number; // 회원번호
 	private int product_number; // 상품번호
@@ -31,6 +31,37 @@ public class BuyVO extends PagingVO{
 	private String buy_Message; // 배송메시지
 	private int money; // 합계금액
 	private int total; // 총구매금액
+
+	// 조건검색시 사용할 필드
+	private String search = "";
+	private String keyword = "";
+
+	// 검색
+	private String weeks2;
+
+	public String getWeeks2() {
+		return weeks2;
+	}
+
+	public void setWeeks2(String weeks2) {
+		this.weeks2 = weeks2;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
 	public int getBuy_number() {
 		return buy_number;
@@ -226,14 +257,15 @@ public class BuyVO extends PagingVO{
 
 	@Override
 	public String toString() {
-		return "BuyVO [buy_number=" + buy_number + ", buy_day=" + buy_day + ", buy_address=" + buy_address
-				+ ", buy_product=" + buy_product + ", buy_quantity=" + buy_quantity + ", buy_price=" + buy_price
-				+ ", buy_status=" + buy_status + ", user_number=" + user_number + ", product_number=" + product_number
+		return "BuyVO [buy_number=" + buy_number + ", user_number=" + user_number + ", product_number=" + product_number
+				+ ", buy_day=" + buy_day + ", buy_address=" + buy_address + ", buy_product=" + buy_product
+				+ ", buy_quantity=" + buy_quantity + ", buy_price=" + buy_price + ", buy_status=" + buy_status
 				+ ", group_number=" + group_number + ", buy_image=" + buy_image + ", user_name=" + user_name
 				+ ", user_email=" + user_email + ", user_cell=" + user_cell + ", user_phone=" + user_phone + ", name="
 				+ name + ", cell=" + cell + ", email=" + email + ", zip_code=" + zip_code + ", user_address="
 				+ user_address + ", detail_address=" + detail_address + ", buy_Message=" + buy_Message + ", money="
-				+ money + ", total=" + total + "]";
+				+ money + ", total=" + total + ", search=" + search + ", keyword=" + keyword + ", weeks2=" + weeks2
+				+ "]";
 	}
 
 }

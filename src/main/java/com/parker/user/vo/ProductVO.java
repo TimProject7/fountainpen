@@ -1,12 +1,12 @@
 package com.parker.user.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.parker.user.boardcommon.PagingVO;
 
-public class ProductVO extends PagingVO{
+public class ProductVO extends PagingVO {
 	private int productId; // 상품번호
 	private String productName; // 상품이름
 	private int productPrice; // 상품가격

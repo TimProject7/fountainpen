@@ -3,7 +3,6 @@ package com.parker.user.dao;
 import java.util.List;
 
 
-import com.parker.user.vo.BuyListVO;
 import com.parker.user.vo.BuyVO;
 
 public interface BuyListDAO {

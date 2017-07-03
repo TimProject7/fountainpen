@@ -151,9 +151,10 @@ public class myPageController {
 
 		int usernumber = uvo.getUser_number();
 		UVO.setUser_number(usernumber);
-
+	
 		String pass = request.getParameter("user_password");
 
+	
 		UVO = userService.passCheck(UVO);
 
 		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
@@ -309,11 +310,13 @@ public class myPageController {
 		UVO = (UserVO) session.getAttribute("UVO");
 		int usernumber = UVO.getUser_number();
 		bvo.setUser_number(usernumber);
-		// 검색에 대한 데이터 확인
-		int total = buylistService.buyListCnt(bvo);
 
 		logger.info("search = " + bvo.getSearch());
 		logger.info("keyword = " + bvo.getKeyword());
+		logger.info("weeks2 = " +bvo.getWeeks2());
+		
+		// 검색에 대한 데이터 확인
+		int total = buylistService.buyListCnt(bvo);
 
 		// 레코드 건수
 

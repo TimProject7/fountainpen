@@ -31,8 +31,21 @@
 					order by 
 						question_number 
 						asc )lst ) -->
-		select * from(select list.*, rownum as rnum from(select * from
-      question_tb where user_number =#{user_number})list)
+		select * from(select list.*, rownum as rnum from(select
+		question_title, question_number,question_writedate, user_number, '답변대기'
+		as question_status from question_tb
+		where question_number != (select
+		distinct question_number from
+		questionreply_tb) and user_number
+		=#{user_number}
+		union
+		select
+		question_title,question_number,question_writedate,user_number, '답변완료' as
+		question_status from question_tb
+		where question_number = (select
+		distinct question_number from
+		questionreply_tb)and user_number
+		=#{user_number})list)
 		<where>
 			<if test="start_row != null and start_row != ''">
 				<if test="end_row != null and end_row != ''">

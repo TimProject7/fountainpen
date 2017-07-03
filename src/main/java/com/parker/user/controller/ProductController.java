@@ -2,18 +2,28 @@ package com.parker.user.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.parker.user.boardcommon.Paging;
 import com.parker.user.boardcommon.Util;
+import com.parker.user.service.ProductQnaReplyService;
 import com.parker.user.service.ProductService;
+import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductVO;
+import com.parker.user.vo.UserBoardReplyVO;
+import com.parker.user.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/product")
@@ -23,6 +33,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
+	@Autowired
+	private ProductQnaReplyService productQnaReplyService;
 
 	/*
 	 * @RequestMapping("/list.do") public ModelAndView list(ModelAndView mav) {
@@ -76,11 +89,92 @@ public class ProductController {
 
 	}
 
-	/* 상품 상세보기 */
+	// 댓글목록
+	@RequestMapping(value = "/productQnaReply/all/{productId}.do", method = RequestMethod.GET)
+	public ResponseEntity<List<ProductQnaReplyVO>> list(@PathVariable("productId") Integer productId) {
+		ResponseEntity<List<ProductQnaReplyVO>> entity = null;
+
+		try {
+			entity = new ResponseEntity<>(productQnaReplyService.ProductQnaReplyList(productId), HttpStatus.OK);
+			System.out.println("entity : " + entity.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
 	/*
-	 * @RequestMapping("/detail/{productId}") public ModelAndView
-	 * detail(@PathVariable("productId") int productId, ModelAndView mav){
-	 * mav.setViewName("/productDetail"); mav.addObject("vo",
-	 * productService.detailProduct(productId)); return mav; }
+	 * * 회원 게시판 댓글 글쓰기 구현하기
+	 * 
+	 * @return String 참고 : @RequestBody
 	 */
+
+	@RequestMapping(value = "/productQnaReplyInsert")
+	public ResponseEntity<String> replyInsert(@RequestBody ProductQnaReplyVO PQRVO, HttpSession session) {
+		logger.info("replyInsert 호출 성공");
+		ResponseEntity<String> entity = null;
+		int result;
+
+		UserVO uvo = (UserVO) session.getAttribute("UVO");
+		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
+		PQRVO.setUser_number(uvo.getUser_number());
+
+		try {
+			result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);
+			if (result == 1) {
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	/*
+	 * * 댓글 수정 구현하기
+	 * 
+	 * @return 참고 : REST방식에서 UPDATE 작업은 PUT.PATCH방식을 이용해서 처리 전체 데이터를 수정하는 경우에는
+	 * PUT을 이용하고 일부의 데이터를 수정하는 경우에는 PATCH를 이용
+	 */
+
+	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = {RequestMethod.GET, RequestMethod.PUT,
+			RequestMethod.PATCH })
+	public ResponseEntity<String> replyUpdate(@PathVariable("productqna_number") Integer productqna_number,
+			@RequestBody ProductQnaReplyVO PQRVO) {
+		logger.info("replyUpdate 호출 성공");
+		ResponseEntity<String> entity = null;
+
+		try {
+			PQRVO.setProductqna_number(productqna_number);
+			productQnaReplyService.ProductQnaReplyUpdate(PQRVO);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	/*
+	 * * 댓글 삭제 구현하기
+	 * 
+	 * @return 참고 :REST방식에서 DELETE 작업은 DELETE방식을 이용해서 처리
+	 */
+
+	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = RequestMethod.DELETE)
+	public ResponseEntity<String> replyDelete(@PathVariable("productqna_number") Integer productqna_number) {
+		logger.info("replyDelete 호출 성공");
+		ResponseEntity<String> entity = null;
+
+		try {
+			productQnaReplyService.ProductQnaReplyDelete(productqna_number);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 }

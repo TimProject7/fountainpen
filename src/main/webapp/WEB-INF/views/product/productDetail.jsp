@@ -109,6 +109,7 @@
 		</div>
 
 	</div>
+<jsp:include page="productQnaReply.jsp"></jsp:include>
 
 	<%@ include file="/footer.jsp"%>
 </body>

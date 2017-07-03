@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.parker.user.dao.BuyListDAO;
-import com.parker.user.vo.BuyListVO;
 import com.parker.user.vo.BuyVO;
 
 @Service
