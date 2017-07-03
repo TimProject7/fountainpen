@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>회원탈퇴 폼</title>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/userDelete.css" />
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
@@ -44,34 +45,41 @@
 </script>
 </head>
 <body>
-	<h2>회원탈퇴</h2>
-	<form id="userDeleteForm" name="userDeleteForm">
-		<table>
-			<tr>
-				<td><label for="deleteCondition1">탈퇴 조건1:</label> <input
-					type="radio" id="deleteCondition1" name="user_deleteCondition"
-					value="1번" /></td>
-			</tr>
-			<tr>
-				<td><label for="deleteCondition2">탈퇴 조건2:</label> <input
-					type="radio" id="deleteCondition2" name="user_deleteCondition"
-					value="2번" /></td>
-			</tr>
-			<tr>
-				<td><label for="deleteCondition3">탈퇴 조건3:</label> <input
-					type="radio" id="deleteCondition3" name="user_deleteCondition"
-					value="3번" /></td>
-			</tr>
-			<tr>
-				<td>비밀번호: <input type="password" id="user_password"
-					name="user_password" />
-				</td>
-			</tr>
-		</table>
-	</form>
-	<input type="button" id="userDeleteBtn" name="userDeleteBtn" value="회원탈퇴" />
-	<input type="button" id="usercalcelBtn" name="usercalcelBtn" value="취소" />
+	<div class="all">
+		<h2 class="center">회원탈퇴</h2>
+		<br>
+		<p class="center">회원탈퇴를 결심하게된 이유를 선택해 주세요.</p>
+		<form id="userDeleteForm" name="userDeleteForm">
+			<table>
+				<tr>
+					<td><input type="radio" id="deleteCondition1"
+						name="user_deleteCondition" value="1번" /></td>
+					<td><label for="deleteCondition1">1. 날이 좋아서</label></td>
+				</tr>
+				<tr>
+					<td><input type="radio" id="deleteCondition2"
+						name="user_deleteCondition" value="2번" /></td>
+					<td><label for="deleteCondition2">2. 날이 좋지 않아서</label></td>
+				</tr>
+				<tr>
+					<td><input type="radio" id="deleteCondition3"
+						name="user_deleteCondition" value="3번" /></td>
+					<td><label for="deleteCondition3">3. 날이 적당해서</label></td>
+				</tr>
 
+				<tr>
+
+					<td colspan="2"><br>비밀번호 학인: <input type="password"
+						id="user_password" name="user_password" /></td>
+				</tr>
+			</table>
+		</form>
+		<p class="center">
+			<input type="button" id="userDeleteBtn" name="userDeleteBtn"
+				value="회원탈퇴" />
+				<input type="button" id="usercalcelBtn" name="usercalcelBtn" value="취소" />
+		</p>
+	</div>
 </body>
 </html>
 <%@ include file="/footer.jsp"%>
