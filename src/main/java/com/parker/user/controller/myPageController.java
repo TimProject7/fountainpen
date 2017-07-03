@@ -151,10 +151,9 @@ public class myPageController {
 
 		int usernumber = uvo.getUser_number();
 		UVO.setUser_number(usernumber);
-	
+
 		String pass = request.getParameter("user_password");
 
-	
 		UVO = userService.passCheck(UVO);
 
 		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
