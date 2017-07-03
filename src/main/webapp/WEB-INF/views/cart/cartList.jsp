@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품장바구니 목록</title>
+<link rel="stylesheet" href="/css/cartList.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -91,41 +92,35 @@
 
 					});
 </script>
-<style type="text/css">
-.all {
-	width: 100%;
-	margin: 0 auto;
-	padding: 0;
-}
-
-.header {
-	border: 1px;
-	width: 80%;
-	height: 100px;
-	background: yellow;
-}
-
-.body {
-	background: blue;
-	width: 80%;
-}
-
-table {
-	width: 80%;
-}
-</style>
 </head>
 <body>
 	<div class="all">
-		<div class="header">
-			<h1 align="left">1.장바구니확인</h1>
-			<h3 align="right">1.장바구니 > 2.주문/결제 > 3.주문완료</h3>
+	
+			<div id="myPageForm" align="center">
+			<ul id="myPageForm_nav_ul">
+				<li><a href="/myPage/userInfo/userInfoPassword.do">회원정보변경</a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/question/question.do">1:1문의</a></li>
+				<li><a href="/cart/cartList.do"><b>장바구니</b></a></li>
+				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+			</ul>
+
 		</div>
+			<br>
+		<table class="stepTable">
+			<tr>
+				<td class="choose"><p class="gold">STEP1</p><b class="white">장바구니</b></td>
+				<td><p class="gold">STEP2</p><b class="white">주문/결제</b></td>
+				<td><p class="gold">STEP3</p><b class="white">주문완료</b></td>
+			</tr>
+		</table>
+
+
 		<div class="body">
 			<form name="listForm" id="listForm" method="post">
 				<!-- action="/buy/buyInsert.do" -->
-
-				<table>
+				<br>
+				<table class="cartListtable">
 					<thead>
 						<tr>
 							<th><input type="checkbox" id="checkAll" /></th>
@@ -174,6 +169,10 @@ table {
 											href="/cart/cartDelete.do?cartlistId=${cart.cartlistId}">삭제</a></td>
 
 									</tr>
+									
+									<tr>
+							<td colspan="10"><img src="/images/line.png" style="width: 100%;" > </td>
+							</tr>
 
 
 								</tbody>

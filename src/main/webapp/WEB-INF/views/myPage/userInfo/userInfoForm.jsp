@@ -283,7 +283,7 @@
 		<c:when test="${not empty sessionScope.UVO}">
 			<div id="myPageForm" align="center">
 				<ul id="myPageForm_nav_ul">
-					<li><a href="#">회원정보변경</a></li>
+					<li><a href="#"><b>회원정보변경</b></a></li>
 					<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
 					<li><a href="/myPage/question/question.do">1:1문의</a></li>
 					<li><a href="/cart/cartList.do">장바구니</a></li>
