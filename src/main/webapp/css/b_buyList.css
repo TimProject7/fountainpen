@@ -5,6 +5,7 @@ a{
 	color: black;
 }
 
+
 li{
 	
 	display: inline;
@@ -13,7 +14,7 @@ li{
 }
 
 .all {
-	width: 100%;
+	width: 80%;
 	margin: 0 auto;
 	padding: 0;
 }
@@ -37,6 +38,7 @@ li{
 
 .choose{
 	background-color: #616161;
+	font-size: 1.2em;
 }
 
 .gold{

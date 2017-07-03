@@ -186,9 +186,9 @@
 										value="수량수정" /></td>
 								</tr>
 								<tr>
-									<td colspan="8" align="right">총 합계금액 :</td>
-									<td><fmt:formatNumber pattern="###,###,###"
-											value="${total }" /></td>
+									<td colspan="10" align="right">총 합계금액 :
+									<fmt:formatNumber pattern="###,###,###"
+											value="${total }" /> 원</td>
 								</tr>
 								<tr>
 

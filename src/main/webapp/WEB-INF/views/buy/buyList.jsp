@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문/결제 페이지</title>
+<link rel="stylesheet" href="/css/b_buyList.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -24,28 +25,34 @@ $(document).ready(function(){
 });
 	
 </script>
-<style type="text/css">
-div {
-	border: 1px;
-	width: 80%;
-	background: yellow;
-}
-
-table {
-	border: 1px solid black;
-	width: 80%;
-	text-align: center;
-}
-</style>
 </head>
 <body>
-	<div>
-		<h1 align="left">2.주문/결제</h1>
-		<h3 align="right">1.장바구니 > 2.주문/결제 > 3.주문완료</h3>
-	</div>
+	
+	<div class="all">
+	
+	<div id="myPageForm" align="center">
+			<ul id="myPageForm_nav_ul">
+				<li><a href="/myPage/userInfo/userInfoPassword.do">회원정보변경</a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/question/question.do">1:1문의</a></li>
+				<li><a href="/cart/cartList.do"><b>장바구니</b></a></li>
+				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+			</ul>
+
+		</div>
+			<br>
+		<table class="stepTable">
+			<tr>
+				<td><p class="gold">STEP1</p><b class="white">장바구니</b></td>
+				<td class="choose"><p class="gold">STEP2</p><b class="white">주문/결제</b></td>
+				<td><p class="gold">STEP3</p><b class="white">주문완료</b></td>
+			</tr>
+		</table>
+	<br>
+
 	<div>
 		<h1>주문내역</h1>
-		<table>
+		<table class="b_buyList_tb">
 			<tr>
 				<th>이미지</th>
 				<th>상품명</th>
@@ -71,14 +78,14 @@ table {
 				</c:when>
 			</c:choose>
 		</table>
-		
+		<br>
 	</div>
 	<button id="cartList">상품수정</button>
+	<br>
 	<div>
 		<section>
-			<table>
+			<table class="b_buyList_tb">
 				<tr>
-					<td>구매자정보</td>
 					<th>회원이름</th>
 					<th>전화번호</th>
 					<th>핸드폰번호</th>
@@ -89,7 +96,6 @@ table {
 					<c:when test="${not empty buyList }">
 						<c:forEach var="buyList" items="${buyList}" begin="0" end="0">
 							<tr>
-								<td></td>
 								<td>${buyList.user_name}</td>
 								<td>${buyList.user_cell}</td>
 								<td>${buyList.user_phone}</td>
@@ -101,32 +107,29 @@ table {
 			</table>
 		</section>
 	</div>
+	<br>
 	<div>
 		<section>
-			<table>
+			<table class="b_buyList_tb">
 				<tr>
-					<th>배송정보</th>
-					<th colspan="2">주소</th>
+					<th>주소</th>
+					<th>배송시 요구 메세지</th>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty buyList }">
 						<c:forEach var="buyList" items="${buyList}" begin="0" end="0">
 							<tr>
-								<td></td>
-								<td colspan="2">${buyList.buy_address }</td>
+								<td>${buyList.buy_address }</td>
+								<td>배송시 요구 메세지 : <input type="text" /><br><p class="red">ex) 부재시 경비실에 맡겨주세요.</td>
 							</tr>
 						</c:forEach>
 					</c:when>
 				</c:choose>
-				<tr>
-					<td>배송메시지</td>
-					<td><input type="text" /></td>
-					<td>*배송시 참고될 사항이 있으면 적어주세요</td>
-				</tr>
 			</table>
 		</section>
 	</div>
 	<div>
+	<br>
 		<h1>결제금액</h1>
 		<table>
 			<tr>
@@ -137,6 +140,7 @@ table {
 				<td colspan="2"><input type="button" value="결제하기" id="completeBtn"/></td>
 			</tr>
 		</table>
+	</div>
 	</div>
 	<%@ include file="/footer.jsp"%>
 </body>
