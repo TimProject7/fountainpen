@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title>회원게시판</title>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/userBoard.css" />
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -74,22 +75,18 @@
 			</tr>
 		</table> -->
 	</form>
-	<div align="center">
+	<div class="all" align="center">
 		<h2>회원게시판</h2>
+		<br>
 		<form id="userBoardInsertForm" name="userBoardInsertForm">
-			<select name="search">
-				<option value="menu1" selected>작성자</option>
-				<option value="menu2">작성자+글제목</option>
-				<option value="menu3">이름</option>
-			</select> <input type="button" id="writerForm" name="writerForm" value="글쓰기">
 
-			<table border="1">
+			<table id="userBoardTb">
 				<tr>
-					<td>글번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>작성일</td>
-					<td>조회수</td>
+					<th width="5%">글번호</th>
+					<th width="60%">제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th width="5%">조회수</th>
 				</tr>
 				<!-- 데이터 전체를 List로 불러와서 포이치문으로 출력 -->
 				<c:choose>
@@ -97,11 +94,14 @@
 						<c:forEach var="userBoard" items="${userBoardList}">
 
 							<tr>
-								<td>${userBoard.userboard_number}</td>
-								<td><a href="/serviceCenter/userBoard/userBoardDetail.do?userboard_number=${userBoard.userboard_number}">${userBoard.userboard_title}</a></td>
-								<td>${userBoard.userboard_name}</td>
-								<td>${userBoard.userboard_writedate}</td>
-								<td>${userBoard.userboard_viewCnt}</td>
+								<td id="center">${userBoard.userboard_number}</td>
+								<td id="title"><a href="/serviceCenter/userBoard/userBoardDetail.do?userboard_number=${userBoard.userboard_number}">${userBoard.userboard_title}</a></td>
+								<td id="writer">${userBoard.userboard_name}</td>
+								<td id="center">${userBoard.userboard_writedate}</td>
+								<td id="center">${userBoard.userboard_viewCnt}</td>
+							</tr>
+							<tr>
+								<td colspan="5"><hr></td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -112,6 +112,18 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<p id="right">
+				<input type="button" id="writerForm" name="writerForm" value="글쓰기">
+			</p>
+			
+			<br><br>
+			<p id="center">
+				<select name="search">
+				<option value="menu1" selected>작성자</option>
+				<option value="menu2">작성자+글제목</option>
+				<option value="menu3">이름</option>
+				</select> 
+			</p>
 		</form>
 	</div>
 	<!-- 페이지출력 -->
@@ -119,6 +131,6 @@
 		<tag:paging page="${param.page}" total="${total}"
 			list_size="${data.pageSize}" />
 	</div>
-
+	<%@ include file="/footer.jsp"%>
 </body>
 </html>
