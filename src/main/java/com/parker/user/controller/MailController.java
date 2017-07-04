@@ -47,9 +47,10 @@ public class MailController {
 		String content = joincode; // 인증키
 
 		int emailChk = userService.emailChk(UVO);
+		UserVO passemailChk = userService.passEmailFind(UVO);
 
 		System.out.println("emailChk : " + emailChk);
-		if (emailChk == 0) {
+		if (emailChk == 0 || !passemailChk.equals(null)) {
 			try {
 
 				MimeMessage message = mailSender.createMimeMessage();

@@ -61,21 +61,8 @@
 		</div>
 		<form id="f_search" name="f_search">
 			<input type="hidden" id="page" name="page" value="${data.page}" />
+			
 		</form>
-		<div align="center">
-			<ul id="search_nav">
-				<li></li>
-				<li>달력</li>
-				<li></li>
-				<li>달력</li>
-				<li>조회버튼</li>
-				<li>최근2주</li>
-				<li>1개월</li>
-				<li>3개월</li>
-				<li>6개월</li>
-				<li>1년</li>
-			</ul>
-		</div>
 		<div align="center">
 			<table class="deliveryTable">
 				<tr>

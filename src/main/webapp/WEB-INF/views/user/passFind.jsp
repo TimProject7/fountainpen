@@ -10,18 +10,14 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#passFind_email_Btn")
-								.click(
-										function() {
-											if (!chkSubmit($("#user_email"),
-													"이메일을")) {
+	$(document).ready(function() {
+		$("#passFind_email_Btn").click(
+				function() {
+										if (!chkSubmit($("#user_email"),"이메일을")) {
+											$("#chk").val('N');
 												return;
 											} else {
-												$
-														.ajax({
+														$.ajax({
 															url : "/mail/passchkmail.do", //전송url
 															type : "POST", //전송방식
 															data : $('#passfindForm')
@@ -34,6 +30,7 @@
 																	content) {
 																var content = content;
 																if (content != null) {
+																	alert('인증메일발송')
 																	//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
 																	$(
 																			'input[name=mailkey1]').attr(
@@ -45,7 +42,9 @@
 
 																	/* var mailkeychk= '<input type="button" id="mailkeychk" value="확인"/>';
 																	$("body").html(mailkeychk); */
+																	
 																}else{
+																	$("#chk").val('N');
 																	alert('일치하는 정보가 없습니다.')
 																}
 															}
@@ -58,15 +57,18 @@
 							var result = 0;
 							if ($("#mailkey").val() == null) {
 								alert("인증번호를 입력하세요")
+								$("#chk").val('N');
 								return false;
 							}
 
 							if ($("#mailkey").val() != $("#mailkey1").val()) {
 								alert("인증 실패");
 								result = 0;
+								$("#chk").val('N');
 								return false;
 							} else {
 								alert("인증 성공");
+								$("#chk").val('Y');
 								result = 1;
 							}
 
@@ -75,20 +77,28 @@
 						$("#passFind_Btn").click(function() {
 
 							if (!chkSubmit($("#user_name"), "이름을을")) {
+								$("#chk").val('N');
 								return;
 							} else if (!chkSubmit($("#user_id"), "아이디를")) {
+								$("#chk").val('N');
 								return;
 							} else if (!chkSubmit($("#user_email"), "이메일을")) {
+								$("#chk").val('N');
 								return;
 							} else if (!chkSubmit($("#mailkey"), "인증번호를")) {
+								$("#chk").val('N');
 								return;
 							} else {
+								if($("#chk").val('Y')){
+									
+								
 								$("#passfindForm").attr({
 									"method" : "POST",
 									"action" : "/user/passFindCheck.do"
 								});
 
 								$("#passfindForm").submit();
+								}
 							}
 						})
 
@@ -127,6 +137,7 @@ table{
 </style>
 </head>
 <body>
+<input type="text" id="chk" name="chk" value="N"/>
 	<form id="passfindForm" name="passfindForm">
 		<div id="passfind_email">
 			<br><h2>비밀번호 찾기</h2><br>
