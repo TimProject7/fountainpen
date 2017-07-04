@@ -178,14 +178,20 @@ public class BuyController {
 		public String completeList(@ModelAttribute BuyVO bvo, Model model, @ModelAttribute UserVO UVO,
 				HttpSession session) {
 
-			logger.info("completeList 호출 성공");
-
 			UserVO uvo = (UserVO) session.getAttribute("UVO");
 
 			bvo.setUser_number(uvo.getUser_number());
+			bvo.setUser_name(uvo.getUser_name());
+			bvo.setUser_cell(uvo.getUser_cell());
+			bvo.setUser_phone(uvo.getUser_phone());
+			bvo.setUser_email(uvo.getUser_email());
+			bvo.setUser_address(uvo.getZip_code() + " " + uvo.getUser_address() + " " + uvo.getDetail_address());
 
-			List<BuyVO> completeList = buyService.buyList(bvo);
-			model.addAttribute("completeList", completeList);
+			List<BuyVO> buyList = buyService.buyList(bvo);
+			int sumMoney = cartService.sumMoney(bvo.getUser_number());
+
+			model.addAttribute("total", sumMoney);
+			model.addAttribute("buyList", buyList);
 
 			return "/buy/complete";
 		}

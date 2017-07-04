@@ -45,7 +45,7 @@
 				<tr>
 
 					<td>아이디</td>
-					<td><input type="text" id="user_id" name="user_id"></td>
+					<td><input type="text" id="user_id" name="user_id" autofocus="autofocus"></td>
 					<td rowspan="4" class="rgiht"><input type="button"
 						id="loginBtn" value="로그인"></td>
 				</tr>

@@ -5,39 +5,22 @@ a{
 	color: black;
 }
 
-.all {
-	width: 80%;
-	margin: 0 auto;
-	padding: 0;
-}
-
-.cartListheader {
-	width: 80%;
-}
-
-
-.cartListtable {
-	width: 100%;
-	text-align: center;
-}
-
-
-.cartListtable th{
-	color: white;
-	background-color: #939393;
-	height: 30px;
-}
-
-.cartListtable td{
-	padding-top: 0.5%;
-	padding-bottom: 0.5%;
-}
 
 li{
 	
 	display: inline;
 	padding-left: 2%;
 	padding-right: 2%;
+}
+
+.all {
+	width: 80%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.b_buyListheader{
+	width: 80%;
 }
 
 .stepTable{
@@ -64,4 +47,25 @@ li{
 
 .white{
 	color: white;
+}
+
+.b_buyList_tb{
+	border: 1px solid black;
+	width: 100%;
+	text-align: center;
+}
+
+.b_buyList_tb th{
+	color: white;
+	background-color: #939393;
+	height: 30px;
+}
+
+.b_buyList_tb td{
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.red{
+	color: red;
 }

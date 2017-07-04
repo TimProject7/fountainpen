@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.parker.user.boardcommon.Paging;
 import com.parker.user.boardcommon.Util;
 import com.parker.user.service.ProductQnaReplyService;
+import com.parker.user.service.ProductReviewReplyService;
 import com.parker.user.service.ProductService;
 import com.parker.user.vo.ProductQnaReplyVO;
+import com.parker.user.vo.ProductReviewReplyVO;
 import com.parker.user.vo.ProductVO;
 import com.parker.user.vo.UserBoardReplyVO;
 import com.parker.user.vo.UserVO;
@@ -36,6 +38,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductQnaReplyService productQnaReplyService;
+
+	@Autowired
+	private ProductReviewReplyService productReviewReplyService;
 
 	/*
 	 * @RequestMapping("/list.do") public ModelAndView list(ModelAndView mav) {
@@ -89,23 +94,25 @@ public class ProductController {
 
 	}
 
-	// 댓글목록
+	// Q&A 댓글목록
 	@RequestMapping(value = "/productQnaReply/all/{productId}.do", method = RequestMethod.GET)
 	public ResponseEntity<List<ProductQnaReplyVO>> list(@PathVariable("productId") Integer productId) {
 		ResponseEntity<List<ProductQnaReplyVO>> entity = null;
 
 		try {
 			entity = new ResponseEntity<>(productQnaReplyService.ProductQnaReplyList(productId), HttpStatus.OK);
-			System.out.println("entity : " + entity.toString());
+			System.out.println("Qna entity : " + entity.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
+	
+	
 
 	/*
-	 * * 회원 게시판 댓글 글쓰기 구현하기
+	 * * Q&A 댓글 글쓰기 구현하기
 	 * 
 	 * @return String 참고 : @RequestBody
 	 */
@@ -133,13 +140,13 @@ public class ProductController {
 	}
 
 	/*
-	 * * 댓글 수정 구현하기
+	 * * Q&A 댓글 수정 구현하기
 	 * 
 	 * @return 참고 : REST방식에서 UPDATE 작업은 PUT.PATCH방식을 이용해서 처리 전체 데이터를 수정하는 경우에는
 	 * PUT을 이용하고 일부의 데이터를 수정하는 경우에는 PATCH를 이용
 	 */
 
-	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = {RequestMethod.GET, RequestMethod.PUT,
+	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = { RequestMethod.GET, RequestMethod.PUT,
 			RequestMethod.PATCH })
 	public ResponseEntity<String> replyUpdate(@PathVariable("productqna_number") Integer productqna_number,
 			@RequestBody ProductQnaReplyVO PQRVO) {
@@ -158,7 +165,7 @@ public class ProductController {
 	}
 
 	/*
-	 * * 댓글 삭제 구현하기
+	 * * Q&A 댓글 삭제 구현하기
 	 * 
 	 * @return 참고 :REST방식에서 DELETE 작업은 DELETE방식을 이용해서 처리
 	 */
@@ -170,6 +177,97 @@ public class ProductController {
 
 		try {
 			productQnaReplyService.ProductQnaReplyDelete(productqna_number);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	// 후기 댓글목록
+	@RequestMapping(value = "/productReviewReply/all/{reviewReply_number}.do", method = RequestMethod.GET)
+	public ResponseEntity<List<ProductReviewReplyVO>> list1(
+			@PathVariable("reviewReply_number") Integer reviewReply_number) {
+		ResponseEntity<List<ProductReviewReplyVO>> entity = null;
+
+		try {
+			entity = new ResponseEntity<>(productReviewReplyService.ProductReviewReplyList(reviewReply_number),
+					HttpStatus.OK);
+			System.out.println("Review entity : " + entity.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	/*
+	 * * 후기 댓글 글쓰기 구현하기
+	 * 
+	 * @return String 참고 : @RequestBody
+	 */
+
+	@RequestMapping(value = "/productReviewReplyInsert")
+	public ResponseEntity<String> replyInsert1(@RequestBody ProductReviewReplyVO PRRVO, HttpSession session) {
+		logger.info("replyInsert 호출 성공");
+		ResponseEntity<String> entity = null;
+		int result;
+
+		UserVO uvo = (UserVO) session.getAttribute("UVO");
+		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
+		PRRVO.setUser_number(uvo.getUser_number());
+
+		try {
+			result = productReviewReplyService.ProductReviewReplyInsert(PRRVO);
+			if (result == 1) {
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	/*
+	 * * 후기 댓글 수정 구현하기
+	 * 
+	 * @return 참고 : REST방식에서 UPDATE 작업은 PUT.PATCH방식을 이용해서 처리 전체 데이터를 수정하는 경우에는
+	 * PUT을 이용하고 일부의 데이터를 수정하는 경우에는 PATCH를 이용
+	 */
+
+	@RequestMapping(value = "/productReviewReplyUpdate/{reviewReply_number}.do", method = { RequestMethod.GET,
+			RequestMethod.PUT, RequestMethod.PATCH })
+	public ResponseEntity<String> replyUpdate1(@PathVariable("reviewReply_number") Integer reviewReply_number,
+			@RequestBody ProductReviewReplyVO PRRVO) {
+		logger.info("replyUpdate 호출 성공");
+		ResponseEntity<String> entity = null;
+
+		try {
+			PRRVO.setReviewReply_number(reviewReply_number);
+			productReviewReplyService.ProductReviewReplyUpdate(PRRVO);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	/*
+	 * *후기 댓글 삭제 구현하기
+	 * 
+	 * @return 참고 :REST방식에서 DELETE 작업은 DELETE방식을 이용해서 처리
+	 */
+
+	@RequestMapping(value = "/productReviewReplyDelete/{reviewReply_number}.do", method = RequestMethod.DELETE)
+	public ResponseEntity<String> replyDelete1(@PathVariable("reviewReply_number") Integer reviewReply_number) {
+		logger.info("replyDelete 호출 성공");
+		ResponseEntity<String> entity = null;
+
+		try {
+			productReviewReplyService.ProductReviewReplyDelete(reviewReply_number);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

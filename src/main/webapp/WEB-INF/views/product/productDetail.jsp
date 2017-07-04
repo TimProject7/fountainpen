@@ -109,7 +109,17 @@
 		</div>
 
 	</div>
-<jsp:include page="productQnaReply.jsp"></jsp:include>
+	
+	<!-- Q&A -->
+<div>
+	<jsp:include page="productQnaReply.jsp"></jsp:include>
+</div>
+
+<!-- 후기 -->
+<div>
+	<jsp:include page="productReviewReply.jsp"></jsp:include>
+</div>
+
 
 	<%@ include file="/footer.jsp"%>
 </body>

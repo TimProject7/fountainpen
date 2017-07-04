@@ -17,18 +17,18 @@
 $(function () {
 	/* 기본 댓글 목록 불러오기 */
 	var productId = "<c:out value='${detail.productId}'/>";
-	listAll(productId)
+	listAll1(productId)
 
 
 /* 댓글 내용 저장 이벤트 */
-$("#replyInsert").click(function () {
+$("#reviewReplyInsert").click(function () {
 	//작성자 이름에 대한 입력여부 검사
-	if(!chkSubmit($("#user_id"),"이름을")){
+	if(!chkSubmit($("#user_id"),"아이디을")){
 		return;
-	}else if(!chkSubmit($("#productqna_content"),"내용을")){
+	}else if(!chkSubmit($("#reviewReply_content"),"내용을")){
 		return;
 	}else{
-		var InsertUrl = "/product/productQnaReplyInsert.do";
+		var InsertUrl = "/product/productReviewReplyInsert.do";
 		/* 글 저장을 위한 Post 방식의 Ajax 연동 처리 */
 		$.ajax({
 			url: InsertUrl, //전송url
@@ -43,7 +43,7 @@ $("#replyInsert").click(function () {
 				productId:productId,
 				user_id:$("#user_id").val(),
 				//r_pwd:$("#r_pwd").val(),
-				productqna_content:$("#productqna_content").val()
+				reviewReply_content:$("#reviewReply_content").val()
 			}),
 			error:function(){	//실행시 오류가 발생하였을경우
 				alert('시스템 오류 입니다. 관리자에게 문의 하세요');
@@ -52,7 +52,8 @@ $("#replyInsert").click(function () {
 				if(resultData == "SUCCESS"){
 					alert("댓글 등록이 완료되었습니다.");
 					dataReset();
-					listAll(productId);
+					alert(productId)
+					listAll1(productId);
 				}
 			}
 		});
@@ -60,38 +61,38 @@ $("#replyInsert").click(function () {
 });
 
 /* 수정 버튼 클릭시 수정폼 출력 */
-$(document).on("click",".update_form",function(){
+$(document).on("click",".reviewupdate_form",function(){
 	$(".reset_btn").click();
-	var conText = $(this).parents("li").children().eq(1).html();
-	console.log("conText : " + conText);
+	var reviewconText = $(this).parents("li").children().eq(1).html();
+	console.log("reviewconText : " + reviewconText);
 	$(this).parents("li").find("input[type='button']").hide();
 	//$(this).parents("li").children().eq(0).html();
-	var conArea = $(this).parents("li").children().eq(1);
+	var reviewconArea = $(this).parents("li").children().eq(1);
 	
-	conArea.html("");
-	var data ="<textarea name='content' id='content'>"+conText+"</textarea>";
-	data+="<input type='button' class='update_btn' value='수정완료'>";
+	reviewconArea.html("");
+	var data ="<textarea name='reviewcontent' id='reviewcontent'>"+reviewconText+"</textarea>";
+	data+="<input type='button' class='reviewupdate_btn' value='수정완료'>";
 	data+="<input type='button' class='reset_btn' value='수정취소'>";
-	conArea.html(data);
+	reviewconArea.html(data);
 });
 
 /* 초기화 버튼 */
 $(document).on("click",".reset_btn",function(){
 	var conTxt=$(this).parents("li").find("textarea").html();
 	$(this).parents("li").find("input[type='button']").show();
-	var conArea=$(this).parents("li").children().eq(1);
-	conArea.html(conText);
+	var reviewconArea=$(this).parents("li").children().eq(1);
+	reviewconArea.html(reviewconText);
 });
 
 /* 글 수정을 위한 Ajax 연동 처리 */
-$(document).on("click",".update_btn",function(){
-	var productqna_number = $(this).parents("li").attr("data-num");
-	var productqna_content = $("#content").val();
-	if(!chkSubmit($("#content"),"댓글 내용을")){
+$(document).on("click",".reviewupdate_btn",function(){
+	var reviewReply_number = $(this).parents("li").attr("data-num");
+	var reviewReply_content = $("#reviewcontent").val();
+	if(!chkSubmit($("#reviewcontent"),"댓글 내용을")){
 		return;
 	}else{
 		$.ajax({
-			url:'/product/productQnaReply/'+productqna_number+".do",
+			url:'/product/productReviewReplyUpdate/'+reviewReply_number+".do",
 			type:'put',
 			headers:{
 				"Content-Type":"application/json",
@@ -99,7 +100,7 @@ $(document).on("click",".update_btn",function(){
 				},
 				
 				data:JSON.stringify({
-					productqna_content:productqna_content
+					reviewReply_content:reviewReply_content
 				}),
 				
 				dataType:'text',
@@ -107,7 +108,7 @@ $(document).on("click",".update_btn",function(){
 					console.log("result: " + result);
 					if(result == 'SUCCESS'){
 						alert("수정 되었습니다.");
-						listAll(productId);
+						listAll1(productId);
 					}
 				}
 			});
@@ -115,12 +116,12 @@ $(document).on("click",".update_btn",function(){
 	});
 	
 	/* 글 삭제를 위한 Ajax 연동 처리 */
-	$(document).on("click",".delete_btn",function(){
-	var productqna_number = $(this).parents("li").attr("data-num");
-	console.log("productqna_number: " + productqna_number);
+	$(document).on("click",".reviewdelete_btn",function(){
+	var reviewReply_number = $(this).parents("li").attr("data-num");
+	console.log("reviewReply_number: " + reviewReply_number);
 	if(confirm("선택하신 댓글을 삭제하시겠습니까?")){
 		$.ajax({
-			url:'/product/productQnaReply/'+productqna_number+".do",
+			url:'/product/productReviewReplyDelete/'+reviewReply_number+".do",
 			type:'delete',
 			headers:{
 				"Content-Type":"application/json",
@@ -132,7 +133,7 @@ $(document).on("click",".update_btn",function(){
 					console.log("result: " + result);
 					if(result == 'SUCCESS'){
 						alert("삭제 되었습니다.");
-						listAll(productId);
+						listAll1(productId);
 					}
 				}
 			});
@@ -141,19 +142,19 @@ $(document).on("click",".update_btn",function(){
 });
 
 //리스트 요청 함수
-function listAll(productId){
-	$("#comment_list").html("");
-	var url = "/product/productQnaReply/all/"+productId+".do";
+function listAll1(productId){
+	$("#reviewcomment_list").html("");
+	var url = "/product/productReviewReply/all/"+productId+".do";
 	
 	$.getJSON(url,function(data){
 		console.log(data.length);
 		
 		$(data).each(function(){
-			var productqna_number = this.productqna_number;
+			var reviewReply_number = this.reviewReply_number;
 			var user_id = this.user_id;
-			var productqna_content = this.productqna_content;
-			var productqna_writedate = this.productqna_writedate;
-			addNewItem(productqna_number, user_id, productqna_content, productqna_writedate);
+			var reviewReply_content = this.reviewReply_content;
+			var reviewReply_writedate = this.reviewReply_writedate;
+			addNewItem1(reviewReply_number, user_id, reviewReply_content, reviewReply_writedate);
 		});
 		
 	}).fail(function(){
@@ -162,49 +163,49 @@ function listAll(productId){
 }
 
 /* 새로운 글을 화면에 추가하기 위한 함수 */
-function addNewItem(productqna_number, user_id, productqna_content, productqna_writedate) {
+function addNewItem1(reviewReply_number, user_id, reviewReply_content, reviewReply_writedate) {
 	//새로운 글이 추가될 li태그 객체
-	var new_li = $("<li>");
-	new_li.attr("data-num",productqna_number);
-	new_li.addClass("comment_item");
+	var reviewnew_li = $("<li>");
+	reviewnew_li.attr("data-num",reviewReply_number);
+	reviewnew_li.addClass("reviewcomment_item");
 	
 	//작성자 정보가 지정될 <p>태그
-	var writer_p = $("<p>");
-	writer_p.addClass("writer");
+	var reviewwriter_p = $("<p>");
+	reviewwriter_p.addClass("reviewwriter");
 	
 	//작성자 정보의 이름
-	var name_span = $("<span>");
-	name_span.addClass("name");
-	name_span.html(user_id+"님");
+	var reviewname_span = $("<span>");
+	reviewname_span.addClass("reviewname");
+	reviewname_span.html(user_id+"님");
 	
 	//작성일시
-	var date_span =$("<span>");
-	date_span.html("/" + productqna_writedate +"");
+	var reviewdate_span =$("<span>");
+	reviewdate_span.html("/" + reviewReply_writedate +"");
 	
 	//수정하기 버튼
-	var up_input = $("<input>");
-	up_input.attr({"type":"button","value":"수정하기"});
-	up_input.addClass("update_form");
+	var reviewup_input = $("<input>");
+	reviewup_input.attr({"type":"button","value":"수정하기"});
+	reviewup_input.addClass("reviewupdate_form");
 	
 	//삭제하기 버튼
-	var del_input= $("<input>");
-	del_input.attr({"type":"button","value":"삭제하기"});
-	del_input.addClass("delete_btn");
+	var reviewdel_input= $("<input>");
+	reviewdel_input.attr({"type":"button","value":"삭제하기"});
+	reviewdel_input.addClass("reviewdelete_btn");
 	
 	//내용
-	var content_p = $("<p>");
-	content_p.addClass("con");
-	content_p.html(productqna_content);
+	var reviewcontent_p = $("<p>");
+	reviewcontent_p.addClass("reviewcon");
+	reviewcontent_p.html(reviewReply_content);
 	
 	//조립하기
-	writer_p.append(name_span).append(date_span).append(up_input).append(del_input);
-	new_li.append(writer_p).append(content_p);
-	$("#comment_list").append(new_li);
+	reviewwriter_p.append(reviewname_span).append(reviewdate_span).append(reviewup_input).append(reviewdel_input);
+	reviewnew_li.append(reviewwriter_p).append(reviewcontent_p);
+	$("#reviewcomment_list").append(reviewnew_li);
 }
 function dataReset() {
-	$("#user_id").val("");
+	
 	//$("#r_pwd").val("");
-	$("#productqna_content").val("");
+	$("#reviewReply_content").val("");
 }
 
 </script>
@@ -215,18 +216,19 @@ function dataReset() {
 		<div id="comment_writer">
 			<form id="comment_form">
 				<div>
-					<h2>Q&A</h2>
+					<h2>후기</h2>
 					<label for="user_id">작성자</label>
 					<input type="text" name="user_id" id="user_id" value="${sessionScope.UVO.user_id}"/>
-					<input type="button" id="replyInsert" value="저장하기" />
+					<input type="button" id="reviewReplyInsert" value="저장하기" />
 				</div>
 				<div>
-					<label for="productqna_content">댓글 내용</label>
-					<textarea name="productqna_content" id="productqna_content"></textarea>
+					<label for="reviewReply_content">댓글 내용</label>
+					<textarea name="reviewReply_content" id="reviewReply_content"></textarea>
 				</div>
 			</form>
 		</div>
-		<ul id="comment_list">
+		
+		<ul id="reviewcomment_list">
 			<!-- 여기에 동적 생성 요소가 들어가게 됩니다. -->
 		</ul>
 	</div>

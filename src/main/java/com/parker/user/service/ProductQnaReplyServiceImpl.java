@@ -20,7 +20,7 @@ public class ProductQnaReplyServiceImpl implements ProductQnaReplyService{
 	public List<ProductQnaReplyVO> ProductQnaReplyList(Integer productId) {
 		List<ProductQnaReplyVO> ProductQnaReplyList;
 		ProductQnaReplyList = PQRDAO.ProductQnaReplyList(productId);
-		System.out.println("서비스 ProductQnaReplyList.toString() : " + ProductQnaReplyList.toString());
+
 		return ProductQnaReplyList;
 	}
 

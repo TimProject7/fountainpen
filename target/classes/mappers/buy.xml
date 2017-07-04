@@ -49,7 +49,7 @@
 		FROM buy_tb b, users_tb u
 		WHERE
 		b.user_number = #{user_number}
-		AND
+		and
 		b.buy_day = sysdate
 		AND
 		b.user_number = u.user_number

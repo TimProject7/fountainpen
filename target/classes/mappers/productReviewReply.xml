@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.ProductReviewReplyDAO">
+	<select id="ProductReviewReplyList" resultType="com.parker.user.vo.ProductReviewReplyVO"
+		parameterType="com.parker.user.vo.ProductReviewReplyVO">
+		select 
+				rr.REVIEWREPLY_NUMBER, rr.REVIEWREPLY_CONTENT, rr.reviewReply_writedate,
+				p.product_number, u.user_number, u.user_name, u.user_id
+		from 
+				REVIEWREPLY_TB rr, products_tb p, users_tb u
+		where 
+				rr.user_number = u.user_number
+				and p.product_number = #{product_number}
+		order by
+				rr.reviewReply_number desc
+
+	</select>
+	
+	<!--작성 -->
+	<insert id="ProductReviewReplyInsert" parameterType="com.parker.user.vo.ProductReviewReplyVO">
+		<selectKey keyProperty="reviewReply_number" resultType="int"
+			order="BEFORE">
+			select seq_reviewReply_tb.nextval from dual
+		</selectKey>
+		insert into reviewReply_tb(
+			reviewReply_number ,
+			reviewReply_content ,
+			reviewReply_writedate,
+			<!-- reviewReply_image , -->
+			user_number ,
+			product_number
+		)
+		
+		values(
+			#{reviewReply_number },
+			#{reviewReply_content},
+			sysdate,
+			<!-- #{reviewReply_image }, -->
+			#{user_number },
+			#{productId}
+		)
+	</insert>
+
+	<update id="ProductReviewReplyUpdate" parameterType="com.parker.user.vo.ProductReviewReplyVO">
+		<!--댓글수정 -->
+		update
+		reviewReply_tb
+		set
+		reviewReply_content = #{reviewReply_content},
+		reviewReply_writedate =
+		sysdate
+		where
+		reviewReply_number = #{reviewReply_number}
+
+	</update>
+
+	<delete id="ProductReviewReplyDelete" parameterType="com.parker.user.vo.ProductReviewReplyVO">
+		delete
+		from
+		reviewReply_tb
+		where
+		reviewReply_number =#{reviewReply_number}
+	</delete>
+</mapper>

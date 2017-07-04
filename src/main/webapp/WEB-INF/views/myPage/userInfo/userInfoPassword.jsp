@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보변경 비밀번호입력 페이지</title>
-<link rel="stylesheet" href="/css/buyList.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 <script type="text/javascript" src="../../js/common.js"></script>
 </head>
