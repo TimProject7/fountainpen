@@ -4,42 +4,50 @@
 
 <mapper namespace="com.parker.user.dao.QuestionDAO">
 
-<!-- <select id="questionList" parameterType="com.parker.user.vo.QuestionVO"
-		resultType="com.parker.user.vo.QuestionVO">
-	select * from(select lst.*, rownum as rnum from( select
-	question_number,
-	question_title, question_writedate,question_content, u.user_name from question_tb,
-	users_tb u where question_tb.user_number= u.user_number and
-	u.user_number
-	= #{user_number} order by question_number asc )lst )
-			</select> -->
+	<!-- <select id="questionList" parameterType="com.parker.user.vo.QuestionVO" 
+		resultType="com.parker.user.vo.QuestionVO"> select * from(select lst.*, rownum 
+		as rnum from( select question_number, question_title, question_writedate,question_content, 
+		u.user_name from question_tb, users_tb u where question_tb.user_number= u.user_number 
+		and u.user_number = #{user_number} order by question_number asc )lst ) </select> -->
 
 
 	<!--1:1문의 게시판 리스트목록 -->
 	<select id="questionList" parameterType="com.parker.user.vo.QuestionVO"
 		resultType="com.parker.user.vo.QuestionVO">
-		<!-- 
-		select * from(
-			select lst.*, rownum as rnum 
-				from( 
-					select 
-						question_number, question_title, question_writedate,question_content, u.user_name 
-					from 
-						question_tb, users_tb u 
-					where 
-						question_tb.user_number= u.user_number and u.user_number = #{user_number} 
-					order by 
-						question_number 
-						asc )lst ) -->
-		select * from(select list.*, rownum as rnum from(select * from
-      question_tb where user_number =#{user_number})list)
-		<where>
-			<if test="start_row != null and start_row != ''">
-				<if test="end_row != null and end_row != ''">
-					rnum between #{start_row} and #{end_row}
-				</if>
-			</if>
-		</where>
+		<!-- select * from(
+		select lst.*, rownum as rnum from(
+		select
+		question_number,question_title, question_writedate,question_content, u.user_name
+		from
+		question_tb, users_tb u
+		where
+		question_tb.user_number= u.user_number
+		and
+		u.user_number= #{user_number}
+		order by question_number asc
+		)lst
+		) -->
+		select * 
+			from(
+				select lst.*, rownum as rnum
+				from(
+					select
+						question_number, question_title,question_status,question_writedate,
+						question_content,
+						u.user_name
+							from
+								question_tb,users_tb u
+							where 
+								question_tb.user_number=u.user_number
+							and 
+								u.user_number = #{user_number}
+							order by
+								question_number desc
+					)lst
+				)
+
+		WHERE RNUM BETWEEN #{start_row} and #{end_row}
+
 	</select>
 
 	<!-- 전체 레코드 건수 -->
@@ -50,7 +58,7 @@
 		(select lst.*, rownum as rnum
 		from(
 		select
-		question_number, question_title,
+		question_number, question_title,question_status
 		question_writedate,question_content,
 		u.user_name
 		from
@@ -128,7 +136,8 @@
 		#{question_content},
 		question_writedate = sysdate,
 
-		question_image = #{question_image}
+		question_image =
+		#{question_image}
 		where
 		user_number = #{user_number}
 

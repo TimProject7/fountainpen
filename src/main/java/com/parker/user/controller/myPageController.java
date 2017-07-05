@@ -313,8 +313,9 @@ public class myPageController {
 
 		logger.info("search = " + bvo.getSearch());
 		logger.info("keyword = " + bvo.getKeyword());
-		logger.info("lately_buy = " +bvo.getLately_buy());
-		logger.info("month_buy=="+bvo.getMonth_buy());
+		logger.info("lately_buy = " +bvo.getWeek1_buy());
+		logger.info("lately_buy = " +bvo.getWeek2_buy());
+		logger.info("month_buy=="+bvo.getMonth1_buy());
 		
 		// 검색에 대한 데이터 확인
 		int total = buylistService.buyListCnt(bvo);

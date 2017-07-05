@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.FAQDao">
+
+	<!-- 01. 게시글 전체 목록 조회 -->
+	<select id="faqlistAll" resultType="com.parker.user.vo.FAQVO"
+		parameterType="com.parker.user.vo.FAQVO">
+		select *
+		from(
+		select list.faq_no,
+		list.faq_title,
+		list.faq_content,
+		list.faq_writer,
+		list.faq_regdate,
+		list.faq_viewcnt,
+		list.admin_number,
+		rownum as rnum
+		from (
+		select
+		faq_no,
+		faq_title,
+		faq_content,
+		faq_writer,
+		faq_regdate,
+		faq_viewcnt,
+		admin_number
+		from
+		faq_tb
+		order by
+		faq_no desc,
+		faq_regdate desc
+		)list
+		)
+		where
+		rnum between
+		#{start_row} and
+		#{end_row}
+	</select>
+
+	<!--03. 게시글 상세보기 조회 -->
+	<select id="faqview" resultType="com.parker.user.vo.FAQVO">
+		SELECT * FROM faq_tb
+		WHERE faq_no
+		= #{faq_no}
+	</select>
+	<!-- 04. 게시글 조회수 증가처리 -->
+	<update id="faqincreaseViewcnt">
+		UPDATE faq_tb SET faq_viewcnt = faq_viewcnt + 1
+		WHERE
+		faq_no = #{faq_no}
+	</update>
+	
+	<!-- 07. 게시물 갯수 -->
+	<select id="listCnt" resultType="int" parameterType="com.parker.user.vo.FAQVO">
+		select
+		nvl(count(1),0)
+		from
+		(select
+		list.*
+		from(
+		SELECT
+		faq_no,
+		faq_title,
+		faq_content,
+		faq_writer,
+		faq_regdate,
+		faq_viewcnt,
+		admin_number
+		FROM
+		faq_tb
+		)list
+		)
+	</select>
+</mapper>

@@ -22,11 +22,15 @@
                			and
                				b.user_number = #{user_number}
                		
-               		<if test="lately_buy=='2week'">
-               			and buy_day BETWEEN sysdate-1 AND sysdate
+               		<if test="week1_buy=='week1'">
+               			and buy_day BETWEEN sysdate-7 AND sysdate
                		</if>
                		
-               		<if test="month_buy=='1month'">
+               		<if test="week2_buy=='week2'">
+               			and buy_day BETWEEN sysdate-14 AND sysdate
+               		</if>
+               		
+               		<if test="month1_buy=='month1'">
                			and buy_day BETWEEN sysdate-30 AND sysdate
                		</if>
                  

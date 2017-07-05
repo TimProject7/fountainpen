@@ -11,6 +11,7 @@ public class UserBoardVO extends PagingVO {
 
 	private int userboard_number; // 회원게시판번호
 	private String userboard_title; // 회원게시판 제목
+	private String userboard_id; // 회원아이디
 	private String userboard_name; // 회원게시판 작성자
 	private String userboard_content; // 회원게시판 내용
 	private Date userboard_writedate; // 회원게시판 작성일
@@ -18,6 +19,14 @@ public class UserBoardVO extends PagingVO {
 	private MultipartFile userboard_url; // 회원게시판 이미지
 	private int userboard_viewCnt; // 회원게시판 조회수
 	private int user_number; // 회원번호
+
+	public String getUserboard_id() {
+		return userboard_id;
+	}
+
+	public void setUserboard_id(String userboard_id) {
+		this.userboard_id = userboard_id;
+	}
 
 	public int getUserboard_number() {
 		return userboard_number;
@@ -94,10 +103,10 @@ public class UserBoardVO extends PagingVO {
 	@Override
 	public String toString() {
 		return "UserBoardVO [userboard_number=" + userboard_number + ", userboard_title=" + userboard_title
-				+ ", userboard_name=" + userboard_name + ", userboard_content=" + userboard_content
-				+ ", userboard_writedate=" + userboard_writedate + ", userboard_image=" + userboard_image
-				+ ", userboard_url=" + userboard_url + ", userboard_viewCnt=" + userboard_viewCnt + ", user_number="
-				+ user_number + "]";
+				+ ", userboard_id=" + userboard_id + ", userboard_name=" + userboard_name + ", userboard_content="
+				+ userboard_content + ", userboard_writedate=" + userboard_writedate + ", userboard_image="
+				+ userboard_image + ", userboard_url=" + userboard_url + ", userboard_viewCnt=" + userboard_viewCnt
+				+ ", user_number=" + user_number + "]";
 	}
 
 }

@@ -10,23 +10,20 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../../cleditor/jquery.cleditor.css">
+<link rel="stylesheet" href="../../cleditor/jquery.cleditor.css" />
+<script src="../../cleditor/jquery-1.4.4.min.js"></script>
+<script src="../../cleditor/jquery.cleditor.min.js"></script>
+<script src="../../cleditor/jquery.cleditor.table.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		//리스트버튼
-	/* 	$("#userboardListBtn").on("click", function() {
-			//입력값 체크
-			var ext = $('#userboard_url').val().split('.').pop().toLowerCase();
-			if (jQuery.inArray(ext, [ 'gif', 'png', 'jpg', 'jpeg' ]) == -1) {
-				alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.')
-			}
-			$("#userboardwriterForm").attr({
-				"method" : "POST",
-				"action" : "/serviceCenter/userBoard/userBoard.do"
-			});
-			$("#userboardwriterForm").submit();
-		}); */
+
+		$("#userboard_content").cleditor({
+			width : 500,
+			height : 300
+		});
+
 	});
 </script>
 </head>
@@ -40,8 +37,8 @@
 				<tr>
 					<td>작성자</td>
 					<td><input type="text" id="userboard_name"
-						name="userboard_name"></td>
-					
+						name="userboard_name" value="${sessionScope.UVO.user_id}"></td>
+
 				</tr>
 				<tr>
 					<td>제목</td>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.NoticeDao">
+
+	<!-- 01. 게시글 전체 목록 조회 -->
+	<select id="noticelistAll" resultType="com.parker.user.vo.NoticeVO"
+		parameterType="com.parker.user.vo.NoticeVO">
+		select *
+		from(
+		select list.*, rownum as rnum
+		from (
+		SELECT
+		notice_no,
+		notice_title,
+		notice_content,
+		notice_writer,
+		notice_regdate,
+		notice_viewcnt
+		FROM
+		notice_tb
+		ORDER BY
+		notice_no desc,
+		notice_regdate desc
+		)list
+		)
+		where
+		rnum between #{start_row} and #{end_row}
+	</select>
+	
+
+	<!--03. 게시글 상세보기 조회 -->
+	<select id="noticeview" resultType="com.parker.user.vo.NoticeVO">
+		SELECT * FROM notice_tb
+		WHERE
+		notice_no
+		= #{notice_no}
+	</select>
+	<!-- 04. 게시글 조회수 증가처리 -->
+	<update id="noticeincreaseViewcnt">
+		UPDATE notice_tb SET notice_viewcnt = notice_viewcnt
+		+ 1
+		WHERE
+		notice_no = #{notice_no}
+	</update>
+	
+
+	<!-- 07. 게시글 갯수 -->
+	<select id="noticeListCnt" resultType="int"
+		parameterType="com.parker.user.vo.NoticeVO">
+		select
+		nvl(count(1),0)
+		from
+		(select
+		list.*
+		from(
+		SELECT
+		notice_no,
+		notice_title,
+		notice_content,
+		notice_writer,
+		notice_regdate,
+		notice_viewcnt
+		FROM
+		notice_tb
+		)list
+		)
+
+
+	</select>
+</mapper>

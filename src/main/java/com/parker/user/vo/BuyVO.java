@@ -37,23 +37,34 @@ public class BuyVO extends PagingVO {
 	private String keyword = "";
 
 	// 검색
-	private String lately_buy;
-	private String month_buy;
+	private String week1_buy;
+	private String week2_buy;
+	private String month1_buy;
 
-	public String getMonth_buy() {
-		return month_buy;
+	
+
+	public String getWeek1_buy() {
+		return week1_buy;
 	}
 
-	public void setMonth_buy(String month_buy) {
-		this.month_buy = month_buy;
+	public void setWeek1_buy(String week1_buy) {
+		this.week1_buy = week1_buy;
 	}
 
-	public String getLately_buy() {
-		return lately_buy;
+	public String getWeek2_buy() {
+		return week2_buy;
 	}
 
-	public void setLately_buy(String lately_buy) {
-		this.lately_buy = lately_buy;
+	public void setWeek2_buy(String week2_buy) {
+		this.week2_buy = week2_buy;
+	}
+
+	public String getMonth1_buy() {
+		return month1_buy;
+	}
+
+	public void setMonth1_buy(String month1_buy) {
+		this.month1_buy = month1_buy;
 	}
 
 	public String getSearch() {
@@ -273,8 +284,10 @@ public class BuyVO extends PagingVO {
 				+ ", user_email=" + user_email + ", user_cell=" + user_cell + ", user_phone=" + user_phone + ", name="
 				+ name + ", cell=" + cell + ", email=" + email + ", zip_code=" + zip_code + ", user_address="
 				+ user_address + ", detail_address=" + detail_address + ", buy_Message=" + buy_Message + ", money="
-				+ money + ", total=" + total + ", search=" + search + ", keyword=" + keyword + ", lately_buy="
-				+ lately_buy + ", month_buy=" + month_buy + "]";
+				+ money + ", total=" + total + ", search=" + search + ", keyword=" + keyword + ", week1_buy="
+				+ week1_buy + ", week2_buy=" + week2_buy + ", month1_buy=" + month1_buy + "]";
 	}
+
+	
 
 }

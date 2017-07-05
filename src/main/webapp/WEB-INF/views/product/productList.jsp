@@ -147,7 +147,7 @@
                         <div>
                            <a
                               href="javascript:goProductDetail(${product.productId },${data.page },${data.pageSize })">
-                              <img src="/images/${product.productImage }" width="100%"
+                              <img src="/admin/resources/images/${product.productImage }" width="100%"
                               height="200px">
                               <div>
                                  <div>${product.productCompany }</div>
@@ -166,11 +166,9 @@
          </ul>
 
       </div>
-
-
-      
-
    </div>
+   
+  	
    
    <!-- 페이지 네비 -->
    <div id="productPage" align="center">

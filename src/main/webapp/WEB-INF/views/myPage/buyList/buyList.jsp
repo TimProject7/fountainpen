@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true"%>
 <%@ include file="/header.jsp"%>
 
@@ -56,6 +57,25 @@
 			}
 			goPage(1);
 		});
+		//최근1주 라디오버튼
+		$("#week1_buy").click(function() {
+			$("#week1_buy").val()
+
+			goPage(1)
+		})
+
+		//최근2주 라디오버튼
+		$("#week2_buy").click(function() {
+			$("#week2_buy").val()
+
+			goPage(1)
+		})
+		//최근한달 라디오버튼
+		$("#month1_buy").click(function() {
+			$("#month1_buy").val()
+
+			goPage(1)
+		})
 
 	});
 	//검색한페이지에 보여줄 레코드 수 처리 및 페이징을 위한 실질적인 처리 함수
@@ -77,18 +97,17 @@
 	<div class="alldiv">
 		<c:choose>
 			<c:when test="${not empty sessionScope.UVO}">
-				<input type="text" id="user_number" name="user_number"
+				<input type="hidden" id="user_number" name="user_number"
 					value="${sessionScope.UVO.user_number}" />
 				<input type="hidden" id="user_name" name="user_name"
 					value="${sessionScope.UVO.user_name}" />
-
 			</c:when>
 		</c:choose>
 
 		<div id="myPageForm" align="center">
 			<ul id="myPageForm_nav_ul">
 				<li><a href="/myPage/userInfo/userInfoPassword.do">회원정보변경</a></li>
-				<li><a href="/myPage/buyList/buyList.do"><b>구매내역</b></a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
 				<li><a href="/myPage/question/question.do">1:1문의</a></li>
 				<li><a href="/cart/cartList.do">장바구니</a></li>
 				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
@@ -100,22 +119,38 @@
 		<form id="f_search" name="f_search">
 			<input type="hidden" id="page" name="page" value="${data.page}" /> <input
 				type="hidden" id="pageSize" name="pageSize" value="${data.pageSize}" />
+
+			<label for="month1_buy">최근1달<input type="radio" id="month1_buy" name="month1_buy" value="month1"></label> 
+			<label for="week2_buy">최근2주<input type="radio" id="week2_buy" name="week2_buy" value="week2"></label> 
+			<label for="week1_buy">최근1주<input type="radio" id="week1_buy" name="week1_buy" value="week1"></label>
+
+			<!--검색-->
+			<table summary="검색">
+
+				<tr>
+					<td><label>검색조건</label> <select name="search" id="search">
+
+							<option value="all">전체</option>
+							<option value="buy_product">상품명</option>
+							<option value="buy_day">구매날짜</option>
+
+					</select> <input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
+						<input type="button" value="검색" id="searchData"></td>
+				</tr>
+			</table>
 		</form>
-
-
-
 
 		<!-- 구매내역 리스트 -->
 		<div>
-			<table class="buylistTable">
+			<table border="1" class="buylistTable">
 				<tr></tr>
 				<tr>
-					<th id="buyth">구매번호</th>
-					<th id="buyth">상품이미지</th>
-					<th id="buyth">상품명</th>
-					<th id="buyth">상품가격</th>
-					<th id="buyth">수량</th>
-					<th id="buyth">구매날짜</th>
+					<th>구매번호</th>
+					<th>상품이미지</th>
+					<th>상품명</th>
+					<th>상품가격</th>
+					<th>수량</th>
+					<th>구매날짜</th>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty buyListlist}">
@@ -128,11 +163,10 @@
 								<td>${buyListlist.buy_product}</td>
 								<td>${buyListlist.buy_price}</td>
 								<td>${buyListlist.buy_quantity}</td>
-								<td>${buyListlist.buy_day}</td>
+								<td><fmt:formatDate value="${buyListlist.buy_day}"
+										pattern="yyyy-MM-dd" /></td>
+								<%-- <td>${buyListlist.buy_day}</td> --%>
 
-							</tr>
-							<tr>
-							<td colspan="6"><img src="/images/line.png" style="width: 100%;" > </td>
 							</tr>
 							<%-- <input type="hidden" value="${buytotal+=buytotal }"> --%>
 						</c:forEach>
@@ -150,34 +184,8 @@
 			<tag:paging page="${param.page}" total="${total}"
 				list_size="${data.pageSize}" />
 		</div>
-		
-		<br>
-
-		<!--검색-->
-		<table summary="검색">
-			<tr>
-				<td width="260px">
-					<select name="search" id="search">
-					
-						<option value="all">전체</option>
-						<option value="buy_product">상품명</option>
-						<option value="buy_day">구매날짜</option>
-				
-					</select>
-					
-					<input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
-					
-				</td>
-				<td>
-					<input type="button" value="검색" id="searchData">
-				</td>
-			</tr>
-		</table>
-
 
 	</div>
-	
-		<%@ include file="/footer.jsp"%>
 
 </body>
 </html>

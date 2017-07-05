@@ -58,11 +58,19 @@
 
 </head>
 <body>
-
+	
+	<div id="myPageForm" align="center">
+      <ul id="myPageForm_nav_ul">
+         <li><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
+         <li><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         <li><a href="/serviceCenter/faq/FAQlist.do"><b>1:1문의</b></a></li>
+      </ul>
+   </div>
+	
 	<!-- 페이지 넘버 가져오는 폼 -->
 	<form id="f_search" name="f_search">
 		<input type="hidden" id="page" name="page" value="${data.page}" />
-		
+
 		<!--검색-->
 		<!-- <table summary="검색">
 			<tr>

@@ -20,6 +20,7 @@
 		})
 	}) */
 	$(document).ready(function() {
+		
 		$("#cartBtn").click(function() {//[장바구니에담기] 버튼클릭
 
 			$("#form1").attr({
@@ -57,7 +58,7 @@
 			<tbody>
 
 				<tr>
-					<td rowspan="6"><img src="../images/${detail.productImage }" width="100%" height="300px"></td>
+					<td rowspan="6"><img src="/admin/resources/images/${detail.productImage }" width="100%" height="300px"></td>
 				</tr>
 				<tr>
 					<td>상품명</td>
@@ -108,7 +109,8 @@
 		</div>
 
 	</div>
-
+<jsp:include page="productQnaReply.jsp"></jsp:include>
+  	<jsp:include page="productReviewReply.jsp"></jsp:include>
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>
