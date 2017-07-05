@@ -1,6 +1,6 @@
 package com.parker.user.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +17,13 @@ public class ProductVO extends PagingVO {
 	private String productOrigin; // 상품원산지
 	private MultipartFile productPhoto; // 상품이미지 파일
 	private Date productRegdate; // 등록일자
+
+	// 조건검색시 사용할 필드
+	private String search = "";
+	private String keyword = "";
+
+	// 검색
+	private String weeks2;
 
 	public int getProductId() {
 		return productId;
@@ -98,12 +105,28 @@ public class ProductVO extends PagingVO {
 		this.productRegdate = productRegdate;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductVO [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
-				+ ", productContent=" + productContent + ", productImage=" + productImage + ", productQuantity="
-				+ productQuantity + ", productCompany=" + productCompany + ", productOrigin=" + productOrigin
-				+ ", productPhoto=" + productPhoto + ", productRegdate=" + productRegdate + "]";
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getWeeks2() {
+		return weeks2;
+	}
+
+	public void setWeeks2(String weeks2) {
+		this.weeks2 = weeks2;
 	}
 
 }

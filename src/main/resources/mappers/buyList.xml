@@ -22,7 +22,13 @@
                			and
                				b.user_number = #{user_number}
                		
+               		<if test="lately_buy=='2week'">
+               			and buy_day BETWEEN sysdate-1 AND sysdate
+               		</if>
                		
+               		<if test="month_buy=='1month'">
+               			and buy_day BETWEEN sysdate-30 AND sysdate
+               		</if>
                  
 					<if test="search=='buy_product'">
 						and (buy_product Like '%'||#{keyword}||'%')
@@ -31,7 +37,7 @@
 						and (buy_day like '%'||#{keyword}||'%')
 					</if>
           			   order by 
-                      		b.buy_number
+                      		b.buy_day desc
       					)lst
 				)
 				WHERE RNUM BETWEEN #{start_row} and #{end_row}

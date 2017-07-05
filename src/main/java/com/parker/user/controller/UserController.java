@@ -44,7 +44,7 @@ public class UserController {
 		int result = 0;
 
 		result = userService.userinsert(UVO);
-		
+
 		return "redirect:/";
 
 	}
@@ -53,7 +53,6 @@ public class UserController {
 	@RequestMapping(value = "/useridcheck", method = RequestMethod.POST)
 	public String useridcheck(Model model, @ModelAttribute UserVO UVO) {
 		logger.info("useridcheck");
-		
 
 		String result = userService.useridchk(UVO);
 		System.out.println("result:" + result);
@@ -88,7 +87,6 @@ public class UserController {
 		// 가져온정보를
 
 		String uvo = userService.sessionLogin1(UVO);
-		
 
 		// String daopass = UVO.getUser_password();
 
@@ -106,19 +104,19 @@ public class UserController {
 		}
 
 		UVO = userService.sessionLogin(UVO);
-		if (result == true &&UVO.getUser_status().equals("Y")) {
+		if (result == true && UVO.getUser_status().equals("Y")) {
 			// 비밀번호가 맞으면 result == true
 			// 아이디 비밀번호가맞음
 			System.out.println("성공");
 			System.out.println("UVO.getUser_status() : " + UVO.getUser_status());
 			// 세션이 존재하면 UVO로 사용하겟다 -
 			session.setAttribute("UVO", UVO);
-			
+
 			mav.addObject("result", result);
 			mav.setViewName("redirect:/");
-			
+
 			// 비밀번호가 틀리면 다시 로그인페이지로
-		} else{
+		} else {
 			mav.addObject("msg", "pass");
 			mav.setViewName("/user/userlogin");
 		}
@@ -148,27 +146,35 @@ public class UserController {
 	@RequestMapping(value = "/idFindchk", method = RequestMethod.POST)
 	public String idFindchk(Model model, @ModelAttribute UserVO UVO, HttpServletRequest request) {
 		logger.info("idFindchk 호출 성공");
-		
-		//뷰에서 가져온값
+		String a = "1";
+
+		// 뷰에서 가져온값
 		String username = request.getParameter("user_name");
 		String useremail = request.getParameter("user_email");
-		
-		//VO에 넣어줄값
+		System.out.println("username : " + username);
+		System.out.println("useremail : " + useremail);
+
+		// VO에 넣어줄값
 		UVO.setUser_name(username);
 		UVO.setUser_email(useremail);
-		
-		//맵퍼에 보내준다
+
+		// 맵퍼에 보내준다
 		UVO = userService.idFind(UVO);
-
-		//아이디가 있으면 가져온다-
-		String userid = UVO.getUser_id();
-		
-		//있으면 찾아주고 없으면 널
-		if (userid != null) {
-			model.addAttribute("userid", userid);
+		//if (!UVO.getUser_id().equals("") && !UVO.getUser_id().equals(null)) {
+		if (UVO!=null) {
+			// 아이디가 있으면 가져온다-
+			String userid = UVO.getUser_id();
+			System.out.println("userid : " + userid);
+			// 있으면 찾아주고 없으면 널
+			model.addAttribute("userid",userid);
+			return "/user/idFindChk";
+		}else{
+			model.addAttribute("msg", "success");
+			return "/user/idFind";
 		}
+		
 
-		return "user/idFindsending";
+
 	}
 
 	// 비밀번호찾기

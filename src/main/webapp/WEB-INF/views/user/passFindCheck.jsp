@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/header.jsp"%>
 
 
 
@@ -20,3 +21,4 @@
 	</table>
 	<input type="submit" id="passChange" value="변경완료" />
 </form>
+<%@ include file="/footer.jsp"%>

@@ -47,10 +47,9 @@ public class MailController {
 		String content = joincode; // 인증키
 
 		int emailChk = userService.emailChk(UVO);
-		UserVO passemailChk = userService.passEmailFind(UVO);
-
-		System.out.println("emailChk : " + emailChk);
-		if (emailChk == 0 || !passemailChk.equals(null)) {
+		//UserVO passemailChk = userService.passEmailFind(UVO);
+		
+		if (emailChk == 0  ) {
 			try {
 
 				MimeMessage message = mailSender.createMimeMessage();
@@ -99,19 +98,19 @@ public class MailController {
 		String user_email = request.getParameter("user_email"); // 받는 사람 이메일
 		String title = "parker이메일 인증키입니다"; // 제목
 		String content = joincode; // 인증키
-		
-		//뷰에서 입력값을 가져온다.
+
+		// 뷰에서 입력값을 가져온다.
 		String user_id = request.getParameter("user_id");// 아이디
 		String user_name = request.getParameter("user_name");// 이름
-		
-		//모델에값을넣어서 디비검색
+
+		// 모델에값을넣어서 디비검색
 		UVO.setUser_id(user_id);
 		UVO.setUser_name(user_name);
 		UVO.setUser_email(user_email);
 
 		UVO = userService.passEmailFind(UVO);
 
-		if (UVO!=null) {
+		if (UVO != null) {
 			System.out.println("성공");
 
 			try {
@@ -138,13 +137,13 @@ public class MailController {
 				System.out.println(e);
 
 			}
-			
+
 			return "mail/mailsending";
-			
+
 		} else {
-			
+
 			System.out.println("실패");
-			model.addAttribute("content",null);
+			model.addAttribute("content", null);
 			return "mail/mailsending";
 		}
 

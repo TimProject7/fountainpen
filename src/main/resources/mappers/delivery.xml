@@ -20,7 +20,7 @@
 					 and
                			 b.user_number = #{user_number}
 					order by
-						b.buy_day asc
+						b.buy_day desc
 					)lst
 			)
       			WHERE RNUM BETWEEN #{start_row} and #{end_row}

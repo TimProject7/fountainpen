@@ -6,7 +6,7 @@ a{
 }
 
 .all {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0;
 }
@@ -15,22 +15,23 @@ a{
 	width: 80%;
 }
 
+.body {
+	width: 80%;
+}
 
 .cartListtable {
-	width: 100%;
+	width: 80%;
 	text-align: center;
 }
 
+.cartListtable td{
+
+}
 
 .cartListtable th{
 	color: white;
 	background-color: #939393;
 	height: 30px;
-}
-
-.cartListtable td{
-	padding-top: 0.5%;
-	padding-bottom: 0.5%;
 }
 
 li{
@@ -55,7 +56,6 @@ li{
 
 .choose{
 	background-color: #616161;
-	font-size: 1.2em;
 }
 
 .gold{

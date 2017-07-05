@@ -57,8 +57,7 @@
 			<tbody>
 
 				<tr>
-					<td>이미지</td>
-					<td>${detail.productImage }</td>
+					<td rowspan="6"><img src="../images/${detail.productImage }" width="100%" height="300px"></td>
 				</tr>
 				<tr>
 					<td>상품명</td>
@@ -109,17 +108,6 @@
 		</div>
 
 	</div>
-	
-	<!-- Q&A -->
-<div>
-	<jsp:include page="productQnaReply.jsp"></jsp:include>
-</div>
-
-<!-- 후기 -->
-<div>
-	<jsp:include page="productReviewReply.jsp"></jsp:include>
-</div>
-
 
 	<%@ include file="/footer.jsp"%>
 </body>

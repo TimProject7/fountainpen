@@ -14,3 +14,30 @@ h2{
 	background-color: #877ef1;
 	color: white;
 }
+
+#width80{
+	width: 80%;
+}
+
+#width100{
+	width: 100%;
+	height: 80%;
+	background-color: fuchsia;
+}
+
+#width100 ul{
+	width: 100%;
+	
+}
+
+#width100 li{
+	width: 15%;
+	float: left;
+	margin-left : 5%;
+	margin-bottom: 2%;
+}
+
+#productPage{
+	width: 30%;
+	clear: both;
+}
