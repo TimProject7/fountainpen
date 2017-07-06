@@ -21,6 +21,7 @@ import com.parker.user.boardcommon.Util;
 import com.parker.user.service.ProductQnaReplyService;
 import com.parker.user.service.ProductReviewReplyService;
 import com.parker.user.service.ProductService;
+import com.parker.user.vo.BuyVO;
 import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductReviewReplyVO;
 import com.parker.user.vo.ProductVO;
@@ -118,7 +119,7 @@ public class ProductController {
 	 */
 
 	@RequestMapping(value = "/productQnaReplyInsert")
-	public ResponseEntity<String> replyInsert(@RequestBody ProductQnaReplyVO PQRVO, HttpSession session) {
+	public ResponseEntity<String> replyInsert(@RequestBody ProductQnaReplyVO PQRVO, HttpSession session, @RequestBody BuyVO BVO, @RequestBody UserVO UVO) {
 		logger.info("replyInsert 호출 성공");
 		ResponseEntity<String> entity = null;
 		int result;
@@ -126,6 +127,11 @@ public class ProductController {
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
 		PQRVO.setUser_number(uvo.getUser_number());
+		
+		
+		
+		
+		
 
 		try {
 			result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);

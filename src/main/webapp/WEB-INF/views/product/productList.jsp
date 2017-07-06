@@ -17,6 +17,9 @@
 
 <script type="text/javascript">
    $(document).ready(function() {
+	   
+	   
+	   
       /* 검색후 검색 대상과 검색단어 출력 */
       if ("<c:out value='${data.keyword}'/>" != "") {
          $("#keyword").val("<c:out value='${data.keyword}'/>");
@@ -85,35 +88,7 @@
 <link rel="stylesheet" href="/css/productList.css">
 </head>
 <body>
-   <%--    <h2>상품목록</h2>
-   <table border="1">
-      <tr>
-         <th>상품ID</th>
-         <th>이미지</th>
-         <th>상품명</th>
-         <th>가격</th>
-      </tr>
-      <c:forEach var="row" items="${list }">
-         <tr>
-            <td>
-               ${row.productId }
-            </td>
-            <td>
-               <a href="/product/detail/${row.productId }.do">
-                  <img src="/images/${row.productImage }" width="120px" height="110px">
-               </a>
-            </td>
-            <td>
-               <a href="/product/detail/${row.productId }.do">${row.productName }</a>
-            </td>
-            
-            <td>
-               <fmt:formatNumber value="${row.productPrice }" pattern="###,###,###"/>
-            </td>
-         </tr>
-      </c:forEach>
-   </table> --%>
-
+ 
 
    <h2>상품 목록</h2>
    <br>
