@@ -263,7 +263,6 @@ public class myPageController {
 
 		// 조회수 증가
 		// questionService.questionViewCount(question_number, session);
-
 		// 상세페이지 이동
 		mav.addObject("questionReply", questionReplyService.questionReply(question_number));
 		mav.addObject("questionDetail", questionService.questionDetail(question_number));

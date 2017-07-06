@@ -54,6 +54,8 @@ $("#reviewReplyInsert").click(function () {
 					dataReset();
 					alert(productId)
 					listAll1(productId);
+				}else{
+					alert("구매한상품만 작성가능합니다")
 				}
 			}
 		});

@@ -6,7 +6,7 @@ public class QuestionReplyVO {
 
 	private int questionreply_number;
 	private String questionreply_content;
-	private Date questionreply_regdate;
+	private Date questionreply_writedate;
 	private String questionreply_image;
 	private int question_number;
 	private int admin_number;
@@ -25,14 +25,6 @@ public class QuestionReplyVO {
 
 	public void setQuestionreply_content(String questionreply_content) {
 		this.questionreply_content = questionreply_content;
-	}
-
-	public Date getQuestionreply_regdate() {
-		return questionreply_regdate;
-	}
-
-	public void setQuestionreply_regdate(Date questionreply_regdate) {
-		this.questionreply_regdate = questionreply_regdate;
 	}
 
 	public String getQuestionreply_image() {
@@ -59,11 +51,20 @@ public class QuestionReplyVO {
 		this.admin_number = admin_number;
 	}
 
+	public Date getQuestionreply_writedate() {
+		return questionreply_writedate;
+	}
+
+	public void setQuestionreply_writedate(Date questionreply_writedate) {
+		this.questionreply_writedate = questionreply_writedate;
+	}
+
 	@Override
 	public String toString() {
 		return "QuestionReplyVO [questionreply_number=" + questionreply_number + ", questionreply_content="
-				+ questionreply_content + ", questionreply_regdate=" + questionreply_regdate + ", questionreply_image="
-				+ questionreply_image + ", question_number=" + question_number + ", admin_number=" + admin_number + "]";
+				+ questionreply_content + ", questionreply_writedate=" + questionreply_writedate
+				+ ", questionreply_image=" + questionreply_image + ", question_number=" + question_number
+				+ ", admin_number=" + admin_number + "]";
 	}
 
 }

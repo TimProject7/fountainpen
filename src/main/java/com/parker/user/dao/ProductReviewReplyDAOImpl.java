@@ -41,4 +41,10 @@ public class ProductReviewReplyDAOImpl implements ProductReviewReplyDAO {
 		return session.delete("ProductReviewReplyDelete", reviewReply_number);
 	}
 
+	@Override
+	public int ProductBuyChk(ProductReviewReplyVO PRRVO) {
+		// TODO Auto-generated method stub
+		return session.selectOne("ProductBuyChk1", PRRVO);
+	}
+
 }

@@ -12,7 +12,7 @@ import com.parker.user.vo.UserBoardReplyVO;
 
 @Service
 @Transactional
-public class ProductQnaReplyServiceImpl implements ProductQnaReplyService{
+public class ProductQnaReplyServiceImpl implements ProductQnaReplyService {
 	@Autowired
 	ProductQnaReplyDAO PQRDAO;
 
@@ -33,7 +33,7 @@ public class ProductQnaReplyServiceImpl implements ProductQnaReplyService{
 	@Override
 	public int ProductQnaReplyUpdate(ProductQnaReplyVO PQRVO) {
 		// TODO Auto-generated method stub
-		int result=0;
+		int result = 0;
 		result = PQRDAO.ProductQnaReplyUpdate(PQRVO);
 		return result;
 	}
@@ -49,6 +49,5 @@ public class ProductQnaReplyServiceImpl implements ProductQnaReplyService{
 		// TODO Auto-generated method stub
 		return PQRDAO.ProductBuyChk(PQRVO);
 	}
-	
-	
+
 }

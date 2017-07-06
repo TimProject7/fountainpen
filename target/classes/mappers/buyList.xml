@@ -21,6 +21,8 @@
                				 u.user_number= b.user_number and p.product_number = b.product_number
                			and
                				b.user_number = #{user_number}
+               			and
+               				b.buy_status2 = '결제완료'
                		
                		<if test="week1_buy=='week1'">
                			and buy_day BETWEEN sysdate-7 AND sysdate

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.parker.user.dao.ProductQnaReplyVO">
 	<select id="ProductQnaReplyList" resultType="com.parker.user.vo.ProductQnaReplyVO" parameterType="com.parker.user.vo.ProductQnaReplyVO">
-		select
+		<!-- select
 			pq.productqna_number, pq.productqna_content, pq.productqna_writedate,
 			p.product_number as productId,
 			u.user_number, u.user_name, u.user_id
@@ -16,7 +16,21 @@
 			and p.product_number = #{productId}
 			
 		order by
+			pq.productqna_number desc -->
+			select
+			pq.productqna_number, pq.productqna_content, pq.productqna_writedate,
+			p.product_number as productId,
+			u.user_number, u.user_name, u.user_id
+		from 
+			productqna_tb pq, products_tb p, users_tb u
+		where 
+			pq.user_number = u.user_number
+			and pq.product_number = p.product_number
+			and p.product_number = #{productId}
+			
+		order by
 			pq.productqna_number desc
+			
 		
 	</select>
 	<!--작성  -->
@@ -60,17 +74,15 @@
 			productqna_number =#{productqna_number}
 	</delete>
 	
-	<select id="ProductBuyChk" parameterType="com.parker.user.vo.ProductQnaReplyVO" resultType="com.parker.user.vo.ProductQnaReplyVO">
+	<select id="ProductBuyChk" parameterType="com.parker.user.vo.ProductQnaReplyVO" resultType="int">
 		select 
-			b.user_number, u.user_number, p.product_number, b.product_number
+			count (*)
 		from 
 			buy_tb b, users_tb u, products_tb p
 		where 
 			p.product_number = b.product_number  
 			and b.user_number = u.user_number
 			and b.user_number = #{user_number}
-			and p.product_number = #{productId}
-
-
+			and b.product_number = #{productId}
 	</select>
 </mapper>

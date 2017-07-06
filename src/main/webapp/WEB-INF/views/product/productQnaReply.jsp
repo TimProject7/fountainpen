@@ -53,6 +53,8 @@ $("#replyInsert").click(function () {
 					alert("댓글 등록이 완료되었습니다.");
 					dataReset();
 					listAll(productId);
+				}else{
+					alert("구매한상품만 작성가능합니다")
 				}
 			}
 		});

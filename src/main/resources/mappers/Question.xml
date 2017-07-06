@@ -113,7 +113,7 @@
 	<select id="questionDetail" parameterType="com.parker.user.vo.QuestionVO"
 		resultType="com.parker.user.vo.QuestionVO">
 		select
-		question_number,question_title,question_content,question_writedate,question_image,
+		question_number,question_title,question_content,question_writedate,question_image,question_status,
 		question_tb.user_number, u.user_number, u.user_name,u.user_id,
 		u.user_regdate, question_image
 		from

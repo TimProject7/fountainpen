@@ -43,7 +43,7 @@ public class ProductQnaReplyDAOImpl implements ProductQnaReplyDAO {
 	@Override
 	public int ProductBuyChk(ProductQnaReplyVO PQRVO) {
 		// TODO Auto-generated method stub
-		return session.selectOne("ProductBuyChk", PQRVO);
+		return  session.selectOne("ProductBuyChk", PQRVO);
 	}
 
 }

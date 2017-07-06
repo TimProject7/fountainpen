@@ -121,19 +121,22 @@ public class ProductController {
 		logger.info("replyInsert 호출 성공");
 		ResponseEntity<String> entity = null;
 		int result;
-
+		//세션정보를 가져온다-
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
 		PQRVO.setUser_number(uvo.getUser_number());
-		// PQRVO.setProductId(BVO.getProduct_number());
+		System.out.println("PQRVO.getProductId() : " + PQRVO.getProductId());
 
 		try {
-			// result = productQnaReplyService.ProductBuyChk(PQRVO);
-			// System.out.println("result : " +result);
-			result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);
-
-			if (result == 1) {
-				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			//구매를했는지 확인
+			int buychk = productQnaReplyService.ProductBuyChk(PQRVO);
+			System.out.println("buychk");
+			if (buychk != 0) {
+				result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);
+				//댓글 성공
+				if (result == 1) {
+					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -222,9 +225,15 @@ public class ProductController {
 		PRRVO.setUser_number(uvo.getUser_number());
 
 		try {
-			result = productReviewReplyService.ProductReviewReplyInsert(PRRVO);
-			if (result == 1) {
-				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			//구매를했는지 확인
+			int buychk = productReviewReplyService.ProductBuyChk(PRRVO);
+			if (buychk != 0) {
+				
+				result = productReviewReplyService.ProductReviewReplyInsert(PRRVO);
+				//댓글성공
+				if (result == 1) {
+					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
