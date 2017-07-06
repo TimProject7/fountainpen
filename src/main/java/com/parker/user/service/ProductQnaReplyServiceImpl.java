@@ -43,6 +43,12 @@ public class ProductQnaReplyServiceImpl implements ProductQnaReplyService{
 		// TODO Auto-generated method stub
 		return PQRDAO.ProductQnaReplyDelete(productqna_number);
 	}
+
+	@Override
+	public int ProductBuyChk(ProductQnaReplyVO PQRVO) {
+		// TODO Auto-generated method stub
+		return PQRDAO.ProductBuyChk(PQRVO);
+	}
 	
 	
 }

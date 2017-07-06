@@ -28,13 +28,15 @@
 			productqna_number,
 			productqna_content,
 			product_number,
-			user_number
+			user_number,
+			productqna_writedate
 			)
 			values(
 			#{productqna_number},
 			#{productqna_content},
 			#{productId},
-			#{user_number}
+			#{user_number},
+			sysdate
 			)
 	</insert>
 	
@@ -57,4 +59,18 @@
 		where
 			productqna_number =#{productqna_number}
 	</delete>
+	
+	<select id="ProductBuyChk" parameterType="com.parker.user.vo.ProductQnaReplyVO" resultType="com.parker.user.vo.ProductQnaReplyVO">
+		select 
+			b.user_number, u.user_number, p.product_number, b.product_number
+		from 
+			buy_tb b, users_tb u, products_tb p
+		where 
+			p.product_number = b.product_number  
+			and b.user_number = u.user_number
+			and b.user_number = #{user_number}
+			and p.product_number = #{productId}
+
+
+	</select>
 </mapper>

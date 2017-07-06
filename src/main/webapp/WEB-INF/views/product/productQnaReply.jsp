@@ -22,7 +22,6 @@ $(function () {
 
 /* 댓글 내용 저장 이벤트 */
 $("#replyInsert").click(function () {
-	
 	//작성자 이름에 대한 입력여부 검사
 	if(!chkSubmit($("#user_id"),"이름을")){
 		return;

@@ -109,8 +109,6 @@ public class ProductController {
 		}
 		return entity;
 	}
-	
-	
 
 	/*
 	 * * Q&A 댓글 글쓰기 구현하기
@@ -119,7 +117,7 @@ public class ProductController {
 	 */
 
 	@RequestMapping(value = "/productQnaReplyInsert")
-	public ResponseEntity<String> replyInsert(@RequestBody ProductQnaReplyVO PQRVO, HttpSession session, @RequestBody BuyVO BVO, @RequestBody UserVO UVO) {
+	public ResponseEntity<String> replyInsert(@RequestBody ProductQnaReplyVO PQRVO, HttpSession session) {
 		logger.info("replyInsert 호출 성공");
 		ResponseEntity<String> entity = null;
 		int result;
@@ -127,14 +125,13 @@ public class ProductController {
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
 		PQRVO.setUser_number(uvo.getUser_number());
-		
-		
-		
-		
-		
+		// PQRVO.setProductId(BVO.getProduct_number());
 
 		try {
+			// result = productQnaReplyService.ProductBuyChk(PQRVO);
+			// System.out.println("result : " +result);
 			result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);
+
 			if (result == 1) {
 				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			}

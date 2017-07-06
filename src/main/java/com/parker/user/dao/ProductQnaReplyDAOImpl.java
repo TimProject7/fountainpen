@@ -40,4 +40,10 @@ public class ProductQnaReplyDAOImpl implements ProductQnaReplyDAO {
 		return session.delete("ProductQnaReplyDelete", productqna_number);
 	}
 
+	@Override
+	public int ProductBuyChk(ProductQnaReplyVO PQRVO) {
+		// TODO Auto-generated method stub
+		return session.selectOne("ProductBuyChk", PQRVO);
+	}
+
 }

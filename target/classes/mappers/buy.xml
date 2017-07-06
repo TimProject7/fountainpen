@@ -11,7 +11,7 @@
 		(
 		buy_number, buy_day, buy_address, buy_product, buy_quantity,
 		buy_price,
-		user_number, product_number, group_number,
+		user_number, product_number,
 		buy_image
 		)
 		values
@@ -20,12 +20,12 @@
 		#{buy_quantity},
 		#{buy_price},
 		#{user_number},
-		#{product_number}, 1,
+		#{product_number},
 		#{buy_image}
 		)
 
 	</insert>
-	<!-- 2. 장바구니 목록 -->
+	<!-- 2. 주문/결제 목록 -->
 	<select id="buyList" parameterType="com.parker.user.vo.BuyVO"
 		resultType="com.parker.user.vo.BuyVO">
 		SELECT
@@ -42,25 +42,18 @@
 		u.user_phone,
 		u.user_email,
 		b.product_number,
-		b.group_number,
 		(b.Buy_quantity * b.Buy_price) money
-		<!-- sum(b.Buy_quantity * b.Buy_price) over(partition by b.user_number) 
-			as total -->
 		FROM buy_tb b, users_tb u
 		WHERE
 		b.user_number = #{user_number}
-		and
+		AND
 		b.buy_day = sysdate
 		AND
-		b.user_number = u.user_number
-
-
+		b.user_number =
+		u.user_number
 	</select>
 
-	<!-- sum(b.Buy_quantity * b.Buy_price) over(partition by b.user_number) 
-		as total -->
-
-	<!-- 3. 장바구니 전체 금액 -->
+	<!-- 3. 주문/결제 전체 금액 -->
 	<select id="sumMoney" resultType="int">
 		SELECT NVL(SUM(buy_price
 		*
@@ -69,5 +62,68 @@
 		WHERE
 		c.product_number = b.product_number AND c.user_number = #{user_number}
 	</select>
+
+
+	<!-- 4.결제완료 -->
+	<update id="completeUpdate" parameterType="com.parker.user.vo.CompleteVO" statementType="PREPARED">
+     update
+    (SELECT
+		Buy_number,
+		Buy_day,
+		Buy_product,
+		Buy_quantity,
+		Buy_price,
+		Buy_image,
+		user_number,
+		Buy_status,
+		Buy_status2
+		FROM buy_tb
+		WHERE
+		user_number = #{user_number}
+		AND
+		buy_status = '배송전'
+		)
+    set buy_status2 = '결제완료'
+    where 
+    user_number = #{user_number}
+    AND
+		buy_number = #{buy_number}
+	</update>
+
+	<!-- 5.카트리스트삭제 -->
+	<delete id="completeDelete" parameterType="com.parker.user.vo.CompleteVO">
+		delete from
+		cartlist_tb
+		where
+		user_number =
+		#{user_number}
+	</delete>
+
+	<!-- 6.구매내역 -->
+	<select id="completeList" parameterType="com.parker.user.vo.CompleteVO"
+		resultType="com.parker.user.vo.CompleteVO">
+
+		SELECT
+		Buy_number,
+		Buy_day,
+		Buy_product,
+		Buy_quantity,
+		Buy_price,
+		Buy_image,
+		user_number,
+		Buy_status,
+		Buy_status2
+		FROM buy_tb
+		WHERE
+		user_number = #{user_number}
+		AND
+		Buy_number = #{buy_number}
+		ORDER
+		BY
+		Buy_day desc
+	
+	</select>
+	
+	
 
 </mapper>

@@ -173,28 +173,7 @@ public class BuyController {
 
 		return "/buy/buyList";
 	}
-	// 주문/결제 목록 & 입력
-		@RequestMapping(value = "/complete", method =  { RequestMethod.POST, RequestMethod.GET })
-		public String completeList(@ModelAttribute BuyVO bvo, Model model, @ModelAttribute UserVO UVO,
-				HttpSession session) {
-
-			UserVO uvo = (UserVO) session.getAttribute("UVO");
-
-			bvo.setUser_number(uvo.getUser_number());
-			bvo.setUser_name(uvo.getUser_name());
-			bvo.setUser_cell(uvo.getUser_cell());
-			bvo.setUser_phone(uvo.getUser_phone());
-			bvo.setUser_email(uvo.getUser_email());
-			bvo.setUser_address(uvo.getZip_code() + " " + uvo.getUser_address() + " " + uvo.getDetail_address());
-
-			List<BuyVO> buyList = buyService.buyList(bvo);
-			int sumMoney = cartService.sumMoney(bvo.getUser_number());
-
-			model.addAttribute("total", sumMoney);
-			model.addAttribute("buyList", buyList);
-
-			return "/buy/complete";
-		}
+	
 
 
 }
