@@ -19,6 +19,28 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		//선택삭제 할때 아무것도 선택이안됬을시
+		$("#cancleBtn").click(function(e) {
+			e.preventDefault();
+			var chk = new Array();
+			if ($(":checkbox[name='chk']:checked").length == 0) {
+				alert("삭제할 항목을 하나이상 체크해주세요.");
+				return;
+			} else {
+				if ($(":checkbox[name=chk]:checked").val()) {
+					/* $(":checkbox[name='chk']:checked").each(function() {
+						alert($(this).val());
+						chk.push($(this).val());
+					}); */
+					$("#deliveryForm").attr("method", "POST");
+					/* $("#listForm").attr("action", "/cart/cartDelete.do?cartlistId=${cart.cartlistId}"); */
+					$("#deliveryForm").attr("action", "/delivery/deliveryDeleteForm.do");
+					$("#deliveryForm").submit();
+				}
+			}
+		});
+	})
 	/* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
 	if ("<c:out value='${data.pageSize}'/>" != "") {
 		$("#pageSize").val("<c:out value='${data.pageSize}'/>");
@@ -78,24 +100,31 @@
 			</ul>
 		</div>
 		<div align="center">
-			<table border="1" class="deliveryTable">
-				<tr>
-					<th>주문일자</th>
-					<th>주문번호</th>
-					<th>상품명</th>
-					<th>주문금액</th>
-					<th>진행상황</th>
-				</tr>
-				<c:forEach var="delivery" items="${deliveryList}">
+			<form id="deliveryForm" name="deliveryForm">
+				<table border="1" class="deliveryTable">
 					<tr>
-						<td><fmt:formatDate value="${delivery.buy_day}" pattern="yyyy-MM-dd"/></td>
-						<td>${delivery.buy_number}</td>
-						<td>${delivery.buy_product}</td>
-						<td>${delivery.buy_price}</td>
-						<td>${delivery.buy_status}</td>
+						<th>선택</th>
+						<th>주문일자</th>
+						<th>주문번호</th>
+						<th>상품명</th>
+						<th>주문금액</th>
+						<th>진행상황</th>
 					</tr>
-				</c:forEach>
-			</table>
+					<c:forEach var="delivery" items="${deliveryList}">
+						<tr>
+							<td align="center"><input type="checkbox" name="chk"
+								value="${delivery.buy_number }" id="chk" /></td>
+							<td><fmt:formatDate value="${delivery.buy_day}"
+									pattern="yyyy-MM-dd" /></td>
+							<td>${delivery.buy_number}</td>
+							<td>${delivery.buy_product}</td>
+							<td>${delivery.buy_price}</td>
+							<td>${delivery.buy_status}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</form>
+			<input type="text" id="cancleBtn" name="cancleBtn" value="배송취소" />
 		</div>
 		<!-- 페이지출력 -->
 		<!-- total 전체레코드 data.pageSize 페이지갯수-->

@@ -70,9 +70,8 @@
 			</tr>
 			<tr>
 				<td>이미지</td>
-				<td><input type="text" id="userboard_image"
-					name="userboard_image" value="${userBoardDetail.userboard_image}" />
-				</td>
+				<td><img  src="../../resources/images/${userBoardDetail.userboard_image}"></td>
+				
 			</tr>
 		</table>
 	</form>

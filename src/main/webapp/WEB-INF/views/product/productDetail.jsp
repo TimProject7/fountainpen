@@ -154,19 +154,19 @@
 				</tr>
 				<tr>
 					<td>상품명</td>
-					<td>${detail.productName }</td>
+					<td>${detail.productName}</td>
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td>${detail.productPrice }</td>
+					<td>${detail.productPrice}</td>
 				</tr>
 				<tr>
 					<td>제조사</td>
-					<td>${detail.productCompany }</td>
+					<td>${detail.productCompany}</td>
 				</tr>
 				<tr>
 					<td>원산지</td>
-					<td>${detail.productOrigin }</td>
+					<td>${detail.productOrigin}</td>
 				</tr>
 				<tr align="center">
 					<td colspan="2">
@@ -174,13 +174,12 @@
 							<!-- action="/cart/cartInsert.do" -->
 
 
-							<input type="hidden" name="productId"
-								value="${detail.productId }"> <input type="hidden"
-								name="userId" id="userId"
-								value="${sessionScope.UVO.user_number }"> <select
+							<input type="hidden" name="productId" value="${detail.productId}">
+							<input type="hidden" name="userId" id="userId"
+								value="${sessionScope.UVO.user_number}"> <select
 								name="cartlistQuantity">
 								<c:forEach begin="1" end="10" var="i">
-									<option value="${i}">${i }</option>
+									<option value="${i}">${i}</option>
 								</c:forEach>
 							</select>&nbsp;개
 							<!-- <input type="submit" value="장바구니에 담기"> -->
@@ -195,7 +194,7 @@
 		</table>
 		<div align="center">
 			<p>상품상세설명</p>
-			<p>${detail.productContent }</p>
+			<p>${detail.productContent}</p>
 		</div>
 
 	</div>

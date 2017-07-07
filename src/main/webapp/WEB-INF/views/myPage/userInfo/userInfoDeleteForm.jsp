@@ -41,6 +41,12 @@
 				$("#userDeleteForm").submit();
 			}
 		});
+
+		//취소버튼 홈으로
+		$("#usercalcelBtn").click(function() {
+
+			window.location = "/";
+		});
 	});
 </script>
 </head>
@@ -76,8 +82,8 @@
 		</form>
 		<p class="center">
 			<input type="button" id="userDeleteBtn" name="userDeleteBtn"
-				value="회원탈퇴" />
-				<input type="button" id="usercalcelBtn" name="usercalcelBtn" value="취소" />
+				value="회원탈퇴" /> <input type="button" id="usercalcelBtn"
+				name="usercalcelBtn" value="취소" />
 		</p>
 	</div>
 </body>

@@ -76,7 +76,6 @@
 							width="150"></td>
 					</tr>
 				</table>
-            ${questionDetail.question_status}
             <c:if test="${questionDetail.question_status == 'Y'}">
 
 					<table border="1">

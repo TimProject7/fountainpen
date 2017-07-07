@@ -144,6 +144,7 @@ $(document).on("click",".update_btn",function(){
 
 //리스트 요청 함수
 function listAll(productId){
+	var userid = $('#user_id').val();
 	$("#comment_list").html("");
 	var url = "/product/productQnaReply/all/"+productId+".do";
 	
@@ -155,7 +156,7 @@ function listAll(productId){
 			var user_id = this.user_id;
 			var productqna_content = this.productqna_content;
 			var productqna_writedate = this.productqna_writedate;
-			addNewItem(productqna_number, user_id, productqna_content, productqna_writedate);
+			addNewItem(productqna_number, user_id, productqna_content, productqna_writedate, userid);
 		});
 		
 	}).fail(function(){
@@ -164,7 +165,7 @@ function listAll(productId){
 }
 
 /* 새로운 글을 화면에 추가하기 위한 함수 */
-function addNewItem(productqna_number, user_id, productqna_content, productqna_writedate) {
+function addNewItem(productqna_number, user_id, productqna_content, productqna_writedate, userid) {
 	//새로운 글이 추가될 li태그 객체
 	var new_li = $("<li>");
 	new_li.attr("data-num",productqna_number);
@@ -183,6 +184,10 @@ function addNewItem(productqna_number, user_id, productqna_content, productqna_w
 	var date_span =$("<span>");
 	date_span.html("/" + productqna_writedate +"");
 	
+	//자신의 댓글만 수정삭제가능
+	if(userid!= user_id){
+		
+	}else{
 	//수정하기 버튼
 	var up_input = $("<input>");
 	up_input.attr({"type":"button","value":"수정하기"});
@@ -192,6 +197,7 @@ function addNewItem(productqna_number, user_id, productqna_content, productqna_w
 	var del_input= $("<input>");
 	del_input.attr({"type":"button","value":"삭제하기"});
 	del_input.addClass("delete_btn");
+	}
 	
 	//내용
 	var content_p = $("<p>");

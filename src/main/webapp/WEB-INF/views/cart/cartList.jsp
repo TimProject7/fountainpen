@@ -143,25 +143,21 @@
 
 								<tbody>
 									<tr>
-										<td align="center"><input type="checkbox" name="chk"
-											value="${cart.cartlistId }" id="chk" /></td>
-										<td>${cart.cartlistImage }<input type="hidden"
-											name="productId" value="${cart.productId }"> <input
-											type="hidden" name="userId" value="${cart.userId }"></td>
+										<td align="center"><input type="checkbox" name="chk" value="${cart.cartlistId }" id="chk" /></td>
+										<td>${cart.cartlistImage }<input type="hidden" name="productId" value="${cart.productId }"> 
+										<input type="hidden" name="userId" value="${cart.userId }"></td>
 										<td>${cart.cartlistName }</td>
 										<td>${cart.cartlistOrigin }</td>
 										<td>${cart.cartlistCompany }</td>
 										<td><fmt:formatNumber pattern="###,###,###"
 												value="${cart.cartlistPrice }" /></td>
 
-										<td><input type="hidden" name="cartlistId"
-											value="${cart.cartlistId }"><input type="hidden"
-											name="productId" value="${cart.productId }"> <input
-											type="hidden" name="userId" id="userId"
-											value="${sessionScope.UVO.user_number }"><input
-											type="number" min="1" style="width: 40px"
-											id="cartlistQuantity" name="cartlistQuantity"
-											value="${cart.cartlistQuantity }">개</td>
+										<td>
+											<input type="hidden" name="cartlistId" value="${cart.cartlistId }">
+											<input type="hidden" name="productId" value="${cart.productId }"> 
+											<input type="hidden" name="userId" id="userId" value="${sessionScope.UVO.user_number }">
+											<input type="number" min="1" style="width: 40px" id="cartlistQuantity" name="cartlistQuantity" value="${cart.cartlistQuantity }">개
+										</td>
 										<td><fmt:formatNumber pattern="###,###,###"
 												value="${cart.money }" /></td>
 										<td>무료</td>
