@@ -224,13 +224,9 @@ function dataReset() {
 			<form id="comment_form">
 				<div>
 					<h2>Q&A</h2>
-					<label for="user_id">작성자</label>
-					<input type="text" name="user_id" id="user_id" value="${sessionScope.UVO.user_id}"/>
+					<label for="user_id">${sessionScope.UVO.user_id}</label>
+					<input type="text"  name="productqna_content" id="productqna_content" />
 					<input type="button" id="replyInsert" value="저장하기" />
-				</div>
-				<div>
-					<label for="productqna_content">댓글 내용</label>
-					<textarea name="productqna_content" id="productqna_content"></textarea>
 				</div>
 			</form>
 		</div>

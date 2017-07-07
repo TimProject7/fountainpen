@@ -172,7 +172,7 @@
 						<td><fmt:formatNumber pattern="###,###,###" value="${total }" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="button" value="결제하기"
+						<td colspan="2" align="center"><input type="button" value="결제하기"
 							id="completeBtn" /></td>
 					</tr>
 				</table>

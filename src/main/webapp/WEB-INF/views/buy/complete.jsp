@@ -22,23 +22,38 @@
 	});
 </script>
 
-<style type="text/css">
-div {
-	width: 100%;
-}
+<link rel="stylesheet" href="/css/complete.css">
 
-table {
-	border: 1px solid black;
-}
-</style>
 </head>
 <body>
-	<div>
-		<h1 align="left">3.주문완료</h1>
-		<h3 align="right">1.장바구니 > 2.주문/결제 > 3.주문완료</h3>
-	</div>
+	<div class="all">
+	
+	<div id="myPageForm" align="center">
+			<ul id="myPageForm_nav_ul">
+				<li><a href="/myPage/userInfo/userInfoPassword.do">회원정보변경</a></li>
+				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/question/question.do">1:1문의</a></li>
+				<li><a href="/cart/cartList.do"><b>장바구니</b></a></li>
+				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
+			</ul>
+
+		</div>
+		<br>
+		<table class="stepTable">
+			<tr>
+				<td><p class="gold">STEP1</p> <b class="white">장바구니</b></td>
+				<td><p class="gold">STEP2</p> <b class="white">주문/결제</b></td>
+				<td class="choose"><p class="gold">STEP3</p> <b class="white">주문완료</b></td>
+			</tr>
+		</table>
+		<br>
+
 	<div align="center">
-		<h1>결제가 완료되었습니다</h1>
+		
+		<div style="background-image: url('../images/complete.png'); width: 784px; height: 410px; "  >
+			<h1 align="right">결제가 완료되었습니다</h1>
+			<p id="userid"><b><em>${sessionScope.UVO.user_id}</em></b></p>
+		</div>
 	</div>
 	<div align="center">
 		<a href="/"><input type="button" id="mainBtn" name="mainBtn" value="메인으로"/></a>
@@ -46,7 +61,7 @@ table {
 	</div>
 	<div>
 		<h1>구매내역</h1>
-		<table>
+		<table id="completetb" border="1">
 			<tr>
 				<th>구매번호</th>
 				<th>상품이미지</th>
@@ -76,7 +91,8 @@ table {
 				</c:when>
 			</c:choose>
 		</table>
-
+	</div>
+	
 	</div>
 
 
