@@ -198,7 +198,7 @@
 		user_gender = #{user_gender},
 		<!-- user_privacyconsignment = #{user_privacyconsignment}, user_termsofuse 
 			= #{user_termsofuse}, user_receiveadvertising = #{user_receiveadvertising}, -->
-		user_regdate = sysdate
+		user_updatedate =sysdate
 
 		where
 		user_number = #{user_number}
@@ -211,7 +211,8 @@
 		users_tb
 		set
 		user_status = 'D',
-		user_deleteCondition = #{user_deleteCondition}
+		user_deleteCondition = #{user_deleteCondition},
+		user_deletedate = sysdate
 		where
 		user_number = #{user_number}
 

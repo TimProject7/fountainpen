@@ -10,4 +10,7 @@ public interface DeliveryDAO {
 	
 	//전체 레코드 건수
 	public int DeliveryListCnt(BuyVO BVO);
+	
+	//배송취소
+	public int DeliveryCancle(int buy_number);
 }

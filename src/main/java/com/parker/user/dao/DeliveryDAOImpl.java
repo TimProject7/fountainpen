@@ -25,4 +25,10 @@ public class DeliveryDAOImpl implements DeliveryDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne("deliveryListCnt", BVO);
 	}
+
+	@Override
+	public int DeliveryCancle(int buy_number) {
+		// TODO Auto-generated method stub
+		return session.update("deliveryCancle", buy_number);
+	}
 }

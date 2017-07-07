@@ -58,7 +58,8 @@
 		var regpwd = /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비밀번호유효성검사 4자리이상 16자리이하 ,숫자혹은 특수문자를 반드시 포함
 		var regemail=/^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{3}$/; 	//이메일 유효성검사
 		var regphone =/(\d{3}).*(\d{4}).*(\d{4})/; //핸드폰번호 유효성 검사
-		var regname = /([^가-힣\x20a-zA-Z])/i;    //한글과 영어만
+		var regname =/^[가-힣]{3}|[a-zA-Z]{3}\s[a-zA-Z]{3,15}$/; //이름검사
+
 		
 		$('#user_id').keyup(function(){
 			if(regId.test($('#user_id').val())){
@@ -449,8 +450,8 @@
 </script>
 </head>
 <body>
-<input type="text" id="chk" name="chk" value="N"/>
-<input type="text" name="mailkey1" id="mailkey1" value=""></td>
+<input type="hidden" id="chk" name="chk" value="N"/>
+<input type="hidden" name="mailkey1" id="mailkey1" value=""></td>
 	<div id="content" align="center">
 		<!--다이얼로그창 폼  -->
 		<div id="dialog_form">

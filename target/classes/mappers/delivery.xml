@@ -45,5 +45,16 @@
 			)lst
 		)
 	</select>
+	
+	<update id="deliveryCancle" parameterType="com.parker.user.vo.BuyVO" >
+		update
+			buy_tb
+		set
+			buy_status = '취소'
+		where
+			buy_number = #{buy_number}
+			
+		
+	</update>
 
 </mapper>

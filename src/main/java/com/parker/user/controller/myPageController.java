@@ -151,10 +151,9 @@ public class myPageController {
 
 		int usernumber = uvo.getUser_number();
 		UVO.setUser_number(usernumber);
-	
+
 		String pass = request.getParameter("user_password");
 
-	
 		UVO = userService.passCheck(UVO);
 
 		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
@@ -312,10 +311,10 @@ public class myPageController {
 
 		logger.info("search = " + bvo.getSearch());
 		logger.info("keyword = " + bvo.getKeyword());
-		logger.info("lately_buy = " +bvo.getWeek1_buy());
-		logger.info("lately_buy = " +bvo.getWeek2_buy());
-		logger.info("month_buy=="+bvo.getMonth1_buy());
-		
+		logger.info("lately_buy = " + bvo.getWeek1_buy());
+		logger.info("lately_buy = " + bvo.getWeek2_buy());
+		logger.info("month_buy==" + bvo.getMonth1_buy());
+
 		// 검색에 대한 데이터 확인
 		int total = buylistService.buyListCnt(bvo);
 
@@ -339,7 +338,7 @@ public class myPageController {
 
 	// 마이페이지 배송정보
 	@RequestMapping(value = "/delivery/delivery", method = { RequestMethod.POST, RequestMethod.GET })
-	public String shippingInfo(HttpSession session, @ModelAttribute UserVO UVO, Model model, HttpServletRequest request,
+	public String delivery(HttpSession session, @ModelAttribute UserVO UVO, Model model, HttpServletRequest request,
 			@ModelAttribute BuyVO BVO) {
 		logger.info("delivery 호출 성공");
 
@@ -366,6 +365,20 @@ public class myPageController {
 		model.addAttribute("total", total);
 
 		return "/myPage/delivery/delivery";
+	}
+
+	// 마이페이지 배송정보
+	@RequestMapping(value = "/delivery/deliveryDeleteForm", method = { RequestMethod.POST, RequestMethod.GET })
+	public String deliveryDeleteForm(HttpSession session, @RequestParam("chk") int[] buy_number,
+			HttpServletRequest request, @ModelAttribute BuyVO BVO) {
+		logger.info("delivery 호출 성공");
+
+		for (int buyStatusCancle : buy_number) {
+			System.out.println("삭제 = " + buyStatusCancle);
+			deliveryService.DeliveryCancle(buyStatusCancle);
+		}
+
+		return "redirect:/myPage/delivery/delivery.do";
 	}
 
 }

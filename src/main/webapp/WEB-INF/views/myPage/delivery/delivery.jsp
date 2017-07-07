@@ -19,28 +19,37 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		//선택삭제 할때 아무것도 선택이안됬을시
-		$("#cancleBtn").click(function(e) {
-			e.preventDefault();
-			var chk = new Array();
-			if ($(":checkbox[name='chk']:checked").length == 0) {
-				alert("삭제할 항목을 하나이상 체크해주세요.");
-				return;
-			} else {
-				if ($(":checkbox[name=chk]:checked").val()) {
-					/* $(":checkbox[name='chk']:checked").each(function() {
-						alert($(this).val());
-						chk.push($(this).val());
-					}); */
-					$("#deliveryForm").attr("method", "POST");
-					/* $("#listForm").attr("action", "/cart/cartDelete.do?cartlistId=${cart.cartlistId}"); */
-					$("#deliveryForm").attr("action", "/delivery/deliveryDeleteForm.do");
-					$("#deliveryForm").submit();
-				}
-			}
-		});
-	})
+	$(document)
+			.ready(
+					function() {
+						//선택삭제 할때 아무것도 선택이안됬을시
+						$("#cancleBtn")
+								.click(
+										function(e) {
+											e.preventDefault();
+											var chk = new Array();
+											if ($(":checkbox[name='chk']:checked").length == 0) {
+												alert("삭제할 항목을 하나이상 체크해주세요.");
+												return;
+											} else {
+												if ($(
+														":checkbox[name=chk]:checked")
+														.val()) {
+													/* $(":checkbox[name='chk']:checked").each(function() {
+														alert($(this).val());
+														chk.push($(this).val());
+													}); */
+													$("#deliveryForm").attr(
+															"method", "POST");
+													/* $("#listForm").attr("action", "/cart/cartDelete.do?cartlistId=${cart.cartlistId}"); */
+													$("#deliveryForm")
+															.attr("action",
+																	"/myPage/delivery/deliveryDeleteForm.do");
+													$("#deliveryForm").submit();
+												}
+											}
+										});
+					})
 	/* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
 	if ("<c:out value='${data.pageSize}'/>" != "") {
 		$("#pageSize").val("<c:out value='${data.pageSize}'/>");
@@ -84,21 +93,9 @@
 		</div>
 		<form id="f_search" name="f_search">
 			<input type="hidden" id="page" name="page" value="${data.page}" />
+			
 		</form>
-		<div align="center">
-			<ul id="search_nav">
-				<li></li>
-				<li>달력</li>
-				<li></li>
-				<li>달력</li>
-				<li>조회버튼</li>
-				<li>최근2주</li>
-				<li>1개월</li>
-				<li>3개월</li>
-				<li>6개월</li>
-				<li>1년</li>
-			</ul>
-		</div>
+
 		<div align="center">
 			<form id="deliveryForm" name="deliveryForm">
 				<table border="1" class="deliveryTable">
@@ -124,7 +121,7 @@
 					</c:forEach>
 				</table>
 			</form>
-			<input type="text" id="cancleBtn" name="cancleBtn" value="배송취소" />
+			<input type="button" id="cancleBtn" name="cancleBtn" value="취소" />
 		</div>
 		<!-- 페이지출력 -->
 		<!-- total 전체레코드 data.pageSize 페이지갯수-->

@@ -21,7 +21,9 @@
 		product_origin AS productOrigin
 		FROM
 		products_tb
-		where 1=1
+		where 
+			product_status = 'Y' 
+	
 		<if test="search=='product_name'">
 			and (product_name Like '%'||#{keyword}||'%')
 		</if>

@@ -31,4 +31,10 @@ public class DeliveryServiceImpl implements DeliveryService{
 		// TODO Auto-generated method stub
 		return deliveryDAO.DeliveryListCnt(BVO);
 	}
+
+	@Override
+	public int DeliveryCancle(int buy_number) {
+		// TODO Auto-generated method stub
+		return deliveryDAO.DeliveryCancle(buy_number);
+	}
 }
