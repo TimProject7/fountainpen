@@ -1,18 +1,22 @@
 .all{
 	width: 100%;
 }
-#userBoardTb{
+
+h2{
+	text-align: center;
+}
+#noticeTb{
 	width: 75%;
 }
 
-#userBoardTb th{
+#noticeTb th{
 	background-color : #5b5b5b;
 	padding-top: 1%;
 	padding-bottom: 1%;
 	color: white;
 }
 
-#userBoardTb td{
+#noticeTb td{
 	padding-top: 0.3%;
 	padding-bottom: 0.3%;
 

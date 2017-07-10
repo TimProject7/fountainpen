@@ -8,6 +8,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/faq.css" />
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <meta http-equiv="Content_Type" content="text/html; charset=UTF-8">
@@ -18,56 +19,13 @@
 	});
 </script>
 
-<style type="text/css">
-* {
-	margin: 0 auto;
-	padding: 0;
-}
-
-h2 {
-	text-align: left;
-}
-
-.div1 {
-	width: 43%;
-}
-
-.logout_table {
-	width: 55%;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-a:HOVER {
-	font-size: 1.1em;
-	color: teal;
-}
-
-label {
-	padding-left: 3%;
-	padding-right: 3%;
-}
-
-th {
-	color: white;
-	background-color: black;
-}
-
-.no {
-	text-align: center;
-}
-</style>
-
 </head>
 <body>
 	<div id="myPageForm" align="center">
 		<ul id="myPageForm_nav_ul">
-			<li><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
-			<li><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
-			<li><a href="/serviceCenter/faq/FAQlist.do"><b>1:1문의</b></a></li>
+			<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
+			<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+			<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do"><b>FAQ</b></a></li>
 		</ul>
 	</div>
 
@@ -83,13 +41,13 @@ th {
 
 
 
-		<table border="1" width="660px">
+		<table id="faqTb">
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
+				<th width="5%">번호</th>
+				<th width="60%">제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
-				<th>조회수</th>
+				<th width="5%">조회수</th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty faq_list}">

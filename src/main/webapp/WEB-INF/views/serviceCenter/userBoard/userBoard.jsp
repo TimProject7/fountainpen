@@ -61,12 +61,13 @@
 	
 	<div id="myPageForm" align="center">
       <ul id="myPageForm_nav_ul">
-         <li><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
-         <li><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
-         <li><a href="/serviceCenter/faq/FAQlist.do"><b>1:1문의</b></a></li>
+         <li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do"><b>회원게시판</b></a></li>
+         <li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         <li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
       </ul>
    </div>
 	
+	<br><br>
 	<!-- 페이지 넘버 가져오는 폼 -->
 	<form id="f_search" name="f_search">
 		<input type="hidden" id="page" name="page" value="${data.page}" />
