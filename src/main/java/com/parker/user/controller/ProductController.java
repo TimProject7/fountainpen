@@ -1,7 +1,9 @@
 package com.parker.user.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -15,17 +17,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.parker.user.boardcommon.Paging;
 import com.parker.user.boardcommon.Util;
 import com.parker.user.service.ProductQnaReplyService;
+import com.parker.user.service.ProductQnaService;
 import com.parker.user.service.ProductReviewReplyService;
 import com.parker.user.service.ProductService;
 import com.parker.user.vo.BuyVO;
 import com.parker.user.vo.ProductQnaReplyVO;
+import com.parker.user.vo.ProductQnaVO;
 import com.parker.user.vo.ProductReviewReplyVO;
 import com.parker.user.vo.ProductVO;
 import com.parker.user.vo.UserBoardReplyVO;
+import com.parker.user.vo.UserBoardVO;
 import com.parker.user.vo.UserVO;
 
 @Controller
@@ -36,6 +44,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
+	@Autowired
+	private ProductQnaService productQnaService;
 
 	@Autowired
 	private ProductQnaReplyService productQnaReplyService;
@@ -76,7 +87,7 @@ public class ProductController {
 
 	// 상품상세보기
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public String productDetail(@ModelAttribute ProductVO pvo, Model model) {
+	public String productDetail(@ModelAttribute ProductVO pvo, Model model, @ModelAttribute ProductQnaVO PQVO) {
 
 		logger.info("producidtDetail 호출 성공");
 
@@ -91,8 +102,114 @@ public class ProductController {
 
 		model.addAttribute("detail", detail);
 
+		// 페이징
+		Paging.set(PQVO);
+
+		System.out.println("PVO.getProductId() : " + pvo.getProductId());
+
+		// 리스트 건수
+		int total = productQnaService.productQnaListCnt(PQVO);
+
+		// 글번호 재설정
+		int count = total - (Util.nvl(PQVO.getPage()) - 1) * Util.nvl(PQVO.getPageSize());
+		logger.info("total = " + total);
+		logger.info("count = " + count);
+
+		// 전체데이터가져오는 리스트!
+		List<ProductQnaVO> ProductQnaList = productQnaService.productQnaList(PQVO);
+
+		System.out.println("ProductQnaList : " + ProductQnaList);
+
+		model.addAttribute("count", count);
+		model.addAttribute("ProductQnaList", ProductQnaList);
+		model.addAttribute("data", PQVO);
+		model.addAttribute("total", total);
+
 		return "product/productDetail";
 
+	}
+
+	// 상품Q&A 글쓰기 폼으로 이동
+	@RequestMapping(value = "/productQnaWriterForm", method = RequestMethod.POST)
+	public String userBoardWriter(@ModelAttribute UserBoardVO UBVO, Model model, @ModelAttribute ProductVO pvo) {
+
+		logger.info("productQnaWriterForm 호출 성공");
+		int productId = pvo.getProductId();
+		System.out.println("productId : " + productId);
+		model.addAttribute("productId", productId);
+
+		return "product/productQnaWriterForm";
+
+	}
+
+	// 상품Qna 글쓰기
+	@RequestMapping(value = "/productQnaInsert", method = { RequestMethod.POST, RequestMethod.GET })
+	public String userBoardWriterAction(@ModelAttribute ProductQnaVO PQVO, Model model, HttpServletRequest request,
+			HttpSession session, @ModelAttribute UserVO UVO, @ModelAttribute ProductVO pvo) {
+		logger.info("userBoardInsert 호출 성공");
+
+		// 세션가져와서 넣어준당
+		UserVO uvo = (UserVO) session.getAttribute("UVO");
+		System.out.println("uvo.getUser_number() : " + uvo.getUser_number());
+		PQVO.setUser_number(uvo.getUser_number());
+
+		String productId = request.getParameter("productId");
+		int productId1 = Integer.parseInt(productId);
+		PQVO.setProductId(productId1);
+
+		int result = productQnaService.productQnaInsert(PQVO);
+		System.out.println("PQVO.toString() : " + PQVO.toString());
+
+		System.out.println("result : " + result);
+
+		return "redirect:/product/productDetail.do";
+	}
+
+	// 상품Qna 상세페이지
+	@RequestMapping(value = "/productQnaDetail", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView productQnaDetail(@ModelAttribute ProductQnaVO PQVO, @RequestParam int productQna_number,
+			HttpSession session, ModelAndView mav, Model model, HttpServletRequest request) {
+		logger.info("productQnaDetail 호출 성공");
+
+		// 조회수
+		// userBoardService.userBoardViewCnt(userboard_number, session);
+
+		UserVO uvo = (UserVO) session.getAttribute("UVO");
+		String userid = uvo.getUser_id();
+		System.out.println("userid:" + userid);
+
+		// 상세페이지 이동
+		mav.addObject("productQnaDetail", productQnaService.productQnaDetail(productQna_number));
+		// mav.addObject("username",username);
+		model.addAttribute("userid", userid);
+		mav.setViewName("product/productQnaDetail");
+		return mav;
+	}
+
+	// 상품Qna게시판 수정 액션
+	@RequestMapping(value = "/productQnaDetailUpdate", method = { RequestMethod.POST, RequestMethod.GET })
+	public String productQnaDetailUpdate(@ModelAttribute ProductQnaVO PQVO, HttpSession session,
+			@ModelAttribute UserVO UVO, Model model, @ModelAttribute ProductVO pvo) {
+		logger.info("productQnaDetailUpdate 호출 성공");
+
+		System.out.println("pvo.getProductId() : " + pvo.getProductId());
+		PQVO.setProductId(pvo.getProductId());
+
+		// 정보수정
+		int result = productQnaService.productQnaDetailUpdate(PQVO);
+		System.out.println("PQVO : " +PQVO);
+		System.out.println("result : " + result);
+		// 세션가져와서 넣어준당
+		List<ProductQnaVO> ProductQnaList = productQnaService.productQnaList(PQVO);
+
+		if (result == 1) {
+			System.out.println("성공");
+			model.addAttribute("ProductQnaList", ProductQnaList);
+		} else {
+			System.out.println("실패");
+		}
+
+		return "redirect:/product/productDetail.do";
 	}
 
 	// Q&A 댓글목록
@@ -121,19 +238,19 @@ public class ProductController {
 		logger.info("replyInsert 호출 성공");
 		ResponseEntity<String> entity = null;
 		int result;
-		//세션정보를 가져온다-
+		// 세션정보를 가져온다-
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
 		PQRVO.setUser_number(uvo.getUser_number());
 		System.out.println("PQRVO.getProductId() : " + PQRVO.getProductId());
 
 		try {
-			//구매를했는지 확인
+			// 구매를했는지 확인
 			int buychk = productQnaReplyService.ProductBuyChk(PQRVO);
 			System.out.println("buychk");
 			if (buychk != 0) {
 				result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);
-				//댓글 성공
+				// 댓글 성공
 				if (result == 1) {
 					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 				}
@@ -154,13 +271,13 @@ public class ProductController {
 
 	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = { RequestMethod.GET, RequestMethod.PUT,
 			RequestMethod.PATCH })
-	public ResponseEntity<String> replyUpdate(@PathVariable("productqna_number") Integer productqna_number,
+	public ResponseEntity<String> replyUpdate(@PathVariable("ProductQnaReply_number") Integer ProductQnaReply_number,
 			@RequestBody ProductQnaReplyVO PQRVO) {
 		logger.info("replyUpdate 호출 성공");
 		ResponseEntity<String> entity = null;
 
 		try {
-			PQRVO.setProductqna_number(productqna_number);
+			PQRVO.setProductQnaReply_number(ProductQnaReply_number);
 			productQnaReplyService.ProductQnaReplyUpdate(PQRVO);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
@@ -225,12 +342,12 @@ public class ProductController {
 		PRRVO.setUser_number(uvo.getUser_number());
 
 		try {
-			//구매를했는지 확인
+			// 구매를했는지 확인
 			int buychk = productReviewReplyService.ProductBuyChk(PRRVO);
 			if (buychk != 0) {
-				
+
 				result = productReviewReplyService.ProductReviewReplyInsert(PRRVO);
-				//댓글성공
+				// 댓글성공
 				if (result == 1) {
 					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 				}

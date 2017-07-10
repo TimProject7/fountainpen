@@ -23,9 +23,8 @@ $(function () {
 /* 댓글 내용 저장 이벤트 */
 $("#reviewReplyInsert").click(function () {
 	//작성자 이름에 대한 입력여부 검사
-	if(!chkSubmit($("#user_id"),"아이디을")){
-		return;
-	}else if(!chkSubmit($("#reviewReply_content"),"내용을")){
+	
+	 if(!chkSubmit($("#reviewReply_content"),"내용을")){
 		return;
 	}else{
 		var InsertUrl = "/product/productReviewReplyInsert.do";
@@ -145,7 +144,7 @@ $(document).on("click",".reviewupdate_btn",function(){
 
 //리스트 요청 함수
 function listAll1(productId){
-	var userid = $('#user_id').val();
+	var userid = $('#user_id').text();
 	$("#reviewcomment_list").html("");
 	var url = "/product/productReviewReply/all/"+productId+".do";
 	
@@ -225,7 +224,7 @@ function dataReset() {
 			<form id="comment_form">
 				<div>
 					<h2>후기</h2>
-					<label for="user_id">${sessionScope.UVO.user_id}</label>
+					<label for="user_id" id="user_id">${sessionScope.UVO.user_id}</label>
 					<input type="text" name="reviewReply_content" id="reviewReply_content" />
 					<input type="button" id="reviewReplyInsert" value="저장하기" />
 				</div>

@@ -18,11 +18,11 @@
 		order by
 			pq.productqna_number desc -->
 			select
-			pq.productqna_number, pq.productqna_content, pq.productqna_writedate,
+			pqr.productQnaReply_number, pqr.productQnaReply_content, pqr.productQnaReply_writedate,
 			p.product_number as productId,
 			u.user_number, u.user_name, u.user_id
 		from 
-			productqna_tb pq, products_tb p, users_tb u
+			productQnaReply_tb pqr, products_tb p, users_tb u
 		where 
 			pq.user_number = u.user_number
 			and pq.product_number = p.product_number
@@ -38,16 +38,16 @@
 	<selectKey keyProperty="productqna_number" resultType="int" order="BEFORE">
 			select seq_productqna_tb.nextval from dual
 		</selectKey>
-			insert into productqna_tb(
-			productqna_number,
-			productqna_content,
+			insert into productqnareply_tb(
+			productqnareply_number,
+			productqnareply_content,
 			product_number,
 			user_number,
-			productqna_writedate
+			productqnareply_writedate
 			)
 			values(
-			#{productqna_number},
-			#{productqna_content},
+			#{productqnareply_number},
+			#{productqnareply_content},
 			#{productId},
 			#{user_number},
 			sysdate
@@ -57,21 +57,21 @@
 		<update id="ProductQnaReplyUpdate" parameterType="com.parker.user.vo.ProductQnaReplyVO">
 	<!--댓글수정  -->
 	update 
-		productqna_tb
+		productqnareply_tb
 	set
-		productqna_content = #{productqna_content},
-		productqna_writedate = sysdate
+		productqnareply_content = #{productqnareply_content},
+		productqnareply_writedate = sysdate
 	where 
-		productqna_number = #{productqna_number}
+		productqnareply_number = #{productqnareply_number}
 	
 	</update>
 	
 	<delete id="ProductQnaReplyDelete" parameterType="com.parker.user.vo.ProductQnaReplyVO">
 	delete 
 		from 
-			productqna_tb
+			productqnareply_tb
 		where
-			productqna_number =#{productqna_number}
+			productqnareply_number =#{productqnareply_number}
 	</delete>
 	
 	<select id="ProductBuyChk" parameterType="com.parker.user.vo.ProductQnaReplyVO" resultType="int">

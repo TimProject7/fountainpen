@@ -168,7 +168,7 @@ public class ServiceCenterController {
 		// 정보수정
 		int result = userBoardService.userBoardDetailUpdate(UBVO);
 
-		// 세션가져와서 넣어준당
+		//회원게시판리스트
 		List<UserBoardVO> userBoardList = userBoardService.userBoardList(UBVO);
 
 		if (result == 1) {

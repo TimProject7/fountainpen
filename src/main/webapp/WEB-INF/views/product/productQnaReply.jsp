@@ -23,9 +23,7 @@ $(function () {
 /* 댓글 내용 저장 이벤트 */
 $("#replyInsert").click(function () {
 	//작성자 이름에 대한 입력여부 검사
-	if(!chkSubmit($("#user_id"),"이름을")){
-		return;
-	}else if(!chkSubmit($("#productqna_content"),"내용을")){
+	if(!chkSubmit($("#productqna_content"),"내용을")){
 		return;
 	}else{
 		var InsertUrl = "/product/productQnaReplyInsert.do";
@@ -144,7 +142,7 @@ $(document).on("click",".update_btn",function(){
 
 //리스트 요청 함수
 function listAll(productId){
-	var userid = $('#user_id').val();
+	var userid = $('#user_id').text();
 	$("#comment_list").html("");
 	var url = "/product/productQnaReply/all/"+productId+".do";
 	
@@ -218,13 +216,15 @@ function dataReset() {
 </script>
 </head>
 <body>
+<input type="text" name="productId" id="productId"
+         value="${detail.productId}" />
 <div id="replyContainer">
 		<h1></h1>
 		<div id="comment_writer">
 			<form id="comment_form">
 				<div>
 					<h2>Q&A</h2>
-					<label for="user_id">${sessionScope.UVO.user_id}</label>
+					<label id="user_id" for="user_id">${sessionScope.UVO.user_id}</label>
 					<input type="text"  name="productqna_content" id="productqna_content" />
 					<input type="button" id="replyInsert" value="저장하기" />
 				</div>

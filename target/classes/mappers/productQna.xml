@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parker.user.dao.ProductQnaDAO">
+	<select id="productQnaList" parameterType="com.parker.user.vo.ProductQnaVO" resultType="com.parker.user.vo.ProductQnaVO">
+	select*
+		from(
+			select list.*, rownum as rnum
+			from(
+				select
+					pq.productQna_number, pq.productQna_content, pq.productQna_writedate, pq.productQna_viewCnt,  pq.productQna_name,
+					 pq.productQna_type,p.product_number as productId, 
+					u.user_number, u.user_name, u.user_id
+				from
+					productQna_tb pq, products_tb p, users_tb u
+				where
+					pq.user_number = u.user_number
+					and pq.product_number = p.product_number
+					and p.product_number = #{productId}
+
+				order by
+					pq.productqna_number desc
+				)list
+			)
+		where rnum between #{start_row} and #{end_row}
+	</select>
+	
+	<select id="productQnaListCnt" parameterType="com.parker.user.vo.ProductQnaVO" resultType="int">
+	select nvl(count(1),0)
+		from(
+			select list.*, rownum as rnum
+			from(
+				select
+					pq.productQna_number, pq.productQna_content, pq.productQna_writedate,pq.productQna_type,
+					p.product_number as productId, pq.productQna_viewCnt,
+					u.user_number, u.user_name, u.user_id
+				from
+					productQna_tb pq, products_tb p, users_tb u
+				where
+					pq.user_number = u.user_number
+					and pq.product_number = p.product_number
+				order by
+					pq.productqna_number desc
+				)list
+			)
+	</select>
+	
+	<insert id="productQnaInsert" parameterType="com.parker.user.vo.ProductQnaVO">
+	<selectKey keyProperty="productQna_number" resultType="int"
+			order="BEFORE">
+			select seq_productqna_tb.nextval from dual
+		</selectKey>
+	insert into productqna_tb(
+		productQna_number,
+		productQna_name,
+		productQna_type,
+		productQna_content,
+		productQna_writedate,
+		<!-- productqna_viewcnt, -->
+		user_number,
+		product_number
+		) 
+	values(
+		#{productQna_number},
+		#{productQna_name},
+		#{productQna_type},
+		#{productQna_content},
+		sysdate,
+		<!-- #{productqna_viewcnt}, -->
+		#{user_number},
+		#{productId}
+		)
+	
+	</insert>
+	
+	<select id="productQnaDetail" parameterType="com.parker.user.vo.ProductQnaVO" resultType="com.parker.user.vo.ProductQnaVO">
+	select *
+	from 
+		productqna_tb
+	where
+		productqna_number = #{productQna_number}
+	
+	</select>
+	
+	<update id="productQnaDetailUpdate" >
+		update
+			productqna_tb
+		set
+			productQna_content= #{productQna_content}	
+		where
+			productQna_number = #{productQna_number}
+		
+		
+	</update>
+
+</mapper>
