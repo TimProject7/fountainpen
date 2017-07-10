@@ -166,7 +166,7 @@ public class ProductController {
 		logger.info("productQnaDetail 호출 성공");
 
 		// 게시글 조회수 증가
-		productQnaService.productQnaViewCnt(productQna_number, session);
+		//productQnaService.productQnaViewCnt(productQna_number, session);
 		//세션아디 불러온다
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		String userid = uvo.getUser_id();

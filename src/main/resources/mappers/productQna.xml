@@ -9,7 +9,7 @@
 			select list.*, rownum as rnum
 			from(
 				select
-					pq.productQna_number, pq.productQna_content, pq.productQna_writedate, pq.productQna_viewCnt,  pq.productQna_name,
+					pq.productQna_number, pq.productQna_content, pq.productQna_writedate,  pq.productQna_name,
 					 pq.productQna_type,p.product_number as productId, 
 					u.user_number, u.user_name, u.user_id
 				from
@@ -33,7 +33,7 @@
 			from(
 				select
 					pq.productQna_number, pq.productQna_content, pq.productQna_writedate,pq.productQna_type,
-					p.product_number as productId, pq.productQna_viewCnt,
+					p.product_number as productId,
 					u.user_number, u.user_name, u.user_id
 				from
 					productQna_tb pq, products_tb p, users_tb u
@@ -95,8 +95,8 @@
 		
 	</update>
 	
-	<!-- 1:1문의 게시글 조회수 증가처리 -->
-	<update id="productQnaViewCnt">
+	 <!-- 1:1문의 게시글 조회수 증가처리 -->
+	<!--<update id="productQnaViewCnt">
 		UPDATE
 		productQna_tb
 		SET
@@ -104,6 +104,6 @@
 		productQna_viewCnt+ 1
 		WHERE
 		productQna_number = #{productQna_number}
-	</update>
+	</update> -->
 
 </mapper>

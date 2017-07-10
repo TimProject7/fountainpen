@@ -22,5 +22,5 @@ public interface ProductQnaDAO {
 	public int productQnaDetailUpdate(ProductQnaVO PQVO);
 	
 	// 상품 Qna조회수 증가
-	public void productQnaViewCnt(int productQna_number);
+	//public void productQnaViewCnt(int productQna_number);
 }

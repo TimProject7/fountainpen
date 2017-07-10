@@ -220,8 +220,7 @@ ul.tab li.current {
 			<h3>About</h3>
 
 			<!-- 페이지 넘버 가져오는 폼 -->
-			<input type="text" id="product_number" name="product_number"
-				value="${productId}" />
+		
 			<form id="f_search" name="f_search">
 				<input type="hidden" id="page" name="page" value="${data.page}" />
 
@@ -241,7 +240,7 @@ ul.tab li.current {
 							<th width="60%">글내용</th>
 							<th>작성자</th>
 							<th>작성일</th>
-							<th width="5%">조회수</th>
+							<!-- <th width="5%">조회수</th> -->
 						</tr>
 						<!-- 데이터 전체를 List로 불러와서 포이치문으로 출력 -->
 						<c:choose>
@@ -251,11 +250,19 @@ ul.tab li.current {
 									<tr>
 										
 										<td>${ProductQnaList.productQna_type}</td>
-										<td id="title"><a
-											href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${ProductQnaList.productQna_content}</a></td>
+										<c:choose>
+											<c:when test="${fn:length(ProductQnaList.productQna_content)>6}">
+											<td id="title">
+												<a href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${fn:substring(ProductQnaList.productQna_content,0,5)}...</a></td>
+											</c:when>
+											<c:otherwise>
+												<td id="title">
+												<a href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${ProductQnaList.productQna_content}</a></td>
+											</c:otherwise>
+										</c:choose>
 										<td id="writer">${ProductQnaList.productQna_name}</td>
 										<td id="center">${ProductQnaList.productQna_writedate}</td>
-										<td id="center">${ProductQnaList.productQna_viewCnt}</td>
+										<%-- <td id="center">${ProductQnaList.productQna_viewCnt}</td> --%>
 									</tr>
 
 								</c:forEach>

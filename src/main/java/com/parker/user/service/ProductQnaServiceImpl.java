@@ -53,7 +53,7 @@ public class ProductQnaServiceImpl implements ProductQnaService {
 	}
 
 
-	@Override
+	/*@Override
 	public void productQnaViewCnt(int productQna_number, HttpSession session) {
 		long update_time = 0;
 		// 세션에 저장된 조회시간 검색
@@ -73,6 +73,6 @@ public class ProductQnaServiceImpl implements ProductQnaService {
 
 		}
 		
-	}
+	}*/
 
 }
