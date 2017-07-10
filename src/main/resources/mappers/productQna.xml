@@ -94,5 +94,16 @@
 		
 		
 	</update>
+	
+	<!-- 1:1문의 게시글 조회수 증가처리 -->
+	<update id="productQnaViewCnt">
+		UPDATE
+		productQna_tb
+		SET
+		productQna_viewCnt =
+		productQna_viewCnt+ 1
+		WHERE
+		productQna_number = #{productQna_number}
+	</update>
 
 </mapper>

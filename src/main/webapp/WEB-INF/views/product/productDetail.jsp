@@ -231,11 +231,12 @@ ul.tab li.current {
 				<h2>Q&A</h2>
 				<br>
 				<form id="productQnaInsertForm" name="productQnaInsertForm">
+				 
 					<input type="hidden" name="productId" id="productId"
 						value="${detail.productId}" />
 					<table id="productQnaTable" border="1">
 						<tr>
-							<th width="5%">글번호</th>
+							
 							<th>문의유형</th>
 							<th width="60%">글내용</th>
 							<th>작성자</th>
@@ -243,14 +244,12 @@ ul.tab li.current {
 							<th width="5%">조회수</th>
 						</tr>
 						<!-- 데이터 전체를 List로 불러와서 포이치문으로 출력 -->
-
-
-
 						<c:choose>
 							<c:when test="${not empty ProductQnaList}">
 								<c:forEach var="ProductQnaList" items="${ProductQnaList}">
+								<input type="hidden" id="productQna_number" name="productQna_number" value="${ProductQnaList.productQna_number}" />
 									<tr>
-										<td id="center">${ProductQnaList.productQna_number}</td>
+										
 										<td>${ProductQnaList.productQna_type}</td>
 										<td id="title"><a
 											href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${ProductQnaList.productQna_content}</a></td>

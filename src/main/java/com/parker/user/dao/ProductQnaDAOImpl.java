@@ -45,4 +45,10 @@ public class ProductQnaDAOImpl implements ProductQnaDAO {
 		return session.update("productQnaDetailUpdate", PQVO);
 	}
 
+	@Override
+	public void productQnaViewCnt(int productQna_number) {
+		session.update("productQnaViewCnt", productQna_number);
+		
+	}
+
 }

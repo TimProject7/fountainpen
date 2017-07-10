@@ -2,6 +2,8 @@ package com.parker.user.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.parker.user.vo.ProductQnaVO;
 
 public interface ProductQnaService {
@@ -18,4 +20,7 @@ public interface ProductQnaService {
 
 	// 수정
 	public int productQnaDetailUpdate(ProductQnaVO PQVO);
+
+	// 상품 Qna조회수 증가
+	public void productQnaViewCnt(int productQna_number, HttpSession session);
 }

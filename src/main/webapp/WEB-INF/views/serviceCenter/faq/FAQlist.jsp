@@ -61,7 +61,7 @@
 						<tr>
 							<td class="no">${row.faq_no}</td>
 							<td style="width: 50%;"><a
-								href="FAQview?faq_no=${row.faq_no}">${row.faq_title}</a></td>
+								href="/serviceCenter/faq/FAQview.do?faq_no=${row.faq_no}">${row.faq_title}</a></td>
 							<td style="width: 9%;">${row.faq_writer}</td>
 							<td style="width: 25;%;">
 								<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 --> <fmt:formatDate

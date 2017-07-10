@@ -34,48 +34,39 @@
 <body>
 	<div align="center">
 		<h2>상품Q&A 상세보기</h2>
-
-		<input type="button" id="productQnaDetailUpdate"
-			name="userBoardDetailUpdate" value="수정" /> <input type="button"
-			id="productQnaDetailDelete" name="userBoardDetailDelete" value="삭제" />
-
+		<c:if test="${userid == productQnaDetail.productQna_name}">
+		<input type="button" id="productQnaDetailUpdate" name="userBoardDetailUpdate" value="수정" /> 
+		<input type="button" id="productQnaDetailDelete" name="userBoardDetailDelete" value="삭제" />
+		</c:if>
 		<input type="button" id="productList" name="productList" value="목록" />
 	</div>
 
 	<form id="productQnaDetailUpdateForm" name="productQnaDetailUpdateForm">
-		<input type="text" id="productId" name="productId"
-			value="${productId}"> <input type="text"
-			id="productQna_number" name="productQna_number"
-			value="${productQnaDetail.productQna_number}">
+		<input type="hidden" id="productId" name="productId" value="${productId}"> 
+		<input type="hidden" id="productQna_number" name="productQna_number" value="${productQnaDetail.productQna_number}">
 
 		<table border="1">
 			<tr>
 				<td>문의유형</td>
-				<td colspan="3"><label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="상품문의">상품문의</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="배송문의">배송문의</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="교환&변경">교환&변경</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="취소">취소</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="기타">기타</label></td>
+				<td colspan="3"><label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="상품문의">상품문의</label> 
+				<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="배송문의">배송문의</label> 
+				<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="교환&변경">교환&변경</label> 
+				<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="취소">취소</label> 
+				<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="기타">기타</label></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" readonly="readonly" value="${userid}" /></td>
+				<td>
+					<input type="text" readonly="readonly" value="${productQnaDetail.productQna_name}" />
+				</td>
 				<td>작성일</td>
-				<td><input type="text" id="productQna_writedate"
-					name="productQna_writedate"
-					value="${productQnaDetail.productQna_writedate}" /></td>
+				<td>
+					<input type="text" id="productQna_writedate" name="productQna_writedate" value="${productQnaDetail.productQna_writedate}" />
+				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td colspan="3"><input type="text" id="productQna_content"
-					name="productQna_content"
-					value="${productQnaDetail.productQna_content}" /></td>
+				<td colspan="3"><input type="text" id="productQna_content" name="productQna_content" value="${productQnaDetail.productQna_content}" /></td>
 			</tr>
 
 		</table>

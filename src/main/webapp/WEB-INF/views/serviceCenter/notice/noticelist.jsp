@@ -79,7 +79,7 @@
 		<ul id="myPageForm_nav_ul">
 			<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
 			<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do"><b>공지사항</b></a></li>
-			<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">1:1문의</a></li>
+			<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
 		</ul>
 	</div>
 
@@ -119,7 +119,7 @@
 						<tr>
 							<td class="no">${row.notice_no}</td>
 							<td style="width: 50%;"><a
-								href="noticeview?notice_no=${row.notice_no}">${row.notice_title}</a></td>
+								href="/serviceCenter/notice/noticeview.do?notice_no=${row.notice_no}">${row.notice_title}</a></td>
 							<td style="width: 9%;">${row.notice_writer}</td>
 							<td style="width: 25%;">
 								<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 --> <fmt:formatDate

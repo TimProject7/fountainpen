@@ -1,6 +1,5 @@
 package com.parker.user.controller;
 
-
 import java.io.File;
 import java.util.List;
 
@@ -137,25 +136,16 @@ public class ServiceCenterController {
 
 		// 조회수
 		userBoardService.userBoardViewCnt(userboard_number, session);
-
-		UserVO uvo = (UserVO) session.getAttribute("UVO");
-		String username = uvo.getUser_name();
-		String userid = uvo.getUser_id();
-		String viewid = request.getParameter("user_id");
-		System.out.println("username : " + username);
-		System.out.println("userid:" + userid);
-
-		// 상세페이지 이동
 		mav.addObject("userBoardDetail", userBoardService.userBoardDetail(userboard_number));
-		// mav.addObject("username",username);
-		if (userid != viewid) {
-			model.addAttribute("username", username);
-			model.addAttribute("userid", userid);
-			mav.setViewName("serviceCenter/userBoard/userBoardDetail");
-		} else {
-			model.addAttribute("userid", null);
-			mav.setViewName("serviceCenter/userBoard/userBoardDetail");
-		}
+		// 세션정보가져옴
+		UserVO uvo = (UserVO) session.getAttribute("UVO");
+		// 세션아이디
+		String userid = uvo.getUser_id();
+		
+		
+		model.addAttribute("userid", userid);
+		mav.setViewName("serviceCenter/userBoard/userBoardDetail");
+
 		return mav;
 	}
 
@@ -168,7 +158,7 @@ public class ServiceCenterController {
 		// 정보수정
 		int result = userBoardService.userBoardDetailUpdate(UBVO);
 
-		//회원게시판리스트
+		// 회원게시판리스트
 		List<UserBoardVO> userBoardList = userBoardService.userBoardList(UBVO);
 
 		if (result == 1) {
@@ -264,77 +254,77 @@ public class ServiceCenterController {
 		}
 		return entity;
 	}
-	
+
 	// 01. 게시글 목록
-		@RequestMapping("/faq/FAQlist")
-		public ModelAndView list(ModelAndView mav, @ModelAttribute FAQVO fvo) throws Exception {
-			logger.info("FAQ 리스트 호출 성공");
-			Paging.set(fvo);
-			// ModelAndView - 모델과 뷰
-			int total = faqService.listCnt(fvo);
-			int count = total - (Util.nvl(fvo.getPage()) - 1) * Util.nvl(fvo.getPageSize());
+	@RequestMapping("/faq/FAQlist")
+	public ModelAndView list(ModelAndView mav, @ModelAttribute FAQVO fvo) throws Exception {
+		logger.info("FAQ 리스트 호출 성공");
+		Paging.set(fvo);
+		// ModelAndView - 모델과 뷰
+		int total = faqService.listCnt(fvo);
+		int count = total - (Util.nvl(fvo.getPage()) - 1) * Util.nvl(fvo.getPageSize());
 
-			List<FAQVO> list = faqService.listAll(fvo);
+		List<FAQVO> list = faqService.listAll(fvo);
 
-			mav.addObject("count", count);
-			mav.addObject("data", fvo);
-			mav.setViewName("serviceCenter/faq/FAQlist"); // 뷰를 list.jsp로 설정
-			mav.addObject("total", total);
-			mav.addObject("faq_list", list); // 데이터를 저장
+		mav.addObject("count", count);
+		mav.addObject("data", fvo);
+		mav.setViewName("serviceCenter/faq/FAQlist"); // 뷰를 list.jsp로 설정
+		mav.addObject("total", total);
+		mav.addObject("faq_list", list); // 데이터를 저장
 
-			return mav; // list.jsp로 List가 전달된다.
-		}
+		return mav; // list.jsp로 List가 전달된다.
+	}
 
-		// 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
-		// @RequestParam : get/post방식으로 전달된 변수 1개
-		// HttpSession 세션객체
-		@RequestMapping(value = "/faq/FAQview", method = RequestMethod.GET)
-		public ModelAndView view(@RequestParam int faq_no, HttpSession session) throws Exception {
-			// 조회수 증가 처리
-			faqService.increaseViewcnt(faq_no, session);
-			// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
-			ModelAndView mav = new ModelAndView();
-			// 뷰의 이름
-			mav.setViewName("serviceCenter/faq/FAQview");
-			// 뷰에 전달할 데이터
-			mav.addObject("dto", faqService.read(faq_no));
-			return mav;
+	// 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
+	// @RequestParam : get/post방식으로 전달된 변수 1개
+	// HttpSession 세션객체
+	@RequestMapping(value = "/faq/FAQview", method = RequestMethod.GET)
+	public ModelAndView view(@RequestParam int faq_no, HttpSession session) throws Exception {
+		// 조회수 증가 처리
+		faqService.increaseViewcnt(faq_no, session);
+		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+		ModelAndView mav = new ModelAndView();
+		// 뷰의 이름
+		mav.setViewName("serviceCenter/faq/FAQview");
+		// 뷰에 전달할 데이터
+		mav.addObject("dto", faqService.read(faq_no));
+		return mav;
 
-		}
-		
-		// 01. 게시글 목록
-		@RequestMapping("/notice/noticelist")
-		public ModelAndView list(ModelAndView mav, @ModelAttribute NoticeVO nvo) throws Exception {
-			logger.info("Notice 리스트 호출 성공");
-			Paging.set(nvo);
-			int total = noticeService.noticeListCnt(nvo);
-			int count = total - (Util.nvl(nvo.getPage()) - 1) * Util.nvl(nvo.getPageSize());
-			List<NoticeVO> list = noticeService.listAll(nvo);
+	}
 
-			// ModelAndView - 모델과 뷰
-			mav.addObject("count", count);
-			mav.addObject("data", nvo);
-			mav.addObject("total", total);
-			mav.setViewName("serviceCenter/notice/noticelist"); // 뷰를 list.jsp로 설정
-			mav.addObject("Notice_list", list); // 데이터를 저장
+	// 01. 게시글 목록
+	@RequestMapping("/notice/noticelist")
+	public ModelAndView list(ModelAndView mav, @ModelAttribute NoticeVO nvo) throws Exception {
+		logger.info("Notice 리스트 호출 성공");
+		Paging.set(nvo);
+		int total = noticeService.noticeListCnt(nvo);
+		int count = total - (Util.nvl(nvo.getPage()) - 1) * Util.nvl(nvo.getPageSize());
+		List<NoticeVO> list = noticeService.listAll(nvo);
 
-			return mav; // list.jsp로 List가 전달된다.
-		}
+		// ModelAndView - 모델과 뷰
+		mav.addObject("count", count);
+		mav.addObject("data", nvo);
+		mav.addObject("total", total);
+		mav.setViewName("serviceCenter/notice/noticelist"); // 뷰를 list.jsp로 설정
+		mav.addObject("Notice_list", list); // 데이터를 저장
 
-		// 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
-		// @RequestParam : get/post방식으로 전달된 변수 1개
-		// HttpSession 세션객체
-		@RequestMapping(value = "/notice/noticeview", method = RequestMethod.GET)
-		public ModelAndView noticeview(@RequestParam int notice_no, HttpSession session) throws Exception {
-			// 조회수 증가 처리
-			noticeService.increaseViewcnt(notice_no, session);
-			// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
-			ModelAndView mav = new ModelAndView();
-			// 뷰의 이름
-			mav.setViewName("serviceCenter/notice/noticeview");
-			// 뷰에 전달할 데이터
-			mav.addObject("dto", noticeService.read(notice_no));
-			return mav;
+		return mav; // list.jsp로 List가 전달된다.
+	}
 
-		}
+	// 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
+	// @RequestParam : get/post방식으로 전달된 변수 1개
+	// HttpSession 세션객체
+	@RequestMapping(value = "/notice/noticeview", method = RequestMethod.GET)
+	public ModelAndView noticeview(@RequestParam int notice_no, HttpSession session) throws Exception {
+		// 조회수 증가 처리
+		noticeService.increaseViewcnt(notice_no, session);
+		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+		ModelAndView mav = new ModelAndView();
+		// 뷰의 이름
+		mav.setViewName("serviceCenter/notice/noticeview");
+		// 뷰에 전달할 데이터
+		mav.addObject("dto", noticeService.read(notice_no));
+		return mav;
+
+	}
 }

@@ -39,7 +39,7 @@
 <body>
 	<div align="center">
 		<h2>회원게시판 상세보기</h2>
-		<c:if test="${userid}">
+		<c:if test="${userid==userBoardDetail.userboard_name}">
 			<input type="button" id="userBoardDetailUpdate"
 				name="userBoardDetailUpdate" value="수정" />
 			<input type="button" id="userBoardDetailDelete"
@@ -56,7 +56,7 @@
 		<table border="1">
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" readonly="readonly" value="${userid}"/></td>
+				<td><input type="text" readonly="readonly" value="${userBoardDetail.userboard_name}"/></td>
 				<td>작성일</td>
 				<td>${userBoardDetail.userboard_writedate}</td>
 			</tr>
@@ -81,3 +81,4 @@
 
 </body>
 </html>
+<%@ include file="/footer.jsp"%>
