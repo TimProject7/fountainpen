@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<LINK REL="SHORTCUT ICON" HREF="/images/favicon.ico" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <!--jQuery 플러그인 추가-->
 <script src="js/jquery.banner.js"></script>

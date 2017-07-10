@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>만년필의 명가 파카(PARKER)</title>
-
+<LINK REL="SHORTCUT ICON" HREF="/images/favicon.ico" />
 <!--jQuery 플러그인 추가-->
 <style type="text/css"></style>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
