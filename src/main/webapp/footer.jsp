@@ -46,7 +46,7 @@
 						<td></td>
 						<td> URBAN</td>
 						<td> IM</td>
-						<td> A/S system</td>
+						<td> User board</td>
 					</tr>
 
 					<tr>
@@ -54,7 +54,6 @@
 						<td></td>
 						<td> VECTOR</td>
 						<td> JOTTER</td>
-						<td> User board</td>
 					</tr>
 
 					<tr>
@@ -62,7 +61,6 @@
 						<td></td>
 						<td>> INK&REFILL</td>
 						<td></td>
-						<td>> How to use</td>
 					</tr>
 
 
