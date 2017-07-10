@@ -9,8 +9,8 @@ public interface ProductQnaReplyDAO {
 	// 댓글목록
 
 	public List<ProductQnaReplyVO> ProductQnaReplyList(Integer productId);
-	
-	//구매확인
+
+	// 구매확인
 	public int ProductBuyChk(ProductQnaReplyVO PQRVO);
 
 	// 댓글 등록

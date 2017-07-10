@@ -2,8 +2,8 @@ package com.parker.user.dao;
 
 import java.util.List;
 
+import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductQnaVO;
-import com.parker.user.vo.UserBoardVO;
 
 public interface ProductQnaDAO {
 
@@ -14,13 +14,15 @@ public interface ProductQnaDAO {
 
 	// 상품Qna 글쓰기
 	public int productQnaInsert(ProductQnaVO PQVO);
-	
+
 	// 상세보기
 	public ProductQnaVO productQnaDetail(int productQna_number);
-	
-	//수정
+
+	// 수정
 	public int productQnaDetailUpdate(ProductQnaVO PQVO);
-	
+
+	public ProductQnaReplyVO productQnaReply(int productQna_number);
+
 	// 상품 Qna조회수 증가
-	//public void productQnaViewCnt(int productQna_number);
+	// public void productQnaViewCnt(int productQna_number);
 }

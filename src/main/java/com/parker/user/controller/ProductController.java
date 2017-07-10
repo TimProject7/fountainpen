@@ -166,8 +166,8 @@ public class ProductController {
 		logger.info("productQnaDetail 호출 성공");
 
 		// 게시글 조회수 증가
-		//productQnaService.productQnaViewCnt(productQna_number, session);
-		//세션아디 불러온다
+		// productQnaService.productQnaViewCnt(productQna_number, session);
+		// 세션아디 불러온다
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		String userid = uvo.getUser_id();
 		System.out.println("userid:" + userid);
@@ -176,6 +176,7 @@ public class ProductController {
 
 		// 상세페이지 이동
 		mav.addObject("productQnaDetail", productQnaService.productQnaDetail(productQna_number));
+		mav.addObject("productQnaReply", productQnaService.productQnaReply(productQna_number));
 		// mav.addObject("username",username);
 		model.addAttribute("userid", userid);
 		model.addAttribute("productId", productId);
