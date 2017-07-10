@@ -13,7 +13,7 @@
 		where 
 				rr.user_number = u.user_number
 				and rr.product_number = p.product_number
-				and p.product_number = #{product_number}
+				and p.product_number = #{productId}
 		order by
 				rr.reviewReply_number desc
 

@@ -42,7 +42,7 @@ public class ProductQnaDAOImpl implements ProductQnaDAO {
 	@Override
 	public int productQnaDetailUpdate(ProductQnaVO PQVO) {
 		// TODO Auto-generated method stub
-		return session.selectOne("productQnaDetailUpdate", PQVO);
+		return session.update("productQnaDetailUpdate", PQVO);
 	}
 
 }

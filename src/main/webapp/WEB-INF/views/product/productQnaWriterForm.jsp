@@ -21,8 +21,13 @@
 			<table border="1">
 				<tr>
 					<td>문의유형</td>
-					<td colspan="3"><input type="text" id="productQna_type"
-						name="productQna_type"></td>
+					<td colspan="3">
+						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="상품문의">상품문의</label> 
+						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="배송문의">배송문의</label> 
+						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="교환&변경">교환&변경</label> 
+						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="취소">취소</label> 
+						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="기타">기타</label> 
+					</td>
 				</tr>
 				<tr>
 					<td>작성자</td>

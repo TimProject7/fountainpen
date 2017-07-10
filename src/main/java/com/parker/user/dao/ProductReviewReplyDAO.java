@@ -2,7 +2,6 @@ package com.parker.user.dao;
 
 import java.util.List;
 
-import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductReviewReplyVO;
 
 public interface ProductReviewReplyDAO {

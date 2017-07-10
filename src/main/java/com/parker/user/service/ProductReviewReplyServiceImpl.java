@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.parker.user.dao.ProductQnaReplyDAO;
 import com.parker.user.dao.ProductReviewReplyDAO;
-import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductReviewReplyVO;
-import com.parker.user.vo.UserBoardReplyVO;
 
 @Service
 @Transactional

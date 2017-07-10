@@ -87,6 +87,7 @@
 		update
 			productqna_tb
 		set
+		productQna_type = #{productQna_type},
 			productQna_content= #{productQna_content}	
 		where
 			productQna_number = #{productQna_number}

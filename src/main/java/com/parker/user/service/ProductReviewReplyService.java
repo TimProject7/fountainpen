@@ -2,7 +2,6 @@ package com.parker.user.service;
 
 import java.util.List;
 
-import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductReviewReplyVO;
 
 public interface ProductReviewReplyService {

@@ -253,7 +253,7 @@ ul.tab li.current {
 										<td id="center">${ProductQnaList.productQna_number}</td>
 										<td>${ProductQnaList.productQna_type}</td>
 										<td id="title"><a
-											href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}">${ProductQnaList.productQna_content}</a></td>
+											href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${ProductQnaList.productQna_content}</a></td>
 										<td id="writer">${ProductQnaList.productQna_name}</td>
 										<td id="center">${ProductQnaList.productQna_writedate}</td>
 										<td id="center">${ProductQnaList.productQna_viewCnt}</td>

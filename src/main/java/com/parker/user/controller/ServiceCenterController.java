@@ -316,7 +316,7 @@ public class ServiceCenterController {
 			mav.addObject("data", nvo);
 			mav.addObject("total", total);
 			mav.setViewName("serviceCenter/notice/noticelist"); // 뷰를 list.jsp로 설정
-			mav.addObject("noticelist", list); // 데이터를 저장
+			mav.addObject("Notice_list", list); // 데이터를 저장
 
 			return mav; // list.jsp로 List가 전달된다.
 		}

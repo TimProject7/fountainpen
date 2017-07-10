@@ -6,9 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductReviewReplyVO;
-import com.parker.user.vo.UserBoardReplyVO;
 
 @Repository
 public class ProductReviewReplyDAOImpl implements ProductReviewReplyDAO {

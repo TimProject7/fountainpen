@@ -1,6 +1,5 @@
 package com.parker.user.controller;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,21 +17,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parker.user.boardcommon.Paging;
 import com.parker.user.boardcommon.Util;
-import com.parker.user.service.ProductQnaReplyService;
 import com.parker.user.service.ProductQnaService;
 import com.parker.user.service.ProductReviewReplyService;
 import com.parker.user.service.ProductService;
-import com.parker.user.vo.BuyVO;
-import com.parker.user.vo.ProductQnaReplyVO;
 import com.parker.user.vo.ProductQnaVO;
 import com.parker.user.vo.ProductReviewReplyVO;
 import com.parker.user.vo.ProductVO;
-import com.parker.user.vo.UserBoardReplyVO;
 import com.parker.user.vo.UserBoardVO;
 import com.parker.user.vo.UserVO;
 
@@ -48,8 +43,6 @@ public class ProductController {
 	@Autowired
 	private ProductQnaService productQnaService;
 
-	@Autowired
-	private ProductQnaReplyService productQnaReplyService;
 
 	@Autowired
 	private ProductReviewReplyService productReviewReplyService;
@@ -145,7 +138,7 @@ public class ProductController {
 	// 상품Qna 글쓰기
 	@RequestMapping(value = "/productQnaInsert", method = { RequestMethod.POST, RequestMethod.GET })
 	public String userBoardWriterAction(@ModelAttribute ProductQnaVO PQVO, Model model, HttpServletRequest request,
-			HttpSession session, @ModelAttribute UserVO UVO, @ModelAttribute ProductVO pvo) {
+			HttpSession session, @ModelAttribute UserVO UVO, @ModelAttribute ProductVO pvo ,RedirectAttributes red) {
 		logger.info("userBoardInsert 호출 성공");
 
 		// 세션가져와서 넣어준당
@@ -161,14 +154,15 @@ public class ProductController {
 		System.out.println("PQVO.toString() : " + PQVO.toString());
 
 		System.out.println("result : " + result);
+		red.addAttribute("productId", productId);
 
-		return "redirect:/product/productDetail.do";
+		return "redirect:/product/productList.do";
 	}
 
 	// 상품Qna 상세페이지
 	@RequestMapping(value = "/productQnaDetail", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView productQnaDetail(@ModelAttribute ProductQnaVO PQVO, @RequestParam int productQna_number,
-			HttpSession session, ModelAndView mav, Model model, HttpServletRequest request) {
+			HttpSession session, ModelAndView mav, Model model, HttpServletRequest request,@ModelAttribute ProductVO pvo) {
 		logger.info("productQnaDetail 호출 성공");
 
 		// 조회수
@@ -177,11 +171,14 @@ public class ProductController {
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		String userid = uvo.getUser_id();
 		System.out.println("userid:" + userid);
+		int  productId =PQVO.getProductId();
+		System.out.println("productId : " + productId);
 
 		// 상세페이지 이동
 		mav.addObject("productQnaDetail", productQnaService.productQnaDetail(productQna_number));
 		// mav.addObject("username",username);
 		model.addAttribute("userid", userid);
+		model.addAttribute("productId", productId);
 		mav.setViewName("product/productQnaDetail");
 		return mav;
 	}
@@ -189,22 +186,23 @@ public class ProductController {
 	// 상품Qna게시판 수정 액션
 	@RequestMapping(value = "/productQnaDetailUpdate", method = { RequestMethod.POST, RequestMethod.GET })
 	public String productQnaDetailUpdate(@ModelAttribute ProductQnaVO PQVO, HttpSession session,
-			@ModelAttribute UserVO UVO, Model model, @ModelAttribute ProductVO pvo) {
+			@ModelAttribute UserVO UVO, Model model,@RequestParam int productQna_number,@ModelAttribute ProductVO pvo, RedirectAttributes red) {
 		logger.info("productQnaDetailUpdate 호출 성공");
-
+		int url =0;
+		System.out.println("productQna_number" + productQna_number);
 		System.out.println("pvo.getProductId() : " + pvo.getProductId());
+		PQVO.setProductQna_number(productQna_number);
 		PQVO.setProductId(pvo.getProductId());
-
+		int productId = pvo.getProductId();
 		// 정보수정
 		int result = productQnaService.productQnaDetailUpdate(PQVO);
 		System.out.println("PQVO : " +PQVO);
 		System.out.println("result : " + result);
 		// 세션가져와서 넣어준당
-		List<ProductQnaVO> ProductQnaList = productQnaService.productQnaList(PQVO);
+		red.addAttribute("productId", productId);
 
 		if (result == 1) {
 			System.out.println("성공");
-			model.addAttribute("ProductQnaList", ProductQnaList);
 		} else {
 			System.out.println("실패");
 		}
@@ -212,102 +210,7 @@ public class ProductController {
 		return "redirect:/product/productDetail.do";
 	}
 
-	// Q&A 댓글목록
-	@RequestMapping(value = "/productQnaReply/all/{productId}.do", method = RequestMethod.GET)
-	public ResponseEntity<List<ProductQnaReplyVO>> list(@PathVariable("productId") Integer productId) {
-		ResponseEntity<List<ProductQnaReplyVO>> entity = null;
-
-		try {
-			entity = new ResponseEntity<>(productQnaReplyService.ProductQnaReplyList(productId), HttpStatus.OK);
-			System.out.println("Qna entity : " + entity.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	/*
-	 * * Q&A 댓글 글쓰기 구현하기
-	 * 
-	 * @return String 참고 : @RequestBody
-	 */
-
-	@RequestMapping(value = "/productQnaReplyInsert")
-	public ResponseEntity<String> replyInsert(@RequestBody ProductQnaReplyVO PQRVO, HttpSession session) {
-		logger.info("replyInsert 호출 성공");
-		ResponseEntity<String> entity = null;
-		int result;
-		// 세션정보를 가져온다-
-		UserVO uvo = (UserVO) session.getAttribute("UVO");
-		System.out.println("uvo.getUser_number : " + uvo.getUser_number());
-		PQRVO.setUser_number(uvo.getUser_number());
-		System.out.println("PQRVO.getProductId() : " + PQRVO.getProductId());
-
-		try {
-			// 구매를했는지 확인
-			int buychk = productQnaReplyService.ProductBuyChk(PQRVO);
-			System.out.println("buychk");
-			if (buychk != 0) {
-				result = productQnaReplyService.ProductQnaReplyInsert(PQRVO);
-				// 댓글 성공
-				if (result == 1) {
-					entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	/*
-	 * * Q&A 댓글 수정 구현하기
-	 * 
-	 * @return 참고 : REST방식에서 UPDATE 작업은 PUT.PATCH방식을 이용해서 처리 전체 데이터를 수정하는 경우에는
-	 * PUT을 이용하고 일부의 데이터를 수정하는 경우에는 PATCH를 이용
-	 */
-
-	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = { RequestMethod.GET, RequestMethod.PUT,
-			RequestMethod.PATCH })
-	public ResponseEntity<String> replyUpdate(@PathVariable("ProductQnaReply_number") Integer ProductQnaReply_number,
-			@RequestBody ProductQnaReplyVO PQRVO) {
-		logger.info("replyUpdate 호출 성공");
-		ResponseEntity<String> entity = null;
-
-		try {
-			PQRVO.setProductQnaReply_number(ProductQnaReply_number);
-			productQnaReplyService.ProductQnaReplyUpdate(PQRVO);
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	/*
-	 * * Q&A 댓글 삭제 구현하기
-	 * 
-	 * @return 참고 :REST방식에서 DELETE 작업은 DELETE방식을 이용해서 처리
-	 */
-
-	@RequestMapping(value = "/productQnaReply/{productqna_number}.do", method = RequestMethod.DELETE)
-	public ResponseEntity<String> replyDelete(@PathVariable("productqna_number") Integer productqna_number) {
-		logger.info("replyDelete 호출 성공");
-		ResponseEntity<String> entity = null;
-
-		try {
-			productQnaReplyService.ProductQnaReplyDelete(productqna_number);
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
+	
 	// 후기 댓글목록
 	@RequestMapping(value = "/productReviewReply/all/{reviewReply_number}.do", method = RequestMethod.GET)
 	public ResponseEntity<List<ProductReviewReplyVO>> list1(
