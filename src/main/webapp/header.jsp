@@ -50,7 +50,7 @@
 					<li class="hd_nav2"><a href="/story.do"><b>STORY</b></a></li>
 					<li class="hd_nav2"><a href="/product/productList.do"><b>PRODUCT</b></a></li>
 					<li class="hd_nav2"><a href="/serviceCenter/userBoard/userBoard.do"><b>SUPPORT</b></a></li>
-					<li class="hd_nav2"><a href="#"><b>STORE</b></a></li>
+					<li class="hd_nav2"><a href="/store.do"><b>STORE</b></a></li>
 				</ul>
 			</center>
 

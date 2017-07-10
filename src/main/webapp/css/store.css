@@ -1,0 +1,100 @@
+
+#container {
+	width: 100%;
+	margin: 0px auto;
+}
+
+.tab{
+	padding-left: 23.6%;
+}
+
+
+ul.tab li {
+	float: left;
+	width: 100px;
+	height: 40px;
+	list-style-type: none;
+}
+
+ul.tab li a {
+	display: block;
+	outline: none;
+	color: #333;
+	line-height: 40px;
+	text-align: center;
+}
+
+ul.tab li a.selected {
+	text-decoration: none;
+	color: white;
+	cursor: default;
+	background-color: #000000;
+	text-align: center;
+	font-weight: 600;
+}
+
+ul.panel {
+	border-top: none;
+	padding: 0;
+	clear: both;
+}
+
+ul.panel li {
+	padding: 10px;
+	text-indent: 1em;
+	color: #333;
+	list-style-type: none;
+}
+
+#store_table{
+	width: 70.7%;
+	border-color: #e1e1e1;
+	border-width: 1px;
+	padding-left: 0.9%;
+}
+
+#store_table th{
+	background: #101e34;
+	color: white;
+	text-align: center;
+}
+
+#store_table td{
+	text-align: center;
+	background: #dfdfdf;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	text-align: center;
+}
+
+.history_div{
+	
+	float: left;
+	width: 48%;
+	font-size: 0.95em;
+	
+}
+
+#right_div{
+	text-align: left;
+}
+
+#left_div{
+	text-align: right;
+}
+
+.center_line{
+	
+	float : left;
+	margin : 0;
+	padding : 0;
+	width: 30px;
+	height: 1200px;
+}
+
+@media only screen and (max-width: 767px) {
+	
+	ul.tab li {
+		width: 100%;
+	}
+}

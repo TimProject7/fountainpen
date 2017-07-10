@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +19,7 @@
 </head>
 <body>
 	<div class="mapper">
-		<header>
+<%-- 		<header>
 			<ul class="hd_nav1">
 				<li class="hd_nav1"><a href="#">SITE-MAP</a></li>
 				<li class="hd_nav1"><a href="#">SUPPORT</a></li>
@@ -43,7 +47,7 @@
 
 			<br>
 
-		</header>
+		</header> --%>
 
 		<br>
 
@@ -72,6 +76,7 @@
 
 
 					<li id="tab1">
+					
 						<table class="story_table">
 							<tr>
 								<td colspan="2">
@@ -199,7 +204,7 @@
 			</div>
 		</div>
 
-		<footer>
+		<!-- <footer>
 			<div class="footer_content1">
 				<br>
 				<table class="footer_table">
@@ -269,9 +274,10 @@
 				</table>
 			</div>
 
-		</footer>
+		</footer> -->
 
 
 	</div>
 </body>
 </html>
+<%@ include file="/footer.jsp"%>
