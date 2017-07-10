@@ -56,5 +56,16 @@
 			
 		
 	</update>
+	
+	<update id="deliveryOk" parameterType="com.parker.user.vo.BuyVO" >
+		update
+			buy_tb
+		set
+			buy_status = '배송완료'
+		where
+			buy_number = #{buy_number}
+			
+		
+	</update>
 
 </mapper>

@@ -13,11 +13,11 @@ import com.parker.user.vo.DeliveryVO;
 
 @Service
 @Transactional
-public class DeliveryServiceImpl implements DeliveryService{
+public class DeliveryServiceImpl implements DeliveryService {
 	@Inject
 	DeliveryDAO deliveryDAO;
-	
-	//배송정보 리스트
+
+	// 배송정보 리스트
 	@Override
 	public List<BuyVO> DeliveryList(BuyVO BVO) {
 		List<BuyVO> deliveryList;
@@ -36,5 +36,11 @@ public class DeliveryServiceImpl implements DeliveryService{
 	public int DeliveryCancle(int buy_number) {
 		// TODO Auto-generated method stub
 		return deliveryDAO.DeliveryCancle(buy_number);
+	}
+
+	@Override
+	public int DeliveryOk(int buy_number) {
+		// TODO Auto-generated method stub
+		return deliveryDAO.DeliveryOk(buy_number);
 	}
 }

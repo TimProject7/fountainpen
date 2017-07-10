@@ -381,4 +381,18 @@ public class myPageController {
 		return "redirect:/myPage/delivery/delivery.do";
 	}
 
+	// 마이페이지 배송정보
+	@RequestMapping(value = "/delivery/deliveryOkForm", method = { RequestMethod.POST, RequestMethod.GET })
+	public String deliveryOkForm(HttpSession session, @RequestParam("chk") int[] buy_number, HttpServletRequest request,
+			@ModelAttribute BuyVO BVO) {
+		logger.info("delivery 호출 성공");
+
+		for (int buyStatusOk : buy_number) {
+			System.out.println("완료 = " + buyStatusOk);
+			deliveryService.DeliveryOk(buyStatusOk);
+		}
+
+		return "redirect:/myPage/delivery/delivery.do";
+	}
+
 }

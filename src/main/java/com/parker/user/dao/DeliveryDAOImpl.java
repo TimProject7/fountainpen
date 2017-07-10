@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.parker.user.vo.BuyVO;
 
 @Repository
-public class DeliveryDAOImpl implements DeliveryDAO{
-	
+public class DeliveryDAOImpl implements DeliveryDAO {
+
 	@Autowired
 	SqlSession session;
 
@@ -30,5 +30,11 @@ public class DeliveryDAOImpl implements DeliveryDAO{
 	public int DeliveryCancle(int buy_number) {
 		// TODO Auto-generated method stub
 		return session.update("deliveryCancle", buy_number);
+	}
+
+	@Override
+	public int DeliveryOk(int buy_number) {
+		// TODO Auto-generated method stub
+		return session.update("deliveryOk", buy_number);
 	}
 }

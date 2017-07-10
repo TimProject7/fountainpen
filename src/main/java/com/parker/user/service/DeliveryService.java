@@ -15,4 +15,7 @@ public interface DeliveryService {
 
 	// 배송취소
 	public int DeliveryCancle(int buy_number);
+
+	// 배송취소
+	public int DeliveryOk(int buy_number);
 }

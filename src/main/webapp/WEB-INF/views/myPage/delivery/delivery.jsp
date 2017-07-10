@@ -19,37 +19,38 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 						//선택삭제 할때 아무것도 선택이안됬을시
-						$("#cancleBtn")
-								.click(
-										function(e) {
+						$("#cancleBtn").click(function(e) {
 											e.preventDefault();
 											var chk = new Array();
 											if ($(":checkbox[name='chk']:checked").length == 0) {
 												alert("삭제할 항목을 하나이상 체크해주세요.");
 												return;
 											} else {
-												if ($(
-														":checkbox[name=chk]:checked")
-														.val()) {
-													/* $(":checkbox[name='chk']:checked").each(function() {
-														alert($(this).val());
-														chk.push($(this).val());
-													}); */
-													$("#deliveryForm").attr(
-															"method", "POST");
-													/* $("#listForm").attr("action", "/cart/cartDelete.do?cartlistId=${cart.cartlistId}"); */
-													$("#deliveryForm")
-															.attr("action",
-																	"/myPage/delivery/deliveryDeleteForm.do");
+												if ($(":checkbox[name=chk]:checked").val()) {
+													$("#deliveryForm").attr("method", "POST");
+													$("#deliveryForm").attr("action","/myPage/delivery/deliveryDeleteForm.do");
 													$("#deliveryForm").submit();
 												}
 											}
 										});
-					})
+						//배송확인
+						$("#okBtn").click(function(e) {
+							e.preventDefault();
+							var chk = new Array();
+							if ($(":checkbox[name='chk']:checked").length == 0) {
+								alert("삭제할 항목을 하나이상 체크해주세요.");
+								return;
+							} else {
+								if ($(":checkbox[name=chk]:checked").val()) {
+									$("#deliveryForm").attr("method", "POST");
+									$("#deliveryForm").attr("action","/myPage/delivery/deliveryOkForm.do");
+									$("#deliveryForm").submit();
+								}
+							}
+						});
+									});
 	/* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
 	if ("<c:out value='${data.pageSize}'/>" != "") {
 		$("#pageSize").val("<c:out value='${data.pageSize}'/>");
@@ -122,6 +123,7 @@
 				</table>
 			</form>
 			<input type="button" id="cancleBtn" name="cancleBtn" value="취소" />
+			<input type="button" id="okBtn" name="okBtn" value="확인" />
 		</div>
 		<!-- 페이지출력 -->
 		<!-- total 전체레코드 data.pageSize 페이지갯수-->
