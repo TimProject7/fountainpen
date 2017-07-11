@@ -85,12 +85,14 @@
 		set
 			userboard_name = #{userboard_name},
 			userboard_title = #{userboard_title},
-			userboard_content = #{userboard_content},
-			userboard_image = #{userboard_image}
+			userboard_content = #{userboard_content}
 		where
 			userboard_number = #{userboard_number}
-		
-		
+	</update>
+	
+	<update id="userBoardDetailDelete" parameterType="com.parker.user.vo.UserBoardVO">
+		delete from userboard_tb
+		where userboard_number = #{userboard_number}
 	</update>
 
 	<!-- 1:1문의 게시글 조회수 증가처리 -->

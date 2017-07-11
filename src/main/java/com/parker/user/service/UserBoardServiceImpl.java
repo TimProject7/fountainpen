@@ -81,4 +81,10 @@ public class UserBoardServiceImpl implements UserBoardService {
 		return result;
 	}
 
+	@Override
+	public int userBoardDetailDelete(UserBoardVO UBVO) {
+		// TODO Auto-generated method stub
+		return UBDAO.userBoardDetailDelete(UBVO);
+	}
+
 }

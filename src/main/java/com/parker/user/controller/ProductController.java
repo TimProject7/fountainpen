@@ -170,16 +170,16 @@ public class ProductController {
 		// 세션아디 불러온다
 		UserVO uvo = (UserVO) session.getAttribute("UVO");
 		String userid = uvo.getUser_id();
-		System.out.println("userid:" + userid);
 		int productId = PQVO.getProductId();
-		System.out.println("productId : " + productId);
 
 		// 상세페이지 이동
 		mav.addObject("productQnaDetail", productQnaService.productQnaDetail(productQna_number));
+		System.out.println("PQVO.getProductQna_type() : " + PQVO.getProductQna_type());
 		mav.addObject("productQnaReply", productQnaService.productQnaReply(productQna_number));
-		// mav.addObject("username",username);
+		
 		model.addAttribute("userid", userid);
 		model.addAttribute("productId", productId);
+		
 		mav.setViewName("product/productQnaDetail");
 		return mav;
 	}

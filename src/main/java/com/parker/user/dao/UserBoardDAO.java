@@ -19,6 +19,8 @@ public interface UserBoardDAO {
 
 	// 회원게시판 상세보기 수정
 	public int userBoardDetailUpdate(UserBoardVO UBVO);
+	// 회원게시판 상세보기 수정
+	public int userBoardDetailDelete(UserBoardVO UBVO);
 
 	// 회원게시판 조회수 증가
 	public void userBoardViewCnt(int userboard_number);

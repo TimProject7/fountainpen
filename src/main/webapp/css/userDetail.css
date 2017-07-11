@@ -1,0 +1,16 @@
+#userDetailTB{
+	margin-top : 1%;
+	margin-bottom : 1%;
+	width: 100%;
+	border: solid;
+}
+
+#userDetailTB th{
+	width: 10%;
+	background: #cec05b;
+	color: white;
+}
+
+#userDetailTB td{
+	background: #f3f3f3;
+}

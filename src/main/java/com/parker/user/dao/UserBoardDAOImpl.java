@@ -55,4 +55,10 @@ public class UserBoardDAOImpl implements UserBoardDAO {
 		return session.update("userBoardDetailUpdate",UBVO);
 	}
 
+	@Override
+	public int userBoardDetailDelete(UserBoardVO UBVO) {
+		// TODO Auto-generated method stub
+		return session.delete("userBoardDetailDelete",UBVO);
+	}
+
 }

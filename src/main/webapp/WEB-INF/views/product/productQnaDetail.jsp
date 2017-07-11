@@ -11,6 +11,24 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		 var radiochk = $('input:radio[name="productQna_type"]:checked').val();
+			
+			if (radiochk == '상품문의') {
+				$(':input:radio[name=productQna_type]:input[value=' + 상품문의 + ']').attr(
+						"checked", true)
+			} else if (radiochk == '배송문의') {
+				$(':input:radio[name=productQna_type]:input[value=' + 배송문의 + ']').attr(
+						"checked", true)
+			 } else if (radiochk == '변경') {
+				$(':input:radio[name=productQna_type]:input[value=' + 변경 + ']').attr(
+						"checked", true)
+			} else if (radiochk == '취소/환불') {
+				$(':input:radio[name=productQna_type]:input[value=' + 취소/환불 + ']').attr(
+						"checked", true)
+			} else if (radiochk == '기타') {
+				$(':input:radio[name=productQna_type]:input[value=' + 기타 + ']').attr(
+						"checked", true)
+			}
 
 		//수정
 		$("#productQnaDetailUpdate").click(function() {
@@ -52,17 +70,13 @@
 		<table border="1">
 			<tr>
 				<td>문의유형</td>
-				<td colspan="3"><label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="상품문의">상품문의</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="배송문의">배송문의</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="교환&변경">교환&변경</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="취소">취소</label> <label for="productQna_type"><input
-						type="radio" id="productQna_type" name="productQna_type"
-						value="기타">기타</label></td>
+				<td colspan="3">
+					<label for="productQna_type"><input	type="radio" id="productQna_type" name="productQna_type" value="${productQnaDetail.productQna_type}">상품문의</label> 
+					<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="${productQnaDetail.productQna_type}">배송문의</label> 
+					<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="${productQnaDetail.productQna_type}">교환&변경</label> 
+					<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="${productQnaDetail.productQna_type}">취소/환불</label> 
+					<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type"value="${productQnaDetail.productQna_type}">기타</label>
+				</td>
 			</tr>
 			<tr>
 				<td>작성자</td>

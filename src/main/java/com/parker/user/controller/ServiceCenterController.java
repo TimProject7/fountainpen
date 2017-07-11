@@ -154,22 +154,38 @@ public class ServiceCenterController {
 	public String userBoardDetailUpdate(@ModelAttribute UserBoardVO UBVO, HttpSession session,
 			@ModelAttribute UserVO UVO, Model model) {
 		logger.info("userBoardDetailUpdate 호출 성공");
-
+		System.out.println("UBVO.getUserboard_name() : " + UBVO.getUserboard_name());
 		// 정보수정
 		int result = userBoardService.userBoardDetailUpdate(UBVO);
 
-		// 회원게시판리스트
-		List<UserBoardVO> userBoardList = userBoardService.userBoardList(UBVO);
+		
 
 		if (result == 1) {
 			System.out.println("성공");
-			model.addAttribute("userBoardList", userBoardList);
 		} else {
 			System.out.println("실패");
 		}
 
 		return "redirect:/serviceCenter/userBoard/userBoard.do";
 	}
+	
+	// 회원게시판 수정 액션
+		@RequestMapping(value = "/userBoard/userBoardDetailDelete", method = { RequestMethod.POST, RequestMethod.GET })
+		public String userBoardDetailDelete(@ModelAttribute UserBoardVO UBVO, HttpSession session,
+				@ModelAttribute UserVO UVO, Model model) {
+			// 정보수정
+			int result = userBoardService.userBoardDetailDelete(UBVO);
+
+			
+
+			if (result == 1) {
+				System.out.println("성공");
+			} else {
+				System.out.println("실패");
+			}
+
+			return "redirect:/serviceCenter/userBoard/userBoard.do";
+		}
 
 	// 댓글목록
 	@RequestMapping(value = "/userBoard/userBoardReply/all/{userboard_number}.do", method = RequestMethod.GET)
