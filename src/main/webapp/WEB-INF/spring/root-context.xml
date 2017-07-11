@@ -17,12 +17,12 @@
 		<property name="username" value="vpzj1234@gmail.com" />
 		<property name="password" value="341229zz!" />
 		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.sta	rttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
+			 <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
 		</property>
 
 	</bean>

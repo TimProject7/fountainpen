@@ -21,14 +21,11 @@
 														$.ajax({
 															url : "/mail/passchkmail.do", //전송url
 															type : "POST", //전송방식
-															data : $('#passfindForm')
-																	.serialize(),
-															error : function(
-																	content) {
+															data : $('#passfindForm').serialize(),
+															error : function(content) {
 																alert('시스템오류')
 															},
-															success : function(
-																	content) {
+															success : function(content) {
 																var content = content;
 																if (content != null) {
 																	alert('인증메일발송')

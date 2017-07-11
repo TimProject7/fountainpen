@@ -47,7 +47,7 @@ public class MailController {
 		String content = joincode; // 인증키
 
 		int emailChk = userService.emailChk(UVO);
-		//UserVO passemailChk = userService.passEmailFind(UVO);
+		UserVO passemailChk = userService.passEmailFind(UVO);
 		
 		if (emailChk == 0  ) {
 			try {
