@@ -86,13 +86,11 @@
 
 	<select id="productQnaDetail" parameterType="com.parker.user.vo.ProductQnaVO"
 		resultType="com.parker.user.vo.ProductQnaVO">
-		select *
+		select q.*, u.user_id,u.user_name,u.user_number
 		from
-		productqna_tb
-		where
-		productqna_number =
-		#{productQna_number}
-
+		productqna_tb q, users_tb u
+		where u.user_number=q.user_number and
+		q.productqna_number =#{productQna_number}
 	</select>
 
 	<update id="productQnaDetailUpdate">
@@ -108,12 +106,11 @@
 
 	</update>
 	<select id="productQnaReply" resultType="com.parker.user.vo.ProductQnaReplyVO">
-		select p.*,
-		u.user_id,u.user_name,u.user_number from
-		productqnareply_tb p, users_tb
-		u
+		select *
+		from
+		productqnareply_tb
 		where
-		productqna_number =#{productQna_number}
+		productqna_number=#{productQna_number}
 	</select>
 
 	<!-- 1:1문의 게시글 조회수 증가처리 -->

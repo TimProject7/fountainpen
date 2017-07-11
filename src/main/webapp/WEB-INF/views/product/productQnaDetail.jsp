@@ -82,12 +82,15 @@
 
 		</table>
 	</form>
-	<table>
+	<br>
+	<hr>
+	<br>
+	<table border="1">
 		<c:choose>
-
 			<c:when test="${not empty productQnaReply }">
+
 				<tr>
-					<td>안녕하세요. ${productQnaReply.user_name }님</td>
+					<td>안녕하세요. ${productQnaDetail.user_name }님</td>
 					<td>${productQnaReply.productQnaReply_writedate}</td>
 				</tr>
 				<Tr>

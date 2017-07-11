@@ -12,8 +12,9 @@ public class ProductQnaVO extends PagingVO {
 	private String productQna_content;// --상품qna내용
 	private Date productQna_writedate;// --상품등록날짜
 	private String productQna_status; // 상품조회수
+	private String user_name; // --회원 이름
 	private int user_number;// --회원번호
-	private int productId; // 상품번호
+	private int productId;
 
 	public int getProductQna_number() {
 		return productQna_number;
@@ -55,6 +56,22 @@ public class ProductQnaVO extends PagingVO {
 		this.productQna_writedate = productQna_writedate;
 	}
 
+	public String getProductQna_status() {
+		return productQna_status;
+	}
+
+	public void setProductQna_status(String productQna_status) {
+		this.productQna_status = productQna_status;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
 	public int getUser_number() {
 		return user_number;
 	}
@@ -69,22 +86,14 @@ public class ProductQnaVO extends PagingVO {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-
-	public String getProductQna_status() {
-		return productQna_status;
-	}
-
-	public void setProductQna_status(String productQna_status) {
-		this.productQna_status = productQna_status;
-	}
+	} // 상품번호
 
 	@Override
 	public String toString() {
 		return "ProductQnaVO [productQna_number=" + productQna_number + ", productQna_name=" + productQna_name
 				+ ", productQna_type=" + productQna_type + ", productQna_content=" + productQna_content
 				+ ", productQna_writedate=" + productQna_writedate + ", productQna_status=" + productQna_status
-				+ ", user_number=" + user_number + ", productId=" + productId + "]";
+				+ ", user_name=" + user_name + ", user_number=" + user_number + ", productId=" + productId + "]";
 	}
 
 }
