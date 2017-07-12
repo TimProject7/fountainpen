@@ -19,28 +19,36 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+$(function() {
+	
+	
 						//선택삭제 할때 아무것도 선택이안됬을시
 						$("#cancleBtn").click(function(e) {
+							
+							
 											e.preventDefault();
 											var chk = new Array();
 											if ($(":checkbox[name='chk']:checked").length == 0) {
-												alert("삭제할 항목을 하나이상 체크해주세요.");
+												alert("취소할 항목을 하나이상 체크해주세요.");
 												return;
 											} else {
-												if ($(":checkbox[name=chk]:checked").val()) {
-													$("#deliveryForm").attr("method", "POST");
-													$("#deliveryForm").attr("action","/myPage/delivery/deliveryDeleteForm.do");
-													$("#deliveryForm").submit();
-												}
-											}
-										});
+												
+											 	 if ($(":checkbox[name=chk]:checked").val()) {
+												$("#deliveryForm").attr("method", "POST");
+												$("#deliveryForm").attr("action","/myPage/delivery/deliveryDeleteForm.do");
+												$("#deliveryForm").submit();
+												
+												
+												
+											}  
+										}
+									});
 						//배송확인
 						$("#okBtn").click(function(e) {
 							e.preventDefault();
 							var chk = new Array();
 							if ($(":checkbox[name='chk']:checked").length == 0) {
-								alert("삭제할 항목을 하나이상 체크해주세요.");
+								alert("배송완료 항목을 하나이상 체크해주세요.");
 								return;
 							} else {
 								if ($(":checkbox[name=chk]:checked").val()) {
@@ -50,7 +58,8 @@
 								}
 							}
 						});
-									});
+				});	
+			
 	/* 한페이지에 보여줄 레코드 수 조회후 선택한 값 그대로 유지하기 위한 설정 */
 	if ("<c:out value='${data.pageSize}'/>" != "") {
 		$("#pageSize").val("<c:out value='${data.pageSize}'/>");
@@ -77,7 +86,7 @@
 </script>
 </head>
 <body>
-
+	
 	<div class="alldiv">
 
 		<div id="myPageForm" align="center">
@@ -96,8 +105,20 @@
 			<input type="hidden" id="page" name="page" value="${data.page}" />
 			
 		</form>
-
+		<input type="text" id="msg" name="msg" value="${msg}"/>
+		
+		
+		
+		<%-- <c:if test="${okmsg =='fail1'}">
+		<script>alert('배송중인 상품이 아닙니다');history.back();</script>
+		</c:if>
+		
+		<c:if test="${okmsg =='success1'}">
+		<script>location.reload();alert('배송완료 되었습니다');</script>
+		</c:if> --%>
+		
 		<div align="center">
+			
 			<form id="deliveryForm" name="deliveryForm">
 				<table border="1" class="deliveryTable">
 					<tr>
@@ -111,13 +132,13 @@
 					<c:forEach var="delivery" items="${deliveryList}">
 						<tr>
 							<td align="center"><input type="checkbox" name="chk"
-								value="${delivery.buy_number }" id="chk" /></td>
+								value="${delivery.buy_number}" id="chk"/></td>
 							<td><fmt:formatDate value="${delivery.buy_day}"
 									pattern="yyyy-MM-dd" /></td>
 							<td>${delivery.buy_number}</td>
 							<td>${delivery.buy_product}</td>
 							<td>${delivery.buy_price}</td>
-							<td>${delivery.buy_status}</td>
+							<td>${delivery.buy_status} <input type="hidden" name="buy_status" id="buy_status" value="${delivery.buy_status}"/> </td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -132,5 +153,12 @@
 				list_size="${data.pageSize}" />
 		</div>
 	</div>
+	<c:if test="${msg =='cancleok'}">
+		<script>alert('배송전인 상품이 아닙니다');</script>
+		</c:if>
+		
+		<c:if test="${msg =='cancleno'}">
+		<script>alert('취소 되었습니다');</script>
+		</c:if>
 </body>
 </html>

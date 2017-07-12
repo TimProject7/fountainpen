@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parker.user.bcrypt.BCrypt;
 import com.parker.user.boardcommon.Paging;
@@ -159,14 +160,20 @@ public class myPageController {
 		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
 		System.out.println("뭐지?");
 		logger.info("비밀번호비교 = " + bool);
-		String user_deleteCondition = request.getParameter("user_deleteCondition");
-		UVO.setUser_deleteCondition(user_deleteCondition);
-		// 회원상태 "D" 로 변경하는 서비스
-		result = userService.userUpdateDelete(UVO);
+		
+		if (bool) {//성공
 
-		session.invalidate();
+			String user_deleteCondition = request.getParameter("user_deleteCondition");
+			UVO.setUser_deleteCondition(user_deleteCondition);
+			// 회원상태 "D" 로 변경하는 서비스
+			result = userService.userUpdateDelete(UVO);
 
-		return "redirect:/";
+			session.invalidate();
+			return "redirect:/";
+		} else { //실패
+			model.addAttribute("msg", "fail");
+			return "/myPage/userInfo/userInfoDeleteForm";
+		}
 
 	}
 
@@ -368,31 +375,43 @@ public class myPageController {
 	}
 
 	// 마이페이지 배송정보
-	@RequestMapping(value = "/delivery/deliveryDeleteForm", method = { RequestMethod.POST, RequestMethod.GET })
-	public String deliveryDeleteForm(HttpSession session, @RequestParam("chk") int[] buy_number,
-			HttpServletRequest request, @ModelAttribute BuyVO BVO) {
+	@RequestMapping(value = "/delivery/deliveryDeleteForm", method = RequestMethod.POST)
+	public String deliveryDeleteForm(@RequestParam("chk") int[] buy_number, Model model, RedirectAttributes red) {
 		logger.info("delivery 호출 성공");
-
-		for (int buyStatusCancle : buy_number) {
-			System.out.println("삭제 = " + buyStatusCancle);
-			deliveryService.DeliveryCancle(buyStatusCancle);
+		int result = 0;
+		String msg = "";
+		System.out.println("buy_number : " + buy_number);
+		for (int buynumber : buy_number) {
+			result = deliveryService.DeliveryCancle(buynumber);
+		}
+		if (result == 0) {
+			red.addAttribute("msg", "cancleok");
+			return "redirect:/myPage/delivery/delivery.do";
+		} else {
+			red.addAttribute("msg", "cancleno");
+			return "redirect:/myPage/delivery/delivery.do";
 		}
 
-		return "redirect:/myPage/delivery/delivery.do";
 	}
 
 	// 마이페이지 배송정보
 	@RequestMapping(value = "/delivery/deliveryOkForm", method = { RequestMethod.POST, RequestMethod.GET })
 	public String deliveryOkForm(HttpSession session, @RequestParam("chk") int[] buy_number, HttpServletRequest request,
-			@ModelAttribute BuyVO BVO) {
+			@ModelAttribute BuyVO BVO, Model model) {
 		logger.info("delivery 호출 성공");
-
+		int result = 0;
 		for (int buyStatusOk : buy_number) {
 			System.out.println("완료 = " + buyStatusOk);
-			deliveryService.DeliveryOk(buyStatusOk);
+			result = deliveryService.DeliveryOk(buyStatusOk);
+		}
+		if (result == 0) {
+			model.addAttribute("msg", "okok");
+			return "redirect:/myPage/delivery/delivery.do";
+		} else {
+			model.addAttribute("msg", "okno");
+			return "redirect:/myPage/delivery/delivery.do";
 		}
 
-		return "redirect:/myPage/delivery/delivery.do";
 	}
 
 }

@@ -89,6 +89,9 @@
 			if ($('#user_password').val() == $('#user_passwordchk').val()) {
 				$("#msgpwdchk").text("비밀번호 일치").css("color","blue");
 				$("#chk").val('Y');
+			}else{
+				$("#msgpwdchk").text("비밀번호 불일치").css("color","red");
+				$("#chk").val('N');
 			}
 		}); //#user_passwordchk.keyup
 		
@@ -201,7 +204,8 @@
 
 						//인증번호확인
 						$("#mailBtn").click(function() {
-
+							console.log($("#mailkey").val())
+							console.log($("#mailkey1").val())
 							var result = 0;
 							if ($("#mailkey").val() == null) {
 								alert("인증번호를 입력하세요")
@@ -451,7 +455,7 @@
 </head>
 <body>
 <input type="hidden" id="chk" name="chk" value="N"/>
-<input type="hidden" name="mailkey1" id="mailkey1" value=""></td>
+<input type="text" name="mailkey1" id="mailkey1" value="">
 	<div id="content" align="center">
 		<!--다이얼로그창 폼  -->
 		<div id="dialog_form">

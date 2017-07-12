@@ -33,9 +33,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public int DeliveryCancle(int buy_number) {
+	public int DeliveryCancle(int buynumber) {
 		// TODO Auto-generated method stub
-		return deliveryDAO.DeliveryCancle(buy_number);
+		return deliveryDAO.DeliveryCancle(buynumber);
 	}
 
 	@Override

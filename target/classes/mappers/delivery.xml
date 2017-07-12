@@ -46,24 +46,24 @@
 		)
 	</select>
 	
-	<update id="deliveryCancle" parameterType="com.parker.user.vo.BuyVO" >
+	<update id="deliveryCancle" >
 		update
 			buy_tb
 		set
 			buy_status = '취소'
 		where
-			buy_number = #{buy_number}
+			buy_number = #{buy_number} and buy_status = '배송전'
 			
 		
 	</update>
 	
-	<update id="deliveryOk" parameterType="com.parker.user.vo.BuyVO" >
+	<update id="deliveryOk" >
 		update
 			buy_tb
 		set
 			buy_status = '배송완료'
 		where
-			buy_number = #{buy_number}
+			buy_number = #{buy_number} and buy_status = '배송중'
 			
 		
 	</update>

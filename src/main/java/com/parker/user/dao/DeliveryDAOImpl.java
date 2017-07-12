@@ -27,9 +27,9 @@ public class DeliveryDAOImpl implements DeliveryDAO {
 	}
 
 	@Override
-	public int DeliveryCancle(int buy_number) {
+	public int DeliveryCancle(int buynumber) {
 		// TODO Auto-generated method stub
-		return session.update("deliveryCancle", buy_number);
+		return session.update("deliveryCancle", buynumber);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public interface DeliveryDAO {
 	public int DeliveryListCnt(BuyVO BVO);
 
 	// 배송취소
-	public int DeliveryCancle(int buy_number);
+	public int DeliveryCancle(int buynumber);
 
 	// 배송취소
 	public int DeliveryOk(int buy_number);
