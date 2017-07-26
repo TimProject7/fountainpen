@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/questionWriter.css" />
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -26,6 +27,7 @@
 </script>
 </head>
 <body>
+	<div class="alldiv">
 	<c:choose>
 		<c:when test="${not empty sessionScope.UVO}">
 
@@ -34,40 +36,44 @@
 
 			<form id="question_insertForm" name="question_insertForm"
 				action="/myPage/question/questionInsert.do" method="post" enctype="multipart/form-data">
-				회원번호<input type="text" id="user_number" name="user_number"
+				<input type="hidden" id="user_number" name="user_number"
 					value="${sessionScope.UVO.user_number}">
-				<table border="1">
+					<h2 align="center">1:1 문의 작성</h2>
+				<table id="questionWriterTB">
 					<tr>
 
-						<td>작성자</td>
+						<th>작성자</th>
 						<td><input type="text" id="user_name" name="user_name"
 							value="${sessionScope.UVO.user_name}" readonly="readonly" /><br /></td>
 
 					</tr>
 					<tr>
-						<td>글제목</td>
+						<th>글제목</th>
 						<td><input type="text" id="question_title"
-							name="question_title" /><br /></td>
+							name="question_title" size="100" /><br /></td>
 					</tr>
 					<tr>
-						<td>글내용</td>
-						<td><textarea rows="10" cols="30" id="question_content"
+						<th>글내용</th>
+						<td><textarea rows="10" cols="103" id="question_content"
 								name="question_content"></textarea><br /></td>
 					</tr>
 					<tr>
-						<td>첨부파일</td>
+						<th>첨부파일</th>
 						<td><input type="file" id="Question_url"
 							name="Question_url" /><br/></td>
 					</tr>
 				</table>
+				<p align="center">
 				<input type="submit" id="questionInsertBtn" name="questionInsertBtn"
 					value="작성">
+					<input type="button" id="questionListBtn" name="questionListBtn"
+		value="목록" /></p>
 			</form>
 		</c:when>
 	</c:choose>
 
-	<input type="button" id="questionListBtn" name="questionListBtn"
-		value="목록" />
+	
+		</div>
 	<%@ include file="/footer.jsp"%>
 </body>
 </html>

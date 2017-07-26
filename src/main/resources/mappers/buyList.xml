@@ -23,7 +23,7 @@
                				b.user_number = #{user_number}
                			and
                				b.buy_status2 = '결제완료'
-               		
+               		<!-- 검색에 사용되는 if조건문 -->
                		<if test="week1_buy=='week1'">
                			and buy_day BETWEEN sysdate-7 AND sysdate
                		</if>
@@ -38,9 +38,6 @@
                  
 					<if test="search=='buy_product'">
 						and (buy_product Like '%'||#{keyword}||'%')
-					</if>
-					<if test="search=='buy_day'">
-						and (buy_day like '%'||#{keyword}||'%')
 					</if>
           			   order by 
                       		b.buy_day desc

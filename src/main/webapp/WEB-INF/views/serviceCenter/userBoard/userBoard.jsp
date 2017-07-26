@@ -61,9 +61,17 @@
 	
 	<div id="myPageForm" align="center">
       <ul id="myPageForm_nav_ul">
-         <li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do"><b>회원게시판</b></a></li>
-         <li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
-         <li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         <c:choose >
+			<c:when test="${not empty sessionScope.UVO}">
+         		<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do"><b>회원게시판</b></a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         	</c:when>
+         	<c:when test="${empty sessionScope.UVO}">
+         		<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         	</c:when>
+         </c:choose>
       </ul>
    </div>
 	

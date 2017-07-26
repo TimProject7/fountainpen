@@ -78,7 +78,7 @@
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<td colspan="2"><img id="userboard_image" name="userboard_image" src="../../resources/images/${userBoardDetail.userboard_image}"></td>
+				<td colspan="2"><img id="userboard_image" name="userboard_image" src="/resources/images/${userBoardDetail.userboard_image}"></td>
 				
 			</tr>
 		</table>

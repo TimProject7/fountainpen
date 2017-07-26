@@ -53,5 +53,10 @@ li{
 }
 
 #completetb{
-	width: 60%;
+	width: 70%;
+	border: solid;
+}
+
+#completetb th{
+	background: #c0c0c0;
 }

@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/userWriterForm.css" />
 <link rel="stylesheet" type="text/css"
 	href="../../cleditor/jquery.cleditor.css">
 <link rel="stylesheet" href="../../cleditor/jquery.cleditor.css" />
@@ -23,47 +24,58 @@
 			width : 500,
 			height : 300
 		});
+		
+		$("#userboardListBtn").click(function() {
+			$("#userboardwriterForm").attr({
+				"method" : "POST",
+				"action" : "/serviceCenter/userBoard/userBoard.do"
+			});
+			$("#userboardwriterForm").submit();
+		})
+			
 
 	});
 </script>
 </head>
 <body>
-	<div>
-		<h2>회원게시판 글쓰기</h2>
+	<div class="alldiv">
+		<h2 align="center">회원게시판 글쓰기</h2>
 		<form id="userboardwriterForm" name="userboardwriterForm"
 			action="/serviceCenter/userBoard/userBoardInsert.do" method="post"
 			enctype="multipart/form-data">
-			<table border="1">
+			<table border="1" id="userWriterTB">
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td><input type="text" id="userboard_name"
 						name="userboard_name" value="${sessionScope.UVO.user_id}"></td>
 
 				</tr>
 				<tr>
-					<td>제목</td>
+					<th>제목</th>
 					<td colspan="3"><input type="text" id="userboard_title"
 						name="userboard_title"></td>
 				</tr>
 				<tr>
-					<td>내용</td>
+					<th>내용</th>
 					<td><textarea id="userboard_content" name="userboard_content"></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td>이미지</td>
+					<th>이미지</th>
 					<td colspan="3"><input type="file" id="userboard_url"
 						name="userboard_url"></td>
 				</tr>
 
 			</table>
+			<p align="center">
 			<input type="submit" id="userboardwriterBtn"
 				name="userboardwriterBtn" value="작성">
+				<input type="button" id="userboardListBtn" name="userboardListBtn"
+		value="목록"></p>
 		</form>
 
 	</div>
-	<input type="button" id="userboardListBtn" name="userboardListBtn"
-		value="목록">
+	
 
 </body>
 </html>

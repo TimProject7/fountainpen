@@ -28,7 +28,7 @@
 					</c:when>
 					<c:when test="${empty session }">
 					<li class="hd_nav1"><a href="#">SITE-MAP</a></li>
-					<li class="hd_nav1"><a href="/serviceCenter/userBoard/userBoard.do">SUPPORT</a></li>
+					<li class="hd_nav1"><a href="/serviceCenter/faq/FAQlist.do">SUPPORT</a></li>
 					<li class="hd_nav1">${sessionScope.UVO.user_id}</li>
 					<li class="hd_nav1"><a href="/user/userinsertForm.do">JOIN</a></li>
 					<li class="hd_nav1"><a href="/user/userlogin.do">LOGIN</a></li>

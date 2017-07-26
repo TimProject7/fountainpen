@@ -9,47 +9,72 @@
 <head>
 <meta charset="UTF-8">
 <title>상품QnA글쓰기</title>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	//목록으로
+	$("#productListBtn").click(function() {
+		$("#productQnaWriterForm").attr({
+			"method" : "POST",
+			"action" : "/product/productList.do"
+		});
+		$("#productQnaWriterForm").submit();
+	})
+})
+</script>
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/qnaWriter.css" />
 </head>
 <body>
-	<div>
-		<h2>상품Q&A글쓰기</h2>
-		
+	<div id="alldiv">
+		<h2 align="center">상품Q&A글쓰기</h2>
+			<br>
 		<form id="productQnaWriterForm" name="productQnaWriterForm"
 			action="/product/productQnaInsert.do" method="post">
-			<input type="text" id="productId" name="productId" value="${productId}"/>
-			<table border="1">
+			<input type="hidden" id="productId" name="productId"
+				value="${productId}" />
+			<table id="qnaWritertb">
 				<tr>
-					<td>문의유형</td>
-					<td colspan="3">
-						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="상품문의">상품문의</label> 
-						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="배송문의">배송문의</label> 
-						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="교환&변경">교환&변경</label> 
-						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="취소">취소</label> 
-						<label for="productQna_type"><input type="radio" id="productQna_type" name="productQna_type" value="기타">기타</label> 
-					</td>
+					<th>문의유형</th>
+					<td colspan="3" align="center"><label for="productQna_type"><input
+							type="radio" id="productQna_type" name="productQna_type"
+							value="상품문의">상품문의</label> <label for="productQna_type"><input
+							type="radio" id="productQna_type" name="productQna_type"
+							value="배송문의">배송문의</label> <label for="productQna_type"><input
+							type="radio" id="productQna_type" name="productQna_type"
+							value="교환&변경">교환or변경</label> <label for="productQna_type"><input
+							type="radio" id="productQna_type" name="productQna_type"
+							value="취소">취소</label> <label for="productQna_type"><input
+							type="radio" id="productQna_type" name="productQna_type"
+							value="기타">기타</label></td>
 				</tr>
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td><input type="text" id="productQna_name"
-						name="productQna_name" value="${sessionScope.UVO.user_id}"></td>
+						name="productQna_name" value="${sessionScope.UVO.user_id}" readonly="readonly"></td>
 
 				</tr>
 
 				<tr>
-					<td>내용</td>
+					<th>내용</th>
 					<td><textarea id="productQna_content"
-							name="productQna_content"></textarea></td>
+							name="productQna_content" cols="115"  ></textarea></td>
 				</tr>
 
 			</table>
+			<p align="center">
 			<input type="submit" id="productQnawriterBtn"
 				name="productQnawriterBtn" value="작성">
+				<input type="button" id="productListBtn" name="productListBtn"
+		value="목록">
+		<input type=button value="되돌아가기" onClick="history.back();">
+		</p>
 		</form>
 
 	</div>
-	<input type="button" id="productListBtn" name="productListBtn"
-		value="목록">
+	
 
 </body>
 </html>
+<%@ include file="/footer.jsp"%>

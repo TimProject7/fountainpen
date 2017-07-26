@@ -184,7 +184,6 @@
 		set
 		user_name = #{user_name},
 		user_id = #{user_id},
-		user_password = #{user_password},
 		user_email = #{user_email},
 		zip_code =
 		#{zip_code},
@@ -195,7 +194,6 @@
 		#{user_birthday},
 		user_cell = #{user_cell},
 		user_phone = #{user_phone},
-		user_gender = #{user_gender},
 		<!-- user_privacyconsignment = #{user_privacyconsignment}, user_termsofuse 
 			= #{user_termsofuse}, user_receiveadvertising = #{user_receiveadvertising}, -->
 		user_updatedate =sysdate

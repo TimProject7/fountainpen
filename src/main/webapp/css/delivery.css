@@ -39,13 +39,13 @@ a:HOVER{
 	border-style: none;
 }
 
-th{
+.deliveryTable th{
 	background-color: #CC3D3D;
 	color: white;
 }
 
 td{
-	text-align: right;
+	text-align: center;
 }
 
 h2{

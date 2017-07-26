@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true"%>
+<%@ include file="/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Notice 게시물 보기</title>
-
+<link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <style type="text/css">
 * {
 	margin: 0 auto;
@@ -20,7 +21,6 @@
 
 a {
 	text-decoration: none;
-	color: green;
 }
 
 a:HOVER {
@@ -32,10 +32,12 @@ h2 {
 	text-align: center;
 }
 
-th {
+#notice_tb th {
 	text-align: left;
 	background-color: black;
 	color: white;
+		margin-bottom: 1%;
+	margin-top: 1%;
 }
 
 td {
@@ -48,7 +50,7 @@ td {
 
 		//목록버튼
 		$("#btnlist").click(function() {
-			document.form1.action = "noticelist";
+			document.form1.action = "noticelist.do";
 			document.form1.submit();
 
 		});
@@ -61,12 +63,12 @@ td {
 <body>
 
 
-	<h2>게시글 보기</h2>
+	<h2>공지사항 글 보기</h2>
 
 	<br>
 
 	<form name="form1" method="post">
-		<table>
+		<table id="notice_tb">
 			<tr>
 				<th>작성일자</th>
 				<td><fmt:formatDate value="${dto.notice_regdate}"
@@ -74,20 +76,15 @@ td {
 			</tr>
 
 			<tr>
-				<th>조회수</th>
-				<td>${dto.notice_viewcnt}</td>
-			</tr>
-
-			<tr>
 				<th>제목</th>
 				<td><input name="notice_title" id="notice_title" size="80"
-					value="${dto.notice_title}"></td>
+					value="${dto.notice_title}" readonly="readonly"></td>
 			</tr>
 
 			<tr>
 				<th>내용</th>
 				<td><textarea name="notice_content" id="notice_content"
-						rows="4" cols="83">${dto.notice_content}</textarea></td>
+						rows="4" cols="83" readonly="readonly">${dto.notice_content}</textarea></td>
 			</tr>
 
 			<tr>
@@ -102,6 +99,6 @@ td {
 			<button type="button" id="btnlist">목록보기</button>
 		</div>
 	</form>
-
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

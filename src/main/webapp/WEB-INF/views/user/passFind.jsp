@@ -30,17 +30,9 @@
 																if (content != null) {
 																	alert('인증메일발송')
 																	//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
-																	$(
-																			'input[name=mailkey1]').attr(
-																					'value',
-																					content);
-
+																	$('input[name=mailkey1]').attr('value',content);
 																	var mailkeychk = '<input type="button" value="인증확인" id="mailkeychk" name="mailkeychk" />';
 																	$('#mailkeytd').append(mailkeychk);
-
-																	/* var mailkeychk= '<input type="button" id="mailkeychk" value="확인"/>';
-																	$("body").html(mailkeychk); */
-																	
 																}else{
 																	$("#chk").val('N');
 																	alert('일치하는 정보가 없습니다.')
@@ -135,7 +127,7 @@ table{
 </style>
 </head>
 <body>
-<input type="text" id="chk" name="chk" value="N"/>
+<input type="hidden" id="chk" name="chk" value="N"/>
 	<form id="passfindForm" name="passfindForm">
 		<div id="passfind_email">
 			<br><h2>비밀번호 찾기</h2><br>

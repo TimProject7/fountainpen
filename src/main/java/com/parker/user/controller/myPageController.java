@@ -68,7 +68,7 @@ public class myPageController {
 	// 마이페이지 진입전 패스워드 처리
 	@RequestMapping(value = "/userInfo/userInfoForm", method = { RequestMethod.POST, RequestMethod.GET })
 	public String userUpdateForm1(HttpSession session, @ModelAttribute UserVO UVO, Model model,
-			HttpServletRequest request) {
+			HttpServletRequest request, RedirectAttributes red) {
 		logger.info("myPageForm 호출 성공");
 
 		// 뷰에있는 값을 가져온다
@@ -86,8 +86,8 @@ public class myPageController {
 		System.out.println("result :" + result);
 		if (result == false) {
 			System.out.println("실패");
-			model.addAttribute("result", result);
-			return "/myPage/myPagePasswordForm";
+			model.addAttribute("result", false);
+			return "/myPage/userInfo/userInfoPassword";
 		} else if (result == true) {
 			session.setAttribute("UVO", UVO);
 			System.out.println("성공");
@@ -97,40 +97,30 @@ public class myPageController {
 	}
 
 	// 마이페이지 회원정보 수정 완료
-	@RequestMapping(value = "/userInfo/userUpdate", method = RequestMethod.POST)
-	public String userUpdateclear(@ModelAttribute UserVO UVO, HttpServletRequest request, HttpSession session,
-			Model model) {
-		logger.info("userUpdate 호출 성공");
-		int result = 0;
-		String failure = "";
+		@RequestMapping(value = "/userInfo/userUpdate", method = RequestMethod.POST)
+		public String userUpdateclear(@ModelAttribute UserVO UVO, HttpServletRequest request, HttpSession session,
+				Model model) {
+			logger.info("userUpdate 호출 성공");
+			int result = 0;
+			String failure = "";
 
-		String usernumber = request.getParameter("user_number");
-		String pass = request.getParameter("user_password");
+			String usernumber = request.getParameter("user_number");
 
-		int usernumber1 = Integer.parseInt(usernumber);
+			int usernumber1 = Integer.parseInt(usernumber);
 
-		UVO.setUser_number(usernumber1);
-		UVO = userService.passCheck(UVO);
-
-		// 암호화 확인
-		boolean bool = BCrypt.checkpw(pass, UVO.getUser_password());
-
-		if (bool == false) {
-			System.out.println("실패");
-			model.addAttribute("failure", failure);
-		} else if (bool == true) {
-			session.setAttribute("UVO", UVO);
-			System.out.println("성공");
+			UVO.setUser_number(usernumber1);
+			
 			result = userService.userUpdate(UVO);
-			System.out.println("result :" + result);
-		} else if (result == 0) {
-			System.out.println("실패");
-		} else if (result == 1) {
-			System.out.println("성공");
-		}
+			
+			if (result == 0) {
+				System.out.println("실패");
+			} else {
+				
+				System.out.println("성공");
+			}
 
-		return "redirect:/";
-	}
+			return "redirect:/";
+		}
 
 	// 마이페이지 회원탈퇴 폼 비밀번호 확인
 	@RequestMapping(value = "/userInfo/userInfoDeleteForm", method = { RequestMethod.POST, RequestMethod.GET })
@@ -385,11 +375,11 @@ public class myPageController {
 			result = deliveryService.DeliveryCancle(buynumber);
 		}
 		if (result == 0) {
-			red.addAttribute("msg", "cancleok");
-			return "redirect:/myPage/delivery/delivery.do";
+			model.addAttribute("msg", "실패");
+			return "/myPage/delivery/delivery";
 		} else {
-			red.addAttribute("msg", "cancleno");
-			return "redirect:/myPage/delivery/delivery.do";
+			model.addAttribute("msg", "취소성공");
+			return "/myPage/delivery/delivery";
 		}
 
 	}
@@ -405,11 +395,11 @@ public class myPageController {
 			result = deliveryService.DeliveryOk(buyStatusOk);
 		}
 		if (result == 0) {
-			model.addAttribute("msg", "okok");
-			return "redirect:/myPage/delivery/delivery.do";
+			model.addAttribute("msg", "실패");
+			return "/myPage/delivery/delivery";
 		} else {
-			model.addAttribute("msg", "okno");
-			return "redirect:/myPage/delivery/delivery.do";
+			model.addAttribute("msg", "완료성공");
+			return "/myPage/delivery/delivery";
 		}
 
 	}

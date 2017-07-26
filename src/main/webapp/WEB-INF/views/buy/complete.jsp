@@ -60,8 +60,10 @@
 		<button id="DeliveryBtn">배송정보</button>
 	</div>
 	<div>
-		<h1>구매내역</h1>
-		<table id="completetb" border="1">
+		<br>
+		<h1 align="center">구매내역</h1>
+		<br>
+		<table id="completetb" >
 			<tr>
 				<th>구매번호</th>
 				<th>상품이미지</th>

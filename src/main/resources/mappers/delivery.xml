@@ -45,7 +45,7 @@
 			)lst
 		)
 	</select>
-	
+	<!-- 배송취소 쿼리 -->
 	<update id="deliveryCancle" >
 		update
 			buy_tb
@@ -53,10 +53,8 @@
 			buy_status = '취소'
 		where
 			buy_number = #{buy_number} and buy_status = '배송전'
-			
-		
 	</update>
-	
+	<!-- 배송완료 쿼리-->
 	<update id="deliveryOk" >
 		update
 			buy_tb
@@ -64,7 +62,6 @@
 			buy_status = '배송완료'
 		where
 			buy_number = #{buy_number} and buy_status = '배송중'
-			
 		
 	</update>
 

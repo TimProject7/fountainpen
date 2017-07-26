@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true"%> 	
+<%@ include file="/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FAQ 게시물 보기</title>
-
+<link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <script>
 	$(document).ready(function() {
 
@@ -24,7 +25,7 @@
 		});
 
 		$("#btnlist").click(function() {
-			document.form1.action = "FAQlist";
+			document.form1.action = "FAQlist.do";
 			document.form1.submit();
 
 		});
@@ -55,42 +56,80 @@
 	
 </script>
 
+<style type="text/css">
+<style type="text/css">
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:HOVER {
+	font-size: 1.1em;
+	color: teal;
+}
+
+h2 {
+	text-align: center;
+}
+
+#faq_tb th {
+	text-align: left;
+	background-color: black;
+	color: white;
+		margin-bottom: 1%;
+	margin-top: 1%;
+}
+
+td {
+	padding-left: 2%;
+}
+</style>
 </head>
 <body>
 	
 
-	<h2>게시글 보기</h2>
+	<h2>FAQ 글 목록</h2>
 	
 	<form name="form1" method="post">
-		<div>
-			<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-			작성일자 :
-			<fmt:formatDate value="${dto.faq_regdate}"
-				pattern="yyyy-MM-dd a HH:mm:ss" />
-			<!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
-		</div>
-		<div>조회수 : ${dto.faq_viewcnt}</div>
-		<div>
-			제목 <input name="faq_title" id="faq_title" size="80"
-				value="${dto.faq_title}" placeholder="제목을 입력해주세요">
-		</div>
-		<div>
-			내용
-			<textarea name="faq_content" id="faq_content" rows="4" cols="80"
-				placeholder="내용을 입력해주세요">${dto.faq_content}</textarea>
-		</div>
-		<div>
-			이름 <input name="faq_writer" id="faq_writer" size="80"
-				value="${dto.faq_writer}" readonly="readonly">
-		</div>
+		
+		<table id="faq_tb">
+			<tr>
+					<th>작성일자</th>
+					<td><fmt:formatDate value="${dto.faq_regdate}"
+				pattern="yyyy-MM-dd a HH:mm:ss" /></td>
+				</tr>
+	
+				<tr>
+					<th>제목</th>
+					<td> <input name="faq_title" id="faq_title" size="80"
+				value="${dto.faq_title}" placeholder="제목을 입력해주세요" readonly="readonly"></td>
+				</tr>
+	
+				<tr>
+					<th>내용</th>
+					<td><textarea name="faq_content" id="faq_content" rows="4" cols="80"
+				placeholder="내용을 입력해주세요" readonly="readonly">${dto.faq_content}</textarea></td>
+				</tr>
+	
+				<tr>
+					<th>작성자</th>
+					<td> <input name="faq_writer" id="faq_writer" size="80"
+				value="${dto.faq_writer}" readonly="readonly"></td>
+				</tr>
+		
+		</table>
+		
 		<div style="width: 650px; text-align: center;">
 			<!-- 게시물번호를 hidden으로 처리 -->
 			<input type="hidden" name="faq_no" value="${dto.faq_no}">
-			<button type="button" id="btnUpdete">수정</button>
-			<button type="button" id="btnDelete">삭제</button>
 			<button type="button" id="btnlist">목록보기</button>
 		</div>
+		
 	</form>
-
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

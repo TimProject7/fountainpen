@@ -23,9 +23,17 @@
 <body>
 	<div id="myPageForm" align="center">
 		<ul id="myPageForm_nav_ul">
-			<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
-			<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
-			<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do"><b>FAQ</b></a></li>
+			<c:choose >
+			<c:when test="${not empty sessionScope.UVO}">
+         		<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do"><b>회원게시판</b></a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         	</c:when>
+         	<c:when test="${empty sessionScope.UVO}">
+         		<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         	</c:when>
+         </c:choose>
 		</ul>
 	</div>
 
@@ -44,7 +52,7 @@
 		<table id="faqTb">
 			<tr>
 				<th width="5%">번호</th>
-				<th width="60%">제목</th>
+				<th width="50%">제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
 				<th width="5%">조회수</th>
@@ -65,7 +73,7 @@
 							<td style="width: 9%;">${row.faq_writer}</td>
 							<td style="width: 25;%;">
 								<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 --> <fmt:formatDate
-									value="${row.faq_regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+									value="${row.faq_regdate}" pattern="yyyy-MM-dd HH:mm" />
 							</td>
 							<td class="no" style="width: 8%;">${row.faq_viewcnt}</td>
 						</tr>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ page session="true"%>
 <%@ include file="/header.jsp"%>
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
 <title>상품 상세정보</title>
 <style>
 #container {
-	width: 960px;
+	width: 60%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -41,18 +42,30 @@
 /* Style the tab content */
 .tabcontent {
 	display: none;
-	background-color: rgb(0, 154, 200);
 	padding: 6px 12px;
-	color: #fff;
+	background: #A19CFF;
 }
 
 ul.tab li.current {
-	background-color: rgb(0, 154, 200);
-	color: #222;
+	background : #A19CFF
 }
 
 .tabcontent.current {
 	display: block;
+}
+
+#productQnaTable{
+	width: 100%;
+	border: solid;
+}
+
+#productQnaTable th{
+background: #8041D9;
+}
+
+##productQnaTable td{
+	margin-bottom: 1%;
+	border: solid;
 }
 </style>
 
@@ -153,7 +166,7 @@ ul.tab li.current {
 
 				<tr>
 					<td rowspan="6" width="60%"><img
-						src="../images/${detail.productImage }" width="100%"
+						src="../../images/${detail.productImage }" width="100%"
 						height="300px"></td>
 				</tr>
 				<tr>
@@ -209,7 +222,7 @@ ul.tab li.current {
 	<!-- 여기서부터 상품 Q&A -->
 
 
-	<div id="container">
+	<div id="container" >
 		<ul class="tab">
 			<li class="current" data-tab="tab1" style="width: 50%;"><a
 				href="#">Q&A</a></li>
@@ -233,7 +246,8 @@ ul.tab li.current {
 				 
 					<input type="hidden" name="productId" id="productId"
 						value="${detail.productId}" />
-					<table id="productQnaTable" border="1">
+						<div style="background: white;">
+					<table id="productQnaTable">
 						<tr>
 							
 							<th>문의유형</th>
@@ -251,18 +265,21 @@ ul.tab li.current {
 										
 										<td>${ProductQnaList.productQna_type}</td>
 										<c:choose>
-											<c:when test="${fn:length(ProductQnaList.productQna_content)>6}">
+											<c:when test="${fn:length(ProductQnaList.productQna_content)>16}">
 											<td id="title">
-												<a href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${fn:substring(ProductQnaList.productQna_content,0,5)}...</a></td>
+												<a style="color: black;" href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${fn:substring(ProductQnaList.productQna_content,0,5)}...</a></td>
 											</c:when>
 											<c:otherwise>
 												<td id="title">
-												<a href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${ProductQnaList.productQna_content}</a></td>
+												<a style="color: black;" href="/product/productQnaDetail.do?productQna_number=${ProductQnaList.productQna_number}&productId=${ProductQnaList.productId}">${ProductQnaList.productQna_content}</a></td>
 											</c:otherwise>
 										</c:choose>
 										<td id="writer">${ProductQnaList.productQna_name}</td>
 										<td id="center">${ProductQnaList.productQna_writedate}</td>
 										<%-- <td id="center">${ProductQnaList.productQna_viewCnt}</td> --%>
+									</tr>
+									<tr>
+									<td colspan="4"><hr></td>
 									</tr>
 
 								</c:forEach>
@@ -274,7 +291,8 @@ ul.tab li.current {
 							</c:otherwise>
 						</c:choose>
 					</table>
-					<p id="right">
+					</div>
+					<p align="right">
 						<input type="button" id="writerForm" name="writerForm" value="글쓰기">
 					</p>
 				</form>
@@ -287,7 +305,6 @@ ul.tab li.current {
 		</div>
 
 		<div id="tab2" class="tabcontent">
-			<h3>Portfolio</h3>
 			<jsp:include page="productReviewReply.jsp"></jsp:include>
 		</div>
 

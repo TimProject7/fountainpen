@@ -107,7 +107,7 @@
 		<div id="myPageForm" align="center">
 			<ul id="myPageForm_nav_ul">
 				<li><a href="/myPage/userInfo/userInfoPassword.do">회원정보변경</a></li>
-				<li><a href="/myPage/buyList/buyList.do">구매내역</a></li>
+				<li><a href="/myPage/buyList/buyList.do"><b>구매내역</b></a></li>
 				<li><a href="/myPage/question/question.do">1:1문의</a></li>
 				<li><a href="/cart/cartList.do">장바구니</a></li>
 				<li><a href="/myPage/delivery/delivery.do">배송정보</a></li>
@@ -119,30 +119,17 @@
 		<form id="f_search" name="f_search">
 			<input type="hidden" id="page" name="page" value="${data.page}" /> <input
 				type="hidden" id="pageSize" name="pageSize" value="${data.pageSize}" />
-
+			<center>
 			<label for="month1_buy">최근1달<input type="radio" id="month1_buy" name="month1_buy" value="month1"></label> 
 			<label for="week2_buy">최근2주<input type="radio" id="week2_buy" name="week2_buy" value="week2"></label> 
 			<label for="week1_buy">최근1주<input type="radio" id="week1_buy" name="week1_buy" value="week1"></label>
-
-			<!--검색-->
-			<table summary="검색">
-
-				<tr>
-					<td><label>검색조건</label> <select name="search" id="search">
-
-							<option value="all">전체</option>
-							<option value="buy_product">상품명</option>
-							<option value="buy_day">구매날짜</option>
-
-					</select> <input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
-						<input type="button" value="검색" id="searchData"></td>
-				</tr>
-			</table>
+			</center>
+			
 		</form>
 
 		<!-- 구매내역 리스트 -->
 		<div>
-			<table border="1" class="buylistTable">
+			<table class="buylistTable">
 				<tr></tr>
 				<tr>
 					<th>구매번호</th>
@@ -159,15 +146,16 @@
 						<c:forEach var="buyListlist" items="${buyListlist}">
 							<tr>
 								<td>${buyListlist.buy_number}</td>
-								<td>${buyListlist.buy_image}</td>
+								<td><img src="../../images/${buyListlist.buy_image}" width="100%" height="150px"> </td>
 								<td>${buyListlist.buy_product}</td>
-								<td>${buyListlist.buy_price}</td>
+								<td><fmt:formatNumber value="${buyListlist.buy_price}" pattern="###,###,###" /> 원</td>
 								<td>${buyListlist.buy_quantity}</td>
 								<td><fmt:formatDate value="${buyListlist.buy_day}"
 										pattern="yyyy-MM-dd" /></td>
 								<%-- <td>${buyListlist.buy_day}</td> --%>
 
 							</tr>
+							<tr><td colspan="6"><hr></td></tr>
 							<%-- <input type="hidden" value="${buytotal+=buytotal }"> --%>
 						</c:forEach>
 					</c:when>
@@ -185,7 +173,22 @@
 				list_size="${data.pageSize}" />
 		</div>
 
-	</div>
+		<!--검색-->
+			<table summary="검색"style="width: 310px;">
 
+				<tr>
+					<td><select name="search" id="search">
+
+							<option value="all">전체</option>
+							<option value="buy_product">상품명</option>
+							<option value="buy_day">구매날짜</option>
+
+					</select> <input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
+						<input type="button" value="검색" id="searchData"></td>
+				</tr>
+			</table>
+
+	</div>
+	<%@ include file="/footer.jsp"%>
 </body>
 </html>

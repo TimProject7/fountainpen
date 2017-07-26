@@ -54,6 +54,12 @@
 		product_origin AS
 		productOrigin
 		from products_tb
+		where 	product_status = 'Y' 
+		
+		<if test="search=='product_name'">
+			and (product_name Like '%'||#{keyword}||'%')
+		</if>
+		
 		ORDER BY product_number
 		desc
 		)lst

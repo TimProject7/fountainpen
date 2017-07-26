@@ -11,15 +11,17 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 목록</title>
-<script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript"
    src="http://code.jquery.com/jquery-latest.js"></script>
 
+<script type="text/javascript" src="../../js/common.js"></script>
+<script src="../../js/jquery.banner.js"></script>
+<script src="../../js/script2.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
-	   
-	   
-	   
+      
+      
+      
       /* 검색후 검색 대상과 검색단어 출력 */
       if ("<c:out value='${data.keyword}'/>" != "") {
          $("#keyword").val("<c:out value='${data.keyword}'/>");
@@ -89,9 +91,31 @@
 </head>
 <body>
  
-
+ <div class="image_List" style="padding-left: 5%;">
+            <div id="image_list_1">
+               <div class="clsBannerScreen" style="width: 1080px; height: 250px;">
+                  <div class="images" style="display: block">
+                     <a href="http://google.com"><img src="../../images/exImg3.jpg"></a>
+                  </div>
+                  <div class="images">
+                     <a href="http://www.naver.com"><img src="../../images/exImg1.jpg"></a>
+                  </div>
+                  <div class="images">
+                     <a href="http://www.nexon.com"><img src="../../images/exImg2.jpg"></a>
+                  </div>
+                  <div class="images">
+                     <a href="http://www.nexon.com"><img src="../../images/exImg4.jpg"></a>
+                  </div>
+                  <div class="images">
+                     <a href="http://www.nexon.com"><img src="../../images/exImg5.jpg"></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+   <br>
    <h2>상품 목록</h2>
    <br>
+   
    
    <form id="f_search" name="f_search">
       <input type="hidden" id="page" name="page" value="${data.page}" /> <input
@@ -122,7 +146,7 @@
                         <div>
                            <a
                               href="javascript:goProductDetail(${product.productId },${data.page },${data.pageSize })">
-                              <img src="/admin/resources/images/${product.productImage }" width="100%"
+                              <img src="../../images/${product.productImage }" width="100%"
                               height="200px">
                               <div>
                                  <div>${product.productCompany }</div>
@@ -143,7 +167,7 @@
       </div>
    </div>
    
-  	
+     
    
    <!-- 페이지 네비 -->
    <div id="productPage" align="center">

@@ -40,6 +40,7 @@
 		select
 		userboard_number,userboard_name,userboard_title,userboard_content,userboard_writedate,userboard_image,userboard_viewcnt,user_number
 		from userboard_tb
+		where userboard_status2 = 'Y'
 		order by
 		userboard_number asc
 		)lst
@@ -58,6 +59,7 @@
 		select
 		userboard_number,userboard_name,userboard_title,userboard_content,userboard_writedate,userboard_image,userboard_viewcnt,user_number
 		from userboard_tb
+		where userboard_status2 = 'Y'
 		order by
 		userboard_number asc
 		)lst

@@ -77,9 +77,17 @@
 <body>
 	<div id="myPageForm" align="center">
 		<ul id="myPageForm_nav_ul">
-			<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do">회원게시판</a></li>
-			<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do"><b>공지사항</b></a></li>
-			<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+			<c:choose >
+			<c:when test="${not empty sessionScope.UVO}">
+         		<li id="nav_menu"><a href="/serviceCenter/userBoard/userBoard.do"><b>회원게시판</b></a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         	</c:when>
+         	<c:when test="${empty sessionScope.UVO}">
+         		<li id="nav_menu"><a href="/serviceCenter/notice/noticelist.do">공지사항</a></li>
+         		<li id="nav_menu"><a href="/serviceCenter/faq/FAQlist.do">FAQ</a></li>
+         	</c:when>
+         </c:choose>
 		</ul>
 	</div>
 
@@ -88,7 +96,7 @@
 
 		<br> <br>
 
-		<h2>Notice 게시글 목록</h2>
+		<h2>공지사항 게시글 목록</h2>
 
 		<br>
 
@@ -123,7 +131,7 @@
 							<td style="width: 9%;">${row.notice_writer}</td>
 							<td style="width: 25%;">
 								<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 --> <fmt:formatDate
-									value="${row.notice_regdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+									value="${row.notice_regdate}" pattern="yyyy-MM-dd HH:mm" />
 							</td>
 							<td class="no" style="width: 8%;">${row.notice_viewcnt}</td>
 						</tr>

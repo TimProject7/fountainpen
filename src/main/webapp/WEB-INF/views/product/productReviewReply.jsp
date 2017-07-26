@@ -224,7 +224,7 @@ function dataReset() {
 			<form id="comment_form">
 				<div>
 					<h2>후기</h2>
-					<label for="user_id" id="user_id">${sessionScope.UVO.user_id}</label>
+					<label for="user_id" id="user_id"><b>${sessionScope.UVO.user_id}</b></label>
 					<input type="text" name="reviewReply_content" id="reviewReply_content" />
 					<input type="button" id="reviewReplyInsert" value="저장하기" />
 				</div>

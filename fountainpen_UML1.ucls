@@ -1,0 +1,1426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.parker.user.controller.HomeController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/HomeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="115" y="42"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.parker.user.controller.BuyController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/BuyController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="255" x="246" y="-20"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.parker.user.controller.CartController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/CartController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="232" width="337" x="541" y="-20"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.parker.user.controller.ComController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/ComController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="275" x="907" y="-14"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.parker.user.controller.ZipcodeController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/ZipcodeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1308" y="66"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.parker.user.controller.myPageController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/myPageController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="466" width="436" x="1431" y="-15"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.parker.user.controller.StoreController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/StoreController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2967" y="33"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.parker.user.controller.UserController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/UserController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3354" y="150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.parker.user.controller.MailController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/MailController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3841" y="60"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.parker.user.controller.ProductController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/ProductController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4429" y="150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.parker.user.controller.StoryController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/StoryController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4918" y="33"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.parker.user.controller.ServiceCenterController" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/controller/ServiceCenterController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5352" y="195"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="13" language="java" name="com.parker.user.dao.NoticeDao" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/NoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2906" y="1601"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="14" language="java" name="com.parker.user.dao.ProductReviewReplyDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductReviewReplyDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3251" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="15" language="java" name="com.parker.user.dao.ProductQnaDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductQnaDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="204" y="1619"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="16" language="java" name="com.parker.user.dao.UserBoardReplyDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/UserBoardReplyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="584" y="1601"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="17" language="java" name="com.parker.user.dao.QuestionDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/QuestionDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4567" y="1619"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="18" language="java" name="com.parker.user.dao.CartDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/CartDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3943" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="19" language="java" name="com.parker.user.dao.ProductQnaDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductQnaDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="204" y="1257"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="20" language="java" name="com.parker.user.dao.ProductDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1583" y="1592"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="21" language="java" name="com.parker.user.dao.ProductQnaReplyDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductQnaReplyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1231" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="22" language="java" name="com.parker.user.dao.UserDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/UserDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2106" y="1673"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="23" language="java" name="com.parker.user.dao.BuyDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/BuyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1857" y="1592"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="com.parker.user.dao.UserBoardReplyDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/UserBoardReplyDAOImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="584" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="25" language="java" name="com.parker.user.dao.DeliveryDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/DeliveryDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2644" y="1601"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="26" language="java" name="com.parker.user.dao.BuyListDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/BuyListDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="903" y="1221"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.parker.user.dao.ProductQnaReplyDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductQnaReplyDAOImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1231" y="1248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="28" language="java" name="com.parker.user.dao.BuyListDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/BuyListDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="903" y="1583"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="29" language="java" name="com.parker.user.dao.ProductDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1583" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="com.parker.user.dao.BuyDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/BuyDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1857" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="com.parker.user.dao.UserDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/UserDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2106" y="1320"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="com.parker.user.dao.QuestionReplyDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/QuestionReplyDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2373" y="1212"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="com.parker.user.dao.DeliveryDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/DeliveryDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2644" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="com.parker.user.dao.NoticeDaoImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/NoticeDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2906" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="35" language="java" name="com.parker.user.dao.QuestionReplyDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/QuestionReplyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2373" y="1574"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="36" language="java" name="com.parker.user.dao.ProductReviewReplyDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/ProductReviewReplyDAOImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3251" y="1248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="37" language="java" name="com.parker.user.dao.CompleteDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/CompleteDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4234" y="1592"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="38" language="java" name="com.parker.user.dao.UserBoardDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/UserBoardDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3643" y="1266"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="com.parker.user.dao.CartDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/CartDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3943" y="1257"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="40" language="java" name="com.parker.user.dao.UserBoardDAO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/UserBoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3643" y="1628"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="41" language="java" name="com.parker.user.dao.FAQDao" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/FAQDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4849" y="1601"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="42" language="java" name="com.parker.user.dao.CompleteDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/CompleteDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4234" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="com.parker.user.dao.QuestionDAOImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/QuestionDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4567" y="1257"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="com.parker.user.dao.FAQDaoImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/dao/FAQDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4849" y="1239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="45" language="java" name="com.parker.user.service.BuyService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/BuyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1003" y="911"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="46" language="java" name="com.parker.user.service.ProductReviewReplyServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductReviewReplyServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="270" y="576"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="com.parker.user.service.ProductQnaReplyServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductQnaReplyServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="684" y="576"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="com.parker.user.service.BuyServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/BuyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1003" y="558"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="49" language="java" name="com.parker.user.service.NoticeService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/NoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4938" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="50" language="java" name="com.parker.user.service.ProductQnaServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductQnaServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1313" y="585"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="com.parker.user.service.DeliveryServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/DeliveryServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1635" y="567"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="com.parker.user.service.UserBoardReplyServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/UserBoardReplyServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1958" y="567"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="53" language="java" name="com.parker.user.service.UserBoardService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/UserBoardService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3471" y="947"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="54" language="java" name="com.parker.user.service.ProductServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2301" y="567"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="55" language="java" name="com.parker.user.service.UserBoardReplyService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/UserBoardReplyService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1958" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="56" language="java" name="com.parker.user.service.ProductQnaService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductQnaService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1313" y="938"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="57" language="java" name="com.parker.user.service.FAQService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/FAQService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4654" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="58" language="java" name="com.parker.user.service.QuestionReplyService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/QuestionReplyService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4046" y="893"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="59" language="java" name="com.parker.user.service.CartService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/CartService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2833" y="929"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="60" language="java" name="com.parker.user.service.UserServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/UserServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2583" y="648"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="com.parker.user.service.CartServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/CartServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2833" y="585"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="62" language="java" name="com.parker.user.service.UserService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/UserService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2583" y="992"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="63" language="java" name="com.parker.user.service.DeliveryService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/DeliveryService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1635" y="920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="64" language="java" name="com.parker.user.service.ProductQnaReplyService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductQnaReplyService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="684" y="929"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="65" language="java" name="com.parker.user.service.CompleteServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/CompleteServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3124" y="567"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="com.parker.user.service.UserBoardServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/UserBoardServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3471" y="594"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="com.parker.user.service.BuyListServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/BuyListServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3778" y="549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="68" language="java" name="com.parker.user.service.CompleteService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/CompleteService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3124" y="911"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="69" language="java" name="com.parker.user.service.QuestionReplyServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/QuestionReplyServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4046" y="540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="70" language="java" name="com.parker.user.service.BuyListService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/BuyListService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3778" y="902"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="71" language="java" name="com.parker.user.service.ProductReviewReplyService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductReviewReplyService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="270" y="929"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="72" language="java" name="com.parker.user.service.QuestionServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/QuestionServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4348" y="585"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="73" language="java" name="com.parker.user.service.ProductService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/ProductService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2301" y="911"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="74" language="java" name="com.parker.user.service.FAQServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/FAQServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4654" y="567"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="75" language="java" name="com.parker.user.service.QuestionService" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/QuestionService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4348" y="938"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="76" language="java" name="com.parker.user.service.NoticeServiceImpl" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/service/NoticeServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4938" y="567"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="com.parker.user.vo.ProductQnaVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ProductQnaVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="236" y="2164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="com.parker.user.vo.BuyVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/BuyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="588" width="198" x="393" y="1868"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="com.parker.user.vo.UserBoardReplyVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/UserBoardReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="756" y="2110"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="com.parker.user.vo.UserVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/UserVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="562" width="260" x="922" y="1868"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="com.parker.user.vo.NoticeVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/NoticeVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1321" y="2164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="com.parker.user.vo.QuestionReplyVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/QuestionReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1583" y="2083"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="com.parker.user.vo.UserBoardVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/UserBoardVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1859" y="2191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="com.parker.user.vo.CartVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/CartVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="646" width="208" x="2014" y="1868"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="com.parker.user.vo.ProductVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ProductVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="662" width="228" x="2272" y="1868"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="86" language="java" name="com.parker.user.vo.QuestionVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/QuestionVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2651" y="2164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="87" language="java" name="com.parker.user.vo.ReplyVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2858" y="1912"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="88" language="java" name="com.parker.user.vo.CompleteVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/CompleteVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="658" width="188" x="2955" y="1868"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="89" language="java" name="com.parker.user.vo.DeliveryVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/DeliveryVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3275" y="2083"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="90" language="java" name="com.parker.user.vo.FAQVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/FAQVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3500" y="2164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="91" language="java" name="com.parker.user.vo.ZipcodeSearchTO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ZipcodeSearchTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3708" y="1966"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="92" language="java" name="com.parker.user.vo.ZipcodeVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ZipcodeVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3916" y="1993"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="93" language="java" name="com.parker.user.vo.ProductQnaReplyVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ProductQnaReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4182" y="2110"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="94" language="java" name="com.parker.user.vo.ProductReviewReplyVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/vo/ProductReviewReplyVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4473" y="2137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="95" language="java" name="com.parker.user.boardtag.PagingTag" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/boardtag/PagingTag.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2270" y="3093"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="96" language="java" name="com.parker.user.boardcommon.PagingVO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/boardcommon/PagingVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1924" y="2994"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="97" language="java" name="com.parker.user.boardcommon.Util" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/boardcommon/Util.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2147" y="2751"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="98" language="java" name="com.parker.user.boardcommon.Paging" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/boardcommon/Paging.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2370" y="2724"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="99" language="java" name="com.parker.user.bcrypt.BCrypt" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/bcrypt/BCrypt.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2856" y="3031"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="100" language="java" name="com.parker.user.bcrypt.SHA256" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/bcrypt/SHA256.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="375" width="303" x="2403" y="16"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="101" language="java" name="com.parker.user.bcrypt.SHA256.SHA256_INFO" project="fountainpen" 
+    file="/fountainpen/src/main/java/com/parker/user/bcrypt/SHA256.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2149" y="148"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="102">    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="103" name="QRDAO"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="105">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <realization id="106">    
+    <end type="SOURCE" refId="66"/>    
+    <end type="TARGET" refId="53"/>  
+  </realization>  
+  <generalization id="107">    
+    <end type="SOURCE" refId="90"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="108">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="109" name="buyService"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="112" name="buylistService"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="70" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="114">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <realization id="115">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <generalization id="116">    
+    <end type="SOURCE" refId="83"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <realization id="117">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <realization id="118">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <association id="119">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="120" name="productQnaService"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="56" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="122">    
+    <end type="SOURCE" refId="78"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <generalization id="123">    
+    <end type="SOURCE" refId="93"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="124">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="125" name="cartDao"/>      
+      <multiplicity id="126" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="127">    
+    <end type="SOURCE" refId="48" navigable="false">      
+      <attribute id="128" name="buyDao"/>      
+      <multiplicity id="129" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="130">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="131" name="noticeService"/>      
+      <multiplicity id="132" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="133">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="134" name="userBoardReplyService"/>      
+      <multiplicity id="135" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="136">    
+    <end type="SOURCE" refId="84" navigable="false">      
+      <attribute id="137" name="list"/>      
+      <multiplicity id="138" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="139">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="140" name="deliveryService"/>      
+      <multiplicity id="141" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="63" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="142">    
+    <end type="SOURCE" refId="66" navigable="false">      
+      <attribute id="143" name="UBDAO"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="145">    
+    <end type="SOURCE" refId="65"/>    
+    <end type="TARGET" refId="68"/>  
+  </realization>  
+  <association id="146">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="147" name="userService"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="62" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="149">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="64"/>  
+  </realization>  
+  <realization id="150">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="151">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <association id="152">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="153" name="userService"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="62" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="155">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="71"/>  
+  </realization>  
+  <association id="156">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="157" name="productService"/>      
+      <multiplicity id="158" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="159">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <association id="160">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="161" name="productQnaDAO"/>      
+      <multiplicity id="162" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="163">    
+    <end type="SOURCE" refId="69"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="164">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="165" name="QDAO"/>      
+      <multiplicity id="166" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="167">    
+    <end type="SOURCE" refId="89"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <realization id="168">    
+    <end type="SOURCE" refId="60"/>    
+    <end type="TARGET" refId="62"/>  
+  </realization>  
+  <association id="169">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="170" name="userBoardService"/>      
+      <multiplicity id="171" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="53" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="172">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <association id="173">    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="174" name="BDAO"/>      
+      <multiplicity id="175" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="176">    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="75"/>  
+  </realization>  
+  <association id="177">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="178" name="cartService"/>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="180">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="181" name="faqService"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="183">    
+    <end type="SOURCE" refId="88"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <realization id="184">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="40"/>  
+  </realization>  
+  <association id="185">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="186" name="cartService"/>      
+      <multiplicity id="187" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="188">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="189">    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="190" name="faqDao"/>      
+      <multiplicity id="191" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="192">    
+    <end type="SOURCE" refId="74"/>    
+    <end type="TARGET" refId="57"/>  
+  </realization>  
+  <realization id="193">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="56"/>  
+  </realization>  
+  <association id="194">    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="195" name="UBRDAO"/>      
+      <multiplicity id="196" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="197">    
+    <end type="SOURCE" refId="52"/>    
+    <end type="TARGET" refId="55"/>  
+  </realization>  
+  <association id="198">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="199" name="questionReplyService"/>      
+      <multiplicity id="200" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="58" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="201">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <association id="202">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="203" name="PRRDAO"/>      
+      <multiplicity id="204" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="205">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="206" name="deliveryDAO"/>      
+      <multiplicity id="207" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="208">    
+    <end type="SOURCE" refId="100"/>    
+    <end type="TARGET" refId="101"/>  
+  </nesting>  
+  <realization id="209">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <association id="210">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="211" name="productDao"/>      
+      <multiplicity id="212" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="213">    
+    <end type="SOURCE" refId="85"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="214">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="215" name="productReviewReplyService"/>      
+      <multiplicity id="216" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="71" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="217">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="63"/>  
+  </realization>  
+  <realization id="218">    
+    <end type="SOURCE" refId="61"/>    
+    <end type="TARGET" refId="59"/>  
+  </realization>  
+  <generalization id="219">    
+    <end type="SOURCE" refId="81"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="220">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="221" name="questionService"/>      
+      <multiplicity id="222" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="223">    
+    <end type="SOURCE" refId="77"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="224">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="225" name="completeDao"/>      
+      <multiplicity id="226" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="227">    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="70"/>  
+  </realization>  
+  <association id="228">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="229" name="productService"/>      
+      <multiplicity id="230" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="231">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="41"/>  
+  </realization>  
+  <realization id="232">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="233">    
+    <end type="SOURCE" refId="76"/>    
+    <end type="TARGET" refId="49"/>  
+  </realization>  
+  <association id="234">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="235" name="userDAO"/>      
+      <multiplicity id="236" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="237">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="45"/>  
+  </realization>  
+  <association id="238">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="239" name="noticeDao"/>      
+      <multiplicity id="240" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="241">    
+    <end type="SOURCE" refId="86"/>    
+    <end type="TARGET" refId="96"/>  
+  </generalization>  
+  <association id="242">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="243" name="PQRDAO"/>      
+      <multiplicity id="244" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="245">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="246" name="productService"/>      
+      <multiplicity id="247" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="248">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="249" name="completeService"/>      
+      <multiplicity id="250" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="251">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="252" name="userService"/>      
+      <multiplicity id="253" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="62" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="254">    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="73"/>  
+  </realization>  
+  <realization id="255">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="37"/>  
+  </realization>  
+  <association id="256">    
+    <end type="SOURCE" refId="100" navigable="false">      
+      <attribute id="257" name="s"/>      
+      <multiplicity id="258" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="100" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

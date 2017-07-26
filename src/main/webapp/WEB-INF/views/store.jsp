@@ -53,7 +53,7 @@
 
 		<div class="content">
 			<div style="widtd: 70%;">
-				<h1 class="center">STORY</h1>
+				<h1 class="center">STORE</h1>
 				<div id="container">
 
 					<ul class="tab">

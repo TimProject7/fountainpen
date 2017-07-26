@@ -32,18 +32,14 @@ h2{
 	border-style: none;
 }
 
-label{
-	float : right;
-	padding-right: 12%;
-}
 
-th{
+.buylistTable th{
 	background-color: #8080c0;
 	color: white;
 }
 
-td{
-	text-align: right;
+.buylistTable td{
+	text-align: center;
 }
 
 #mailkey1{

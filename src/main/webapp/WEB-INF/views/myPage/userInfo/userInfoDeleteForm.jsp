@@ -32,6 +32,7 @@
 				return;
 			} else {
 
+
 				$("#userDeleteForm").attr({
 					"method" : "POST",
 					"action" : "/myPage/userInfo/userDeleteAction.do"
@@ -84,9 +85,6 @@
 				name="usercalcelBtn" value="취소" />
 		</p>
 	</div>
-	<c:if test="${msg =='fail'}">
-	<script>alert('비밀번호가틀립니다');</script>
-	</c:if>
 </body>
 </html>
 <%@ include file="/footer.jsp"%>

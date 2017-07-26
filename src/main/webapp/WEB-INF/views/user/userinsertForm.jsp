@@ -19,40 +19,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 
-/* function validation(){	//alert("validation");
-
-	var regId = /^[a-z0-9]{3,10}$/;	// 아이디 유효성 검사식
-
-	var regPw = /^[a-z0-9]{6,10}$/;	// 비밀번호 유효성 검사식
-
-	var regNm = /^[가-힣]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;	// 이름 유효성 검사식
-
-	var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;  // 이메일 유효성 검사식
-
-	var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;	// 핸드폰번호 유효성 검사식
-	
-	 if( name == 'MEMBER_ID' ){
-
-	        if( !val ){
-	        	$("#msg_memberId").text('아이디를 입력해 주세요.');
-	        	$("#mailchk").val('N');
-	        	$("#MEMBER_ID").focus();
-	            return false;
-	        } else {
-	        	if( !regId.test(val) ) {
-		        	$("#msg_memberId").text('3~10자의 영문 소문자,숫자만 사용 가능합니다.');
-		        	$("#mailchk").val('N');
-		        	$("#MEMBER_ID").focus();
-		        	return false;
-	        	}else{
-	        		fnDuplicationIdCheck();
-
-	        	}	
-	        }
-     }	
-} */
-
-	//유효성검사
+	//정규식
 	$(function() {
 		var regId = /^[A-Za-z0-9+]{4,16}$/;	// 아이디 유효성 검사식 4자리이상 16자리이하, 영문과 숫자만 가능
 		var regpwd = /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // 비밀번호유효성검사 4자리이상 16자리이하 ,숫자혹은 특수문자를 반드시 포함
@@ -65,7 +32,7 @@
 			if(regId.test($('#user_id').val())){
 				$("#msgid").text("중복체크를 하세요").css("color","red");
 				$("#chk").val('N');
-				return;
+				return false;
 			}else{
 				$("#msgid").text("아이디는4자리이상 16자리이하 영문과 숫자만 가능").css("color","red");
 				$("#chk").val('N');
@@ -79,6 +46,7 @@
 				if(!regpwd.test($('#user_password').val())){
 					$("#msgpwd").text("비밀번호는 4자리이상 16자리이하, 숫자혹은 특수문자를 반드시포함").css("color","red");
 					$("#chk").val('N');
+					return false;
 				}else{
 					$("#msgpwd").text("사용가능한 비밀번호입니다.").css("color","blue");
 					$("#chk").val('N');
@@ -92,6 +60,7 @@
 			}else{
 				$("#msgpwdchk").text("비밀번호 불일치").css("color","red");
 				$("#chk").val('N');
+				return false;
 			}
 		}); //#user_passwordchk.keyup
 		
@@ -99,6 +68,7 @@
 			if(!regname.test($('#user_name').val())){
 				$("#msgname").text("이름은 한글,영어").css("color","red");
 				$("#chk").val('N');
+				return false;
 			}else{
 				$("#msgname").text("사용가능").css("color","blue");
 				$("#chk").val('Y');
@@ -110,6 +80,7 @@
 			if(!regemail.test($('#user_email').val())){
 				$("#msgemail").text("이메일형식에 맞게 입력해주세요").css("color","red");
 				$("#chk").val('N');
+				return false;
 			}else{
 				$("#msgemail").text("이메일인증 버튼클릭").css("color","blue");
 			}
@@ -119,6 +90,7 @@
 			if(!regphone.test($('#user_phone').val())){
 				$("#msgphone").text("핸드폰번호 형식에 맞게 입력해주세요").css("color","red");
 				$("#chk").val('N');
+				return false;
 			}else{
 				$("#msgphone").text("").css("color","red");
 				$("#chk").val('Y');
@@ -138,21 +110,22 @@
 							
 											if (!chkSubmit($("#user_id"))) {
 												return false;
+											
 											} else {
-												$
-														.ajax({
+													//serialize() 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+													//serialize()를 이용하면 일일이 fname=값&femail=값&sex=값&job=값 이렇게 안해주어도 된다.
+													$.ajax({
 															url : "/user/useridcheck.do", //전송url
 															type : "POST", //전송방식
-															data : $("#user_id")
-																	.serialize(),
-															error : function(
-																	result) {
+															data : $("#user_id").serialize(),
+															error : function(result) {
 																alert('시스템오류')
 															},
 															success : function(result) {
 																if (result == 0) {
 																	alert('사용가능한 아이디입니다')
 																	$("#msgid").text("사용가능한 아이디입니다").css("color","blue");
+																	//패스워드텍스트필드선택
 																	$("#user_password").select();
 																	$("#chk").val('Y');
 																	
@@ -168,34 +141,34 @@
 										});
 
 						//메일소스
-
 						$("#mailSubmit").click(function() {
+							var regemail=/^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{3}$/; 	//이메일 유효성검사
 											if (!chkSubmit($("#user_email"))) {
-												return;
+												return false;
+											}else if(!regemail.test($('#user_email').val())){
+												alert('이메일 형식이 맞지않습니다.')
+												$('#user_email').focus();
+												return false;
 											} else {
 													$.ajax({
 															url : "/mail/mailForm.do", //전송url
 															type : "POST", //전송방식
-															data : $(
-																	"#user_email")
-																	.serialize(),
-															error : function(
-																	content) {
+															data : $("#user_email").serialize(),
+															error : function(content) {
 																alert('시스템오류')
 															},
-															success : function(
-																	content) {
-																if(content ==1){
+															success : function(content) {
+																if(content == 1){
 																//input태그 name=mailkey1에 .attr('value',content) 벨류에 콘텐츠값을넣는다
 																$("#msgemail").text("사용중인 이메일입니다.").css("color","red");
 																$("#chk").val('N');
 																}else{
-																	$('input[name=mailkey1]').attr('value',content);
-																	/* var mailkeychk = '<input type="button" name="mailBtn" id="mailBtn" value="확인"/>';
-																	$('#mailkey').append(mailkeychk); */
-																	$("#msgemail").text("인증번호를 입력하세요").css("color","blue");
 																	alert('인증메일 발송');
+																	$('input[name=mailkey1]').attr('value',content);
+																	$("#msgemail").text("인증번호를 입력하세요").css("color","blue");
 																	$("#chk").val('N');
+																	//인증텍스트로 포커스이동
+																	$('#user_mailkey').focus();
 																}
 															}
 														});
@@ -204,8 +177,7 @@
 
 						//인증번호확인
 						$("#mailBtn").click(function() {
-							console.log($("#mailkey").val())
-							console.log($("#mailkey1").val())
+
 							var result = 0;
 							if ($("#mailkey").val() == null) {
 								alert("인증번호를 입력하세요")
@@ -250,39 +222,46 @@
 											if(!userid){
 												alert('아이디를 입력하세요')
 												$("#chk").val('N');
+												$('#user_id').focus();
 												return false;
 											}
 											if(!userpw){
 												alert('비밀번호를 입력해주세요')
 												$("#chk").val('N');
+												$('#user_password').focus();
 												return false;
 											}
 											if(!userpwd){
 												alert('비밀번호확인을 입력해주세요')
 												$("#chk").val('N');
+												$('#user_passwordchk').focus();
 												return false;
 											}
 											//
 											if(!username){
 												alert('이름을 입력하세요')
 												$("#chk").val('N');
+												$('#user_name').focus();
 												return false;
 											}
 											if(!userbirthday){
 												alert('생년월일을 입력하세요')
 												$("#chk").val('N');
+												$('#user_birthday').focus();
 												return false;
 											}
 											//
 											if(!useremail){
 												alert('이메일을 입력하세요')
 												$("#chk").val('N');
+												$('#user_email').focus();
 												return false;
 											}
 											//메일인증키확인
 											if(chk!='Y'){
 												alert('메일인증번호를 확인하세요')
 												$("#chk").val('N');
+												$('#user_mailkey').focus();
 												return false;
 											}
 											//
@@ -301,12 +280,14 @@
 											if(!userdetailaddr){
 												alert('상세주소를 입력하세요')
 												$("#chk").val('N');
+												$('#detail_address').focus();
 												return false;
 											}
 											//
 											if(!userphone){
 												alert('핸드폰번호를 입력하세요')
 												$("#chk").val('N');
+												$('#user_phone').focus();
 												return false;
 											}
 											
@@ -341,11 +322,9 @@
 								});
 						});
 
-	$(function() {
-
-		$('#searchBtn').click(function(e) {
+			$(function() {
+				$('#searchBtn').click(function(e) {
 							e.preventDefault();
-
 							$.ajax({
 									url : '/zipcode/list.do', //url요청
 									data : $('#d_form').serialize(), //form에  데이터요청
@@ -354,7 +333,6 @@
 									success : function(result) {
 										$("#zipcodeList").empty();
 											var html = '';
-
 											if (result.errorCode != null
 													&& result.errorCode != '') {
 												html += '<tr>';
@@ -378,22 +356,17 @@
 													html += list[i].zipcode;
 													html += "    </td>";
 													html += "    <td>";
-													html += '<a href="#" onclick="javascript:put(\''
-															+ list[i].address
-															+ '\',\''
-															+ zipcode
-															+ '\')">'
-															+ address
-															+ '</a>';
+													//a우편번호와 주소를 <a>태그로 감싸서 주소와 우편번호에 온클릭명령어를 정의하여 put함수를 호출해서 클릭시 회원가입 입력창으로 값이 전달된다.
+													html += '<a href="#" onclick="javascript:put(\''+ list[i].address+ '\',\''+ zipcode+ '\')">'+ address+ '</a>';
 													html += "    </td>";
 													html += "</tr>";
 												}
 											}
-
+											
 											$("#zipcodeList").append(html);
 										}
 									});
-						});
+								});
 
 			//다이얼로그 팝업창을 연다 !
 			$("#dialog_form").dialog({
@@ -405,42 +378,37 @@
 					
 					Cancel : function() {
 						dialog.dialog("close");
-						}
-			
-				},
-				
+								}
+						},
 				close : function() {
 					/*************				
 					close 될떄
 					trigger("reset") 입력창의 내용 리셋  
-					remove = tbladdr 테이블의 tr을 삭제함으로써 주소리스트를 없앤다 
-					 */
+					remove = tbladdr 테이블의 tr을 삭제함으로써 주소리스트를 초기화한다. 
+					****************/
 					$("#d_form").trigger("reset");
 					$("#tbladdr tr:not(:first)").remove();
-				}
-			
-		});
-			
-
+					}
+				});
 		//다이얼 로그 팝업창 오픈-!
 		$("#zipcodesearch").click(function() {
 			$("#dialog_form").dialog("open");
-			eKey(e)
+			//eKey(e)
 		});
 		
 		
 		
 	});
 
-		function eKey(e){
+		/* function eKey(e){
 		   if(e.keyCode == 13 && e.srcElement.type != 'textarea'){
 		      if(!changePw()){
 		         return false;
 		      }
 		   }
-		}
+		} */
 		
-	//put 함수 주소와 코드번호의 값을 전달한다.
+	//put 함수 매개변수로  주소와 우편번호의 값을 전달한다.
 	//dialog('close')로 다이얼로그창 종료
 	function put(address, zipcode) {
 		var address = address;
@@ -455,7 +423,7 @@
 </head>
 <body>
 <input type="hidden" id="chk" name="chk" value="N"/>
-<input type="text" name="mailkey1" id="mailkey1" value="">
+<input type="text" name="mailkey1" id="mailkey1" value=""></td>
 	<div id="content" align="center">
 		<!--다이얼로그창 폼  -->
 		<div id="dialog_form">
@@ -518,7 +486,7 @@
 				<tr>
 					<th id="column">생년월일</th>
 					<td id="column2"><input type="text" id="user_birthday"
-						name="user_birthday" placeholder="예:19900524"></td>
+						name="user_birthday" placeholder="예:19900524" maxlength="8"></td>
 				</tr>
 				<tr id="mail">
 					<th id="column">이메일</th>

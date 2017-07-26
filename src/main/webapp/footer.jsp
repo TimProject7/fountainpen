@@ -18,10 +18,10 @@
 				<table class="footer_table" >
 					<tr class="basic_fontszie">
 						<th>QuickMenu</th>
-						<td><b>Story</b></td>
-						<td colspan="2"><b>Collection</b></td>
-						<td><b>Support</b></td>
-						<td><b>Store</b></td>
+						<td><b><a style="color: black;" href="/story.do">Story</a></b></td>
+						<td colspan="2"><b><a style="color: black;" href="/product/productList.do">Product</a></b></td>
+						<td><b><a style="color: black;" href="/serviceCenter/userBoard/userBoard.do">Support</a></b></td>
+						<td><b><a style="color: black;" href="/store.do">Store</a></b></td>
 					</tr>
 
 					<tr>

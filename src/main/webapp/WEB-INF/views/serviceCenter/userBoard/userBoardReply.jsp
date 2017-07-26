@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원게시판 댓글</title>
+<style type="text/css">
+
+</style>
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
@@ -180,9 +183,24 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	var writer_id_input = $("<input>");
 	writer_id_input.attr({"type":"text","size":"10","value":user_id+"님"});
 	
+	
+	//댓글 text
+	var two_textarea =$("<input>");
+	two_textarea.attr({"type":"text","size":"30","value":userboardreply_content});
+	two_textarea.addClass("two_textarea");
+	//two_textarea.html(userboardreply_content);
+	
 	//작성날짜 = input
 	var writer_date_inpit = $("<input>");
 	writer_date_inpit.attr({"type":"text","size":"10","value":"/" + userboardreply_writedate +""});
+	
+	//두번째 tr 댓글 내용  tr - td - textarea		
+	var two_tr =$("<tr>");
+	two_tr.addClass("comment_item_two");
+	
+	//댓글 td
+	var two_td =$("<td>");
+	two_td.addClass("two_td");
 	if(userid != user_id){
 		
 	}else{
@@ -196,25 +214,10 @@ function addNewItem(userboardreply_number, user_id, userboardreply_content, user
 	input_delete_button.attr({"type":"button","value":"삭제"});
 	input_delete_button.addClass("delete_btn");
 	}
-	//두번째 tr 댓글 내용  tr - td - textarea		
-	var two_tr =$("<tr>");
-	two_tr.addClass("comment_item_two");
-	
-	//댓글 td
-	var two_td =$("<td>");
-	two_td.addClass("two_td");
-	
-	
-	//댓글 textarea
-	var two_textarea =$("<textarea>");
-	two_textarea.attr({"rows":"7","cols":"40"});
-	two_textarea.addClass("two_textarea");
-	two_textarea.html(userboardreply_content);
-	
-	//hr
-	
+	//br
+	var br =$("<br>");
 	var hr =$("<hr>");
-	
+	var br =$("<br>");
 	
 	//수정폼 조립
 	first_tr.append().append(writer_td);////첫번째 tr -td
@@ -233,18 +236,20 @@ function dataReset() {
 </script>
 </head>
 <body>
+	<br><br>
 	<div id="replyContainer" align="center">
-		<h1></h1>
+		<h1>댓글입력</h1>
 		<div id="comment_writer">
 			<form id="comment_form">
 				<div>
 					<label for="user_id">작성자</label> 
-					<input type="text" name="user_id" id="user_id" value="${sessionScope.UVO.user_id}" readonly="readonly"/> 
+					<input type="text" name="user_id" id="user_id" value="${sessionScope.UVO.user_id}" readonly="readonly" size="6"/>
+					<!-- <textarea name="userboardreply_content" id="userboardreply_content" rows="2"></textarea> -->
+					<input type="text"  name="userboardreply_content" id="userboardreply_content" placeholder="댓글내용입력" size="50">
 					<input type="button" id="userBoardReplyInsert" name="userBoardReplyInsert" value="저장하기" />
 				</div>
 				<div>
-					<label for="userboardreply_content">댓글 내용</label>
-					<textarea name="userboardreply_content" id="userboardreply_content"></textarea>
+					
 				</div>
 			</form>
 		</div>
